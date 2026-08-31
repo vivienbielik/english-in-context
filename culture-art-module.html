@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English in Context · Culture &amp; Art</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+
+:root{
+  --teal-deep:#1F5C56;
+  --teal:#2F7A72;
+  --teal-tint:#E4EFEC;
+  --terracotta:#C1603C;
+  --terracotta-tint:#F4E2D8;
+  --amber:#D9A441;
+  --cream:#FBF6EC;
+  --card:#FFFDF8;
+  --ink:#2A2420;
+  --ink-soft:#6B6259;
+  --line:#E6DFD0;
+  --good:#3B7A57;
+  --good-tint:#E4F0E7;
+  --bad:#B5473A;
+  --bad-tint:#F7E5E1;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'Source Sans 3',sans-serif;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.display{font-family:'Fraunces',serif; font-weight:600; margin:0;}
+p{margin:0 0 .9em; max-width:64ch;}
+.wrap{max-width:960px; margin:0 auto; padding:0 1.5rem;}
+
+/* ---------- progress bar ---------- */
+#progress{
+  position:fixed; top:0; left:0; height:4px; width:0%;
+  background:var(--amber); z-index:100; transition:width .1s linear;
+}
+
+/* ---------- nav ---------- */
+nav{
+  position:sticky; top:4px; z-index:90;
+  background:rgba(251,246,236,.94); backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line);
+}
+nav .wrap{
+  display:flex; gap:1.4rem; overflow-x:auto; padding:.8rem 1.5rem;
+  scrollbar-width:none;
+}
+nav .wrap::-webkit-scrollbar{display:none;}
+nav a{
+  color:var(--ink-soft); text-decoration:none; font-size:.9rem; font-weight:600;
+  white-space:nowrap; padding-bottom:.25rem; border-bottom:2px solid transparent;
+}
+nav a.active{color:var(--teal-deep); border-bottom-color:var(--amber);}
+
+/* ---------- hero ---------- */
+.hero{
+  background:linear-gradient(160deg,var(--teal-deep) 0%,var(--teal) 65%);
+  color:#fff; padding:3rem 1.5rem 3.6rem; position:relative; overflow:hidden;
+}
+.hero::after{content:"";position:absolute;right:-40px;top:-40px;width:260px;height:260px;border:1px solid rgba(255,255,255,.16);border-radius:50%;}
+.hero::before{content:"";position:absolute;right:70px;bottom:-100px;width:190px;height:190px;border:1px solid rgba(255,255,255,.12);border-radius:50%;}
+.hero-inner{max-width:960px;margin:0 auto;position:relative;z-index:1;}
+.hero .kicker{color:var(--amber); font-weight:600; margin-bottom:.5rem; font-size:.95rem;}
+.hero h1{font-size:2.5rem; color:#fff; max-width:20ch;}
+.hero p.lede{color:rgba(255,255,255,.86); max-width:56ch; margin-top:.9rem; font-size:1.05rem;}
+.hero-meta{display:flex; gap:1.6rem; margin-top:1.6rem; flex-wrap:wrap;}
+.hero-meta div{font-size:.85rem; color:rgba(255,255,255,.75);}
+.hero-meta strong{display:block; color:#fff; font-family:'Fraunces',serif; font-size:1.15rem;}
+
+/* ---------- sections ---------- */
+section{padding:3.2rem 0; border-bottom:1px solid var(--line);}
+section:last-of-type{border-bottom:none;}
+.section-head{margin-bottom:1.6rem;}
+.section-head .tag{color:var(--terracotta); font-weight:600; font-size:.82rem; margin-bottom:.35rem; display:block;}
+.section-head h2{font-size:1.9rem;}
+.section-head p{color:var(--ink-soft); margin-top:.5rem;}
+
+/* ---------- generic card ---------- */
+.card{
+  background:var(--card); border:1px solid var(--line); border-radius:10px;
+  padding:1.5rem 1.6rem;
+}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:1.2rem;}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:1.1rem;}
+@media(max-width:720px){.grid2,.grid3{grid-template-columns:1fr;}}
+
+/* ---------- warm-up poll ---------- */
+.poll-q{margin-bottom:1.6rem;}
+.poll-q .q{font-weight:600; margin-bottom:.6rem;}
+.poll-opts{display:flex; flex-wrap:wrap; gap:.6rem;}
+.poll-opt{
+  border:1px solid var(--line); background:var(--card); color:var(--ink);
+  padding:.55rem 1rem; border-radius:20px; cursor:pointer; font-size:.92rem;
+}
+.poll-opt.picked{background:var(--teal-tint); border-color:var(--teal); color:var(--teal-deep); font-weight:600;}
+
+/* ---------- reading text ---------- */
+.reading{border-left:3px solid var(--teal); padding-left:1.3rem;}
+.reading p{max-width:none;}
+.check-box{margin-top:1.5rem; background:var(--teal-tint); border-radius:10px; padding:1.2rem 1.4rem;}
+.check-box .q{font-weight:600; margin-bottom:.5rem;}
+.check-box .opts{display:flex; flex-direction:column; gap:.4rem; margin-bottom:1rem;}
+.check-box label{display:flex; gap:.5rem; align-items:flex-start; cursor:pointer; font-size:.95rem;}
+.result-line{font-weight:600; font-size:.9rem; padding:.3rem 0; min-height:1.4em;}
+.result-line.good{color:var(--good);}
+.result-line.bad{color:var(--bad);}
+button.check-btn{
+  background:var(--teal-deep); color:#fff; border:none; padding:.6rem 1.3rem;
+  border-radius:20px; font-weight:600; cursor:pointer; font-size:.9rem;
+}
+button.check-btn:hover{background:var(--teal);}
+button.ghost-btn{
+  background:transparent; color:var(--teal-deep); border:1px solid var(--teal-deep);
+  padding:.55rem 1.2rem; border-radius:20px; font-weight:600; cursor:pointer; font-size:.88rem;
+}
+
+/* ---------- flashcards ---------- */
+.flash-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem;}
+@media(max-width:720px){.flash-grid{grid-template-columns:repeat(2,1fr);}}
+.flash{
+  perspective:1000px; height:120px; cursor:pointer;
+}
+.flash-inner{
+  position:relative; width:100%; height:100%; transition:transform .5s;
+  transform-style:preserve-3d;
+}
+.flash.flipped .flash-inner{transform:rotateY(180deg);}
+.flash-face{
+  position:absolute; inset:0; backface-visibility:hidden;
+  border-radius:10px; display:flex; align-items:center; justify-content:center;
+  text-align:center; padding:.7rem; font-size:.92rem;
+}
+.flash-front{background:var(--teal-deep); color:#fff; font-weight:600; font-family:'Fraunces',serif; font-size:1.05rem;}
+.flash-back{background:var(--card); border:1px solid var(--line); color:var(--ink); transform:rotateY(180deg); font-size:.85rem;}
+
+/* ---------- matching ---------- */
+.match-wrap{display:grid; grid-template-columns:1fr 1fr; gap:2rem;}
+@media(max-width:720px){.match-wrap{grid-template-columns:1fr; gap:.8rem;}}
+.match-col{display:flex; flex-direction:column; gap:.6rem;}
+.match-item{
+  border:1px solid var(--line); background:var(--card); padding:.65rem .9rem;
+  border-radius:8px; cursor:pointer; font-size:.9rem;
+}
+.match-item.selected{border-color:var(--amber); background:var(--terracotta-tint);}
+.match-item.matched{border-color:var(--good); background:var(--good-tint); cursor:default;}
+.match-item.wrong{animation:shake .3s;}
+@keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-5px);}75%{transform:translateX(5px);}}
+
+/* ---------- sentence starters ---------- */
+.starter-group{margin-bottom:1.1rem;}
+.starter-group h4{font-family:'Fraunces',serif; font-size:1rem; color:var(--teal-deep); margin-bottom:.4rem;}
+.starter-group ul{margin:0; padding-left:1.2rem;}
+.starter-group li{margin-bottom:.25rem; font-size:.94rem;}
+
+/* ---------- tables ---------- */
+table.grammar-table{width:100%; border-collapse:collapse; font-size:.9rem; margin:1rem 0;}
+table.grammar-table th, table.grammar-table td{
+  border:1px solid var(--line); padding:.55rem .7rem; text-align:left;
+}
+table.grammar-table th{background:var(--teal-tint); color:var(--teal-deep); font-weight:700;}
+table.grammar-table td.arrow{color:var(--terracotta); font-weight:700; text-align:center; width:2rem;}
+
+.note-box{
+  background:var(--terracotta-tint); border-left:3px solid var(--terracotta);
+  padding:1rem 1.2rem; border-radius:0 8px 8px 0; margin:1.2rem 0; font-size:.92rem;
+}
+.note-box strong{color:var(--terracotta);}
+
+/* ---------- cloze ---------- */
+.cloze-item{margin-bottom:1rem; font-size:.96rem;}
+.cloze-item select{
+  border:1px solid var(--teal); border-radius:6px; padding:.25rem .5rem;
+  font-family:inherit; font-size:.92rem; background:#fff; color:var(--ink);
+}
+.cloze-item select.correct{border-color:var(--good); background:var(--good-tint);}
+.cloze-item select.incorrect{border-color:var(--bad); background:var(--bad-tint);}
+
+/* ---------- categorize ---------- */
+.chip-pool{display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:1.4rem;}
+.chip{
+  background:var(--card); border:1px solid var(--teal); color:var(--teal-deep);
+  padding:.4rem .85rem; border-radius:16px; cursor:pointer; font-size:.87rem; font-weight:600;
+}
+.chip.selected{background:var(--teal-deep); color:#fff;}
+.chip.placed{opacity:.35; cursor:default;}
+.buckets{display:grid; grid-template-columns:repeat(4,1fr); gap:1rem;}
+@media(max-width:820px){.buckets{grid-template-columns:repeat(2,1fr);}}
+.bucket{
+  border:2px dashed var(--line); border-radius:10px; padding:.9rem; min-height:140px;
+}
+.bucket h4{font-size:.85rem; color:var(--teal-deep); margin-bottom:.6rem; font-family:'Fraunces',serif;}
+.bucket .placed-chip{
+  display:inline-block; margin:.15rem; padding:.3rem .6rem; border-radius:12px; font-size:.8rem;
+}
+.bucket .placed-chip.right{background:var(--good-tint); color:var(--good);}
+.bucket .placed-chip.wrong{background:var(--bad-tint); color:var(--bad);}
+
+/* ---------- transform exercise ---------- */
+.transform-item{margin-bottom:1.5rem;}
+.transform-item .direct{font-style:italic; margin-bottom:.5rem;}
+.transform-item textarea{
+  width:100%; min-height:56px; border:1px solid var(--line); border-radius:8px;
+  padding:.6rem .8rem; font-family:inherit; font-size:.92rem; resize:vertical;
+}
+.model-answer{
+  display:none; margin-top:.5rem; background:var(--teal-tint); padding:.6rem .9rem;
+  border-radius:8px; font-size:.9rem; color:var(--teal-deep);
+}
+.model-answer.shown{display:block;}
+
+/* ---------- quiz ---------- */
+.quiz-item{margin-bottom:1.4rem; padding-bottom:1.4rem; border-bottom:1px solid var(--line);}
+.quiz-item:last-of-type{border-bottom:none;}
+.quiz-item .q{font-weight:600; margin-bottom:.6rem;}
+.quiz-item .opts{display:flex; flex-direction:column; gap:.4rem;}
+.quiz-item label{display:flex; gap:.5rem; align-items:flex-start; cursor:pointer; font-size:.95rem;}
+#quizScore{
+  margin-top:1rem; font-family:'Fraunces',serif; font-size:1.3rem; color:var(--teal-deep);
+  display:none;
+}
+
+/* ---------- reflection ---------- */
+.reflect-box textarea{
+  width:100%; min-height:150px; border:1px solid var(--line); border-radius:10px;
+  padding:1rem; font-family:inherit; font-size:.96rem; resize:vertical;
+}
+.reflect-meta{display:flex; justify-content:space-between; align-items:center; margin-top:.6rem; font-size:.85rem; color:var(--ink-soft);}
+
+/* ---------- exercise bank ---------- */
+.ex-block{margin-bottom:2.6rem;}
+.ex-head{display:flex; align-items:baseline; gap:.6rem; margin-bottom:.3rem; flex-wrap:wrap;}
+.ex-head .ex-num{
+  background:var(--teal-deep); color:#fff; font-family:'Fraunces',serif; font-weight:700;
+  width:2rem; height:2rem; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  font-size:.95rem; flex-shrink:0;
+}
+.ex-head h3{font-size:1.15rem;}
+.ex-type{color:var(--terracotta); font-size:.82rem; font-weight:600; font-style:italic;}
+.ex-instructions{color:var(--ink-soft); font-size:.92rem; margin:.3rem 0 1rem 2.6rem;}
+.ex-body{margin-left:2.6rem;}
+@media(max-width:600px){.ex-body,.ex-instructions{margin-left:0;}}
+
+.text-input{
+  border:1px solid var(--line); border-radius:6px; padding:.3rem .55rem;
+  font-family:inherit; font-size:.9rem; width:150px; margin:0 .2rem;
+}
+.text-input.correct{border-color:var(--good); background:var(--good-tint);}
+.text-input.incorrect{border-color:var(--bad); background:var(--bad-tint);}
+
+.oddset{margin-bottom:1.3rem;}
+.oddset .items{display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:.4rem;}
+.oddset .oitem{
+  border:1px solid var(--line); background:var(--card); padding:.4rem .8rem;
+  border-radius:16px; cursor:pointer; font-size:.87rem;
+}
+.oddset .oitem.right{background:var(--good-tint); border-color:var(--good); color:var(--good); font-weight:600;}
+.oddset .oitem.wrong{background:var(--bad-tint); border-color:var(--bad); color:var(--bad);}
+.oddset .explain{display:none; font-size:.87rem; color:var(--teal-deep); background:var(--teal-tint); padding:.5rem .8rem; border-radius:8px;}
+.oddset .explain.shown{display:block;}
+
+.rolecard-grid{display:grid; grid-template-columns:1fr 1fr; gap:1.1rem;}
+@media(max-width:700px){.rolecard-grid{grid-template-columns:1fr;}}
+.rolecard{border-radius:10px; padding:1.1rem 1.3rem;}
+.rolecard.a{background:var(--teal-tint);}
+.rolecard.b{background:var(--terracotta-tint);}
+.rolecard h4{font-family:'Fraunces',serif; font-size:1rem; margin-bottom:.55rem;}
+.rolecard.a h4{color:var(--teal-deep);}
+.rolecard.b h4{color:var(--terracotta);}
+.rolecard ul{margin:0; padding-left:1.1rem;}
+.rolecard li{margin-bottom:.4rem; font-size:.9rem;}
+
+.writeup-box{margin-top:1.2rem;}
+.writeup-box textarea{
+  width:100%; min-height:110px; border:1px solid var(--line); border-radius:10px;
+  padding:.8rem; font-family:inherit; font-size:.92rem; resize:vertical;
+}
+.writeup-meta{display:flex; justify-content:space-between; align-items:center; margin-top:.5rem; font-size:.82rem; color:var(--ink-soft);}
+
+.check-all-btn{margin-top:.8rem;}
+
+footer{padding:2.5rem 1.5rem 3rem; text-align:center; color:var(--ink-soft); font-size:.85rem;}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<nav>
+  <div class="wrap">
+    <a href="#warmup">Warm-up</a>
+    <a href="#forms">Culture &amp; Its Forms</a>
+    <a href="#society">Society &amp; Art</a>
+    <a href="#personality">Art &amp; You</a>
+    <a href="#vocab">Vocabulary</a>
+    <a href="#grammar">Language Lab</a>
+    <a href="#exercises">Exercise Bank</a>
+    <a href="#roleplay">Role-Play Studio</a>
+    <a href="#practice">Practice Arena</a>
+    <a href="#reflect">Reflect</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="kicker">English in Context · B2</span>
+    <h1>Culture &amp; Art</h1>
+    <p class="lede">A self-paced module on culture, society, art and personal growth — plus a full grammar lab and 10-exercise practice set on reported speech.</p>
+    <div class="hero-meta">
+      <div><strong>B2</strong>Level</div>
+      <div><strong>~70 min</strong>Self-paced</div>
+      <div><strong>10</strong>Sections</div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ===================== WARM-UP ===================== -->
+<section id="warmup">
+  <div class="section-head">
+    <span class="tag">Before you start</span>
+    <h2>Warm-up</h2>
+    <p>There are no right or wrong answers here — just click what feels true for you.</p>
+  </div>
+  <div class="card" id="pollCard"></div>
+</section>
+
+<!-- ===================== CULTURE & FORMS ===================== -->
+<section id="forms">
+  <div class="section-head">
+    <span class="tag">Part 1</span>
+    <h2>Culture and Its Forms</h2>
+  </div>
+  <div class="reading">
+    <p>Culture is the whole way of life of a group of people — their beliefs, customs, art, and social behaviour, passed down from one generation to the next. Sociologists often distinguish between <em>material culture</em> (the physical things a society produces, from buildings to fashion) and <em>non-material culture</em> (values, norms, and ideas).</p>
+    <p>Culture also takes many artistic forms. The visual arts include painting, sculpture, and photography. The performing arts cover theatre, dance, and music. Literature, cinema, architecture, and even cuisine are equally valid expressions of a culture's identity.</p>
+    <p>We also talk about <em>high culture</em> — traditionally associated with classical music, opera, or fine art — versus <em>popular culture</em>, which includes mainstream film, pop music, and social media trends. Neither is "better"; they simply appeal to different audiences and serve different social functions. Within any society, smaller <em>subcultures</em> also form around shared interests, from skateboarding to anime fandoms, each developing its own vocabulary, style, and values.</p>
+  </div>
+  <div class="check-box" id="check1"></div>
+</section>
+
+<!-- ===================== SOCIETY & ART ===================== -->
+<section id="society">
+  <div class="section-head">
+    <span class="tag">Part 2</span>
+    <h2>Society, Culture and Art</h2>
+  </div>
+  <div class="reading">
+    <p>Art rarely exists in a vacuum — it is shaped by, and helps shape, the society that produces it. Artists frequently respond to political events, social injustice, or technological change, turning their work into a form of commentary. Street art and protest music are obvious examples, but even a quiet landscape painting can reveal what a society values at a given moment.</p>
+    <p>Globalisation has made cultures more interconnected than ever. Streaming platforms expose teenagers to music and film from the other side of the world, and museums increasingly display art from distant cultures. This exchange enriches societies but also raises debates about cultural appropriation and the loss of local traditions.</p>
+    <p>Governments and institutions play a role too, through funding, censorship, or the preservation of cultural heritage. Whether a mural is protected as heritage or removed as vandalism often depends on whose voice is heard — a reminder that art and power are closely linked.</p>
+  </div>
+  <div class="check-box" id="check2"></div>
+</section>
+
+<!-- ===================== ART & PERSONALITY ===================== -->
+<section id="personality">
+  <div class="section-head">
+    <span class="tag">Part 3</span>
+    <h2>Art and Personality Development</h2>
+  </div>
+  <div class="reading">
+    <p>Beyond its social role, art shapes the individual. Engaging with art — whether by creating it or simply appreciating it — develops <em>creativity</em>, the ability to generate original ideas and see problems from unexpected angles. Analysing a poem or a painting also trains <em>critical thinking</em>, as students must justify an interpretation using evidence.</p>
+    <p>Art builds emotional intelligence. A novel can let a reader experience life from someone else's perspective, strengthening empathy. Music and drama, meanwhile, give people a safe outlet for emotions that might otherwise stay bottled up — this is the basic idea behind art therapy.</p>
+    <p>Finally, many of the soft skills employers value — collaboration, resilience after criticism, and the confidence to present an idea publicly — are quietly practised every time a student joins a choir, a drama club, or a life-drawing class. In short, art doesn't just decorate a personality; it helps build one.</p>
+  </div>
+  <div class="check-box" id="check3"></div>
+</section>
+
+<!-- ===================== VOCABULARY ===================== -->
+<section id="vocab">
+  <div class="section-head">
+    <span class="tag">Part 4</span>
+    <h2>Vocabulary, Phrases &amp; Sentence Starters</h2>
+    <p>Click a card to flip it and check the meaning.</p>
+  </div>
+
+  <div class="flash-grid" id="flashGrid"></div>
+
+  <h3 style="margin-top:2.2rem; font-size:1.2rem;">Match the word to its meaning</h3>
+  <div class="match-wrap" style="margin-top:1rem;">
+    <div class="match-col" id="matchTerms"></div>
+    <div class="match-col" id="matchDefs"></div>
+  </div>
+  <div class="result-line" id="matchResult"></div>
+
+  <h3 style="margin-top:2.4rem; font-size:1.2rem;">Sentence starters for discussion &amp; essays</h3>
+  <div class="grid2" style="margin-top:1rem;">
+    <div>
+      <div class="starter-group">
+        <h4>Giving an opinion</h4>
+        <ul><li>In my opinion, ...</li><li>I would argue that ...</li><li>From my point of view, ...</li></ul>
+      </div>
+      <div class="starter-group">
+        <h4>Agreeing</h4>
+        <ul><li>I completely agree that ...</li><li>That's a valid point because ...</li></ul>
+      </div>
+      <div class="starter-group">
+        <h4>Disagreeing</h4>
+        <ul><li>I'm not entirely convinced that ...</li><li>While I see your point, I'd argue that ...</li></ul>
+      </div>
+    </div>
+    <div>
+      <div class="starter-group">
+        <h4>Giving examples</h4>
+        <ul><li>A good example of this is ...</li><li>This is illustrated by ...</li></ul>
+      </div>
+      <div class="starter-group">
+        <h4>Comparing</h4>
+        <ul><li>Unlike ..., ...</li><li>In contrast to ..., ...</li></ul>
+      </div>
+      <div class="starter-group">
+        <h4>Concluding</h4>
+        <ul><li>Taking everything into account, ...</li><li>All things considered, ...</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LANGUAGE LAB ===================== -->
+<section id="grammar">
+  <div class="section-head">
+    <span class="tag">Part 5 · Grammar</span>
+    <h2>Language Lab: Reported Speech</h2>
+    <p>Everything you need on indirect speech and reporting verbs — rules, exceptions, and things to watch out for.</p>
+  </div>
+
+  <div class="card">
+    <h3 style="font-size:1.1rem; margin-bottom:.5rem;">What is reported speech?</h3>
+    <p>Reported (or indirect) speech tells someone what another person said, without quoting their exact words. Compare:</p>
+    <p><strong>Direct:</strong> "I love this exhibition," she said.<br>
+    <strong>Reported:</strong> She said (that) she loved that exhibition.</p>
+    <p>Three things typically change: the <strong>verb tense</strong> (backshift), <strong>pronouns</strong>, and <strong>time/place expressions</strong> — because we are now speaking from a different moment and, often, a different place.</p>
+  </div>
+
+  <h3 style="margin-top:2rem; font-size:1.15rem;">1. Tense backshift</h3>
+  <table class="grammar-table">
+    <tr><th>Direct speech</th><th></th><th>Reported speech</th></tr>
+    <tr><td>Present simple</td><td class="arrow">→</td><td>Past simple</td></tr>
+    <tr><td>Present continuous</td><td class="arrow">→</td><td>Past continuous</td></tr>
+    <tr><td>Present perfect</td><td class="arrow">→</td><td>Past perfect</td></tr>
+    <tr><td>Past simple</td><td class="arrow">→</td><td>Past perfect</td></tr>
+    <tr><td>Past continuous</td><td class="arrow">→</td><td>Past perfect continuous</td></tr>
+    <tr><td>will</td><td class="arrow">→</td><td>would</td></tr>
+    <tr><td>can</td><td class="arrow">→</td><td>could</td></tr>
+    <tr><td>may</td><td class="arrow">→</td><td>might</td></tr>
+    <tr><td>must (obligation)</td><td class="arrow">→</td><td>had to</td></tr>
+  </table>
+
+  <h3 style="margin-top:1.8rem; font-size:1.15rem;">2. Time, place and pronoun changes</h3>
+  <table class="grammar-table">
+    <tr><th>Direct</th><th></th><th>Reported</th></tr>
+    <tr><td>now</td><td class="arrow">→</td><td>then</td></tr>
+    <tr><td>today</td><td class="arrow">→</td><td>that day</td></tr>
+    <tr><td>tomorrow</td><td class="arrow">→</td><td>the next / following day</td></tr>
+    <tr><td>yesterday</td><td class="arrow">→</td><td>the day before / the previous day</td></tr>
+    <tr><td>here</td><td class="arrow">→</td><td>there</td></tr>
+    <tr><td>this / these</td><td class="arrow">→</td><td>that / those</td></tr>
+    <tr><td>... ago</td><td class="arrow">→</td><td>... before</td></tr>
+  </table>
+  <p style="font-size:.9rem; color:var(--ink-soft);">Pronouns (I, my, you, your...) simply follow logic: they change to match who is speaking now and who is being talked about.</p>
+
+  <h3 style="margin-top:1.8rem; font-size:1.15rem;">3. Say vs. tell</h3>
+  <p><strong>tell</strong> always needs an object (the listener): <em>He told me (that) the museum was closing.</em><br>
+  <strong>say</strong> does not take a direct object — if you name the listener, use "to": <em>He said (to me) that the museum was closing.</em></p>
+  <div class="note-box"><strong>Common error:</strong> "He said me that..." is wrong. Use <em>told me</em> or <em>said to me</em>.</div>
+
+  <h3 style="margin-top:1.8rem; font-size:1.15rem;">4. Beyond "say" and "tell": reporting verb patterns</h3>
+  <p>English has dozens of reporting verbs, and each follows one of a few grammar patterns. Learning the pattern is more useful than learning the verb alone.</p>
+  <table class="grammar-table">
+    <tr><th>Pattern</th><th>Example verbs</th><th>Example sentence</th></tr>
+    <tr><td>verb + <em>to</em>-infinitive</td><td>agree, offer, promise, refuse</td><td>She agreed to join the art club.</td></tr>
+    <tr><td>verb + object + <em>to</em>-infinitive</td><td>advise, warn, invite, order</td><td>He advised us to visit the gallery early.</td></tr>
+    <tr><td>verb + -ing</td><td>admit, deny, suggest, recommend</td><td>She suggested visiting the new exhibition.</td></tr>
+    <tr><td>verb + (that) clause</td><td>claim, explain, insist, complain</td><td>He complained that the tickets were expensive.</td></tr>
+  </table>
+
+  <h3 style="margin-top:1.8rem; font-size:1.15rem;">5. Reported questions</h3>
+  <p><strong>Yes/No questions</strong> — add <em>if</em> or <em>whether</em>, and switch back to statement word order (no auxiliary do/does/did):</p>
+  <p>"Do you like modern art?" → She asked if I liked modern art.</p>
+  <p><strong>Wh-questions</strong> — keep the question word, but also use statement word order:</p>
+  <p>"Where did you buy that painting?" → He asked where I had bought that painting.</p>
+  <div class="note-box"><strong>Common error:</strong> "She asked where did I buy it" — reported questions are <em>not</em> written as questions. No auxiliary <em>do</em>, and no question mark.</div>
+
+  <h3 style="margin-top:1.8rem; font-size:1.15rem;">6. Reported commands, requests and suggestions</h3>
+  <p>Use <em>tell / ask / order + object + to-infinitive</em>. For a negative, add <em>not</em> before <em>to</em>:</p>
+  <p>"Don't touch the paintings," the guard said. → The guard told us not to touch the paintings.</p>
+
+  <h3 style="margin-top:1.8rem; font-size:1.15rem;">7. Exceptions — what to watch out for</h3>
+  <div class="note-box">
+    <strong>Still true / general facts:</strong> if the statement is still true, backshift is optional. "The museum opens at nine," the guide said → The guide said the museum opens / opened at nine.
+  </div>
+  <div class="note-box">
+    <strong>Reporting verb in the present:</strong> if <em>say/tell</em> itself is in the present tense (common in news, or when quoting something just said), the reported verb does not need to change. "Critics say the exhibition is a triumph."
+  </div>
+  <div class="note-box">
+    <strong>Modals that don't change:</strong> could, would, should, might, ought to, used to, and mustn't stay the same in reported speech.
+  </div>
+  <div class="note-box">
+    <strong>Time/place words only shift if the situation has changed</strong> — if you report a sentence on the same day, in the same place, "today" can stay "today."
+  </div>
+
+  <!-- Exercise 1: cloze -->
+  <h3 style="margin-top:2.4rem; font-size:1.2rem;">Practice: choose the correct backshifted form</h3>
+  <div class="card" id="clozeCard"></div>
+
+  <!-- Exercise 2: categorize -->
+  <h3 style="margin-top:2.4rem; font-size:1.2rem;">Practice: sort the reporting verbs by pattern</h3>
+  <p>Click a verb, then click the bucket it belongs to.</p>
+  <div class="card">
+    <div class="chip-pool" id="chipPool"></div>
+    <div class="buckets" id="buckets"></div>
+  </div>
+
+  <!-- Exercise 3: transform -->
+  <h3 style="margin-top:2.4rem; font-size:1.2rem;">Practice: rewrite in reported speech</h3>
+  <p>Type your version, then reveal a model answer to compare.</p>
+  <div class="card" id="transformCard"></div>
+</section>
+
+<!-- ===================== EXERCISE BANK ===================== -->
+<section id="exercises">
+  <div class="section-head">
+    <span class="tag">Part 6</span>
+    <h2>Exercise Bank: Reported Speech</h2>
+    <p>Seven exercise types, all self-checking. Work through them in order, or jump to the type you need.</p>
+  </div>
+
+  <!-- Exercise 1: Multiple choice -->
+  <div class="ex-block">
+    <div class="ex-head"><span class="ex-num">1</span><h3>Reporting a Visit to the Arts</h3><span class="ex-type">Multiple choice</span></div>
+    <p class="ex-instructions">Choose the option that correctly completes the reported sentence.</p>
+    <div class="ex-body card" id="ex1"></div>
+  </div>
+
+  <!-- Exercise 2: Odd one out -->
+  <div class="ex-block">
+    <div class="ex-head"><span class="ex-num">2</span><h3>Spot the Pattern</h3><span class="ex-type">Odd one out</span></div>
+    <p class="ex-instructions">Click the item in each set that doesn't follow the same rule as the other three.</p>
+    <div class="ex-body card" id="ex2"></div>
+  </div>
+
+  <!-- Exercise 3: Keyword transformation -->
+  <div class="ex-block">
+    <div class="ex-head"><span class="ex-num">3</span><h3>Same Meaning, One Word Fixed</h3><span class="ex-type">Keyword transformation</span></div>
+    <p class="ex-instructions">Complete the second sentence so it means the same as the first, using the word given (unchanged). Type your answer, then reveal the model answer to compare.</p>
+    <div class="ex-body card" id="ex3"></div>
+  </div>
+
+  <!-- Exercise 4: Rephrasing -->
+  <div class="ex-block">
+    <div class="ex-head"><span class="ex-num">4</span><h3>Report the Conversation</h3><span class="ex-type">Rephrasing / guided writing</span></div>
+    <p class="ex-instructions">Read the short dialogue at an art gallery, then write it out as reported speech (60–80 words). Use at least five different reporting verbs — not only <em>said</em> and <em>told</em>.</p>
+    <div class="ex-body card" id="ex4"></div>
+  </div>
+
+  <!-- Exercise 5: Cloze -->
+  <div class="ex-block">
+    <div class="ex-head"><span class="ex-num">5</span><h3>A Class Trip to the National Theatre</h3><span class="ex-type">Cloze test</span></div>
+    <p class="ex-instructions">Type the correct reported-speech form of each verb in brackets, then check your answers.</p>
+    <div class="ex-body card" id="ex5"></div>
+  </div>
+
+  <!-- Exercise 6: Word formation -->
+  <div class="ex-block">
+    <div class="ex-head"><span class="ex-num">6</span><h3>From Verb to Noun — and Back</h3><span class="ex-type">Word formation</span></div>
+    <p class="ex-instructions">Complete each sentence with the correct form of the word in capitals.</p>
+    <div class="ex-body card" id="ex6"></div>
+  </div>
+
+  <!-- Exercise 7: Error correction -->
+  <div class="ex-block">
+    <div class="ex-head"><span class="ex-num">7</span><h3>Find the Mistake</h3><span class="ex-type">Error correction</span></div>
+    <p class="ex-instructions">Each sentence has one mistake. Type the corrected sentence, then reveal the model answer.</p>
+    <div class="ex-body card" id="ex7"></div>
+  </div>
+</section>
+
+<!-- ===================== ROLE-PLAY STUDIO ===================== -->
+<section id="roleplay">
+  <div class="section-head">
+    <span class="tag">Part 7</span>
+    <h2>Role-Play Studio</h2>
+    <p>Three scenarios at a cultural institution. Work in pairs or small groups, then write up what happened in reported speech.</p>
+  </div>
+
+  <!-- Exercise 8 -->
+  <div class="ex-block">
+    <div class="ex-head"><span class="ex-num">8</span><h3>Applying for a Job at a Cultural Institution</h3><span class="ex-type">Role-play</span></div>
+    <p class="ex-instructions">Read your role card and act out a short job interview for a Gallery Assistant / Tour Guide position (6–8 exchanges). Then write a reported-speech summary of the interview using at least six different reporting verbs.</p>
+    <div class="rolecard-grid">
+      <div class="rolecard a">
+        <h4>Role A — Interviewer</h4>
+        <ul>
+          <li>Ask why the candidate wants to work at the museum.</li>
+          <li>Ask about experience with visitors or public speaking.</li>
+          <li>Ask how they would handle a difficult or upset visitor.</li>
+          <li>Ask if they are available to work weekends.</li>
+          <li>Offer the candidate a trial shift.</li>
+        </ul>
+      </div>
+      <div class="rolecard b">
+        <h4>Role B — Candidate</h4>
+        <ul>
+          <li>Explain your interest in art / culture / languages.</li>
+          <li>Admit you have limited experience, but mention a related skill.</li>
+          <li>Promise to be reliable and to learn quickly.</li>
+          <li>Politely ask about the salary or working hours.</li>
+          <li>Decide whether to accept the trial shift.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="writeup-box card">
+      <textarea id="writeup8" placeholder="Write your reported-speech summary of the interview here (80+ words)..."></textarea>
+      <div class="writeup-meta"><span id="wc8">0 words</span><button class="ghost-btn" data-target="writeup8" data-file="job-interview-summary.txt">Download</button></div>
+    </div>
+  </div>
+
+  <!-- Exercise 9 -->
+  <div class="ex-block">
+    <div class="ex-head"><span class="ex-num">9</span><h3>Troubleshooting at the Box Office</h3><span class="ex-type">Role-play</span></div>
+    <p class="ex-instructions">Choose one problem from Role Card B and act out the conversation. Then write a short "incident note" (60–100 words) as if the clerk is reporting the situation to the manager — e.g. "A customer complained that... She explained that... I told her that..."</p>
+    <div class="rolecard-grid">
+      <div class="rolecard a">
+        <h4>Role A — Box office clerk</h4>
+        <ul>
+          <li>Greet the customer and ask how you can help.</li>
+          <li>Apologise for the problem.</li>
+          <li>Explain the theatre's policy (refunds / exchanges / reprinting).</li>
+          <li>Offer a solution and check the customer is satisfied.</li>
+        </ul>
+      </div>
+      <div class="rolecard b">
+        <h4>Role B — Customer (choose one)</h4>
+        <ul>
+          <li>You were booked for the wrong date.</li>
+          <li>Your card was charged twice.</li>
+          <li>Your e-tickets never arrived.</li>
+          <li>The performance was cancelled and you want a refund.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="writeup-box card">
+      <textarea id="writeup9" placeholder="Write the incident note here (60–100 words)..."></textarea>
+      <div class="writeup-meta"><span id="wc9">0 words</span><button class="ghost-btn" data-target="writeup9" data-file="box-office-incident-note.txt">Download</button></div>
+    </div>
+  </div>
+
+  <!-- Exercise 10 -->
+  <div class="ex-block">
+    <div class="ex-head"><span class="ex-num">10</span><h3>What Should We Wear?</h3><span class="ex-type">Role-play / peer discussion</span></div>
+    <p class="ex-instructions">In small groups, discuss Scenario A or Scenario B using the sentence starters from the Language Lab (opinion, agreeing, disagreeing). Then find a new partner and report back what your group members thought — use at least four different reporting verbs (e.g. <em>thought, suggested, insisted, pointed out</em>).</p>
+    <div class="rolecard-grid">
+      <div class="rolecard a">
+        <h4>Scenario A — Ballet at the National Theatre</h4>
+        <ul>
+          <li>Is a suit / dress expected, or is smart-casual fine?</li>
+          <li>Are jeans and trainers acceptable?</li>
+          <li>Does the season or type of performance change the dress code?</li>
+          <li>What would you avoid wearing, and why?</li>
+        </ul>
+      </div>
+      <div class="rolecard b">
+        <h4>Scenario B — Folk Festival</h4>
+        <ul>
+          <li>Is traditional dress appropriate, or only for performers?</li>
+          <li>What should you consider for a whole day outdoors?</li>
+          <li>Comfortable shoes vs. "festival style" — which matters more?</li>
+          <li>Would you dress differently for a folk festival than for the ballet? Why?</li>
+        </ul>
+      </div>
+    </div>
+    <p style="font-size:.88rem; font-style:italic; color:var(--ink-soft); margin-top:.8rem;">Reporting-back starter: "In my group, ... pointed out that ... . Someone else suggested that ..., but ... insisted that ... ."</p>
+    <div class="writeup-box card">
+      <textarea id="writeup10" placeholder="Write up what your group members said..."></textarea>
+      <div class="writeup-meta"><span id="wc10">0 words</span><button class="ghost-btn" data-target="writeup10" data-file="what-to-wear-report.txt">Download</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PRACTICE ARENA ===================== -->
+<section id="practice">
+  <div class="section-head">
+    <span class="tag">Part 8</span>
+    <h2>Practice Arena</h2>
+    <p>A mixed 10-question check covering everything above.</p>
+  </div>
+  <div class="card" id="quizCard"></div>
+  <button class="check-btn" id="quizCheckBtn" style="margin-top:1rem;">Check my answers</button>
+  <div id="quizScore"></div>
+</section>
+
+<!-- ===================== REFLECT ===================== -->
+<section id="reflect">
+  <div class="section-head">
+    <span class="tag">Part 9</span>
+    <h2>Reflect &amp; Write</h2>
+    <p>Write 80–120 words on the prompt below. Use at least two sentence starters and one reported-speech sentence if you can.</p>
+  </div>
+  <div class="card reflect-box">
+    <p style="font-weight:600;">Prompt: Describe a piece of art, a song, or a book that has influenced your personality or the way you see the world. What did it change in you?</p>
+    <textarea id="reflectArea" placeholder="Start writing here..."></textarea>
+    <div class="reflect-meta">
+      <span id="wordCount">0 words</span>
+      <button class="ghost-btn" id="downloadBtn">Download my draft</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>English in Context · Culture &amp; Art module · B2 · Built for classroom use</footer>
+
+<script>
+/* ================= NAV SCROLLSPY + PROGRESS BAR ================= */
+const navLinks = document.querySelectorAll('nav a');
+const sections = [...navLinks].map(a => document.querySelector(a.getAttribute('href')));
+
+function onScroll(){
+  const doc = document.documentElement;
+  const scrolled = (doc.scrollTop) / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = scrolled + '%';
+
+  let current = sections[0];
+  sections.forEach(sec => {
+    if (sec && window.scrollY + 120 >= sec.offsetTop) current = sec;
+  });
+  navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current.id));
+}
+window.addEventListener('scroll', onScroll);
+onScroll();
+
+/* ================= WARM-UP POLL ================= */
+const pollQuestions = [
+  {q:"How would you describe your own relationship with art?", opts:["I create it","I mostly watch/listen","I rarely think about it","It's everywhere in my life"]},
+  {q:"Which art form influences you the most right now?", opts:["Music","Film & TV","Literature","Visual art / design"]},
+  {q:"Do you think art can change society?", opts:["Definitely","Only a little","Rarely","Not sure yet"]}
+];
+const pollCard = document.getElementById('pollCard');
+pollQuestions.forEach((item, qi) => {
+  const div = document.createElement('div');
+  div.className = 'poll-q';
+  div.innerHTML = `<div class="q">${item.q}</div><div class="poll-opts"></div>`;
+  const optsWrap = div.querySelector('.poll-opts');
+  item.opts.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'poll-opt';
+    btn.textContent = opt;
+    btn.onclick = () => {
+      optsWrap.querySelectorAll('.poll-opt').forEach(b => b.classList.remove('picked'));
+      btn.classList.add('picked');
+    };
+    optsWrap.appendChild(btn);
+  });
+  pollCard.appendChild(div);
+});
+
+/* ================= COMPREHENSION CHECKS ================= */
+function buildCheck(containerId, questions){
+  const container = document.getElementById(containerId);
+  questions.forEach((item, qi) => {
+    const div = document.createElement('div');
+    div.className = 'poll-q';
+    div.style.marginBottom = '1.2rem';
+    let optsHtml = item.opts.map((opt, oi) =>
+      `<label><input type="radio" name="${containerId}-q${qi}" value="${oi}"> ${opt}</label>`
+    ).join('');
+    div.innerHTML = `<div class="q">${item.q}</div><div class="opts">${optsHtml}</div><div class="result-line" id="${containerId}-r${qi}"></div>`;
+    container.appendChild(div);
+    div.querySelectorAll('input').forEach(input => {
+      input.addEventListener('change', () => {
+        const resEl = document.getElementById(`${containerId}-r${qi}`);
+        if (parseInt(input.value) === item.correct){
+          resEl.textContent = 'Correct.';
+          resEl.className = 'result-line good';
+        } else {
+          resEl.textContent = 'Not quite — read the text again.';
+          resEl.className = 'result-line bad';
+        }
+      });
+    });
+  });
+}
+
+buildCheck('check1', [
+  {q:"What is an example of 'material culture'?", opts:["A shared value like honesty","A traditional costume","A social norm","A belief system"], correct:1},
+  {q:"What best describes 'popular culture'?", opts:["Opera and classical music only","Mainstream film, pop music and social media trends","Traditions passed down for centuries","A single country's national art"], correct:1}
+]);
+buildCheck('check2', [
+  {q:"According to the text, what can even a quiet landscape painting reveal?", opts:["The artist's income","What a society values","The price of the canvas","Nothing significant"], correct:1},
+  {q:"What debate does globalisation raise, according to the text?", opts:["Cultural appropriation and loss of local traditions","The cost of museum tickets","The length of art exhibitions","Which country invented painting"], correct:0}
+]);
+buildCheck('check3', [
+  {q:"What does analysing a poem or painting train, according to the text?", opts:["Memorisation","Critical thinking","Obedience","Handwriting"], correct:1},
+  {q:"What is the basic idea behind art therapy, as described in the text?", opts:["Making money from art","A safe outlet for emotions","Learning art history","Competing with other artists"], correct:1}
+]);
+
+/* ================= VOCABULARY DATA ================= */
+const vocab = [
+  {term:"aesthetic", def:"concerned with beauty or the appreciation of beauty"},
+  {term:"contemporary", def:"belonging to the present time; modern"},
+  {term:"heritage", def:"traditions, buildings and art passed down through generations"},
+  {term:"masterpiece", def:"an outstanding work of art or skill"},
+  {term:"mainstream", def:"ideas or trends regarded as normal or dominant"},
+  {term:"avant-garde", def:"new and experimental; ahead of its time"},
+  {term:"authentic", def:"genuine; true to its origin"},
+  {term:"subculture", def:"a group within a society with its own distinct values and style"},
+  {term:"to depict", def:"to show or represent something in a picture or in words"},
+  {term:"to evoke", def:"to bring a feeling or memory to mind"},
+  {term:"thought-provoking", def:"stimulating careful thought or discussion"},
+  {term:"controversial", def:"causing strong disagreement or debate"},
+  {term:"self-expression", def:"communicating your feelings or ideas through a creative activity"},
+  {term:"censorship", def:"official control over what can be shown or published"},
+  {term:"globalisation", def:"the process of cultures and economies becoming interconnected worldwide"},
+  {term:"empathy", def:"the ability to understand and share another person's feelings"},
+  {term:"resilience", def:"the ability to recover quickly from difficulty"},
+  {term:"to foster", def:"to encourage the development of something"}
+];
+
+/* ---- flashcards ---- */
+const flashGrid = document.getElementById('flashGrid');
+vocab.forEach(item => {
+  const card = document.createElement('div');
+  card.className = 'flash';
+  card.innerHTML = `<div class="flash-inner">
+      <div class="flash-face flash-front">${item.term}</div>
+      <div class="flash-face flash-back">${item.def}</div>
+    </div>`;
+  card.onclick = () => card.classList.toggle('flipped');
+  flashGrid.appendChild(card);
+});
+
+/* ---- matching game (subset of 8) ---- */
+const matchSet = vocab.slice(0, 8);
+const shuffledDefs = [...matchSet].sort(() => Math.random() - 0.5);
+const termsCol = document.getElementById('matchTerms');
+const defsCol = document.getElementById('matchDefs');
+let selectedTerm = null, selectedDef = null, matchedCount = 0;
+
+matchSet.forEach(item => {
+  const el = document.createElement('div');
+  el.className = 'match-item';
+  el.textContent = item.term;
+  el.dataset.term = item.term;
+  el.onclick = () => handlePick(el, 'term');
+  termsCol.appendChild(el);
+});
+shuffledDefs.forEach(item => {
+  const el = document.createElement('div');
+  el.className = 'match-item';
+  el.textContent = item.def;
+  el.dataset.term = item.term;
+  el.onclick = () => handlePick(el, 'def');
+  defsCol.appendChild(el);
+});
+
+function handlePick(el, type){
+  if (el.classList.contains('matched')) return;
+  if (type === 'term'){
+    if (selectedTerm) selectedTerm.classList.remove('selected');
+    selectedTerm = el; el.classList.add('selected');
+  } else {
+    if (selectedDef) selectedDef.classList.remove('selected');
+    selectedDef = el; el.classList.add('selected');
+  }
+  if (selectedTerm && selectedDef){
+    if (selectedTerm.dataset.term === selectedDef.dataset.term){
+      selectedTerm.classList.add('matched'); selectedDef.classList.add('matched');
+      selectedTerm.classList.remove('selected'); selectedDef.classList.remove('selected');
+      matchedCount++;
+      const res = document.getElementById('matchResult');
+      res.textContent = matchedCount === matchSet.length ? 'All matched — well done!' : `${matchedCount} of ${matchSet.length} matched.`;
+      res.className = 'result-line good';
+      selectedTerm = null; selectedDef = null;
+    } else {
+      selectedTerm.classList.add('wrong'); selectedDef.classList.add('wrong');
+      setTimeout(() => {
+        selectedTerm.classList.remove('selected','wrong');
+        selectedDef.classList.remove('selected','wrong');
+        selectedTerm = null; selectedDef = null;
+      }, 500);
+    }
+  }
+}
+
+/* ================= CLOZE (backshift) ================= */
+const clozeItems = [
+  {before:'"I love this painting," she said. \u2192 She said she ', after:' that painting.', options:['loves','loved','had loved','will love'], correct:'loved'},
+  {before:'"We are studying Impressionism," they said. \u2192 They said they ', after:' Impressionism.', options:['study','studied','were studying','had study'], correct:'were studying'},
+  {before:'"I have finished the sculpture," he said. \u2192 He said he ', after:' the sculpture.', options:['finished','has finished','had finished','finish'], correct:'had finished'},
+  {before:'"I will visit the gallery tomorrow," she said. \u2192 She said she ', after:' the gallery the next day.', options:['will visit','would visit','visits','visited'], correct:'would visit'},
+  {before:'"I can paint portraits," he said. \u2192 He said he ', after:' paint portraits.', options:['can','could',"can't",'would can'], correct:'could'},
+  {before:'"The museum opens at nine," the guide said. \u2192 The guide said the museum ', after:' at nine. (general truth \u2014 no backshift needed)', options:['open','opens','opened','had opened'], correct:'opens'}
+];
+const clozeCard = document.getElementById('clozeCard');
+clozeItems.forEach((item, i) => {
+  const div = document.createElement('div');
+  div.className = 'cloze-item';
+  const select = document.createElement('select');
+  select.innerHTML = `<option value="">choose...</option>` + item.options.map(o => `<option value="${o}">${o}</option>`).join('');
+  select.addEventListener('change', () => {
+    select.className = select.value === item.correct ? 'correct' : 'incorrect';
+  });
+  div.appendChild(document.createTextNode(item.before));
+  div.appendChild(select);
+  div.appendChild(document.createTextNode(item.after));
+  clozeCard.appendChild(div);
+});
+
+/* ================= CATEGORIZE (reporting verb patterns) ================= */
+const bucketDefs = [
+  {id:'A', title:'+ to-infinitive', verbs:['agree','offer','promise','refuse']},
+  {id:'B', title:'+ object + to-infinitive', verbs:['advise','warn','invite','order']},
+  {id:'C', title:'+ -ing', verbs:['admit','deny','suggest','recommend']},
+  {id:'D', title:'+ (that) clause', verbs:['claim','explain','insist','complain']}
+];
+let allVerbs = [];
+bucketDefs.forEach(b => b.verbs.forEach(v => allVerbs.push({verb:v, bucket:b.id})));
+allVerbs.sort(() => Math.random() - 0.5);
+
+const chipPool = document.getElementById('chipPool');
+const bucketsDiv = document.getElementById('buckets');
+let selectedChip = null;
+
+allVerbs.forEach(v => {
+  const chip = document.createElement('div');
+  chip.className = 'chip';
+  chip.textContent = v.verb;
+  chip.dataset.verb = v.verb;
+  chip.dataset.bucket = v.bucket;
+  chip.onclick = () => {
+    if (chip.classList.contains('placed')) return;
+    if (selectedChip) selectedChip.classList.remove('selected');
+    selectedChip = chip; chip.classList.add('selected');
+  };
+  chipPool.appendChild(chip);
+});
+
+bucketDefs.forEach(b => {
+  const div = document.createElement('div');
+  div.className = 'bucket';
+  div.innerHTML = `<h4>${b.title}</h4><div class="bucket-content"></div>`;
+  div.onclick = () => {
+    if (!selectedChip) return;
+    const content = div.querySelector('.bucket-content');
+    const placed = document.createElement('span');
+    placed.className = 'placed-chip ' + (selectedChip.dataset.bucket === b.id ? 'right' : 'wrong');
+    placed.textContent = selectedChip.dataset.verb;
+    content.appendChild(placed);
+    selectedChip.classList.add('placed');
+    selectedChip.classList.remove('selected');
+    selectedChip = null;
+  };
+  bucketsDiv.appendChild(div);
+});
+
+/* ================= TRANSFORM EXERCISE ================= */
+const transformItems = [
+  {direct:'"I\u2019m going to the concert tonight," said Sara.', model:'Sara said (that) she was going to the concert that night.'},
+  {direct:'"Have you finished your essay?" the teacher asked me.', model:'The teacher asked me if / whether I had finished my essay.'},
+  {direct:'"Don\u2019t touch the paintings," the guard said to us.', model:'The guard told us not to touch the paintings.'},
+  {direct:'"I\u2019ve never been to an opera," admitted Tom.', model:'Tom admitted (that) he had never been to an opera.'},
+  {direct:'"Why did you choose fine art?" she asked him.', model:'She asked him why he had chosen fine art.'}
+];
+const transformCard = document.getElementById('transformCard');
+transformItems.forEach((item, i) => {
+  const div = document.createElement('div');
+  div.className = 'transform-item';
+  div.innerHTML = `
+    <div class="direct">${item.direct}</div>
+    <textarea placeholder="Write your reported speech version..."></textarea>
+    <button class="ghost-btn" style="margin-top:.5rem;">Show model answer</button>
+    <div class="model-answer">${item.model}</div>
+  `;
+  const btn = div.querySelector('button');
+  const model = div.querySelector('.model-answer');
+  btn.onclick = () => {
+    model.classList.toggle('shown');
+    btn.textContent = model.classList.contains('shown') ? 'Hide model answer' : 'Show model answer';
+  };
+  transformCard.appendChild(div);
+});
+
+/* ================= EXERCISE BANK ================= */
+
+/* ---- Ex 1: Multiple choice ---- */
+const ex1Items = [
+  {q:'"I\u2019ve never seen such a beautiful sculpture," said Anna.', gap:'Anna said (that) she ___ such a beautiful sculpture.', opts:["has never seen","never saw","had never seen","never sees"], correct:2},
+  {q:'"We are going to the folk festival this weekend," Peter told me.', gap:'Peter told me (that) they ___ to the folk festival that weekend.', opts:["are going","were going","go","had gone"], correct:1},
+  {q:'"Can you recommend a good exhibition?" she asked the guide.', gap:'She asked the guide ___ recommend a good exhibition.', opts:["if he could","if could he","that he could","could he"], correct:0},
+  {q:'"I\u2019ll book the ballet tickets tomorrow," said Marek.', gap:'Marek said (that) he ___ the ballet tickets the next day.', opts:["will book","would book","books","booked"], correct:1},
+  {q:'"Don\u2019t run in the gallery," the museum guard told the children.', gap:'The museum guard told the children ___ in the gallery.', opts:["don\u2019t run","not to run","to not running","they don\u2019t run"], correct:1},
+  {q:'"The National Theatre was built in 1885," the guide explained.', gap:'The guide explained (that) the National Theatre ___ in 1885.', opts:["was built","had been built","has been built","is built"], correct:1},
+  {q:'"Where did you buy your ticket?" the usher asked her.', gap:'The usher asked her where ___ her ticket.', opts:["did she buy","she bought","she had bought","had she bought"], correct:2},
+  {q:'"I might come to the opening night," said Zuzana.', gap:'Zuzana said (that) she ___ come to the opening night.', opts:["might","could","will","may"], correct:0},
+  {q:'"I\u2019m sorry, I broke the vase," admitted the visitor.', gap:'The visitor admitted ___ the vase.', opts:["breaking","to break","broke","that broke"], correct:0},
+  {q:'"You should book online to avoid queuing," the box office clerk suggested.', gap:'The box office clerk suggested ___ online to avoid queuing.', opts:["to book","booking","book","that book"], correct:1}
+];
+const ex1 = document.getElementById('ex1');
+ex1Items.forEach((item, qi) => {
+  const div = document.createElement('div');
+  div.className = 'quiz-item';
+  let optsHtml = item.opts.map((opt, oi) => `<label><input type="radio" name="ex1-q${qi}" value="${oi}"> ${opt}</label>`).join('');
+  div.innerHTML = `<div class="q">${qi+1}. ${item.q}<br><span style="font-weight:400;">${item.gap}</span></div><div class="opts">${optsHtml}</div>`;
+  ex1.appendChild(div);
+  div.querySelectorAll('input').forEach(input => input.addEventListener('change', () => {
+    div.querySelectorAll('label').forEach(l => { l.style.color=''; l.style.fontWeight=''; });
+    const chosen = parseInt(input.value);
+    const labels = div.querySelectorAll('label');
+    if (chosen === item.correct){ input.parentElement.style.color='var(--good)'; input.parentElement.style.fontWeight='600'; }
+    else { input.parentElement.style.color='var(--bad)'; labels[item.correct].style.color='var(--good)'; labels[item.correct].style.fontWeight='600'; }
+  }));
+});
+
+/* ---- Ex 2: Odd one out ---- */
+const ex2Sets = [
+  {items:["agree","offer","promise","admit"], odd:3, explain:"Three take verb + to-infinitive (agree to, offer to, promise to). \u2018Admit\u2019 takes verb + -ing."},
+  {items:["advise","warn","order","claim"], odd:3, explain:"Three take verb + object + to-infinitive. \u2018Claim\u2019 takes verb + that-clause."},
+  {items:["suggest","recommend","deny","refuse"], odd:3, explain:"Three take verb + -ing. \u2018Refuse\u2019 takes verb + to-infinitive."},
+  {items:["explain","insist","complain","invite"], odd:3, explain:"Three take verb + (that) clause. \u2018Invite\u2019 takes verb + object + to-infinitive."},
+  {items:["was going \u2192 had been going","has finished \u2192 had finished","did visit \u2192 had visited","will come \u2192 had come"], odd:3, explain:"The last one is wrong \u2014 will should become would, not had."},
+  {items:["today \u2192 that day","here \u2192 there","yesterday \u2192 the day before","tomorrow \u2192 tomorrow"], odd:3, explain:"\u2018Tomorrow\u2019 should shift to \u2018the next day / the following day\u2019 \u2014 it was left unchanged."}
+];
+const ex2 = document.getElementById('ex2');
+ex2Sets.forEach((set, si) => {
+  const div = document.createElement('div');
+  div.className = 'oddset';
+  const itemsHtml = set.items.map((it, ii) => `<span class="oitem" data-i="${ii}">${it}</span>`).join('');
+  div.innerHTML = `<div class="items">${itemsHtml}</div><div class="explain"></div>`;
+  ex2.appendChild(div);
+  div.querySelectorAll('.oitem').forEach(el => {
+    el.addEventListener('click', () => {
+      div.querySelectorAll('.oitem').forEach(o => o.classList.remove('right','wrong'));
+      const chosen = parseInt(el.dataset.i);
+      const explainEl = div.querySelector('.explain');
+      if (chosen === set.odd){ el.classList.add('right'); } else { el.classList.add('wrong'); div.querySelectorAll('.oitem')[set.odd].classList.add('right'); }
+      explainEl.textContent = set.explain;
+      explainEl.classList.add('shown');
+    });
+  });
+});
+
+/* ---- Ex 3: Keyword transformation ---- */
+const ex3Items = [
+  {direct:'"I\u2019ll never forget this concert," said Eva.', keyword:'NEVER', gapped:'Eva said that she __________________ forget that concert.', model:'would never'},
+  {direct:'"Where is the cloakroom?" the visitor asked the attendant.', keyword:'WHERE', gapped:'The visitor asked the attendant __________________.', model:'where the cloakroom was'},
+  {direct:'"You mustn\u2019t touch the exhibits," said the curator.', keyword:'TOUCH', gapped:'The curator told us __________________ the exhibits.', model:'not to touch'},
+  {direct:'"I\u2019m sorry I arrived late," said Tom\u00e1\u0161.', keyword:'APOLOGISED', gapped:'Tom\u00e1\u0161 __________________ arriving late.', model:'apologised for'},
+  {direct:'"Let\u2019s meet at the box office at six," suggested Lucia.', keyword:'SUGGESTED', gapped:'Lucia __________________ at the box office at six.', model:'suggested meeting'},
+  {direct:'"I didn\u2019t break the statue," said the boy.', keyword:'DENIED', gapped:'The boy __________________ the statue.', model:'denied breaking'},
+  {direct:'"Would you like to join the folk dance workshop?" the organiser asked us.', keyword:'INVITED', gapped:'The organiser __________________ the folk dance workshop.', model:'invited us to join'},
+  {direct:'"I promise I\u2019ll send you the tickets," said Peter.', keyword:'PROMISED', gapped:'Peter __________________ me the tickets.', model:'promised to send'}
+];
+const ex3 = document.getElementById('ex3');
+ex3Items.forEach((item, i) => {
+  const div = document.createElement('div');
+  div.className = 'transform-item';
+  div.innerHTML = `
+    <div class="direct">${item.direct} <strong style="color:var(--terracotta);">(${item.keyword})</strong></div>
+    <div style="margin-bottom:.5rem; font-size:.94rem;">${item.gapped}</div>
+    <textarea placeholder="Type the missing words..."></textarea>
+    <button class="ghost-btn" style="margin-top:.5rem;">Show model answer</button>
+    <div class="model-answer">${item.model}</div>`;
+  const btn = div.querySelector('button');
+  const model = div.querySelector('.model-answer');
+  btn.onclick = () => { model.classList.toggle('shown'); btn.textContent = model.classList.contains('shown') ? 'Hide model answer' : 'Show model answer'; };
+  ex3.appendChild(div);
+});
+
+/* ---- Ex 4: Rephrasing (dialogue) ---- */
+const ex4 = document.getElementById('ex4');
+const dialogueLines = [
+  'Visitor: "This painting is amazing. Who is the artist?"',
+  'Guide: "It\u2019s by a contemporary Slovak painter. She finished it last year."',
+  'Visitor: "Can I take a photo?"',
+  'Guide: "I\u2019m afraid photography isn\u2019t allowed in this room."',
+  'Visitor: "That\u2019s a shame. I\u2019ll buy a postcard instead."'
+];
+const ex4Model = "The visitor remarked that the painting was amazing and asked who the artist was. The guide explained that it was by a contemporary Slovak painter and added that she had finished it the previous year. The visitor then asked if they could take a photo, but the guide apologised and said that photography wasn't allowed in that room. The visitor replied that it was a shame and decided to buy a postcard instead.";
+ex4.innerHTML = `
+  ${dialogueLines.map(l => `<p style="margin-bottom:.4rem; font-size:.94rem;">${l}</p>`).join('')}
+  <p style="font-style:italic; color:var(--ink-soft); font-size:.88rem; margin:.8rem 0 1rem;">Useful reporting verbs: explain, admit, ask, reply, refuse, decide, apologise, remark.</p>
+  <div class="writeup-box">
+    <textarea id="ex4area" placeholder="Write your reported-speech paragraph here (60\u201380 words)..."></textarea>
+    <div class="writeup-meta"><span id="ex4wc">0 words</span><button class="ghost-btn" id="ex4reveal">Show model paragraph</button></div>
+    <div class="model-answer" id="ex4model">${ex4Model}</div>
+  </div>`;
+document.getElementById('ex4area').addEventListener('input', function(){
+  const words = this.value.trim().split(/\s+/).filter(Boolean);
+  document.getElementById('ex4wc').textContent = `${this.value.trim() ? words.length : 0} words`;
+});
+document.getElementById('ex4reveal').onclick = function(){
+  const m = document.getElementById('ex4model');
+  m.classList.toggle('shown');
+  this.textContent = m.classList.contains('shown') ? 'Hide model paragraph' : 'Show model paragraph';
+};
+
+/* ---- Ex 5: Cloze test ---- */
+const ex5Answers = ["explained","opened","said","combined","asked","could","replied","needed","reminded","to touch"];
+const ex5AltAnswers = {1:["had opened"], 7:["would need"]};
+const ex5 = document.getElementById('ex5');
+const ex5Text = [
+  "Last Friday our class visited the National Theatre. Our guide (1) ", " (explain) that the building (2) ", " (open) in 1920. She (3) ",
+  " (say) that the architecture (4) ", " (combine) several European styles. One classmate (5) ", " (ask) if we (6) ",
+  " (can) see the backstage area, and the guide (7) ", " (reply) that we (8) ", " (need) special permission for that. Before we left, she (9) ",
+  " (remind) us not (10) ", " (touch) the costumes on display."
+];
+let ex5Html = '<p style="font-size:.96rem; line-height:2.1;">';
+ex5Text.forEach((chunk, i) => {
+  ex5Html += chunk;
+  if (i < ex5Answers.length) ex5Html += `<input type="text" class="text-input" style="width:110px;" data-i="${i}">`;
+});
+ex5Html += '</p><button class="check-btn check-all-btn" id="ex5check">Check answers</button>';
+ex5.innerHTML = ex5Html;
+document.getElementById('ex5check').onclick = () => {
+  ex5.querySelectorAll('input').forEach(inp => {
+    const i = parseInt(inp.dataset.i);
+    const val = inp.value.trim().toLowerCase();
+    const accepted = [ex5Answers[i].toLowerCase(), ...(ex5AltAnswers[i]||[]).map(a=>a.toLowerCase())];
+    inp.className = 'text-input ' + (accepted.includes(val) ? 'correct' : 'incorrect');
+  });
+};
+
+/* ---- Ex 6: Word formation ---- */
+const ex6Items = [
+  {sentence:"The critic\u2019s __________ was that the exhibition needed better lighting.", word:"SUGGEST", answer:"suggestion"},
+  {sentence:"She made a formal __________ about the ticket prices.", word:"COMPLAIN", answer:"complaint"},
+  {sentence:"His __________ to change the programme disappointed the orchestra.", word:"REFUSE", answer:"refusal"},
+  {sentence:"The museum director gave a strong __________ of the accusations.", word:"DENY", answer:"denial"},
+  {sentence:"Her __________ helped us plan the perfect gallery visit.", word:"ADVISE", answer:"advice"},
+  {sentence:"The actor\u2019s public __________ came after the controversy.", word:"APOLOGISE", answer:"apology"},
+  {sentence:"The spokesperson\u2019s __________ confirmed the festival dates.", word:"ANNOUNCE", answer:"announcement"},
+  {sentence:"There was a lot of __________ about who should get the funding.", word:"ARGUE", answer:"argument"}
+];
+const ex6 = document.getElementById('ex6');
+ex6Items.forEach((item, i) => {
+  const div = document.createElement('div');
+  div.className = 'cloze-item';
+  div.innerHTML = `${i+1}. ${item.sentence.replace('__________', '')} <input type="text" class="text-input" data-answer="${item.answer}"> <span style="color:var(--terracotta); font-weight:600; font-size:.85rem;">(${item.word})</span>`;
+  ex6.appendChild(div);
+});
+const ex6Btn = document.createElement('button');
+ex6Btn.className = 'check-btn check-all-btn';
+ex6Btn.textContent = 'Check answers';
+ex6Btn.onclick = () => {
+  ex6.querySelectorAll('input').forEach(inp => {
+    inp.className = 'text-input ' + (inp.value.trim().toLowerCase() === inp.dataset.answer ? 'correct' : 'incorrect');
+  });
+};
+ex6.appendChild(ex6Btn);
+
+/* ---- Ex 7: Error correction ---- */
+const ex7Items = [
+  {wrong:"She said me that the concert was cancelled.", model:"She told me that the concert was cancelled."},
+  {wrong:"He asked where did I buy the tickets.", model:"He asked where I had bought the tickets."},
+  {wrong:"They told that the museum was closed on Mondays.", model:"They said that the museum was closed on Mondays."},
+  {wrong:"The guide suggested to visit the sculpture garden first.", model:"The guide suggested visiting the sculpture garden first."},
+  {wrong:"She admitted to steal the brochure.", model:"She admitted stealing the brochure."},
+  {wrong:"He said he will come to the vernissage.", model:"He said he would come to the vernissage."},
+  {wrong:"The usher asked if did we have our tickets ready.", model:"The usher asked if we had our tickets ready."},
+  {wrong:"My friend told me that she is a fan of folk music since she was young.", model:"My friend told me that she had been a fan of folk music since she was young."}
+];
+const ex7 = document.getElementById('ex7');
+ex7Items.forEach((item, i) => {
+  const div = document.createElement('div');
+  div.className = 'transform-item';
+  div.innerHTML = `
+    <div class="direct">${i+1}. ${item.wrong}</div>
+    <textarea placeholder="Write the corrected sentence..."></textarea>
+    <button class="ghost-btn" style="margin-top:.5rem;">Show correct version</button>
+    <div class="model-answer">${item.model}</div>`;
+  const btn = div.querySelector('button');
+  const model = div.querySelector('.model-answer');
+  btn.onclick = () => { model.classList.toggle('shown'); btn.textContent = model.classList.contains('shown') ? 'Hide correct version' : 'Show correct version'; };
+  ex7.appendChild(div);
+});
+
+/* ---- Role-play write-ups: word counters + download ---- */
+[8,9,10].forEach(n => {
+  const area = document.getElementById('writeup'+n);
+  const wc = document.getElementById('wc'+n);
+  area.addEventListener('input', () => {
+    const words = area.value.trim().split(/\s+/).filter(Boolean);
+    wc.textContent = `${area.value.trim() ? words.length : 0} words`;
+  });
+});
+document.querySelectorAll('.writeup-meta .ghost-btn[data-target]').forEach(btn => {
+  btn.onclick = () => {
+    const area = document.getElementById(btn.dataset.target);
+    const blob = new Blob([area.value], {type:'text/plain'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = btn.dataset.file;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+});
+
+/* ================= PRACTICE ARENA QUIZ ================= */
+const quizItems = [
+  {q:"Which of the following is an example of 'material culture'?", opts:["A folk song","A wedding custom","A traditional costume","A proverb"], correct:2},
+  {q:"'High culture' traditionally refers to:", opts:["Mainstream pop culture","Classical art forms such as opera","Youth subcultures","Street fashion"], correct:1},
+  {q:"Which word means 'an outstanding work of art'?", opts:["mainstream","heritage","masterpiece","subculture"], correct:2},
+  {q:"Art that comments on political events is often called:", opts:["avant-garde","social commentary","heritage","censorship"], correct:1},
+  {q:"'To evoke' means:", opts:["to hide","to bring a feeling or memory to mind","to destroy","to copy"], correct:1},
+  {q:"According to the text, analysing a poem trains:", opts:["obedience","critical thinking","memorisation","censorship"], correct:1},
+  {q:'Direct: "I am learning Spanish," he said. \u2192 Reported: He said he ___ Spanish.', opts:["is learning","was learning","has learned","learn"], correct:1},
+  {q:"She ___ to help me with the project. (verb + to-infinitive)", opts:["offered","suggested","admitted","warned"], correct:0},
+  {q:'Direct: "Where do you live?" she asked. \u2192 Reported: She asked where ___.', opts:["did I live","I lived","do I live","I live"], correct:1},
+  {q:"He ___ me that the exhibition was closed.", opts:["said","told","talked","spoke"], correct:1}
+];
+const quizCard = document.getElementById('quizCard');
+quizItems.forEach((item, qi) => {
+  const div = document.createElement('div');
+  div.className = 'quiz-item';
+  let optsHtml = item.opts.map((opt, oi) =>
+    `<label><input type="radio" name="quiz-q${qi}" value="${oi}"> ${opt}</label>`
+  ).join('');
+  div.innerHTML = `<div class="q">${qi + 1}. ${item.q}</div><div class="opts">${optsHtml}</div>`;
+  quizCard.appendChild(div);
+});
+
+document.getElementById('quizCheckBtn').onclick = () => {
+  let score = 0;
+  quizItems.forEach((item, qi) => {
+    const selected = document.querySelector(`input[name="quiz-q${qi}"]:checked`);
+    const labels = document.querySelectorAll(`input[name="quiz-q${qi}"]`);
+    labels.forEach(input => {
+      const label = input.parentElement;
+      label.style.color = '';
+      label.style.fontWeight = '';
+    });
+    if (selected){
+      const correctInput = [...labels].find(l => parseInt(l.value) === item.correct);
+      if (parseInt(selected.value) === item.correct){
+        score++;
+        selected.parentElement.style.color = 'var(--good)';
+        selected.parentElement.style.fontWeight = '600';
+      } else {
+        selected.parentElement.style.color = 'var(--bad)';
+        correctInput.parentElement.style.color = 'var(--good)';
+        correctInput.parentElement.style.fontWeight = '600';
+      }
+    }
+  });
+  const scoreEl = document.getElementById('quizScore');
+  scoreEl.style.display = 'block';
+  scoreEl.textContent = `Score: ${score} / ${quizItems.length}`;
+};
+
+/* ================= REFLECTION ================= */
+const reflectArea = document.getElementById('reflectArea');
+const wordCount = document.getElementById('wordCount');
+reflectArea.addEventListener('input', () => {
+  const words = reflectArea.value.trim().split(/\s+/).filter(Boolean);
+  wordCount.textContent = `${reflectArea.value.trim() ? words.length : 0} words`;
+});
+document.getElementById('downloadBtn').onclick = () => {
+  const blob = new Blob([reflectArea.value], {type:'text/plain'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'culture-art-reflection.txt';
+  a.click();
+  URL.revokeObjectURL(url);
+};
+</script>
+</body>
+</html>

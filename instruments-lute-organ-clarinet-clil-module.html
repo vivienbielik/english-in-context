@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLIL Music · Instruments — Lute, Organ, Clarinet</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+
+:root{
+  --teal-deep:#1F5C56; --teal:#2F7A72; --teal-tint:#E4EFEC;
+  --terracotta:#C1603C; --terracotta-tint:#F4E2D8;
+  --amber:#D9A441; --amber-tint:#FBF0DC;
+  --cream:#FBF6EC; --card:#FFFDF8;
+  --ink:#2A2420; --ink-soft:#6B6259; --line:#E6DFD0;
+  --good:#3B7A57; --good-tint:#EAF4EE; --bad:#B5473A; --bad-tint:#FBEBE8;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{ margin:0; background:var(--cream); color:var(--ink); font-family:'Source Sans 3',sans-serif; -webkit-font-smoothing:antialiased; }
+h1,h2,h3,.display{ font-family:'Fraunces',serif; }
+section{ scroll-margin-top:78px; }
+a{ color:inherit; }
+
+.hero{ background:linear-gradient(160deg,var(--teal-deep) 0%,var(--teal) 65%); color:#fff; padding:2.6rem 1.5rem 2.6rem; position:relative; overflow:hidden; }
+.hero::after{ content:""; position:absolute; right:-40px; top:-40px; width:260px; height:260px; border:1px solid rgba(255,255,255,.18); border-radius:50%; }
+.hero::before{ content:""; position:absolute; right:60px; bottom:-90px; width:180px; height:180px; border:1px solid rgba(255,255,255,.14); border-radius:50%; }
+.hero-inner{ max-width:980px; margin:0 auto; position:relative; z-index:1; }
+.logo-badge{ display:inline-flex; align-items:center; gap:.4rem; background:var(--cream); border-radius:12px; padding:.5rem .9rem; margin-bottom:1.2rem; box-shadow:0 10px 24px -14px rgba(0,0,0,.45); font-family:'Fraunces',serif; font-weight:700; color:var(--teal-deep); letter-spacing:.02em; }
+.eyebrow{ font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--amber); font-weight:600; margin-bottom:.6rem; }
+.hero h1{ font-size:clamp(1.9rem,4.6vw,2.9rem); margin:0 0 .5rem; font-weight:700; line-height:1.15; }
+.hero p{ margin:0; opacity:.92; font-size:1.05rem; max-width:64ch; }
+.notes{ display:flex; gap:3px; margin-top:1.6rem; }
+.note{ width:14px; height:44px; background:rgba(255,255,255,.85); border-radius:0 0 3px 3px; }
+.note.dark{ width:10px; height:28px; background:var(--ink); margin:0 -6px; z-index:1; }
+
+.site-nav{ position:sticky; top:0; z-index:50; background:rgba(251,246,236,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line); }
+.nav-inner{ max-width:980px; margin:0 auto; padding:.6rem 1.5rem; display:flex; gap:1.1rem; overflow-x:auto; }
+.nav-inner a{ white-space:nowrap; text-decoration:none; font-weight:600; font-size:.86rem; color:var(--ink-soft); padding:.3rem 0; border-bottom:2px solid transparent; transition:.15s; }
+.nav-inner a:hover{ color:var(--teal-deep); border-color:var(--terracotta); }
+
+.wrap{ max-width:980px; margin:1.8rem auto 4rem; padding:0 1.5rem; }
+.progress-shell{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:1.1rem 1.2rem; box-shadow:0 12px 30px -18px rgba(31,92,86,.35); margin-bottom:1.8rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+.progress-shell .lbl{ font-weight:600; font-size:.88rem; color:var(--ink-soft); }
+.progress-bar{ flex:1; height:6px; background:var(--teal-tint); border-radius:99px; overflow:hidden; }
+.progress-fill{ height:100%; width:0%; background:var(--terracotta); transition:width .3s; }
+.progress-pct{ font-weight:700; font-size:.86rem; color:var(--teal-deep); min-width:2.6em; text-align:right;}
+
+.card{ background:var(--card); border:1px solid var(--line); border-radius:18px; padding:1.7rem 1.7rem; margin-bottom:1.6rem; box-shadow:0 14px 32px -22px rgba(42,36,32,.25); }
+.step-tag{ display:inline-block; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#fff; background:var(--teal); border-radius:99px; padding:.25rem .7rem; margin-bottom:.7rem; }
+.card h2{ margin:.1rem 0 .3rem; font-size:1.5rem; color:var(--teal-deep); }
+.card .sub{ color:var(--ink-soft); margin:0 0 1rem; font-size:.98rem;}
+.card h3{ font-size:1.08rem; color:var(--terracotta); margin:1.3rem 0 .6rem; }
+
+ul.feat{ margin:0; padding-left:1.2rem; }
+ul.feat li{ margin-bottom:.5rem; line-height:1.5; }
+
+.poll{ border:1px solid var(--line); border-radius:14px; padding:1rem 1.1rem; margin-bottom:1rem; background:#fff; }
+.poll p.q{ font-weight:600; margin:0 0 .7rem; }
+.poll-opts{ display:flex; flex-wrap:wrap; gap:.5rem; }
+.opt-btn{ border:1px solid var(--line); background:var(--cream); border-radius:10px; padding:.5rem .9rem; font-size:.92rem; cursor:pointer; font-family:inherit; transition:.15s; }
+.opt-btn:hover{ border-color:var(--teal); }
+.opt-btn.correct{ background:var(--good-tint); border-color:var(--good); color:var(--good); font-weight:700; }
+.opt-btn.wrong{ background:var(--bad-tint); border-color:var(--bad); color:var(--bad); font-weight:700; }
+.opt-btn[disabled]{ cursor:default; }
+.poll-fb{ margin-top:.6rem; font-size:.9rem; color:var(--ink-soft); display:none; }
+
+.gallery{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:.9rem; }
+.gcard{ border:1px solid var(--line); background:#fff; border-radius:14px; padding:1rem; display:flex; flex-direction:column; gap:.5rem; }
+.gcard .yt{ font-size:1.4rem; }
+.gcard a.watch{ margin-top:auto; text-decoration:none; font-weight:700; color:var(--teal-deep); font-size:.9rem; }
+.gcard a.watch:hover{ text-decoration:underline; }
+
+.flash-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:.8rem; }
+.flash{ perspective:800px; height:100px; cursor:pointer; }
+.flash-inner{ position:relative; width:100%; height:100%; transition:transform .5s; transform-style:preserve-3d; }
+.flash.flip .flash-inner{ transform:rotateY(180deg); }
+.flash-face{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; border-radius:12px; padding:.5rem; font-weight:600; font-size:.92rem; backface-visibility:hidden; border:1px solid var(--line); }
+.flash-front{ background:var(--teal-tint); color:var(--teal-deep); }
+.flash-back{ background:var(--terracotta-tint); color:#7A3A22; transform:rotateY(180deg); }
+
+.btn{ display:inline-block; border:none; border-radius:10px; padding:.7rem 1.3rem; font-family:inherit; font-weight:700; font-size:.94rem; cursor:pointer; }
+.btn-outline{ background:transparent; border:1.5px solid var(--teal); color:var(--teal-deep); }
+
+.proj-box{ border:1px solid var(--line); border-radius:14px; padding:1.1rem; background:#fff; margin-bottom:1rem; }
+textarea#workspace{ width:100%; min-height:140px; border:1px solid var(--line); border-radius:12px; padding:.8rem; font-family:inherit; font-size:.95rem; resize:vertical; }
+.word-count{ font-size:.82rem; color:var(--ink-soft); margin:.4rem 0; }
+
+footer{ text-align:center; padding:2rem 1rem 3rem; color:var(--ink-soft); font-size:.85rem; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="logo-badge">EiC</div>
+    <div class="eyebrow">CLIL · Music × English</div>
+    <h1>Musical Instruments of Different Eras — the Lute, the Organ, the Clarinet</h1>
+    <p>Learn about three instruments from different times: the lute, the organ, and the clarinet.</p>
+    <div class="notes">
+      <div class="note"></div><div class="note dark"></div><div class="note"></div><div class="note dark"></div>
+      <div class="note"></div><div class="note dark"></div><div class="note"></div><div class="note dark"></div>
+      <div class="note"></div><div class="note dark"></div><div class="note"></div>
+    </div>
+  </div>
+</div>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="#warmup">Warm-up</a>
+    <a href="#learn">Learn</a>
+    <a href="#vocab">Vocabulary</a>
+    <a href="#listen">Listen</a>
+    <a href="#create">Create</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <div class="progress-shell">
+    <span class="lbl">Your progress</span>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <span class="progress-pct" id="progressPct">0%</span>
+  </div>
+
+  <section id="warmup" class="card" data-track>
+    <span class="step-tag">Step 1</span>
+    <h2>Warm-up: What do you already know?</h2>
+    <p class="sub">Click an answer for each question — no wrong start, just a first guess before we learn.</p>
+
+    <div class="poll" data-poll>
+      <p class="q">1. The lute has strings.</p>
+      <div class="poll-opts">
+        <button class="opt-btn" data-correct="true">True</button>
+        <button class="opt-btn" data-correct="false">False</button>
+      </div>
+      <p class="poll-fb">True! The lute is a string instrument, like a small guitar.</p>
+    </div>
+
+    <div class="poll" data-poll>
+      <p class="q">2. The organ is small.</p>
+      <div class="poll-opts">
+        <button class="opt-btn" data-correct="false">True</button>
+        <button class="opt-btn" data-correct="true">False</button>
+      </div>
+      <p class="poll-fb">False! The organ is a very big instrument, with many pipes.</p>
+    </div>
+
+    <div class="poll" data-poll>
+      <p class="q">3. Which instrument do you blow into?</p>
+      <div class="poll-opts">
+        <button class="opt-btn" data-correct="false">Lute</button>
+        <button class="opt-btn" data-correct="false">Organ</button>
+        <button class="opt-btn" data-correct="true">Clarinet</button>
+      </div>
+      <p class="poll-fb">The clarinet! You blow air into it through a reed.</p>
+    </div>
+  </section>
+
+  <section id="learn" class="card" data-track>
+    <span class="step-tag">Step 2</span>
+    <h2>Three instruments, three eras</h2>
+    <p class="sub">Hudobné nástroje rôznych dôb – lutna, organ, klarinet</p>
+    <ul class="feat">
+      <li>The lute is an old instrument. It has strings. People played the lute in the Middle Ages and in the Renaissance.</li>
+      <li>The organ is a very big instrument. It has many pipes. Air goes through the pipes and makes sound. Organs are in churches.</li>
+      <li>The clarinet is a wind instrument. It is made of wood. It has a small reed. You blow air through the reed.</li>
+      <li>Mozart wrote beautiful music for the clarinet.</li>
+      <li>Old instruments and new instruments are different. But all instruments make music.</li>
+    </ul>
+  </section>
+
+  <section id="vocab" class="card" data-track>
+    <span class="step-tag">Step 3</span>
+    <h2>Vocabulary</h2>
+    <p class="sub">Click a card to see the Slovak word.</p>
+    <div class="flash-grid" id="flashGrid"></div>
+  </section>
+
+  <section id="listen" class="card" data-track>
+    <span class="step-tag">Step 4</span>
+    <h2>Listen</h2>
+    <p class="sub">Watch and listen. You can watch more than once.</p>
+    <div class="gallery">
+
+      <div class="gcard">
+        <div class="yt">🎧</div>
+        <strong>Renaissance Lute Music</strong>
+        <span style="font-size:.85rem;color:var(--ink-soft);">Music by John Dowland, played on the lute.</span>
+        <a class="watch" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=KmI06vPfpq4">Watch on YouTube ↗</a>
+      </div>
+
+      <div class="gcard">
+        <div class="yt">🎧</div>
+        <strong>Bach — Toccata and Fugue in D minor</strong>
+        <span style="font-size:.85rem;color:var(--ink-soft);">Organ music, played on a pipe organ.</span>
+        <a class="watch" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=8tpzyYFqJWM">Watch on YouTube ↗</a>
+      </div>
+
+      <div class="gcard">
+        <div class="yt">🎧</div>
+        <strong>Mozart — Clarinet Concerto (Adagio)</strong>
+        <span style="font-size:.85rem;color:var(--ink-soft);">A slow, beautiful part for the clarinet.</span>
+        <a class="watch" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=7dK0CWmE_oU">Watch on YouTube ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="create" class="card" data-track>
+    <span class="step-tag">Step 5</span>
+    <h2>Create: My instrument poster</h2>
+    <div class="proj-box">
+      <p class="sub" style="margin-bottom:.6rem;">Choose one instrument: the lute, the organ, or the clarinet.</p>
+      <ul class="feat">
+      <li>Write its name.</li>
+      <li>What is it made of?</li>
+      <li>How do you play it? (blow, pluck the strings, press keys...)</li>
+      <li>Draw the instrument on paper.</li>
+      </ul>
+    </div>
+    <h3>Your workspace</h3>
+    <textarea id="workspace" placeholder="Write here..."></textarea>
+    <p class="word-count"><span id="wc">0</span> words</p>
+    <button class="btn btn-outline" id="downloadDraft">Download my work</button>
+  </section>
+
+</div>
+
+<footer>English in Context · CLIL Music × English</footer>
+
+<script>
+const trackedSections = document.querySelectorAll('[data-track]');
+const seen = new Set();
+function updateProgress(){
+  const pct = Math.round((seen.size / trackedSections.length) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressPct').textContent = pct + '%';
+}
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ seen.add(e.target.id); updateProgress(); } });
+}, { threshold: 0.35 });
+trackedSections.forEach(s=>io.observe(s));
+
+document.querySelectorAll('[data-poll]').forEach(poll=>{
+  const btns = poll.querySelectorAll('.opt-btn');
+  const fb = poll.querySelector('.poll-fb');
+  btns.forEach(b=>{
+    b.addEventListener('click', ()=>{
+      if(poll.dataset.answered) return;
+      poll.dataset.answered = "1";
+      btns.forEach(x=>{
+        x.disabled = true;
+        if(x.dataset.correct === "true") x.classList.add('correct');
+        else if(x === b) x.classList.add('wrong');
+      });
+      fb.style.display = 'block';
+    });
+  });
+});
+
+const vocab = [["lute","lutna"],["organ","organ"],["clarinet","klarinet"],["string","struna"],["pipe","píšťala"],["wind instrument","dychový nástroj"],["reed","plátok"],["wood","drevo"],["church","kostol"],["old","starý"],["blow","fúkať"],["sound","zvuk"]];
+const flashGrid = document.getElementById('flashGrid');
+vocab.forEach(([en,sk])=>{
+  const card = document.createElement('div');
+  card.className = 'flash';
+  card.innerHTML = `<div class="flash-inner">
+    <div class="flash-face flash-front">${en}</div>
+    <div class="flash-face flash-back">${sk}</div>
+  </div>`;
+  card.addEventListener('click', ()=> card.classList.toggle('flip'));
+  flashGrid.appendChild(card);
+});
+
+const wsArea = document.getElementById('workspace');
+const wcEl = document.getElementById('wc');
+wsArea.addEventListener('input', ()=>{
+  const words = wsArea.value.trim().split(/\s+/).filter(Boolean).length;
+  wcEl.textContent = words;
+});
+document.getElementById('downloadDraft').addEventListener('click', ()=>{
+  const blob = new Blob([wsArea.value], {type:'text/plain'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'instruments-lute-organ-clarinet-notes.txt'; a.click();
+  URL.revokeObjectURL(url);
+});
+</script>
+</body>
+</html>

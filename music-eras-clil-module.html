@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLIL Music · Four Returns in Music History</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+
+:root{
+  --teal-deep:#1F5C56; --teal:#2F7A72; --teal-tint:#E4EFEC;
+  --terracotta:#C1603C; --terracotta-tint:#F4E2D8;
+  --amber:#D9A441; --amber-tint:#FBF0DC;
+  --cream:#FBF6EC; --card:#FFFDF8;
+  --ink:#2A2420; --ink-soft:#6B6259; --line:#E6DFD0;
+  --good:#3B7A57; --good-tint:#EAF4EE; --bad:#B5473A; --bad-tint:#FBEBE8;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{ margin:0; background:var(--cream); color:var(--ink); font-family:'Source Sans 3',sans-serif; -webkit-font-smoothing:antialiased; }
+h1,h2,h3,.display{ font-family:'Fraunces',serif; }
+section{ scroll-margin-top:78px; }
+a{ color:inherit; }
+
+/* ---------- HERO ---------- */
+.hero{ background:linear-gradient(160deg,var(--teal-deep) 0%,var(--teal) 65%); color:#fff; padding:2.6rem 1.5rem 2.6rem; position:relative; overflow:hidden; }
+.hero::after{ content:""; position:absolute; right:-40px; top:-40px; width:260px; height:260px; border:1px solid rgba(255,255,255,.18); border-radius:50%; }
+.hero::before{ content:""; position:absolute; right:60px; bottom:-90px; width:180px; height:180px; border:1px solid rgba(255,255,255,.14); border-radius:50%; }
+.hero-inner{ max-width:980px; margin:0 auto; position:relative; z-index:1; }
+.logo-badge{ display:inline-flex; align-items:center; gap:.4rem; background:var(--cream); border-radius:12px; padding:.5rem .9rem; margin-bottom:1.2rem; box-shadow:0 10px 24px -14px rgba(0,0,0,.45); font-family:'Fraunces',serif; font-weight:700; color:var(--teal-deep); letter-spacing:.02em; }
+.eyebrow{ font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--amber); font-weight:600; margin-bottom:.6rem; }
+.hero h1{ font-size:clamp(1.9rem,4.6vw,2.9rem); margin:0 0 .5rem; font-weight:700; line-height:1.15; }
+.hero p{ margin:0; opacity:.92; font-size:1.05rem; max-width:64ch; }
+.notes{ display:flex; gap:3px; margin-top:1.6rem; }
+.note{ width:14px; height:44px; background:rgba(255,255,255,.85); border-radius:0 0 3px 3px; }
+.note.dark{ width:10px; height:28px; background:var(--ink); margin:0 -6px; z-index:1; }
+
+/* ---------- NAV ---------- */
+.site-nav{ position:sticky; top:0; z-index:50; background:rgba(251,246,236,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line); }
+.nav-inner{ max-width:980px; margin:0 auto; padding:.6rem 1.5rem; display:flex; gap:1.1rem; overflow-x:auto; }
+.nav-inner a{ white-space:nowrap; text-decoration:none; font-weight:600; font-size:.86rem; color:var(--ink-soft); padding:.3rem 0; border-bottom:2px solid transparent; transition:.15s; }
+.nav-inner a:hover{ color:var(--teal-deep); border-color:var(--terracotta); }
+
+.wrap{ max-width:980px; margin:1.8rem auto 4rem; padding:0 1.5rem; }
+.progress-shell{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:1.1rem 1.2rem; box-shadow:0 12px 30px -18px rgba(31,92,86,.35); margin-bottom:1.8rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+.progress-shell .lbl{ font-weight:600; font-size:.88rem; color:var(--ink-soft); }
+.progress-bar{ flex:1; height:6px; background:var(--teal-tint); border-radius:99px; overflow:hidden; }
+.progress-fill{ height:100%; width:0%; background:var(--terracotta); transition:width .3s; }
+.progress-pct{ font-weight:700; font-size:.86rem; color:var(--teal-deep); min-width:2.6em; text-align:right;}
+
+/* ---------- SECTION SHELLS ---------- */
+.card{ background:var(--card); border:1px solid var(--line); border-radius:18px; padding:1.7rem 1.7rem; margin-bottom:1.6rem; box-shadow:0 14px 32px -22px rgba(42,36,32,.25); }
+.step-tag{ display:inline-block; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#fff; background:var(--teal); border-radius:99px; padding:.25rem .7rem; margin-bottom:.7rem; }
+.card h2{ margin:.1rem 0 .3rem; font-size:1.5rem; color:var(--teal-deep); }
+.card .sub{ color:var(--ink-soft); margin:0 0 1rem; font-size:.98rem;}
+.card h3{ font-size:1.08rem; color:var(--terracotta); margin:1.3rem 0 .6rem; }
+
+/* Era badge colors */
+.era1 .step-tag{ background:#6E7F8C; }
+.era2 .step-tag{ background:var(--terracotta); }
+.era3 .step-tag{ background:var(--amber); color:var(--ink); }
+.era4 .step-tag{ background:var(--teal-deep); }
+
+ul.feat{ margin:0; padding-left:1.2rem; }
+ul.feat li{ margin-bottom:.5rem; line-height:1.5; }
+
+/* ---------- POLL / WARM-UP ---------- */
+.poll{ border:1px solid var(--line); border-radius:14px; padding:1rem 1.1rem; margin-bottom:1rem; background:#fff; }
+.poll p.q{ font-weight:600; margin:0 0 .7rem; }
+.poll-opts{ display:flex; flex-wrap:wrap; gap:.5rem; }
+.opt-btn{ border:1px solid var(--line); background:var(--cream); border-radius:10px; padding:.5rem .9rem; font-size:.92rem; cursor:pointer; font-family:inherit; transition:.15s; }
+.opt-btn:hover{ border-color:var(--teal); }
+.opt-btn.correct{ background:var(--good-tint); border-color:var(--good); color:var(--good); font-weight:700; }
+.opt-btn.wrong{ background:var(--bad-tint); border-color:var(--bad); color:var(--bad); font-weight:700; }
+.opt-btn[disabled]{ cursor:default; }
+.poll-fb{ margin-top:.6rem; font-size:.9rem; color:var(--ink-soft); display:none; }
+.opt-btn.img-opt{ display:flex; flex-direction:column; align-items:center; gap:.5rem; padding:.8rem .9rem; }
+.opt-icon{ width:64px; height:46px; background:#fff; border-radius:10px; padding:.3rem; box-shadow:inset 0 0 0 1px var(--line); }
+
+/* ---------- LISTENING GALLERY ---------- */
+.gallery{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:.9rem; }
+.gcard{ border:1px solid var(--line); background:#fff; border-radius:14px; padding:1rem; display:flex; flex-direction:column; gap:.5rem; }
+.gcard .yt{ font-size:1.4rem; }
+.gcard a.watch{ margin-top:auto; text-decoration:none; font-weight:700; color:var(--teal-deep); font-size:.9rem; }
+.gcard a.watch:hover{ text-decoration:underline; }
+
+/* ---------- FLASHCARDS ---------- */
+.flash-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:.8rem; }
+.flash{ perspective:800px; height:100px; cursor:pointer; }
+.flash-inner{ position:relative; width:100%; height:100%; transition:transform .5s; transform-style:preserve-3d; }
+.flash.flip .flash-inner{ transform:rotateY(180deg); }
+.flash-face{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; border-radius:12px; padding:.5rem; font-weight:600; font-size:.92rem; backface-visibility:hidden; border:1px solid var(--line); }
+.flash-front{ background:var(--teal-tint); color:var(--teal-deep); }
+.flash-back{ background:var(--terracotta-tint); color:#7A3A22; transform:rotateY(180deg); }
+
+/* ---------- MATCHING GAME ---------- */
+.match-wrap{ display:grid; grid-template-columns:1fr 1fr; gap:1.4rem; }
+.match-col p.hd{ font-weight:700; margin:0 0 .5rem; color:var(--ink-soft); font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; }
+.match-item{ border:1px solid var(--line); background:#fff; border-radius:10px; padding:.6rem .8rem; margin-bottom:.5rem; cursor:pointer; font-size:.92rem; transition:.15s; }
+.match-item.selected{ border-color:var(--teal); box-shadow:0 0 0 2px var(--teal-tint); }
+.match-item.matched{ background:var(--good-tint); border-color:var(--good); color:var(--good); cursor:default; }
+.match-item.wrong-flash{ background:var(--bad-tint); border-color:var(--bad); }
+#matchStatus{ margin-top:.8rem; font-weight:600; color:var(--teal-deep); }
+
+/* ---------- CATEGORIZE ---------- */
+.cat-pool{ display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:1rem; min-height:2.4rem; }
+.cat-chip{ border:1px solid var(--teal); background:var(--teal-tint); color:var(--teal-deep); border-radius:99px; padding:.4rem .9rem; font-size:.86rem; cursor:pointer; user-select:none; }
+.cat-buckets{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:.9rem; }
+.bucket{ border:2px dashed var(--line); border-radius:14px; padding:.8rem; min-height:130px; background:#fff; }
+.bucket h4{ margin:0 0 .5rem; font-size:.9rem; color:var(--terracotta); }
+.bucket .cat-chip{ display:inline-block; margin:.2rem; }
+.bucket .cat-chip.placed{ background:var(--amber-tint); border-color:var(--amber); color:#7a5c14; }
+
+/* ---------- CLOZE ---------- */
+.cloze-text{ line-height:2.1; font-size:1.02rem; }
+.cloze-text select{ font-family:inherit; font-size:.95rem; border:1px solid var(--teal); border-radius:8px; padding:.15rem .4rem; background:#fff; color:var(--teal-deep); font-weight:600; }
+
+/* ---------- QUIZ ---------- */
+.quiz-q{ border:1px solid var(--line); border-radius:14px; padding:1rem 1.1rem; margin-bottom:1rem; background:#fff; }
+.quiz-q p.q{ font-weight:600; margin:0 0 .7rem; }
+.quiz-opts label{ display:block; padding:.45rem .6rem; border:1px solid var(--line); border-radius:10px; margin-bottom:.45rem; cursor:pointer; font-size:.93rem; }
+.quiz-opts label:hover{ border-color:var(--teal); }
+.quiz-opts input{ margin-right:.5rem; }
+.quiz-q.answered .quiz-opts label.correct-ans{ background:var(--good-tint); border-color:var(--good); }
+.quiz-q.answered .quiz-opts label.wrong-ans{ background:var(--bad-tint); border-color:var(--bad); }
+
+/* ---------- BUTTONS ---------- */
+.btn{ display:inline-block; border:none; border-radius:10px; padding:.7rem 1.3rem; font-family:inherit; font-weight:700; font-size:.94rem; cursor:pointer; }
+.btn-primary{ background:var(--terracotta); color:#fff; }
+.btn-primary:hover{ background:#a94f30; }
+.btn-outline{ background:transparent; border:1.5px solid var(--teal); color:var(--teal-deep); }
+#quizScore{ font-weight:700; color:var(--teal-deep); margin-top:.5rem; }
+
+/* ---------- PROJECTS ---------- */
+.proj-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1rem; }
+.proj{ border:1px solid var(--line); border-radius:14px; padding:1.1rem; background:#fff; }
+.proj h4{ margin:0 0 .4rem; color:var(--teal-deep); font-size:1.03rem; }
+.proj p{ margin:.2rem 0; font-size:.92rem; color:var(--ink-soft); }
+textarea#workspace{ width:100%; min-height:150px; border:1px solid var(--line); border-radius:12px; padding:.8rem; font-family:inherit; font-size:.95rem; resize:vertical; }
+.word-count{ font-size:.82rem; color:var(--ink-soft); margin:.4rem 0; }
+
+/* ---------- WORDWALL SLOTS ---------- */
+.ww-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:.9rem; }
+.ww-card{ border:1px dashed var(--line); border-radius:14px; padding:1rem; background:var(--amber-tint); text-align:center; color:#7a5c14; font-size:.92rem; }
+
+footer{ text-align:center; padding:2rem 1rem 3rem; color:var(--ink-soft); font-size:.85rem; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="logo-badge">EiC</div>
+    <div class="eyebrow">CLIL · Music × English</div>
+    <h1>Four Returns in Music History</h1>
+    <p>Návraty v hudbe — a self-paced journey through Prehistory &amp; the Middle Ages, the Baroque, Classicism, and the sonata form that defined it.</p>
+    <div class="notes">
+      <div class="note"></div><div class="note dark"></div><div class="note"></div><div class="note dark"></div>
+      <div class="note"></div><div class="note dark"></div><div class="note"></div><div class="note dark"></div>
+      <div class="note"></div><div class="note dark"></div><div class="note"></div>
+    </div>
+  </div>
+</div>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="#warmup">Warm-up</a>
+    <a href="#era1">1 · Prehistory &amp; Middle Ages</a>
+    <a href="#era2">2 · Baroque</a>
+    <a href="#era3">3 · Classicism</a>
+    <a href="#era4">4 · Sonata Form</a>
+    <a href="#vocab">Vocabulary</a>
+    <a href="#lab">Language Lab</a>
+    <a href="#arena">Practice Arena</a>
+    <a href="#projects">Project Ideas</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <div class="progress-shell">
+    <span class="lbl">Your progress</span>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <span class="progress-pct" id="progressPct">0%</span>
+  </div>
+
+  <!-- ===================== WARM-UP ===================== -->
+  <section id="warmup" class="card" data-track>
+    <span class="step-tag">Step 1</span>
+    <h2>Warm-up: What do you already know?</h2>
+    <p class="sub">Click an answer for each question — no wrong start, just a first guess before we dive in.</p>
+
+    <div class="poll" data-poll>
+      <p class="q">1. Look at the pictures. Which instrument is from the Baroque time?</p>
+      <div class="poll-opts">
+        <button class="opt-btn img-opt" data-correct="false">
+          <svg class="opt-icon" viewBox="0 0 60 44" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="pianoBody" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#5a4030"/>
+                <stop offset="1" stop-color="#2a1c12"/>
+              </linearGradient>
+            </defs>
+            <path d="M4 34 Q4 10 30 8 Q52 8 56 20 L56 34 Z" fill="url(#pianoBody)" stroke="#1a1108" stroke-width="1.5"/>
+            <rect x="8" y="27" width="44" height="7" fill="#fffdf8" stroke="#ccc" stroke-width="0.5"/>
+            <rect x="9" y="27" width="4" height="4.5" fill="#181818"/>
+            <rect x="16" y="27" width="4" height="4.5" fill="#181818"/>
+            <rect x="30" y="27" width="4" height="4.5" fill="#181818"/>
+            <rect x="37" y="27" width="4" height="4.5" fill="#181818"/>
+            <rect x="44" y="27" width="4" height="4.5" fill="#181818"/>
+            <line x1="14" y1="27" x2="14" y2="34" stroke="#ccc" stroke-width="0.6"/>
+            <line x1="20" y1="27" x2="20" y2="34" stroke="#ccc" stroke-width="0.6"/>
+            <line x1="26" y1="27" x2="26" y2="34" stroke="#ccc" stroke-width="0.6"/>
+            <line x1="32" y1="27" x2="32" y2="34" stroke="#ccc" stroke-width="0.6"/>
+            <line x1="38" y1="27" x2="38" y2="34" stroke="#ccc" stroke-width="0.6"/>
+            <line x1="44" y1="27" x2="44" y2="34" stroke="#ccc" stroke-width="0.6"/>
+            <rect x="10" y="34" width="2.4" height="7" fill="#2a1c12"/>
+            <rect x="47" y="34" width="2.4" height="7" fill="#2a1c12"/>
+          </svg>
+          <span>Piano</span>
+        </button>
+        <button class="opt-btn img-opt" data-correct="true">
+          <svg class="opt-icon" viewBox="0 0 60 44" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="harpsiBody" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#e3b354"/>
+                <stop offset="1" stop-color="#a9762c"/>
+              </linearGradient>
+            </defs>
+            <path d="M4 26 L4 12 L40 8 L56 20 L56 26 Z" fill="url(#harpsiBody)" stroke="#6b4a1a" stroke-width="1.5"/>
+            <circle cx="34" cy="16" r="3" fill="#fbf6ec" stroke="#6b4a1a" stroke-width="0.6"/>
+            <rect x="6" y="26" width="42" height="7" fill="#241a10" stroke="#6b4a1a" stroke-width="0.5"/>
+            <rect x="7" y="26.5" width="3.6" height="4.3" fill="#fffdf8"/>
+            <rect x="13" y="26.5" width="3.6" height="4.3" fill="#fffdf8"/>
+            <rect x="19" y="26.5" width="3.6" height="4.3" fill="#fffdf8"/>
+            <rect x="25" y="26.5" width="3.6" height="4.3" fill="#fffdf8"/>
+            <rect x="31" y="26.5" width="3.6" height="4.3" fill="#fffdf8"/>
+            <rect x="37" y="26.5" width="3.6" height="4.3" fill="#fffdf8"/>
+            <rect x="43" y="26.5" width="3.6" height="4.3" fill="#fffdf8"/>
+            <line x1="10" y1="33" x2="8" y2="40" stroke="#6b4a1a" stroke-width="2"/>
+            <line x1="44" y1="33" x2="46" y2="40" stroke="#6b4a1a" stroke-width="2"/>
+          </svg>
+          <span>Harpsichord</span>
+        </button>
+        <button class="opt-btn img-opt" data-correct="false">
+          <svg class="opt-icon" viewBox="0 0 60 44" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="bowWood" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#8a5a2e"/>
+                <stop offset="1" stop-color="#d6a35f"/>
+              </linearGradient>
+            </defs>
+            <path d="M8 30 Q30 14 56 18" fill="none" stroke="url(#bowWood)" stroke-width="2.6" stroke-linecap="round"/>
+            <path d="M9 32 Q30 20 54 22" fill="none" stroke="#fdf6e3" stroke-width="1.3"/>
+            <rect x="3" y="27" width="8" height="8" rx="1.5" fill="#171412"/>
+            <circle cx="7" cy="31" r="1.3" fill="#f4e2d8"/>
+            <circle cx="55" cy="18" r="1.7" fill="#e8c98a"/>
+          </svg>
+          <span>Modern violin bow</span>
+        </button>
+      </div>
+      <p class="poll-fb">The harpsichord is the Baroque instrument. The piano came later, in the Classical time.</p>
+    </div>
+
+    <div class="poll" data-poll>
+      <p class="q">2. Gregorian chant has...</p>
+      <div class="poll-opts">
+        <button class="opt-btn" data-correct="true">one melody line (monophony)</button>
+        <button class="opt-btn" data-correct="false">many melody lines together (polyphony)</button>
+        <button class="opt-btn" data-correct="false">a melody with music under it (homophony)</button>
+      </div>
+      <p class="poll-fb">Gregorian chant has one melody line. There is no music under it. One voice, or many voices together, sing the same line.</p>
+    </div>
+
+    <div class="poll" data-poll>
+      <p class="q">3. Sonata form is normal in which time?</p>
+      <div class="poll-opts">
+        <button class="opt-btn" data-correct="false">The Middle Ages</button>
+        <button class="opt-btn" data-correct="false">The Baroque</button>
+        <button class="opt-btn" data-correct="true">Classicism</button>
+      </div>
+      <p class="poll-fb">Sonata form started in Classicism. Composers used it for the first part of symphonies, sonatas, and quartets.</p>
+    </div>
+  </section>
+
+  <!-- ===================== ERA 1 ===================== -->
+  <section id="era1" class="card era1" data-track>
+    <span class="step-tag">Step 2</span>
+    <h2>First Return — Prehistory and the Middle Ages</h2>
+    <p class="sub">Prvý návrat – Pravek, stredovek</p>
+    <ul class="feat">
+      <li>Prehistoric people did not write music down. They played by ear. Music was for rituals, hunting, and talking to each other.</li>
+      <li>The first instruments were bone flutes and simple drums.</li>
+      <li>The Middle Ages was about 500–1450. The Church was very important.</li>
+      <li>Gregorian chant is church music. It has one voice and one melody. There is no music under it. It is in Latin.</li>
+      <li>First, music had one melody line (monophony). Later, music had two or more lines together (this is called organum, an early polyphony).</li>
+      <li>Guido of Arezzo made a new way to write music, in the 11th century. Now people could read and learn music.</li>
+      <li>Troubadours and minstrels sang songs outside the church. They sang about love. They played the lute, harp, or vielle.</li>
+    </ul>
+    <h3>Listen</h3>
+    <div class="gallery">
+      <div class="gcard">
+        <div class="yt">🎧</div>
+        <strong>Music History – The Medieval Era</strong>
+        <span style="font-size:.85rem;color:var(--ink-soft);">A short video about medieval music.</span>
+        <a class="watch" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=eJy3JYkDMgI">Watch on YouTube ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ERA 2 ===================== -->
+  <section id="era2" class="card era2" data-track>
+    <span class="step-tag">Step 3</span>
+    <h2>Second Return — The Baroque</h2>
+    <p class="sub">Druhý návrat – barok (c. 1600–1750)</p>
+    <ul class="feat">
+      <li>Baroque music has many decorations (ornaments). It is dramatic.</li>
+      <li>Basso continuo is a bass line under the music. It plays all the time (harpsichord + cello or bassoon).</li>
+      <li>The music goes suddenly from loud to soft. This is called terraced dynamics — not a slow change.</li>
+      <li>Music uses major and minor keys. This was new.</li>
+      <li>New types of music start now: opera, oratorio, cantata, concerto, fugue, sonata.</li>
+      <li>The harpsichord and the organ were the main keyboard instruments.</li>
+      <li>Famous composers: J. S. Bach, Handel, Vivaldi, Monteverdi, Purcell.</li>
+    </ul>
+    <h3>Listen</h3>
+    <div class="gallery">
+      <div class="gcard">
+        <div class="yt">🎧</div>
+        <strong>Vivaldi — "Spring" (La Primavera)</strong>
+        <span style="font-size:.85rem;color:var(--ink-soft);">Listen to the full piece — Voices of Music.</span>
+        <a class="watch" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=3LiztfE1X7E">Watch on YouTube ↗</a>
+      </div>
+      <div class="gcard">
+        <div class="yt">🎧</div>
+        <strong>Bach &amp; Vivaldi — Baroque Music</strong>
+        <span style="font-size:.85rem;color:var(--ink-soft);">Listen to music by both composers.</span>
+        <a class="watch" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=ewnsMzomShs">Watch on YouTube ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ERA 3 ===================== -->
+  <section id="era3" class="card era3" data-track>
+    <span class="step-tag">Step 4</span>
+    <h2>Third Return — Classicism</h2>
+    <p class="sub">Tretí návrat – Klasicizmus (c. 1750–1820)</p>
+    <ul class="feat">
+      <li>Classical music is clear, simple, and balanced. This is different from Baroque music.</li>
+      <li>One melody is important. Other instruments play with it. This is called homophony.</li>
+      <li>Music could get louder (crescendo) or quieter (diminuendo) slowly. This was new.</li>
+      <li>The symphony and the string quartet became very popular. The orchestra had a normal size now.</li>
+      <li>Sonata form became the normal shape for the first part of music (see Step 5).</li>
+      <li>The Alberti bass — broken chords in the left hand — was a common piano pattern.</li>
+      <li>Famous composers: Haydn, Mozart, and the young Beethoven.</li>
+    </ul>
+    <h3>Listen</h3>
+    <div class="gallery">
+      <div class="gcard">
+        <div class="yt">🎧</div>
+        <strong>Mozart — Symphony No. 40, 1st movement</strong>
+        <span style="font-size:.85rem;color:var(--ink-soft);">Listen to the first part (movement).</span>
+        <a class="watch" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=l45DAuXYSIs">Watch on YouTube ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ERA 4 : SONATA FORM ===================== -->
+  <section id="era4" class="card era4" data-track>
+    <span class="step-tag">Step 5</span>
+    <h2>Characteristics of Sonata Form</h2>
+    <p class="sub">Znaky sonátovej formy – obdobie klasicizmu</p>
+    <ul class="feat">
+      <li>Composers used sonata form for the first part of symphonies, sonatas, string quartets, and concertos.</li>
+      <li>It has three parts: <strong>Exposition → Development → Recapitulation</strong> (and, sometimes, an introduction and a coda too).</li>
+      <li><strong>Exposition:</strong> we hear the first theme in the home key (tonic). Then a bridge. Then a second theme in a different key.</li>
+      <li><strong>Development:</strong> the themes change. The music moves through different keys. This makes tension.</li>
+      <li><strong>Recapitulation:</strong> the themes come back. Now both themes are in the home key (tonic). The tension is gone.</li>
+      <li>The first theme is often strong. The second theme is often soft. This contrast is easy to hear.</li>
+    </ul>
+    <h3>Listen &amp; analyse</h3>
+    <div class="gallery">
+      <div class="gcard">
+        <div class="yt">🎧</div>
+        <strong>Exposition, Development, Recapitulation — explained</strong>
+        <span style="font-size:.85rem;color:var(--ink-soft);">A short video that explains sonata form.</span>
+        <a class="watch" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=GeEUSlZYzPo">Watch on YouTube ↗</a>
+      </div>
+      <div class="gcard">
+        <div class="yt">🎧</div>
+        <strong>Mozart Symphony No. 40 (sonata-form example)</strong>
+        <span style="font-size:.85rem;color:var(--ink-soft);">Listen, and try to find the exposition and the development.</span>
+        <a class="watch" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=l45DAuXYSIs">Watch on YouTube ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== VOCABULARY ===================== -->
+  <section id="vocab" class="card" data-track>
+    <span class="step-tag">Step 6</span>
+    <h2>Vocabulary</h2>
+    <p class="sub">20 words from all four topics. Click a card to see the Slovak word. Then play the matching game.</p>
+
+    <div class="flash-grid" id="flashGrid"></div>
+
+    <h3>Matching game</h3>
+    <p class="sub" style="margin-top:-.4rem;">Click an English word. Then click its Slovak word. Try to match all the pairs.</p>
+    <div class="match-wrap">
+      <div class="match-col"><p class="hd">English</p><div id="matchEn"></div></div>
+      <div class="match-col"><p class="hd">Slovenčina</p><div id="matchSk"></div></div>
+    </div>
+    <p id="matchStatus"></p>
+  </section>
+
+  <!-- ===================== LANGUAGE LAB ===================== -->
+  <section id="lab" class="card" data-track>
+    <span class="step-tag">Step 7</span>
+    <h2>Language Lab</h2>
+    <p class="sub">Choose the right word for each gap.</p>
+    <div class="cloze-text" id="clozeText"></div>
+    <button class="btn btn-outline" id="clozeCheck" style="margin-top:1rem;">Check my answers</button>
+    <p id="clozeResult" style="font-weight:700;color:var(--teal-deep);margin-top:.6rem;"></p>
+  </section>
+
+  <!-- ===================== PRACTICE ARENA ===================== -->
+  <section id="arena" class="card" data-track>
+    <span class="step-tag">Step 8</span>
+    <h2>Practice Arena</h2>
+
+    <h3>1. Put the words in the right box</h3>
+    <p class="sub" style="margin-top:-.4rem;">Click a word. Then click the box where it belongs.</p>
+    <div class="cat-pool" id="catPool"></div>
+    <div class="cat-buckets" id="catBuckets"></div>
+    <p id="catStatus" style="margin-top:.7rem;font-weight:600;color:var(--teal-deep);"></p>
+
+    <h3>2. Quiz — 10 questions</h3>
+    <div id="quizWrap"></div>
+    <button class="btn btn-primary" id="quizSubmit">Check my score</button>
+    <p id="quizScore"></p>
+
+    <h3>3. Wordwall activities</h3>
+    <p class="sub" style="margin-top:-.4rem;">More games will come here soon.</p>
+    <div class="ww-grid">
+      <a class="ww-card" style="display:block;text-decoration:none;color:#7a5c14;" target="_blank" rel="noopener" href="https://wordwall.net/resource/118252956?wwmethod=link">🧩 Wordwall — Prehistory &amp; Middle Ages (1)<br><strong>Open activity ↗</strong></a>
+      <a class="ww-card" style="display:block;text-decoration:none;color:#7a5c14;" target="_blank" rel="noopener" href="https://wordwall.net/resource/118253171?wwmethod=link">🧩 Wordwall — Prehistory &amp; Middle Ages (2)<br><strong>Open activity ↗</strong></a>
+      <div class="ww-card">🧩 Wordwall — Baroque<br><em>coming soon</em></div>
+      <div class="ww-card">🧩 Wordwall — Classicism<br><em>coming soon</em></div>
+      <div class="ww-card">🧩 Wordwall — Sonata Form<br><em>coming soon</em></div>
+    </div>
+  </section>
+
+  <!-- ===================== PROJECT IDEAS ===================== -->
+  <section id="projects" class="card" data-track>
+    <span class="step-tag">Step 9</span>
+    <h2>Project Ideas</h2>
+    <p class="sub">Choose one project. Plan it with the question. Then write your draft below.</p>
+    <div class="proj-grid">
+      <div class="proj">
+        <h4>🗺️ Timeline poster</h4>
+        <p>Make a timeline picture of the four eras. Add one fact and one song for each era.</p>
+        <p><strong>Question:</strong> What picture shows each era best?</p>
+      </div>
+      <div class="proj">
+        <h4>🎙️ Guided listening video</h4>
+        <p>Make a short video (1–2 minutes). Explain sonata form. Use Mozart's Symphony No. 40.</p>
+        <p><strong>Question:</strong> Where does the development part start?</p>
+      </div>
+      <div class="proj">
+        <h4>⚖️ Baroque vs Classical chart</h4>
+        <p>Make a chart. Compare Baroque and Classical music: dynamics, texture, instrument, types of music.</p>
+        <p><strong>Question:</strong> What changed the most between the two eras?</p>
+      </div>
+      <div class="proj">
+        <h4>🧩 Sonata form diagram</h4>
+        <p>Draw a picture of sonata form: exposition, development, recapitulation. Use a piece of music you like.</p>
+        <p><strong>Question:</strong> How does the second theme change its key?</p>
+      </div>
+    </div>
+
+    <h3>Your workspace</h3>
+    <textarea id="workspace" placeholder="Write your project here..."></textarea>
+    <p class="word-count"><span id="wc">0</span> words</p>
+    <button class="btn btn-outline" id="downloadDraft">Download my draft</button>
+  </section>
+
+</div>
+
+<footer>English in Context · CLIL Music × English — Four Returns in Music History</footer>
+
+<script>
+/* ---------- PROGRESS TRACKING ---------- */
+const trackedSections = document.querySelectorAll('[data-track]');
+const seen = new Set();
+function updateProgress(){
+  const pct = Math.round((seen.size / trackedSections.length) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressPct').textContent = pct + '%';
+}
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ seen.add(e.target.id); updateProgress(); } });
+}, { threshold: 0.35 });
+trackedSections.forEach(s=>io.observe(s));
+
+/* ---------- WARM-UP POLLS ---------- */
+document.querySelectorAll('[data-poll]').forEach(poll=>{
+  const btns = poll.querySelectorAll('.opt-btn');
+  const fb = poll.querySelector('.poll-fb');
+  btns.forEach(b=>{
+    b.addEventListener('click', ()=>{
+      if(poll.dataset.answered) return;
+      poll.dataset.answered = "1";
+      btns.forEach(x=>{
+        x.disabled = true;
+        if(x.dataset.correct === "true") x.classList.add('correct');
+        else if(x === b) x.classList.add('wrong');
+      });
+      fb.style.display = 'block';
+    });
+  });
+});
+
+/* ---------- VOCABULARY DATA ---------- */
+const vocab = [
+  ["Gregorian chant","gregoriánsky chorál"],
+  ["monophony","monofónia"],
+  ["polyphony","polyfónia"],
+  ["troubadour","trubadúr"],
+  ["Baroque","barok"],
+  ["basso continuo","generálbas"],
+  ["ornamentation","ozdoby"],
+  ["harpsichord","čembalo"],
+  ["oratorio","oratórium"],
+  ["Classicism","klasicizmus"],
+  ["homophony","homofónia"],
+  ["symphony","symfónia"],
+  ["string quartet","sláčikové kvarteto"],
+  ["crescendo","crescendo"],
+  ["sonata form","sonátová forma"],
+  ["exposition","expozícia"],
+  ["development","vývoj / rozvedenie"],
+  ["recapitulation","repríza"],
+  ["tonic key","tónika"],
+  ["modulation","modulácia"]
+];
+
+/* ---------- FLASHCARDS ---------- */
+const flashGrid = document.getElementById('flashGrid');
+vocab.forEach(([en,sk])=>{
+  const card = document.createElement('div');
+  card.className = 'flash';
+  card.innerHTML = `<div class="flash-inner">
+    <div class="flash-face flash-front">${en}</div>
+    <div class="flash-face flash-back">${sk}</div>
+  </div>`;
+  card.addEventListener('click', ()=> card.classList.toggle('flip'));
+  flashGrid.appendChild(card);
+});
+
+/* ---------- MATCHING GAME (8 random pairs) ---------- */
+function shuffle(arr){ return arr.map(v=>[Math.random(),v]).sort((a,b)=>a[0]-b[0]).map(v=>v[1]); }
+const matchSet = shuffle(vocab).slice(0,8);
+const enList = shuffle(matchSet.map(p=>p[0]));
+const skList = shuffle(matchSet.map(p=>p[1]));
+let selectedEn = null, selectedSk = null, matchedCount = 0;
+const matchEnEl = document.getElementById('matchEn');
+const matchSkEl = document.getElementById('matchSk');
+
+function renderMatch(){
+  matchEnEl.innerHTML = ''; matchSkEl.innerHTML = '';
+  enList.forEach(term=>{
+    const d = document.createElement('div');
+    d.className = 'match-item'; d.textContent = term; d.dataset.term = term;
+    d.addEventListener('click', ()=>selectEn(d));
+    matchEnEl.appendChild(d);
+  });
+  skList.forEach(term=>{
+    const d = document.createElement('div');
+    d.className = 'match-item'; d.textContent = term; d.dataset.term = term;
+    d.addEventListener('click', ()=>selectSk(d));
+    matchSkEl.appendChild(d);
+  });
+}
+function selectEn(el){
+  if(el.classList.contains('matched')) return;
+  document.querySelectorAll('#matchEn .match-item').forEach(x=>x.classList.remove('selected'));
+  el.classList.add('selected'); selectedEn = el; tryMatch();
+}
+function selectSk(el){
+  if(el.classList.contains('matched')) return;
+  document.querySelectorAll('#matchSk .match-item').forEach(x=>x.classList.remove('selected'));
+  el.classList.add('selected'); selectedSk = el; tryMatch();
+}
+function tryMatch(){
+  if(!selectedEn || !selectedSk) return;
+  const pair = vocab.find(p=>p[0]===selectedEn.dataset.term);
+  if(pair && pair[1]===selectedSk.dataset.term){
+    selectedEn.classList.add('matched'); selectedSk.classList.add('matched');
+    selectedEn.classList.remove('selected'); selectedSk.classList.remove('selected');
+    matchedCount++;
+    document.getElementById('matchStatus').textContent = `${matchedCount} / 8 pairs matched`;
+    if(matchedCount === 8) document.getElementById('matchStatus').textContent = '🎉 All 8 pairs matched — well done!';
+  } else {
+    [selectedEn, selectedSk].forEach(x=>{ x.classList.add('wrong-flash'); });
+    setTimeout(()=>{
+      selectedEn.classList.remove('selected','wrong-flash');
+      selectedSk.classList.remove('selected','wrong-flash');
+    }, 500);
+  }
+  selectedEn = null; selectedSk = null;
+}
+renderMatch();
+
+/* ---------- CLOZE ---------- */
+const clozeParts = [
+  "Medieval music had one melody line. This is called ", {opts:["monophonic","homophonic","polyphonic"], ans:"monophonic"},
+  " music. A famous example is ", {opts:["Gregorian chant","opera","the symphony"], ans:"Gregorian chant"},
+  ". In the Baroque, there was a bass line under the music, called ", {opts:["basso continuo","the Alberti bass","the string quartet"], ans:"basso continuo"},
+  ". The main keyboard instrument was the ", {opts:["harpsichord","piano","synthesizer"], ans:"harpsichord"},
+  ". In Classicism, one melody was important, with music under it. This is called ", {opts:["homophony","polyphony","organum"], ans:"homophony"},
+  ". The ", {opts:["symphony orchestra","church choir","troubadour ensemble"], ans:"symphony orchestra"},
+  " became a standard group. First parts of Classical symphonies normally use ", {opts:["sonata form","binary chant form","concerto grosso form"], ans:"sonata form"},
+  ". It ends with the ", {opts:["recapitulation","overture","coda only"], ans:"recapitulation"},
+  ", where both themes come back in the ", {opts:["tonic key","dominant key","relative minor"], ans:"tonic key"},
+  "."
+];
+const clozeEl = document.getElementById('clozeText');
+let clozeAnswers = [];
+clozeParts.forEach(part=>{
+  if(typeof part === 'string'){
+    clozeEl.appendChild(document.createTextNode(part));
+  } else {
+    const sel = document.createElement('select');
+    sel.innerHTML = `<option value="">— choose —</option>` + shuffle(part.opts).map(o=>`<option value="${o}">${o}</option>`).join('');
+    sel.dataset.ans = part.ans;
+    clozeAnswers.push(sel);
+    clozeEl.appendChild(sel);
+  }
+});
+document.getElementById('clozeCheck').addEventListener('click', ()=>{
+  let correct = 0;
+  clozeAnswers.forEach(sel=>{
+    sel.style.borderColor = sel.value === sel.dataset.ans ? 'var(--good)' : 'var(--bad)';
+    if(sel.value === sel.dataset.ans) correct++;
+  });
+  document.getElementById('clozeResult').textContent = `${correct} / ${clozeAnswers.length} correct`;
+});
+
+/* ---------- CATEGORIZE ---------- */
+const catItems = [
+  ["Gregorian chant","era1"], ["troubadour","era1"], ["monophony","era1"],
+  ["basso continuo","era2"], ["harpsichord","era2"], ["terraced dynamics","era2"],
+  ["string quartet","era3"], ["crescendo / diminuendo","era3"], ["symphony orchestra","era3"],
+  ["exposition","era4"], ["development section","era4"], ["recapitulation","era4"]
+];
+const bucketDefs = [
+  ["era1","Prehistory & Middle Ages"], ["era2","Baroque"], ["era3","Classicism"], ["era4","Sonata Form"]
+];
+const catPool = document.getElementById('catPool');
+const catBuckets = document.getElementById('catBuckets');
+let selectedChip = null;
+let catCorrect = 0;
+
+bucketDefs.forEach(([key,label])=>{
+  const b = document.createElement('div');
+  b.className = 'bucket'; b.dataset.key = key;
+  b.innerHTML = `<h4>${label}</h4>`;
+  b.addEventListener('click', ()=>{
+    if(!selectedChip) return;
+    const correct = selectedChip.dataset.cat === key;
+    const chip = selectedChip;
+    if(correct){
+      chip.classList.add('placed');
+      b.appendChild(chip);
+      catCorrect++;
+    } else {
+      chip.style.background = 'var(--bad-tint)'; chip.style.borderColor = 'var(--bad)';
+      setTimeout(()=>{ chip.style.background=''; chip.style.borderColor=''; }, 500);
+    }
+    selectedChip.classList.remove('selected');
+    selectedChip = null;
+    document.getElementById('catStatus').textContent = `${catCorrect} / ${catItems.length} placed correctly`;
+  });
+  catBuckets.appendChild(b);
+});
+shuffle(catItems).forEach(([term,cat])=>{
+  const chip = document.createElement('span');
+  chip.className = 'cat-chip'; chip.textContent = term; chip.dataset.cat = cat;
+  chip.addEventListener('click', ()=>{
+    document.querySelectorAll('.cat-chip').forEach(c=>c.classList.remove('selected'));
+    chip.classList.add('selected');
+    chip.style.boxShadow = '0 0 0 2px var(--teal)';
+    selectedChip = chip;
+  });
+  catPool.appendChild(chip);
+});
+
+/* ---------- QUIZ ---------- */
+const quizData = [
+  { q:"Gregorian chant has...", opts:["one melody line (monophony)","many melody lines (polyphony)","melody with music under it (homophony)","different rhythms together"], ans:0 },
+  { q:"Who made a new way to write music, in the 11th century?", opts:["J.S. Bach","Guido of Arezzo","Antonio Vivaldi","Joseph Haydn"], ans:1 },
+  { q:"What is the bass line under Baroque music called?", opts:["Alberti bass","Basso continuo","Walking bass","Ground bass"], ans:1 },
+  { q:"Which was the main keyboard instrument in the Baroque?", opts:["Piano","Organ only","Harpsichord","Synthesizer"], ans:2 },
+  { q:"How do the dynamics change in Baroque music?", opts:["Slowly, step by step","Suddenly, loud to soft (terraced)","There are no dynamics","In a random way"], ans:1 },
+  { q:"What texture is normal in Classical music?", opts:["Polyphony","Monophony","Homophony","Heterophony"], ans:2 },
+  { q:"Which group became popular in Classicism, with the symphony?", opts:["Troubadour group", "String quartet","Opera choir","Brass band"], ans:1 },
+  { q:"In sonata form, what happens in the development?", opts:["We hear the themes for the first time","The themes change and move to new keys","The music stops","We only hear the coda"], ans:1 },
+  { q:"In the recapitulation, what key are BOTH themes in?", opts:["The dominant key","Different keys, like in the exposition","The tonic (home) key","A random key"], ans:2 },
+  { q:"Sonata form is normal in...", opts:["The last part of a Baroque suite","The first part of a Classical symphony or sonata","Only songs","Only Gregorian chant"], ans:1 },
+];
+const quizWrap = document.getElementById('quizWrap');
+quizData.forEach((item,i)=>{
+  const div = document.createElement('div');
+  div.className = 'quiz-q'; div.dataset.idx = i;
+  div.innerHTML = `<p class="q">${i+1}. ${item.q}</p><div class="quiz-opts">` +
+    item.opts.map((o,j)=>`<label><input type="radio" name="q${i}" value="${j}"> ${o}</label>`).join('') +
+    `</div>`;
+  quizWrap.appendChild(div);
+});
+document.getElementById('quizSubmit').addEventListener('click', ()=>{
+  let score = 0;
+  quizData.forEach((item,i)=>{
+    const div = quizWrap.querySelector(`[data-idx="${i}"]`);
+    const chosen = div.querySelector(`input[name="q${i}"]:checked`);
+    div.classList.add('answered');
+    const labels = div.querySelectorAll('.quiz-opts label');
+    labels.forEach((lab,j)=>{
+      if(j === item.ans) lab.classList.add('correct-ans');
+      else if(chosen && parseInt(chosen.value)===j) lab.classList.add('wrong-ans');
+    });
+    if(chosen && parseInt(chosen.value) === item.ans) score++;
+  });
+  document.getElementById('quizScore').textContent = `Score: ${score} / ${quizData.length}`;
+});
+
+/* ---------- WORKSPACE ---------- */
+const wsArea = document.getElementById('workspace');
+const wcEl = document.getElementById('wc');
+wsArea.addEventListener('input', ()=>{
+  const words = wsArea.value.trim().split(/\s+/).filter(Boolean).length;
+  wcEl.textContent = words;
+});
+document.getElementById('downloadDraft').addEventListener('click', ()=>{
+  const blob = new Blob([wsArea.value], {type:'text/plain'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'music-eras-project-draft.txt'; a.click();
+  URL.revokeObjectURL(url);
+});
+</script>
+</body>
+</html>

@@ -1,196 +1,604 @@
-English Language Teaching  ›  B2 Level English – Grammar  ›  Revision of Present and Past Tenses
-Grammar 1
-Revision of Present and Past Tenses
-Six tenses carry most of what you say and write at B2 level – two present, two past, and the perfect forms that connect them. The choice between them is rarely about grammar rules alone; it’s about the speaker’s point of view – is the action finished, ongoing, or does it link to another moment in time?
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revision of Present and Past Tenses | B2 Level English &ndash; Grammar | English in Context</title>
+<style>
+  :root{
+    --cream:#faf6ec;
+    --card:#fffdf8;
+    --rust:#b5502d;
+    --rust-dark:#8f3e21;
+    --ink:#26241f;
+    --grey:#6b6558;
+    --line:#e7dfcd;
+    --green:#2f5d50;
+    --green-bg:#e7eeec;
+    --wrong:#b3312c;
+    --wrong-bg:#fbeceb;
+    --right-bg:#e9f3ea;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:"Segoe UI", Arial, Helvetica, sans-serif;
+    line-height:1.55;
+  }
+  .wrap{max-width:840px;margin:0 auto;padding:56px 24px 96px;}
 
-1. Present Simple vs. Present Continuous
-Present Simple describes facts, routines, permanent situations, and timetables – things that are true in general, not just right now.
+  .crumb{font-size:13px;letter-spacing:.02em;color:var(--grey);margin-bottom:6px;}
+  .crumb strong{color:var(--rust);font-weight:600;}
 
-She teaches at the secondary grammar school. · The museum opens at nine.
+  .eyebrow{font-size:13px;font-weight:700;color:var(--rust);margin:22px 0 8px;}
+  h1{
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:34px;
+    line-height:1.2;
+    margin:0 0 16px;
+    color:var(--ink);
+  }
+  .lede{color:var(--grey);font-size:16.5px;max-width:70ch;margin:0 0 40px;}
 
-Present Continuous describes actions happening at the moment of speaking, temporary situations, and changing or developing trends.
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:26px 28px;
+    margin-bottom:22px;
+  }
+  .card h2{
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:21px;
+    margin:0 0 10px;
+    color:var(--ink);
+  }
+  .card p{margin:0 0 12px;}
+  .card p:last-child{margin-bottom:0;}
+  .ex{color:var(--grey);}
+  .ex b{color:var(--ink);}
+  .signal{
+    display:inline-block;
+    font-size:13px;
+    color:var(--rust-dark);
+    background:#f6e9e2;
+    border-radius:5px;
+    padding:1px 8px;
+    margin-top:2px;
+  }
+  .note{
+    font-style:italic;
+    color:var(--grey);
+    font-size:14.5px;
+    border-top:1px dashed var(--line);
+    padding-top:12px;
+    margin-top:14px;
+  }
 
-I ’m writing a new worksheet right now. · More schools are introducing CLIL this year.
+  .twogrid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  @media (max-width:640px){.twogrid{grid-template-columns:1fr;}}
+  .half h3{
+    font-size:15.5px;
+    margin:0 0 6px;
+    color:var(--rust-dark);
+  }
 
-always · usually · every day · on Mondays now · at the moment · currently · these days
-Note: verbs describing states rather than actions (know, believe, want, seem, belong) are rarely used in the continuous form.
+  .timebox{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:26px 28px;
+    margin-bottom:22px;
+  }
+  .timebox h2{font-family:Georgia,serif;font-size:21px;margin:0 0 14px;}
+  table.times{width:100%;border-collapse:collapse;font-size:14.5px;}
+  table.times th{
+    text-align:left;color:var(--rust-dark);font-weight:600;
+    border-bottom:1px solid var(--line);padding:6px 8px 8px 0;
+  }
+  table.times td{
+    padding:8px 8px 8px 0;border-bottom:1px solid var(--line);vertical-align:top;
+  }
+  table.times tr:last-child td{border-bottom:none;}
 
-Quick practice – Present Simple vs. Present Continuous
-1. My colleagues usually 
- (mark) exams by hand, but this term they 
- (use) an online system.
-2. Look! The Erasmus+ coordinator 
- (upload) the new photos to the website right now.
-3. Our school 
- (organise) an international project every two years.
-Check answers
-Show answers
-Clear
-2. Past Simple vs. Past Continuous
-Past Simple describes completed actions or a sequence of events in the past.
+  .hack{
+    background:var(--green-bg);
+    border:1px solid var(--green);
+    border-radius:10px;
+    padding:22px 26px;
+    margin:8px 0 48px;
+  }
+  .hack h2{
+    font-family:Georgia,serif;
+    color:var(--green);
+    font-size:19px;
+    margin:0 0 8px;
+  }
+  .hack p{margin:0;color:var(--green);font-weight:600;font-size:15px;}
 
-She visited Vienna last spring. · He finished the report before lunch.
+  .section-title{
+    font-family:Georgia,serif;
+    font-size:26px;
+    margin:8px 0 6px;
+  }
+  .section-lede{color:var(--grey);margin:0 0 26px;}
 
-Past Continuous describes an action in progress at a specific past moment, often as background to another event.
+  .exercise{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:24px 28px 26px;
+    margin-bottom:26px;
+  }
+  .exercise h3{
+    font-size:14px;
+    text-transform:none;
+    color:var(--rust);
+    margin:0 0 4px;
+    font-weight:700;
+  }
+  .exercise .instr{color:var(--grey);font-size:14.5px;margin:0 0 18px;}
 
-I was preparing the lesson when the power went out. · While she was marking tests, the phone rang.
+  .exercise.mini{
+    background:var(--green-bg);
+    border-color:var(--green);
+    padding:18px 22px 20px;
+    margin:-4px 0 22px;
+  }
+  .exercise.mini h3{color:var(--green);margin-bottom:12px;}
+  .exercise.mini .q{font-size:15px;}
+  .exercise.mini input.blank{color:var(--green);border-bottom-color:var(--green);}
+  .exercise.mini input.blank.right{border-bottom-color:var(--green);}
+  .exercise.mini .btn{background:var(--green);border-color:var(--green);}
+  .exercise.mini .btn:hover{background:#244a3f;border-color:#244a3f;}
+  .exercise.mini .btn.secondary{background:transparent;color:var(--green);}
+  .exercise.mini .btn.secondary:hover{background:#dcece7;}
 
-yesterday · last year · in 2015 · ago while · when · at 8 o’clock yesterday
-Note: the two forms often work together – the continuous sets the scene, the simple interrupts it.
+  .q{margin-bottom:14px;font-size:15.5px;}
+  .q .num{font-weight:700;margin-right:4px;}
 
-Quick practice – Past Simple vs. Past Continuous
-1. While the students 
- (rehearse) for the concert, the fire alarm 
- (go) off.
-2. I 
- (walk) home when I 
- (see) my old teacher.
-3. At eight o’clock last night, my grandmother 
- (watch) the news, as she always did.
-Check answers
-Show answers
-Clear
-3. Present Perfect Simple vs. Past Simple
-Present Perfect connects the past to now – a result that matters today, an unfinished period, or an unspecified time.
+  .choices{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:6px;margin-left:22px;}
+  .choice{
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:15px;cursor:pointer;color:var(--ink);
+  }
+  .choice input{accent-color:var(--rust);}
 
-I ’ve already sent the report. · She has taught here for over thirty years.
+  input.blank{
+    border:none;
+    border-bottom:1.5px solid var(--ink);
+    background:transparent;
+    font-size:15.5px;
+    font-family:inherit;
+    padding:1px 4px;
+    width:170px;
+    color:var(--rust-dark);
+    font-weight:600;
+  }
+  input.blank:focus{outline:none;border-bottom-color:var(--rust);}
+  input.blank.right{background:var(--right-bg);border-bottom-color:var(--green);color:var(--green);}
+  input.blank.wrong{background:var(--wrong-bg);border-bottom-color:var(--wrong);color:var(--wrong);}
 
-Past Simple is used instead whenever the sentence names a specific, finished point in the past.
+  .feedback-tag{
+    font-size:13px;font-weight:700;margin-left:8px;
+  }
+  .feedback-tag.right{color:var(--green);}
+  .feedback-tag.wrong{color:var(--wrong);}
 
-I sent the report yesterday. · She started teaching in 1994.
+  .toolbar{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+  .btn{
+    border:1px solid var(--rust);
+    background:var(--rust);
+    color:#fff;
+    padding:8px 16px;
+    border-radius:7px;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+  }
+  .btn.secondary{background:transparent;color:var(--rust);}
+  .btn.secondary:hover{background:#f6e9e2;}
+  .btn:hover{background:var(--rust-dark);border-color:var(--rust-dark);}
 
-already · just · yet · ever · never · since · for · so far yesterday · in 2020 · when I was at school
-Note: a stated past time word (yesterday, in 2020…) always rules out the Present Perfect.
+  .score{font-size:14px;color:var(--grey);margin-top:12px;min-height:18px;}
 
-Quick practice – Present Perfect Simple vs. Past Simple
-1. We 
- (already / send) the permission forms to the parents.
-2. Erasmus+ 
- (change) the way our school works since we joined in 2013.
-3. She 
- (graduate) from university in 2010.
-Check answers
-Show answers
-Clear
-4. Present Perfect Continuous
-This form highlights the duration of an activity that began in the past and continues now – or has just stopped, leaving a visible result.
+  .foot{
+    text-align:center;
+    color:var(--grey);
+    font-size:13px;
+    margin-top:50px;
+    padding-top:22px;
+    border-top:1px solid var(--line);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
 
-I ’ve been correcting essays since seven o’clock. · Her eyes are red – she ’s been crying.
+  <div class="crumb">English Language Teaching &nbsp;&rsaquo;&nbsp; <strong>B2 Level English &ndash; Grammar</strong> &nbsp;&rsaquo;&nbsp; Revision of Present and Past Tenses</div>
 
-for · since · all day · recently · lately
-Note: compare with Present Perfect Simple, which focuses on the completed result rather than the duration – I’ve been reading that book (still going) vs. I’ve read that book (finished).
+  <div class="eyebrow">Grammar 1</div>
+  <h1>Revision of Present and Past Tenses</h1>
+  <p class="lede">Six tenses carry most of what you say and write at B2 level &ndash; two present, two past, and the perfect forms that connect them. The choice between them is rarely about grammar rules alone; it&rsquo;s about the speaker&rsquo;s point of view &ndash; is the action finished, ongoing, or does it link to another moment in time?</p>
 
-Quick practice – Present Perfect Continuous
-1. The IT technician 
- (work) on the new website all afternoon.
-2. How long 
- you 
- (learn) English?
-3. My eyes hurt because I 
- (mark) essays for the last three hours.
-Check answers
-Show answers
-Clear
-5. Past Perfect
-The “past before the past” – an action completed before another past action or point in time.
+  <div class="card">
+    <h2>1. Present Simple vs. Present Continuous</h2>
+    <p><b>Present Simple</b> describes facts, routines, permanent situations, and timetables &ndash; things that are true in general, not just right now.</p>
+    <p class="ex"><b>She teaches</b> at the secondary grammar school. &middot; The museum <b>opens</b> at nine.</p>
+    <p><b>Present Continuous</b> describes actions happening at the moment of speaking, temporary situations, and changing or developing trends.</p>
+    <p class="ex">I<b> &rsquo;m writing</b> a new worksheet right now. &middot; More schools <b>are introducing</b> CLIL this year.</p>
+    <span class="signal">always &middot; usually &middot; every day &middot; on Mondays</span>
+    <span class="signal">now &middot; at the moment &middot; currently &middot; these days</span>
+    <p class="note">Note: verbs describing states rather than actions (know, believe, want, seem, belong) are rarely used in the continuous form.</p>
+  </div>
 
-When I arrived, the lesson had already started. · She hadn’t finished the exercise before the bell rang.
+  <div class="exercise mini" id="p1">
+    <h3>Quick practice &ndash; Present Simple vs. Present Continuous</h3>
+    <div class="q">
+      <span class="num">1.</span> My colleagues usually <input class="blank" data-answers="mark" style="width:90px;"> (mark) exams by hand, but this term they <input class="blank" data-answers="are using"> (use) an online system.
+    </div>
+    <div class="q">
+      <span class="num">2.</span> Look! The Erasmus+ coordinator <input class="blank" data-answers="is uploading"> (upload) the new photos to the website right now.
+    </div>
+    <div class="q">
+      <span class="num">3.</span> Our school <input class="blank" data-answers="organises|organizes"> (organise) an international project every two years.
+    </div>
+    <div class="toolbar">
+      <button class="btn" onclick="checkFill('p1')">Check answers</button>
+      <button class="btn secondary" onclick="showFill('p1')">Show answers</button>
+      <button class="btn secondary" onclick="clearFill('p1')">Clear</button>
+    </div>
+    <div class="score" id="p1-score"></div>
+  </div>
 
-already · just · before · after · by the time · never
-Note: Past Perfect is usually paired with Past Simple to make the order of two past events unambiguous.
+  <div class="card">
+    <h2>2. Past Simple vs. Past Continuous</h2>
+    <p><b>Past Simple</b> describes completed actions or a sequence of events in the past.</p>
+    <p class="ex">She <b>visited</b> Vienna last spring. &middot; He <b>finished</b> the report before lunch.</p>
+    <p><b>Past Continuous</b> describes an action in progress at a specific past moment, often as background to another event.</p>
+    <p class="ex">I <b>was preparing</b> the lesson when the power <b>went</b> out. &middot; While she <b>was marking</b> tests, the phone rang.</p>
+    <span class="signal">yesterday &middot; last year &middot; in 2015 &middot; ago</span>
+    <span class="signal">while &middot; when &middot; at 8 o&rsquo;clock yesterday</span>
+    <p class="note">Note: the two forms often work together &ndash; the continuous sets the scene, the simple interrupts it.</p>
+  </div>
 
-Quick practice – Past Perfect
-1. By the time the inspector arrived, we 
- (already / prepare) all the documents.
-2. She was upset because she 
- (not / receive) the results yet.
-3. When the bell rang, the teacher 
- (just / finish) explaining the homework.
-Check answers
-Show answers
-Clear
-Common time expressions at a glance
-Tense	Typical signal words
-Present Simple	always, usually, often, every day/week, on Mondays, never
-Present Continuous	now, right now, at the moment, currently, this week, these days
-Past Simple	yesterday, last week/year, in 2015, ago, when + past time
-Past Continuous	while, as, when (+ interrupting action), at 8 o’clock yesterday
-Present Perfect	already, just, yet, ever, never, since, for, so far, recently
-Present Perfect Continuous	for, since, all day/morning, recently, lately, how long…?
-Past Perfect	already, just, before, after, by the time, never, when (+ two past events)
-Memory hack
-Happening NOW → simple/continuous present.   FINISHED at a stated time → past simple.   UNFINISHED or result NOW → present perfect.   BEFORE another past action → past perfect.
+  <div class="exercise mini" id="p2">
+    <h3>Quick practice &ndash; Past Simple vs. Past Continuous</h3>
+    <div class="q">
+      <span class="num">1.</span> While the students <input class="blank" data-answers="were rehearsing"> (rehearse) for the concert, the fire alarm <input class="blank" data-answers="went off|went" style="width:90px;"> (go) off.
+    </div>
+    <div class="q">
+      <span class="num">2.</span> I <input class="blank" data-answers="was walking" style="width:110px;"> (walk) home when I <input class="blank" data-answers="saw" style="width:80px;"> (see) my old teacher.
+    </div>
+    <div class="q">
+      <span class="num">3.</span> At eight o&rsquo;clock last night, my grandmother <input class="blank" data-answers="was watching"> (watch) the news, as she always did.
+    </div>
+    <div class="toolbar">
+      <button class="btn" onclick="checkFill('p2')">Check answers</button>
+      <button class="btn secondary" onclick="showFill('p2')">Show answers</button>
+      <button class="btn secondary" onclick="clearFill('p2')">Clear</button>
+    </div>
+    <div class="score" id="p2-score"></div>
+  </div>
 
-Grammar Practice
-Work through the three exercises below, then use Check answers to see how you did.
+  <div class="card">
+    <h2>3. Present Perfect Simple vs. Past Simple</h2>
+    <p><b>Present Perfect</b> connects the past to now &ndash; a result that matters today, an unfinished period, or an unspecified time.</p>
+    <p class="ex">I<b> &rsquo;ve</b> already <b>sent</b> the report. &middot; She<b> has taught</b> here for over thirty years.</p>
+    <p><b>Past Simple</b> is used instead whenever the sentence names a specific, finished point in the past.</p>
+    <p class="ex">I <b>sent</b> the report yesterday. &middot; She <b>started</b> teaching in 1994.</p>
+    <span class="signal">already &middot; just &middot; yet &middot; ever &middot; never &middot; since &middot; for &middot; so far</span>
+    <span class="signal">yesterday &middot; in 2020 &middot; when I was at school</span>
+    <p class="note">Note: a stated past time word (yesterday, in 2020&hellip;) always rules out the Present Perfect.</p>
+  </div>
 
-Exercise 1
-Choose the correct tense.
+  <div class="exercise mini" id="p3">
+    <h3>Quick practice &ndash; Present Perfect Simple vs. Past Simple</h3>
+    <div class="q">
+      <span class="num">1.</span> We <input class="blank" data-answers="have already sent"> (already / send) the permission forms to the parents.
+    </div>
+    <div class="q">
+      <span class="num">2.</span> Erasmus+ <input class="blank" data-answers="has changed"> (change) the way our school works since we joined in 2013.
+    </div>
+    <div class="q">
+      <span class="num">3.</span> She <input class="blank" data-answers="graduated"> (graduate) from university in 2010.
+    </div>
+    <div class="toolbar">
+      <button class="btn" onclick="checkFill('p3')">Check answers</button>
+      <button class="btn secondary" onclick="showFill('p3')">Show answers</button>
+      <button class="btn secondary" onclick="clearFill('p3')">Clear</button>
+    </div>
+    <div class="score" id="p3-score"></div>
+  </div>
 
-1. Every morning, our teacher
-checks
-is checking
-the homework before the lesson starts.
-2. Listen! Someone
-knocks
-is knocking
-at the door.
-3. My grandmother
-lived
-has lived
-in Levice for over sixty years, and she still lives here.
-4. We
-visited
-have visited
-the castle last weekend.
-5. By the time the bell rang, the students
-already finished
-had already finished
-the test.
-6. She
-prepares
-is preparing
-a new Erasmus+ project at the moment.
-Check answers
-Clear
-Exercise 2
-Put the verb in brackets into the correct tense.
+  <div class="card">
+    <h2>4. Present Perfect Continuous</h2>
+    <p>This form highlights the <b>duration</b> of an activity that began in the past and continues now &ndash; or has just stopped, leaving a visible result.</p>
+    <p class="ex">I<b> &rsquo;ve been correcting</b> essays since seven o&rsquo;clock. &middot; Her eyes are red &ndash; she<b> &rsquo;s been crying</b>.</p>
+    <span class="signal">for &middot; since &middot; all day &middot; recently &middot; lately</span>
+    <p class="note">Note: compare with Present Perfect Simple, which focuses on the completed result rather than the duration &ndash; I&rsquo;ve been reading that book (still going) vs. I&rsquo;ve read that book (finished).</p>
+  </div>
 
-1. I 
- (not / see) my colleague since the summer holidays.
-2. While the teacher 
- (explain) the grammar, two students arrived late.
-3. Look! The children 
- (paint) a huge mural on the school wall.
-4. My aunt 
- (teach) music for over twenty years; she started in 1998.
-5. When we 
- (arrive) at the airport, the plane 
- (already / leave).
-6. He usually 
- (walk) to school, but this week he 
- (take) the bus because of his injured leg.
-7. She 
- (just / finish) marking the last test when the headmaster called her.
-8. In 2015, our school 
- (launch) its first Erasmus+ exchange programme.
-Check answers
-Show answers
-Clear
-Exercise 3
-Each sentence has one tense mistake. Type the correction.
+  <div class="exercise mini" id="p4">
+    <h3>Quick practice &ndash; Present Perfect Continuous</h3>
+    <div class="q">
+      <span class="num">1.</span> The IT technician <input class="blank" data-answers="has been working"> (work) on the new website all afternoon.
+    </div>
+    <div class="q">
+      <span class="num">2.</span> How long <input class="blank" data-answers="have" style="width:70px;"> you <input class="blank" data-answers="been learning"> (learn) English?
+    </div>
+    <div class="q">
+      <span class="num">3.</span> My eyes hurt because I <input class="blank" data-answers="have been marking"> (mark) essays for the last three hours.
+    </div>
+    <div class="toolbar">
+      <button class="btn" onclick="checkFill('p4')">Check answers</button>
+      <button class="btn secondary" onclick="showFill('p4')">Show answers</button>
+      <button class="btn secondary" onclick="clearFill('p4')">Clear</button>
+    </div>
+    <div class="score" id="p4-score"></div>
+  </div>
 
-1. She is knowing the answer to every question in class.
-Correction: 
-2. I have visited Vienna in 2019.
-Correction: 
-3. While I cooked dinner, the phone rang.
-Correction: 
-4. By the time she called, I already left.
-Correction: 
-5. He is working here since March.
-Correction: 
-Check answers
-Show answers
-Clear
-English in Context · B2 Level English – Grammar · Revision of Present and Past Tenses
+  <div class="card">
+    <h2>5. Past Perfect</h2>
+    <p>The &ldquo;past before the past&rdquo; &ndash; an action completed before another past action or point in time.</p>
+    <p class="ex">When I arrived, the lesson<b> had already started</b>. &middot; She<b> hadn&rsquo;t finished</b> the exercise before the bell rang.</p>
+    <span class="signal">already &middot; just &middot; before &middot; after &middot; by the time &middot; never</span>
+    <p class="note">Note: Past Perfect is usually paired with Past Simple to make the order of two past events unambiguous.</p>
+  </div>
+
+  <div class="exercise mini" id="p5">
+    <h3>Quick practice &ndash; Past Perfect</h3>
+    <div class="q">
+      <span class="num">1.</span> By the time the inspector arrived, we <input class="blank" data-answers="had already prepared"> (already / prepare) all the documents.
+    </div>
+    <div class="q">
+      <span class="num">2.</span> She was upset because she <input class="blank" data-answers="hadn't received|had not received"> (not / receive) the results yet.
+    </div>
+    <div class="q">
+      <span class="num">3.</span> When the bell rang, the teacher <input class="blank" data-answers="had just finished"> (just / finish) explaining the homework.
+    </div>
+    <div class="toolbar">
+      <button class="btn" onclick="checkFill('p5')">Check answers</button>
+      <button class="btn secondary" onclick="showFill('p5')">Show answers</button>
+      <button class="btn secondary" onclick="clearFill('p5')">Clear</button>
+    </div>
+    <div class="score" id="p5-score"></div>
+  </div>
+
+  <div class="timebox">
+    <h2>Common time expressions at a glance</h2>
+    <table class="times">
+      <tr><th>Tense</th><th>Typical signal words</th></tr>
+      <tr><td>Present Simple</td><td>always, usually, often, every day/week, on Mondays, never</td></tr>
+      <tr><td>Present Continuous</td><td>now, right now, at the moment, currently, this week, these days</td></tr>
+      <tr><td>Past Simple</td><td>yesterday, last week/year, in 2015, ago, when + past time</td></tr>
+      <tr><td>Past Continuous</td><td>while, as, when (+ interrupting action), at 8 o&rsquo;clock yesterday</td></tr>
+      <tr><td>Present Perfect</td><td>already, just, yet, ever, never, since, for, so far, recently</td></tr>
+      <tr><td>Present Perfect Continuous</td><td>for, since, all day/morning, recently, lately, how long&hellip;?</td></tr>
+      <tr><td>Past Perfect</td><td>already, just, before, after, by the time, never, when (+ two past events)</td></tr>
+    </table>
+  </div>
+
+  <div class="hack">
+    <h2>Memory hack</h2>
+    <p>Happening NOW &rarr; simple/continuous present. &nbsp; FINISHED at a stated time &rarr; past simple. &nbsp; UNFINISHED or result NOW &rarr; present perfect. &nbsp; BEFORE another past action &rarr; past perfect.</p>
+  </div>
+
+  <div class="section-title">Grammar Practice</div>
+  <p class="section-lede">Work through the three exercises below, then use Check answers to see how you did.</p>
+
+  <!-- EXERCISE 1 -->
+  <div class="exercise" id="ex1">
+    <h3>Exercise 1</h3>
+    <p class="instr">Choose the correct tense.</p>
+
+    <div class="q" data-correct="checks">
+      <span class="num">1.</span> Every morning, our teacher
+      <div class="choices">
+        <label class="choice"><input type="radio" name="q1" value="checks"> checks</label>
+        <label class="choice"><input type="radio" name="q1" value="is checking"> is checking</label>
+      </div>
+      the homework before the lesson starts.
+    </div>
+
+    <div class="q" data-correct="is knocking">
+      <span class="num">2.</span> Listen! Someone
+      <div class="choices">
+        <label class="choice"><input type="radio" name="q2" value="knocks"> knocks</label>
+        <label class="choice"><input type="radio" name="q2" value="is knocking"> is knocking</label>
+      </div>
+      at the door.
+    </div>
+
+    <div class="q" data-correct="has lived">
+      <span class="num">3.</span> My grandmother
+      <div class="choices">
+        <label class="choice"><input type="radio" name="q3" value="lived"> lived</label>
+        <label class="choice"><input type="radio" name="q3" value="has lived"> has lived</label>
+      </div>
+      in Levice for over sixty years, and she still lives here.
+    </div>
+
+    <div class="q" data-correct="visited">
+      <span class="num">4.</span> We
+      <div class="choices">
+        <label class="choice"><input type="radio" name="q4" value="visited"> visited</label>
+        <label class="choice"><input type="radio" name="q4" value="have visited"> have visited</label>
+      </div>
+      the castle last weekend.
+    </div>
+
+    <div class="q" data-correct="had already finished">
+      <span class="num">5.</span> By the time the bell rang, the students
+      <div class="choices">
+        <label class="choice"><input type="radio" name="q5" value="already finished"> already finished</label>
+        <label class="choice"><input type="radio" name="q5" value="had already finished"> had already finished</label>
+      </div>
+      the test.
+    </div>
+
+    <div class="q" data-correct="is preparing">
+      <span class="num">6.</span> She
+      <div class="choices">
+        <label class="choice"><input type="radio" name="q6" value="prepares"> prepares</label>
+        <label class="choice"><input type="radio" name="q6" value="is preparing"> is preparing</label>
+      </div>
+      a new Erasmus+ project at the moment.
+    </div>
+
+    <div class="toolbar">
+      <button class="btn" onclick="checkChoice('ex1')">Check answers</button>
+      <button class="btn secondary" onclick="clearChoice('ex1')">Clear</button>
+    </div>
+    <div class="score" id="ex1-score"></div>
+  </div>
+
+  <!-- EXERCISE 2 -->
+  <div class="exercise" id="ex2">
+    <h3>Exercise 2</h3>
+    <p class="instr">Put the verb in brackets into the correct tense.</p>
+
+    <div class="q">
+      <span class="num">1.</span> I <input class="blank" data-answers="haven't seen|have not seen"> (not / see) my colleague since the summer holidays.
+    </div>
+    <div class="q">
+      <span class="num">2.</span> While the teacher <input class="blank" data-answers="was explaining"> (explain) the grammar, two students arrived late.
+    </div>
+    <div class="q">
+      <span class="num">3.</span> Look! The children <input class="blank" data-answers="are painting"> (paint) a huge mural on the school wall.
+    </div>
+    <div class="q">
+      <span class="num">4.</span> My aunt <input class="blank" data-answers="has taught"> (teach) music for over twenty years; she started in 1998.
+    </div>
+    <div class="q">
+      <span class="num">5.</span> When we <input class="blank" data-answers="arrived" style="width:110px;"> (arrive) at the airport, the plane <input class="blank" data-answers="had already left"> (already / leave).
+    </div>
+    <div class="q">
+      <span class="num">6.</span> He usually <input class="blank" data-answers="walks" style="width:100px;"> (walk) to school, but this week he <input class="blank" data-answers="is taking"> (take) the bus because of his injured leg.
+    </div>
+    <div class="q">
+      <span class="num">7.</span> She <input class="blank" data-answers="had just finished"> (just / finish) marking the last test when the headmaster called her.
+    </div>
+    <div class="q">
+      <span class="num">8.</span> In 2015, our school <input class="blank" data-answers="launched"> (launch) its first Erasmus+ exchange programme.
+    </div>
+
+    <div class="toolbar">
+      <button class="btn" onclick="checkFill('ex2')">Check answers</button>
+      <button class="btn secondary" onclick="showFill('ex2')">Show answers</button>
+      <button class="btn secondary" onclick="clearFill('ex2')">Clear</button>
+    </div>
+    <div class="score" id="ex2-score"></div>
+  </div>
+
+  <!-- EXERCISE 3 -->
+  <div class="exercise" id="ex3">
+    <h3>Exercise 3</h3>
+    <p class="instr">Each sentence has one tense mistake. Type the correction.</p>
+
+    <div class="q">
+      <span class="num">1.</span> She is knowing the answer to every question in class. <br><span class="ex" style="font-size:14px;">Correction: </span><input class="blank" data-answers="knows">
+    </div>
+    <div class="q">
+      <span class="num">2.</span> I have visited Vienna in 2019. <br><span class="ex" style="font-size:14px;">Correction: </span><input class="blank" data-answers="visited">
+    </div>
+    <div class="q">
+      <span class="num">3.</span> While I cooked dinner, the phone rang. <br><span class="ex" style="font-size:14px;">Correction: </span><input class="blank" data-answers="was cooking">
+    </div>
+    <div class="q">
+      <span class="num">4.</span> By the time she called, I already left. <br><span class="ex" style="font-size:14px;">Correction: </span><input class="blank" data-answers="had already left"></div>
+    <div class="q">
+      <span class="num">5.</span> He is working here since March. <br><span class="ex" style="font-size:14px;">Correction: </span><input class="blank" data-answers="has been working|has worked">
+    </div>
+
+    <div class="toolbar">
+      <button class="btn" onclick="checkFill('ex3')">Check answers</button>
+      <button class="btn secondary" onclick="showFill('ex3')">Show answers</button>
+      <button class="btn secondary" onclick="clearFill('ex3')">Clear</button>
+    </div>
+    <div class="score" id="ex3-score"></div>
+  </div>
+
+  <div class="foot">English in Context &middot; B2 Level English &ndash; Grammar &middot; Revision of Present and Past Tenses</div>
+</div>
+
+<script>
+function normalize(s){
+  return s.trim().toLowerCase()
+    .replace(/[’‘]/g, "'")
+    .replace(/\s+/g, " ");
+}
+
+function checkChoice(exId){
+  const ex = document.getElementById(exId);
+  const qs = ex.querySelectorAll('.q');
+  let correct = 0;
+  qs.forEach(q=>{
+    const answer = q.getAttribute('data-correct');
+    const selected = q.querySelector('input[type=radio]:checked');
+    let tag = q.querySelector('.feedback-tag');
+    if(tag) tag.remove();
+    tag = document.createElement('span');
+    tag.className = 'feedback-tag';
+    if(selected && selected.value === answer){
+      tag.classList.add('right');
+      tag.textContent = '✓';
+      correct++;
+    } else {
+      tag.classList.add('wrong');
+      tag.textContent = '✗ correct: ' + answer;
+    }
+    q.appendChild(tag);
+  });
+  document.getElementById(exId+'-score').textContent = correct + ' / ' + qs.length + ' correct';
+}
+
+function clearChoice(exId){
+  const ex = document.getElementById(exId);
+  ex.querySelectorAll('input[type=radio]').forEach(r=>r.checked=false);
+  ex.querySelectorAll('.feedback-tag').forEach(t=>t.remove());
+  document.getElementById(exId+'-score').textContent = '';
+}
+
+function checkFill(exId){
+  const ex = document.getElementById(exId);
+  const inputs = ex.querySelectorAll('input.blank');
+  let correct = 0;
+  inputs.forEach(inp=>{
+    const accepted = inp.getAttribute('data-answers').split('|').map(normalize);
+    inp.classList.remove('right','wrong');
+    if(accepted.includes(normalize(inp.value))){
+      inp.classList.add('right');
+      correct++;
+    } else {
+      inp.classList.add('wrong');
+    }
+  });
+  document.getElementById(exId+'-score').textContent = correct + ' / ' + inputs.length + ' correct';
+}
+
+function showFill(exId){
+  const ex = document.getElementById(exId);
+  const inputs = ex.querySelectorAll('input.blank');
+  inputs.forEach(inp=>{
+    const accepted = inp.getAttribute('data-answers').split('|');
+    inp.value = accepted[0];
+    inp.classList.remove('wrong');
+    inp.classList.add('right');
+  });
+  document.getElementById(exId+'-score').textContent = 'Answers shown';
+}
+
+function clearFill(exId){
+  const ex = document.getElementById(exId);
+  ex.querySelectorAll('input.blank').forEach(inp=>{
+    inp.value='';
+    inp.classList.remove('right','wrong');
+  });
+  document.getElementById(exId+'-score').textContent = '';
+}
+</script>
+</body>
+</html>

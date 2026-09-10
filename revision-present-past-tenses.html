@@ -77,6 +77,23 @@
     margin-top:14px;
   }
 
+  .more-toggle{
+    display:inline-block;border:1px solid var(--rust);background:transparent;color:var(--rust);
+    padding:6px 14px;border-radius:6px;font-size:13.5px;font-weight:600;cursor:pointer;
+    margin-top:14px;
+  }
+  .more-toggle:hover{background:#f6e9e2;}
+  .more-examples{
+    display:none;
+    margin-top:14px;
+    padding-top:12px;
+    border-top:1px dashed var(--line);
+  }
+  .more-examples.open{display:block;}
+  .more-examples ul{margin:0;padding-left:20px;}
+  .more-examples li{margin-bottom:7px;color:var(--grey);font-size:15px;}
+  .more-examples li b{color:var(--ink);}
+
   .twogrid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
   @media (max-width:640px){.twogrid{grid-template-columns:1fr;}}
   .half h3{
@@ -229,9 +246,24 @@
     <p class="ex"><b>She teaches</b> at the secondary grammar school. &middot; The museum <b>opens</b> at nine.</p>
     <p><b>Present Continuous</b> describes actions happening at the moment of speaking, temporary situations, and changing or developing trends.</p>
     <p class="ex">I<b> &rsquo;m writing</b> a new worksheet right now. &middot; More schools <b>are introducing</b> CLIL this year.</p>
-    <span class="signal">always &middot; usually &middot; every day &middot; on Mondays</span>
+    <span class="signal">always &middot; usually &middot; every day &middot; on Mondays &middot; seldom &middot; rarely &middot; scarcely</span>
     <span class="signal">now &middot; at the moment &middot; currently &middot; these days</span>
     <p class="note">Note: verbs describing states rather than actions (know, believe, want, seem, belong) are rarely used in the continuous form.</p>
+    <button class="more-toggle" onclick="toggleMore('more1')">+ 10 more examples</button>
+    <div class="more-examples" id="more1">
+      <ul>
+        <li>He <b>rarely eats</b> breakfast before school.</li>
+        <li>The 7:45 train <b>departs</b> from platform 4 every morning.</li>
+        <li>My brother <b>is studying</b> medicine in Bratislava this year.</li>
+        <li>Ice <b>melts</b> at zero degrees Celsius.</li>
+        <li>Online sales <b>are rising</b> sharply this quarter.</li>
+        <li>I usually <b>walk</b> to work, but today I<b>&rsquo;m driving</b> because it&rsquo;s raining.</li>
+        <li>She <b>seldom arrives</b> late for class.</li>
+        <li>They <b>are</b> currently <b>renovating</b> the school library.</li>
+        <li>He <b>scarcely</b> ever <b>complains</b> about his workload.</li>
+        <li>We<b>&rsquo;re meeting</b> the new Erasmus+ coordinator tomorrow at nine.</li>
+      </ul>
+    </div>
   </div>
 
   <div class="exercise mini" id="p1">
@@ -262,6 +294,21 @@
     <span class="signal">yesterday &middot; last year &middot; in 2015 &middot; ago</span>
     <span class="signal">while &middot; when &middot; at 8 o&rsquo;clock yesterday</span>
     <p class="note">Note: the two forms often work together &ndash; the continuous sets the scene, the simple interrupts it.</p>
+    <button class="more-toggle" onclick="toggleMore('more2')">+ 10 more examples</button>
+    <div class="more-examples" id="more2">
+      <ul>
+        <li>She <b>was cooking</b> dinner when the phone <b>rang</b>.</li>
+        <li>We <b>visited</b> three countries during our Erasmus+ exchange.</li>
+        <li>While I <b>was marking</b> tests, my colleague <b>was preparing</b> the timetable.</li>
+        <li>He <b>broke</b> his leg while he <b>was skiing</b> in the Tatras.</li>
+        <li>They <b>arrived</b> at the airport just as the gates <b>were closing</b>.</li>
+        <li>I <b>was reading</b> a book when the lights <b>went</b> out.</li>
+        <li>The students <b>were rehearsing</b> the play all afternoon.</li>
+        <li>She <b>graduated</b> from university in 2011.</li>
+        <li>It <b>was raining</b> heavily when we <b>left</b> the building.</li>
+        <li>He <b>finished</b> the report before his manager asked for it.</li>
+      </ul>
+    </div>
   </div>
 
   <div class="exercise mini" id="p2">
@@ -292,6 +339,21 @@
     <span class="signal">already &middot; just &middot; yet &middot; ever &middot; never &middot; since &middot; for &middot; so far</span>
     <span class="signal">yesterday &middot; in 2020 &middot; when I was at school</span>
     <p class="note">Note: a stated past time word (yesterday, in 2020&hellip;) always rules out the Present Perfect.</p>
+    <button class="more-toggle" onclick="toggleMore('more3')">+ 10 more examples</button>
+    <div class="more-examples" id="more3">
+      <ul>
+        <li>I <b>have</b> never <b>been</b> to Japan.</li>
+        <li>She <b>visited</b> Japan three years ago.</li>
+        <li>We <b>have</b> just <b>finished</b> the Erasmus+ report.</li>
+        <li>They <b>finished</b> the report yesterday afternoon.</li>
+        <li><b>Have</b> you ever <b>tried</b> Slovak halu&scaron;ky?</li>
+        <li>I <b>tried</b> halu&scaron;ky for the first time last summer.</li>
+        <li>He <b>has lived</b> in Levice since 2005.</li>
+        <li>He <b>lived</b> in Bratislava for five years before moving here.</li>
+        <li>Our school <b>has organised</b> twelve Erasmus+ projects so far.</li>
+        <li>Our school <b>organised</b> its first Erasmus+ project in 2013.</li>
+      </ul>
+    </div>
   </div>
 
   <div class="exercise mini" id="p3">
@@ -319,6 +381,21 @@
     <p class="ex">I<b> &rsquo;ve been correcting</b> essays since seven o&rsquo;clock. &middot; Her eyes are red &ndash; she<b> &rsquo;s been crying</b>.</p>
     <span class="signal">for &middot; since &middot; all day &middot; recently &middot; lately</span>
     <p class="note">Note: compare with Present Perfect Simple, which focuses on the completed result rather than the duration &ndash; I&rsquo;ve been reading that book (still going) vs. I&rsquo;ve read that book (finished).</p>
+    <button class="more-toggle" onclick="toggleMore('more4')">+ 10 more examples</button>
+    <div class="more-examples" id="more4">
+      <ul>
+        <li>I<b>&rsquo;ve been waiting</b> for this email all week.</li>
+        <li>She<b>&rsquo;s been feeling</b> tired lately.</li>
+        <li>We<b>&rsquo;ve been planning</b> this trip since January.</li>
+        <li>He<b>&rsquo;s been coughing</b> for three days now.</li>
+        <li>They<b>&rsquo;ve been renovating</b> the gym for months.</li>
+        <li>How long <b>have</b> you <b>been learning</b> Slovak?</li>
+        <li>I<b>&rsquo;ve been trying</b> to reach you all morning.</li>
+        <li>The children <b>have been playing</b> outside since lunchtime.</li>
+        <li>She<b>&rsquo;s been working</b> on her thesis for over a year.</li>
+        <li>It <b>has been raining</b> since early this morning.</li>
+      </ul>
+    </div>
   </div>
 
   <div class="exercise mini" id="p4">
@@ -346,6 +423,21 @@
     <p class="ex">When I arrived, the lesson<b> had already started</b>. &middot; She<b> hadn&rsquo;t finished</b> the exercise before the bell rang.</p>
     <span class="signal">already &middot; just &middot; before &middot; after &middot; by the time &middot; never</span>
     <p class="note">Note: Past Perfect is usually paired with Past Simple to make the order of two past events unambiguous.</p>
+    <button class="more-toggle" onclick="toggleMore('more5')">+ 10 more examples</button>
+    <div class="more-examples" id="more5">
+      <ul>
+        <li>By the time we arrived, the meeting <b>had</b> already <b>started</b>.</li>
+        <li>She <b>had</b> never <b>seen</b> snow before she moved to Slovakia.</li>
+        <li>He <b>had finished</b> his homework before dinner.</li>
+        <li>They <b>had</b> already <b>left</b> when I called.</li>
+        <li>I realised I <b>had forgotten</b> my passport.</li>
+        <li>The film <b>had</b> already <b>begun</b> when we got to the cinema.</li>
+        <li>She was tired because she <b>hadn&rsquo;t slept</b> well.</li>
+        <li>We <b>had booked</b> the tickets before the price went up.</li>
+        <li>By 2020, the school <b>had completed</b> three Erasmus+ projects.</li>
+        <li>He <b>had studied</b> English for years before he moved abroad.</li>
+      </ul>
+    </div>
   </div>
 
   <div class="exercise mini" id="p5">
@@ -529,6 +621,13 @@ function normalize(s){
   return s.trim().toLowerCase()
     .replace(/[’‘]/g, "'")
     .replace(/\s+/g, " ");
+}
+
+function toggleMore(id){
+  const box = document.getElementById(id);
+  const btn = box.previousElementSibling;
+  box.classList.toggle('open');
+  btn.textContent = box.classList.contains('open') ? '\u2212 Hide extra examples' : '+ 10 more examples';
 }
 
 function checkChoice(exId){

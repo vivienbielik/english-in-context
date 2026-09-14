@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reported Speech: Mixed Practice | B2 Grammar | English in Context</title>
+<style>
+  :root{
+    --cream:#faf6ec;
+    --card:#fffdf8;
+    --rust:#b5502d;
+    --rust-dark:#8f3e21;
+    --ink:#26241f;
+    --grey:#6b6558;
+    --line:#e7dfcd;
+    --green:#2f5d50;
+    --green-bg:#e7eeec;
+    --wrong:#b3312c;
+    --wrong-bg:#fbeceb;
+    --right-bg:#e9f3ea;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--cream);color:var(--ink);
+    font-family:"Segoe UI", Arial, Helvetica, sans-serif;line-height:1.55;
+  }
+  .wrap{max-width:820px;margin:0 auto;padding:56px 24px 96px;}
+
+  .crumb{font-size:13px;color:var(--grey);margin-bottom:6px;}
+  .crumb strong{color:var(--rust);font-weight:600;}
+  .eyebrow{font-size:13px;font-weight:700;color:var(--rust);margin:22px 0 8px;}
+  h1{font-family:Georgia,"Times New Roman",serif;font-size:32px;line-height:1.2;margin:0 0 16px;}
+  .lede{color:var(--grey);font-size:16px;max-width:70ch;margin:0 0 30px;}
+
+  .scorebar{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    background:var(--card);border:1px solid var(--line);border-radius:10px;
+    padding:14px 20px;margin-bottom:30px;font-size:14px;color:var(--grey);
+  }
+  .scorebar b{color:var(--ink);}
+  .btn{border:1px solid var(--rust);background:var(--rust);color:#fff;padding:8px 16px;border-radius:7px;font-size:13.5px;font-weight:600;cursor:pointer;}
+  .btn.secondary{background:transparent;color:var(--rust);}
+  .btn.secondary:hover{background:#f6e9e2;}
+  .btn:hover{background:var(--rust-dark);border-color:var(--rust-dark);}
+
+  .item{
+    background:var(--card);border:1px solid var(--line);border-radius:10px;
+    padding:22px 24px 20px;margin-bottom:20px;
+  }
+  .item .tag{
+    display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.02em;
+    color:var(--rust-dark);background:#f6e9e2;border-radius:5px;padding:2px 9px;margin-bottom:10px;
+  }
+  .item .qnum{color:var(--rust);font-weight:700;margin-right:4px;}
+  .direct{font-style:italic;font-size:15.5px;margin-bottom:14px;}
+  .direct .speaker{font-style:normal;font-weight:700;color:var(--grey);}
+
+  .opt{
+    display:block;width:100%;text-align:left;
+    background:#fff;border:1.5px solid var(--line);border-radius:8px;
+    padding:10px 14px;margin-bottom:8px;font-size:14.5px;color:var(--ink);
+    cursor:pointer;font-family:inherit;
+  }
+  .opt:hover{border-color:var(--rust);}
+  .opt .letter{font-weight:700;margin-right:6px;color:var(--rust);}
+  .opt.chosen-right{background:var(--right-bg);border-color:var(--green);}
+  .opt.chosen-wrong{background:var(--wrong-bg);border-color:var(--wrong);}
+
+  .reason{
+    display:none;
+    font-size:13.5px;padding:9px 14px;margin:-4px 0 8px;border-radius:0 0 8px 8px;
+    border:1.5px solid var(--line);border-top:none;
+  }
+  .reason.show{display:block;}
+  .reason.right{background:var(--right-bg);border-color:var(--green);color:var(--green);}
+  .reason.wrong{background:var(--wrong-bg);border-color:var(--wrong);color:var(--wrong);}
+  .reason b{font-weight:700;}
+
+  .foot{text-align:center;color:var(--grey);font-size:13px;margin-top:44px;padding-top:20px;border-top:1px solid var(--line);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="crumb">English Language Teaching &nbsp;&rsaquo;&nbsp; <strong>Reported Speech</strong> &nbsp;&rsaquo;&nbsp; Mixed Practice</div>
+
+  <div class="eyebrow">Grammar &middot; Complementary Exercise</div>
+  <h1>Reported Speech: Mixed Practice</h1>
+  <p class="lede">20 sentences covering statements, questions, negatives, and commands, each with a different reporting verb. Click <b>any</b> option to see why it is right or wrong &ndash; tense shift, word order, the verb pattern (that / -ing / to + infinitive / preposition + -ing), or a pronoun and time-expression change.</p>
+
+  <div class="scorebar">
+    <div>Correct on first click: <b id="scoreCount">0</b> / 20</div>
+    <button class="btn secondary" onclick="resetAll()">Reset</button>
+  </div>
+
+  <div id="quizRoot"></div>
+
+  <div class="foot">English in Context &middot; Reported Speech &middot; Mixed Practice</div>
+</div>
+
+<script>
+const items = [
+  // ---------- STATEMENTS ----------
+  {
+    tag: "Statement &middot; say",
+    direct: '<span class="speaker">Maria said,</span> &ldquo;I go to the gym every day.&rdquo;',
+    options: [
+      { text: "Maria said that she goes to the gym every day.", correct:false,
+        reason: "No backshift. After a past reporting verb (<i>said</i>), present simple must shift back to past simple: <i>goes</i> &rarr; <i>went</i>." },
+      { text: "Maria said that she went to the gym every day.", correct:true,
+        reason: "Both shifts are correct: present simple &rarr; past simple (<i>goes</i> &rarr; <i>went</i>), and the pronoun <i>I</i> &rarr; <i>she</i>, since someone else is reporting Maria's words." },
+      { text: "Maria said that she has gone to the gym every day.", correct:false,
+        reason: "Wrong backshift target. Present simple shifts back to <b>past simple</b>, not present perfect." },
+      { text: "Maria said that I went to the gym every day.", correct:false,
+        reason: "The pronoun wasn't shifted. Since we are reporting Maria's words, <i>I</i> must become <i>she</i>." },
+    ]
+  },
+  {
+    tag: "Statement &middot; say",
+    direct: '<span class="speaker">Tom said,</span> &ldquo;I finished the report yesterday.&rdquo;',
+    options: [
+      { text: "Tom said that he had finished the report the day before.", correct:true,
+        reason: "Past simple backshifts to <b>past perfect</b> (<i>finished</i> &rarr; <i>had finished</i>), and the time expression shifts too: <i>yesterday</i> &rarr; <i>the day before</i>." },
+      { text: "Tom said that he finished the report yesterday.", correct:false,
+        reason: "No backshift and no time-expression shift. Past simple should become past perfect, and <i>yesterday</i> no longer makes sense once we're reporting this later." },
+      { text: "Tom said that he has finished the report the day before.", correct:false,
+        reason: "Wrong tense. Past simple backshifts to <b>past perfect</b>, not present perfect." },
+      { text: "Tom said that he had finished the report yesterday.", correct:false,
+        reason: "The tense shift is right, but the time expression wasn't updated &ndash; it must become <i>the day before</i>, not stay as <i>yesterday</i>." },
+    ]
+  },
+  {
+    tag: "Statement &middot; say",
+    direct: '<span class="speaker">Sara said,</span> &ldquo;I am studying for my exams.&rdquo;',
+    options: [
+      { text: "Sara said that she was studying for her exams.", correct:true,
+        reason: "Present continuous backshifts to <b>past continuous</b> (<i>am studying</i> &rarr; <i>was studying</i>), with the pronoun and possessive also shifted." },
+      { text: "Sara said that she is studying for her exams.", correct:false,
+        reason: "No backshift applied &ndash; the continuous form needs to move back a tense too: <i>is studying</i> &rarr; <i>was studying</i>." },
+      { text: "Sara said that she has been studying for her exams.", correct:false,
+        reason: "Wrong target tense. Present continuous shifts back to <b>past continuous</b>, not present perfect continuous." },
+      { text: "Sara said that I was studying for her exams.", correct:false,
+        reason: "The subject pronoun wasn't shifted: <i>I</i> must become <i>she</i>." },
+    ]
+  },
+  {
+    tag: "Statement &middot; say (modal: will)",
+    direct: '<span class="speaker">The manager said,</span> &ldquo;I will call you tomorrow.&rdquo;',
+    options: [
+      { text: "The manager said that he would call me the next day.", correct:true,
+        reason: "<i>Will</i> backshifts to <b>would</b>, and the time expression shifts: <i>tomorrow</i> &rarr; <i>the next day</i>." },
+      { text: "The manager said that he will call me tomorrow.", correct:false,
+        reason: "No backshift. <i>Will</i> must become <i>would</i> after a past reporting verb." },
+      { text: "The manager said that he would call me tomorrow.", correct:false,
+        reason: "The modal shift is right, but <i>tomorrow</i> should also change to <i>the next day</i>." },
+      { text: "The manager said that he would called me the next day.", correct:false,
+        reason: "After the modal <i>would</i>, the verb must stay in its base form: <i>call</i>, not <i>called</i>." },
+    ]
+  },
+  {
+    tag: "Statement &middot; say (modal: can)",
+    direct: '<span class="speaker">Peter said,</span> &ldquo;I can swim very well.&rdquo;',
+    options: [
+      { text: "Peter said that he could swim very well.", correct:true,
+        reason: "The modal <i>can</i> backshifts to <b>could</b>, followed by the base verb <i>swim</i>." },
+      { text: "Peter said that he can swim very well.", correct:false,
+        reason: "No backshift &ndash; <i>can</i> must become <i>could</i>." },
+      { text: "Peter said that he could swam very well.", correct:false,
+        reason: "After the modal <i>could</i>, the verb must stay in its base form: <i>swim</i>, not the past form <i>swam</i>." },
+      { text: "Peter said that he could to swim very well.", correct:false,
+        reason: "Modal verbs (can, could, will, would, must&hellip;) are never followed by <i>to</i> + infinitive &ndash; just the base verb." },
+    ]
+  },
+  {
+    tag: "Statement &middot; say (modal: must)",
+    direct: '<span class="speaker">Anna said,</span> &ldquo;I must leave early.&rdquo;',
+    options: [
+      { text: "Anna said that she had to leave early.", correct:true,
+        reason: "<i>Must</i> expressing obligation commonly backshifts to <b>had to</b> in reported speech." },
+      { text: "Anna said that she must leave early.", correct:false,
+        reason: "No backshift &ndash; obligation <i>must</i> typically shifts to <i>had to</i> after a past reporting verb." },
+      { text: "Anna said that she must have left early.", correct:false,
+        reason: "This changes the meaning completely, turning it into a deduction about the past rather than the original obligation." },
+      { text: "Anna said that she has to leave early.", correct:false,
+        reason: "<i>Has to</i> is present tense and needs to backshift too &ndash; to <i>had to</i>." },
+    ]
+  },
+
+  // ---------- QUESTIONS ----------
+  {
+    tag: "Question (yes/no) &middot; ask",
+    direct: '<span class="speaker">She asked,</span> &ldquo;Do you like coffee?&rdquo;',
+    options: [
+      { text: "She asked if I liked coffee.", correct:true,
+        reason: "Yes/no questions are reported with <b>if</b> (or <i>whether</i>); the auxiliary <i>do</i> is dropped, and the verb backshifts: <i>like</i> &rarr; <i>liked</i>." },
+      { text: "She asked if I like coffee.", correct:false,
+        reason: "No backshift &ndash; present simple should become past simple: <i>like</i> &rarr; <i>liked</i>." },
+      { text: "She asked did I like coffee.", correct:false,
+        reason: "Reported questions don't keep the auxiliary <i>did</i>, and they use statement word order, not question word order." },
+      { text: "She asked that I liked coffee.", correct:false,
+        reason: "Yes/no questions are introduced with <i>if</i> or <i>whether</i>, never <i>that</i>." },
+    ]
+  },
+  {
+    tag: "Question (wh-) &middot; ask",
+    direct: '<span class="speaker">He asked,</span> &ldquo;Where do you live?&rdquo;',
+    options: [
+      { text: "He asked where I lived.", correct:true,
+        reason: "The wh-word (<i>where</i>) is kept, the auxiliary <i>do</i> is dropped, word order becomes statement order (subject before verb), and the verb backshifts to <i>lived</i>." },
+      { text: "He asked where do I live.", correct:false,
+        reason: "Question word order (<i>do</i> + subject) isn't used in reported speech &ndash; it should follow statement order: <i>where I lived</i>." },
+      { text: "He asked where I live.", correct:false,
+        reason: "No backshift applied &ndash; present simple should become past simple." },
+      { text: "He asked me where did I lived.", correct:false,
+        reason: "Double tense marking: <i>did</i> should be dropped entirely, leaving just one past form &ndash; <i>lived</i>." },
+    ]
+  },
+  {
+    tag: "Question (wh-, modal: will) &middot; ask",
+    direct: '<span class="speaker">The teacher asked,</span> &ldquo;When will the results be published?&rdquo;',
+    options: [
+      { text: "The teacher asked when the results would be published.", correct:true,
+        reason: "<i>Will</i> backshifts to <i>would</i>, and the word order is statement order (subject before verb)." },
+      { text: "The teacher asked when will the results be published.", correct:false,
+        reason: "Question word order is kept here &ndash; it needs to be statement order instead." },
+      { text: "The teacher asked when the results will be published.", correct:false,
+        reason: "No backshift &ndash; <i>will</i> should become <i>would</i>." },
+      { text: "The teacher asked when would the results be published.", correct:false,
+        reason: "The tense shift is right, but the word order is still inverted like a question &ndash; it needs to be <i>the results would be published</i>." },
+    ]
+  },
+  {
+    tag: "Question (yes/no, present perfect) &middot; ask",
+    direct: '<span class="speaker">She asked,</span> &ldquo;Have you ever been to Japan?&rdquo;',
+    options: [
+      { text: "She asked if I had ever been to Japan.", correct:true,
+        reason: "Present perfect backshifts to <b>past perfect</b> (<i>have been</i> &rarr; <i>had been</i>), introduced with <i>if</i>." },
+      { text: "She asked if I have ever been to Japan.", correct:false,
+        reason: "No backshift &ndash; present perfect should become past perfect." },
+      { text: "She asked have I ever been to Japan.", correct:false,
+        reason: "Question word order is kept here instead of statement word order." },
+      { text: "She asked whether I had ever gone to Japan.", correct:false,
+        reason: "Changing <i>been</i> to <i>gone</i> alters the meaning &ndash; <i>been to</i> means visited and returned, while <i>gone to</i> suggests still being there." },
+    ]
+  },
+  {
+    tag: "Question (wh-) &middot; ask",
+    direct: '<span class="speaker">My friend asked,</span> &ldquo;Why are you so tired?&rdquo;',
+    options: [
+      { text: "My friend asked why I was so tired.", correct:true,
+        reason: "<i>Are</i> backshifts to <i>was</i> (with subject-verb agreement for <i>I</i>), and statement word order is used." },
+      { text: "My friend asked why was I so tired.", correct:false,
+        reason: "Question word order is kept &ndash; it needs to be statement order: <i>why I was</i>, not <i>why was I</i>." },
+      { text: "My friend asked why I am so tired.", correct:false,
+        reason: "No backshift applied &ndash; <i>am</i> should become <i>was</i>." },
+      { text: "My friend asked why I was so tired?", correct:false,
+        reason: "A reported question is a statement, not a question &ndash; it shouldn't end with a question mark." },
+    ]
+  },
+
+  // ---------- NEGATIVES ----------
+  {
+    tag: "Negative statement &middot; say",
+    direct: '<span class="speaker">David said,</span> &ldquo;I don&rsquo;t like horror films.&rdquo;',
+    options: [
+      { text: "David said that he didn't like horror films.", correct:true,
+        reason: "<i>Don't</i> backshifts to <b>didn't</b>, keeping the negative meaning intact." },
+      { text: "David said that he doesn't like horror films.", correct:false,
+        reason: "No backshift applied to the negative auxiliary &ndash; <i>doesn't</i> should become <i>didn't</i>." },
+      { text: "David said that he not liked horror films.", correct:false,
+        reason: "<i>Not</i> can't directly precede a main verb like this &ndash; the auxiliary + not (<i>didn't</i>) is required." },
+      { text: "David said that he don't liked horror films.", correct:false,
+        reason: "This mixes a present-tense auxiliary (<i>don't</i>) with a past-tense verb (<i>liked</i>) &ndash; inconsistent tense marking." },
+    ]
+  },
+  {
+    tag: "Negative statement (modal: can't) &middot; say",
+    direct: '<span class="speaker">The witness said,</span> &ldquo;I can&rsquo;t remember his face.&rdquo;',
+    options: [
+      { text: "The witness said that she couldn't remember his face.", correct:true,
+        reason: "<i>Can't</i> backshifts to <b>couldn't</b>, followed by the base verb <i>remember</i>." },
+      { text: "The witness said that she can't remember his face.", correct:false,
+        reason: "No backshift &ndash; <i>can't</i> should become <i>couldn't</i>." },
+      { text: "The witness said that she couldn't remembered his face.", correct:false,
+        reason: "After the modal <i>couldn't</i>, the verb stays in its base form: <i>remember</i>, not <i>remembered</i>." },
+      { text: "The witness denied to remember his face.", correct:false,
+        reason: "<i>Deny</i> is never followed by <i>to</i> + infinitive &ndash; it takes the <i>-ing</i> form or a <i>that</i>-clause." },
+    ]
+  },
+  {
+    tag: "Negative command &middot; tell",
+    direct: '<span class="speaker">The doctor said to him,</span> &ldquo;Don&rsquo;t smoke in here.&rdquo;',
+    options: [
+      { text: "The doctor told him not to smoke in there.", correct:true,
+        reason: "Negative imperatives report as <b>tell/order + object + not to + infinitive</b>; the place also shifts: <i>here</i> &rarr; <i>there</i>." },
+      { text: "The doctor told him to not smoke in there.", correct:false,
+        reason: "The negative should be placed before <i>to</i> (<i>not to smoke</i>), not between <i>to</i> and the verb." },
+      { text: "The doctor told him don't smoke in there.", correct:false,
+        reason: "After <i>told + object</i>, the verb must take the to-infinitive form (<i>not to smoke</i>), not the base imperative form." },
+      { text: "The doctor said him not to smoke in there.", correct:false,
+        reason: "<i>Say</i> can't be followed directly by an object (<i>said him</i>) &ndash; <i>tell</i> is used instead when naming who is addressed." },
+    ]
+  },
+  {
+    tag: "Negative statement (modal: won't) &middot; say / refuse",
+    direct: '<span class="speaker">She said,</span> &ldquo;I won&rsquo;t help you with the project.&rdquo;',
+    options: [
+      { text: "She said that she wouldn't help me with the project.", correct:true,
+        reason: "<i>Won't</i> backshifts to <b>wouldn't</b>; <i>you</i> &rarr; <i>me</i>, since the reporter is the one being addressed." },
+      { text: "She said that she won't help me with the project.", correct:false,
+        reason: "No backshift &ndash; <i>won't</i> should become <i>wouldn't</i>." },
+      { text: "She refused helping me with the project.", correct:false,
+        reason: "<i>Refuse</i> is followed by <i>to</i> + infinitive, not the <i>-ing</i> form: <i>refused to help</i>." },
+      { text: "She said that she wouldn't helped me with the project.", correct:false,
+        reason: "After <i>wouldn't</i>, the verb stays in its base form: <i>help</i>, not <i>helped</i>." },
+    ]
+  },
+
+  // ---------- COMMANDS / REQUESTS ----------
+  {
+    tag: "Command &middot; order",
+    direct: '<span class="speaker">The officer said,</span> &ldquo;Stop the car!&rdquo;',
+    options: [
+      { text: "The officer ordered him to stop the car.", correct:true,
+        reason: "Imperatives report as <b>order + object + to + infinitive</b>." },
+      { text: "The officer ordered stop the car.", correct:false,
+        reason: "An object is missing &ndash; we need to say who was ordered: <i>ordered him to stop</i>." },
+      { text: "The officer ordered that he stops the car.", correct:false,
+        reason: "The standard pattern taught here is <i>order + object + to + infinitive</i>, not <i>order that&hellip;</i>." },
+      { text: "The officer ordered him stopping the car.", correct:false,
+        reason: "<i>Order</i> is followed by <i>to</i> + infinitive, not the <i>-ing</i> form." },
+    ]
+  },
+  {
+    tag: "Request &middot; ask",
+    direct: '<span class="speaker">She said,</span> &ldquo;Please help me with this bag.&rdquo;',
+    options: [
+      { text: "She asked him to help her with the bag.", correct:true,
+        reason: "A polite imperative reports as <b>ask + object + to + infinitive</b>." },
+      { text: "She asked to help her with the bag.", correct:false,
+        reason: "An object is missing &ndash; we need to say who was asked: <i>asked him to help</i>." },
+      { text: "She said to help her with the bag.", correct:false,
+        reason: "<i>Say</i> isn't used with an object + to-infinitive pattern &ndash; <i>ask</i> or <i>tell</i> should be used instead." },
+      { text: "She asked him helping her with the bag.", correct:false,
+        reason: "<i>Ask</i> is followed by <i>to</i> + infinitive, not the <i>-ing</i> form." },
+    ]
+  },
+  {
+    tag: "Advice &middot; advise",
+    direct: '<span class="speaker">The advisor said to me,</span> &ldquo;You should invest in stocks.&rdquo;',
+    options: [
+      { text: "The advisor advised me to invest in stocks.", correct:true,
+        reason: "<b>Advise + object + to + infinitive</b> is the standard way to report advice or a suggestion aimed at someone." },
+      { text: "The advisor advised me investing in stocks.", correct:false,
+        reason: "<i>Advise</i> with an object takes <i>to</i> + infinitive, not the <i>-ing</i> form." },
+      { text: "The advisor advised that I should invest in stocks.", correct:false,
+        reason: "The structure taught here is <i>advise + object + to + infinitive</i>, not <i>advise that&hellip;should</i>." },
+      { text: "The advisor advised to invest in stocks.", correct:false,
+        reason: "An object is missing &ndash; we need <i>advised me to invest</i>." },
+    ]
+  },
+  {
+    tag: "Warning (negative command) &middot; warn",
+    direct: '<span class="speaker">The guide said,</span> &ldquo;Don&rsquo;t feed the animals.&rdquo;',
+    options: [
+      { text: "The guide warned us not to feed the animals.", correct:true,
+        reason: "Negative imperatives with <i>warn</i> follow the pattern <b>warn + object + not to + infinitive</b>." },
+      { text: "The guide warned us to not feed the animals.", correct:false,
+        reason: "The negative should come before <i>to</i> (<i>not to feed</i>), not after it." },
+      { text: "The guide warned not feeding the animals.", correct:false,
+        reason: "<i>Warn</i> with an object needs <i>not to</i> + infinitive, not the <i>-ing</i> form &ndash; and an object is missing too." },
+      { text: "The guide warned us don't feed the animals.", correct:false,
+        reason: "After <i>warned + object</i>, the verb must take the infinitive form (<i>not to feed</i>), not the base imperative form." },
+    ]
+  },
+  {
+    tag: "Invitation &middot; invite",
+    direct: '<span class="speaker">My cousin said,</span> &ldquo;Would you like to come to my wedding?&rdquo;',
+    options: [
+      { text: "My cousin invited me to come to her wedding.", correct:true,
+        reason: "A polite invitation reports as <b>invite + object + to + infinitive</b>; the possessive shifts too: <i>my</i> &rarr; <i>her</i>." },
+      { text: "My cousin invited me coming to her wedding.", correct:false,
+        reason: "<i>Invite</i> is followed by <i>to</i> + infinitive, not the <i>-ing</i> form." },
+      { text: "My cousin asked would I like to come to her wedding.", correct:false,
+        reason: "Question word order is kept here &ndash; a natural report uses <i>invited me to come</i>, not embedded question order." },
+      { text: "My cousin invited to come to her wedding.", correct:false,
+        reason: "An object is missing &ndash; we need to say who was invited: <i>invited me</i>." },
+    ]
+  },
+];
+
+const root = document.getElementById('quizRoot');
+let firstClickScore = new Set();
+
+items.forEach((item, i) => {
+  const card = document.createElement('div');
+  card.className = 'item';
+
+  const letters = ['A','B','C','D'];
+  let optsHtml = '';
+  item.options.forEach((opt, j) => {
+    optsHtml += `
+      <button class="opt" id="opt-${i}-${j}" onclick="reveal(${i},${j})">
+        <span class="letter">${letters[j]}</span>${opt.text}
+      </button>
+      <div class="reason" id="reason-${i}-${j}"></div>
+    `;
+  });
+
+  card.innerHTML = `
+    <span class="tag">${item.tag}</span>
+    <div><span class="qnum">${i+1}.</span></div>
+    <div class="direct">${item.direct}</div>
+    ${optsHtml}
+  `;
+  root.appendChild(card);
+});
+
+function reveal(i, j) {
+  const item = items[i];
+  const opt = item.options[j];
+  const btn = document.getElementById(`opt-${i}-${j}`);
+  const box = document.getElementById(`reason-${i}-${j}`);
+
+  const alreadyOpen = box.classList.contains('show');
+  if (alreadyOpen) {
+    box.classList.remove('show');
+    return;
+  }
+
+  box.classList.add('show');
+  box.classList.remove('right','wrong');
+  box.classList.add(opt.correct ? 'right' : 'wrong');
+  box.innerHTML = (opt.correct ? '<b>&#10003; Correct.</b> ' : '<b>&#10007; Incorrect.</b> ') + opt.reason;
+
+  btn.classList.remove('chosen-right','chosen-wrong');
+  btn.classList.add(opt.correct ? 'chosen-right' : 'chosen-wrong');
+
+  const key = i + '-first';
+  if (!firstClickScore.has(i)) {
+    firstClickScore.add(i);
+    if (opt.correct) {
+      firstClickScore.add(key);
+    }
+    updateScore();
+  }
+}
+
+function updateScore() {
+  let correct = 0;
+  items.forEach((item, i) => {
+    if (firstClickScore.has(i + '-first')) correct++;
+  });
+  document.getElementById('scoreCount').textContent = correct;
+}
+
+function resetAll() {
+  items.forEach((item, i) => {
+    item.options.forEach((opt, j) => {
+      const btn = document.getElementById(`opt-${i}-${j}`);
+      const box = document.getElementById(`reason-${i}-${j}`);
+      btn.classList.remove('chosen-right','chosen-wrong');
+      box.classList.remove('show','right','wrong');
+      box.innerHTML = '';
+    });
+  });
+  firstClickScore = new Set();
+  updateScore();
+}
+</script>
+</body>
+</html>

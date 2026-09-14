@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reported Speech: Mixed Practice 2 | B2 Grammar | English in Context</title>
+<style>
+  :root{
+    --cream:#faf6ec;
+    --card:#fffdf8;
+    --rust:#b5502d;
+    --rust-dark:#8f3e21;
+    --ink:#26241f;
+    --grey:#6b6558;
+    --line:#e7dfcd;
+    --green:#2f5d50;
+    --green-bg:#e7eeec;
+    --wrong:#b3312c;
+    --wrong-bg:#fbeceb;
+    --right-bg:#e9f3ea;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--cream);color:var(--ink);
+    font-family:"Segoe UI", Arial, Helvetica, sans-serif;line-height:1.55;
+  }
+  .wrap{max-width:820px;margin:0 auto;padding:56px 24px 96px;}
+
+  .crumb{font-size:13px;color:var(--grey);margin-bottom:6px;}
+  .crumb strong{color:var(--rust);font-weight:600;}
+  .eyebrow{font-size:13px;font-weight:700;color:var(--rust);margin:22px 0 8px;}
+  h1{font-family:Georgia,"Times New Roman",serif;font-size:32px;line-height:1.2;margin:0 0 16px;}
+  .lede{color:var(--grey);font-size:16px;max-width:70ch;margin:0 0 30px;}
+
+  .scorebar{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    background:var(--card);border:1px solid var(--line);border-radius:10px;
+    padding:14px 20px;margin-bottom:30px;font-size:14px;color:var(--grey);
+  }
+  .scorebar b{color:var(--ink);}
+  .btn{border:1px solid var(--rust);background:var(--rust);color:#fff;padding:8px 16px;border-radius:7px;font-size:13.5px;font-weight:600;cursor:pointer;}
+  .btn.secondary{background:transparent;color:var(--rust);}
+  .btn.secondary:hover{background:#f6e9e2;}
+  .btn:hover{background:var(--rust-dark);border-color:var(--rust-dark);}
+
+  .item{
+    background:var(--card);border:1px solid var(--line);border-radius:10px;
+    padding:22px 24px 20px;margin-bottom:20px;
+  }
+  .item .tag{
+    display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.02em;
+    color:var(--rust-dark);background:#f6e9e2;border-radius:5px;padding:2px 9px;margin-bottom:10px;
+  }
+  .item .qnum{color:var(--rust);font-weight:700;margin-right:4px;}
+  .direct{font-style:italic;font-size:15.5px;margin-bottom:14px;}
+  .direct .speaker{font-style:normal;font-weight:700;color:var(--grey);}
+
+  .opt{
+    display:block;width:100%;text-align:left;
+    background:#fff;border:1.5px solid var(--line);border-radius:8px;
+    padding:10px 14px;margin-bottom:8px;font-size:14.5px;color:var(--ink);
+    cursor:pointer;font-family:inherit;
+  }
+  .opt:hover{border-color:var(--rust);}
+  .opt .letter{font-weight:700;margin-right:6px;color:var(--rust);}
+  .opt.chosen-right{background:var(--right-bg);border-color:var(--green);}
+  .opt.chosen-wrong{background:var(--wrong-bg);border-color:var(--wrong);}
+
+  .reason{
+    display:none;
+    font-size:13.5px;padding:9px 14px;margin:-4px 0 8px;border-radius:0 0 8px 8px;
+    border:1.5px solid var(--line);border-top:none;
+  }
+  .reason.show{display:block;}
+  .reason.right{background:var(--right-bg);border-color:var(--green);color:var(--green);}
+  .reason.wrong{background:var(--wrong-bg);border-color:var(--wrong);color:var(--wrong);}
+  .reason b{font-weight:700;}
+
+  .foot{text-align:center;color:var(--grey);font-size:13px;margin-top:44px;padding-top:20px;border-top:1px solid var(--line);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="crumb">English Language Teaching &nbsp;&rsaquo;&nbsp; <strong>Reported Speech</strong> &nbsp;&rsaquo;&nbsp; Mixed Practice 2</div>
+
+  <div class="eyebrow">Grammar &middot; Complementary Exercise</div>
+  <h1>Reported Speech: Mixed Practice 2</h1>
+  <p class="lede">20 more sentences, this time built around ten specific reporting verbs: <b>recommend, insist, advise, suggest, agree, offer, admit, warn, deny</b> and <b>apologise</b>. Click <b>any</b> option to see why it is right or wrong &ndash; the verb's own pattern (that / -ing / to + infinitive / preposition + -ing), an object requirement, or a backshift rule.</p>
+
+  <div class="scorebar">
+    <div>Correct on first click: <b id="scoreCount">0</b> / 20</div>
+    <button class="btn secondary" onclick="resetAll()">Reset</button>
+  </div>
+
+  <div id="quizRoot"></div>
+
+  <div class="foot">English in Context &middot; Reported Speech &middot; Mixed Practice 2</div>
+</div>
+
+<script>
+const items = [
+  // ---------- RECOMMEND ----------
+  {
+    tag: "recommend",
+    direct: '<span class="speaker">A travel agent said,</span> &ldquo;I recommend booking your flights early this year.&rdquo;',
+    options: [
+      { text: "The travel agent recommended booking flights early this year.", correct:true,
+        reason: "<b>Recommend + -ing</b> is the standard pattern with no object &ndash; a general recommendation." },
+      { text: "The travel agent recommended to book flights early this year.", correct:false,
+        reason: "<i>Recommend</i> is never followed directly by <i>to</i> + infinitive." },
+      { text: "The travel agent recommended us to book flights early this year.", correct:false,
+        reason: "<i>Recommend</i> doesn't take an object + to-infinitive (unlike <i>advise</i>) &ndash; use <i>recommended -ing</i> or <i>recommended that&hellip;</i> instead." },
+      { text: "The travel agent recommended that booking flights early this year.", correct:false,
+        reason: "This mixes two structures &ndash; <i>that</i> should introduce a full clause with a subject and verb, not an -ing form." },
+    ]
+  },
+  {
+    tag: "recommend",
+    direct: '<span class="speaker">The dietitian said,</span> &ldquo;I recommend that you drink more water.&rdquo;',
+    options: [
+      { text: "The dietitian recommended drinking more water.", correct:true,
+        reason: "<b>Recommend + -ing</b> reports the advice naturally, even though the original used a <i>that</i>-clause." },
+      { text: "The dietitian recommended to drink more water.", correct:false,
+        reason: "<i>Recommend</i> is never followed directly by <i>to</i> + infinitive." },
+      { text: "The dietitian recommended us drinking more water.", correct:false,
+        reason: "<i>Recommend + object + -ing</i> isn't a standard pattern &ndash; drop the object: <i>recommended drinking</i>." },
+      { text: "The dietitian recommended that we drinking more water.", correct:false,
+        reason: "After <i>that</i>, a full clause is needed (<i>we drink</i>/<i>should drink</i>), not an -ing form." },
+    ]
+  },
+
+  // ---------- INSIST ----------
+  {
+    tag: "insist",
+    direct: '<span class="speaker">She said,</span> &ldquo;I insist on paying for dinner.&rdquo;',
+    options: [
+      { text: "She insisted on paying for dinner.", correct:true,
+        reason: "<b>Insist ON + -ing</b> &ndash; the hidden preposition rule, kept exactly as in the original." },
+      { text: "She insisted to pay for dinner.", correct:false,
+        reason: "<i>Insist</i> is never followed directly by <i>to</i> + infinitive." },
+      { text: "She insisted paying for dinner.", correct:false,
+        reason: "The preposition <i>on</i> is missing &ndash; it must be <i>insisted on paying</i>." },
+      { text: "She insisted that paying for dinner.", correct:false,
+        reason: "<i>That</i> needs a full clause with its own subject and verb, not an -ing form." },
+    ]
+  },
+  {
+    tag: "insist",
+    direct: '<span class="speaker">He said,</span> &ldquo;I insist that you attend the meeting.&rdquo;',
+    options: [
+      { text: "He insisted that we attend the meeting.", correct:true,
+        reason: "<b>Insist + that</b> + clause reports a firm demand, keeping the original structure." },
+      { text: "He insisted on that we attend the meeting.", correct:false,
+        reason: "<i>On</i> and <i>that</i> are never combined &ndash; use either <i>insist on + -ing</i> or <i>insist that + clause</i>, not both together." },
+      { text: "He insisted us to attend the meeting.", correct:false,
+        reason: "<i>Insist</i> doesn't take an object + to-infinitive &ndash; that pattern belongs to verbs like <i>advise</i> or <i>order</i>." },
+      { text: "He insisted attending the meeting.", correct:false,
+        reason: "This changes the meaning to <i>he himself</i> attending, rather than demanding that someone else attend." },
+    ]
+  },
+
+  // ---------- ADVISE ----------
+  {
+    tag: "advise",
+    direct: '<span class="speaker">The doctor said to him,</span> &ldquo;You should rest for a few days.&rdquo;',
+    options: [
+      { text: "The doctor advised him to rest for a few days.", correct:true,
+        reason: "<b>Advise + object + to + infinitive</b> is the standard pattern when advice is aimed at a specific person." },
+      { text: "The doctor advised him resting for a few days.", correct:false,
+        reason: "<i>Advise</i> with an object takes <i>to</i> + infinitive, not the <i>-ing</i> form." },
+      { text: "The doctor advised that he rest for a few days.", correct:false,
+        reason: "The structure taught here is <i>advise + object + to + infinitive</i>, not <i>advise that&hellip;</i>." },
+      { text: "The doctor advised to rest for a few days.", correct:false,
+        reason: "An object is missing &ndash; we need to say who was advised: <i>advised him to rest</i>." },
+    ]
+  },
+  {
+    tag: "advise",
+    direct: '<span class="speaker">My lawyer said,</span> &ldquo;I advise waiting before signing anything.&rdquo;',
+    options: [
+      { text: "My lawyer advised waiting before signing anything.", correct:true,
+        reason: "With no object, <b>advise + -ing</b> reports general advice, exactly matching the original." },
+      { text: "My lawyer advised to wait before signing anything.", correct:false,
+        reason: "Without an object, <i>advise</i> takes the <i>-ing</i> form, not <i>to</i> + infinitive." },
+      { text: "My lawyer advised that waiting before signing anything.", correct:false,
+        reason: "<i>That</i> needs a full clause with a subject and verb, not an -ing form." },
+      { text: "My lawyer advised wait before signing anything.", correct:false,
+        reason: "The bare base form <i>wait</i> can't follow <i>advised</i> directly &ndash; it needs the <i>-ing</i> form: <i>advised waiting</i>." },
+    ]
+  },
+
+  // ---------- SUGGEST ----------
+  {
+    tag: "suggest",
+    direct: '<span class="speaker">She said,</span> &ldquo;Why don&rsquo;t we meet at noon?&rdquo;',
+    options: [
+      { text: "She suggested meeting at noon.", correct:true,
+        reason: "<b>Suggest + -ing</b> is the natural way to report a &ldquo;why don't we&hellip;?&rdquo; proposal." },
+      { text: "She suggested to meet at noon.", correct:false,
+        reason: "<i>Suggest</i> is never followed directly by <i>to</i> + infinitive." },
+      { text: "She suggested us meeting at noon.", correct:false,
+        reason: "<i>Suggest</i> never takes an object before the verb &ndash; drop <i>us</i>: <i>suggested meeting</i>." },
+      { text: "She suggested that meeting at noon.", correct:false,
+        reason: "<i>That</i> needs a full clause with a subject and verb, not an -ing form." },
+    ]
+  },
+  {
+    tag: "suggest",
+    direct: '<span class="speaker">The manager said,</span> &ldquo;I suggest that we postpone the launch.&rdquo;',
+    options: [
+      { text: "The manager suggested that we postpone the launch.", correct:true,
+        reason: "<b>Suggest + that</b> + clause reports the proposal directly, keeping the original structure." },
+      { text: "The manager suggested to postpone the launch.", correct:false,
+        reason: "<i>Suggest</i> is never followed directly by <i>to</i> + infinitive." },
+      { text: "The manager suggested us to postpone the launch.", correct:false,
+        reason: "<i>Suggest</i> never takes an object + to-infinitive &ndash; use <i>suggested -ing</i> or <i>suggested that&hellip;</i>." },
+      { text: "The manager suggested postpone the launch.", correct:false,
+        reason: "The bare base form can't follow <i>suggested</i> directly &ndash; it needs <i>-ing</i> (<i>postponing</i>) or <i>that</i> + clause." },
+    ]
+  },
+
+  // ---------- AGREE ----------
+  {
+    tag: "agree",
+    direct: '<span class="speaker">He said,</span> &ldquo;I&rsquo;ll help you move house.&rdquo;',
+    options: [
+      { text: "He agreed to help me move house.", correct:true,
+        reason: "<b>Agree + to + infinitive</b> reports a commitment or promise to do something." },
+      { text: "He agreed helping me move house.", correct:false,
+        reason: "<i>Agree</i> is followed by <i>to</i> + infinitive, not the <i>-ing</i> form." },
+      { text: "He agreed that help me move house.", correct:false,
+        reason: "<i>That</i> needs a full clause with its own subject and verb &ndash; this isn't one." },
+      { text: "He agreed on helping me move house.", correct:false,
+        reason: "<i>Agree on</i> + -ing is used for agreeing on a plan or decision together, not for reporting a personal commitment like this &ndash; <i>agreed to help</i> fits best." },
+    ]
+  },
+  {
+    tag: "agree",
+    direct: '<span class="speaker">They said,</span> &ldquo;We&rsquo;ll follow the new safety rules.&rdquo;',
+    options: [
+      { text: "They agreed to follow the new safety rules.", correct:true,
+        reason: "<b>Agree + to + infinitive</b> reports their commitment to comply." },
+      { text: "They agreed following the new safety rules.", correct:false,
+        reason: "<i>Agree</i> is followed by <i>to</i> + infinitive, not the <i>-ing</i> form." },
+      { text: "They agreed that they follow the new safety rules.", correct:false,
+        reason: "This structure sounds unnatural for a direct commitment &ndash; <i>agreed to follow</i> is the standard pattern here." },
+      { text: "They agreed on follow the new safety rules.", correct:false,
+        reason: "After <i>agreed on</i>, the verb needs the <i>-ing</i> form (<i>following</i>), not the base form." },
+    ]
+  },
+
+  // ---------- OFFER ----------
+  {
+    tag: "offer",
+    direct: '<span class="speaker">She said,</span> &ldquo;I&rsquo;ll carry your bags.&rdquo;',
+    options: [
+      { text: "She offered to carry my bags.", correct:true,
+        reason: "<b>Offer + to + infinitive</b> reports a spontaneous offer to help." },
+      { text: "She offered carrying my bags.", correct:false,
+        reason: "<i>Offer</i> is followed by <i>to</i> + infinitive, not the <i>-ing</i> form." },
+      { text: "She offered that she carry my bags.", correct:false,
+        reason: "<i>Offer</i> doesn't take a <i>that</i>-clause in standard usage &ndash; <i>offered to carry</i> is correct." },
+      { text: "She offered me to carry my bags.", correct:false,
+        reason: "<i>Offer</i> isn't followed by an object + to-infinitive &ndash; drop <i>me</i>: <i>offered to carry</i>." },
+    ]
+  },
+  {
+    tag: "offer",
+    direct: '<span class="speaker">He said,</span> &ldquo;I&rsquo;ll pay for everyone&rsquo;s lunch today.&rdquo;',
+    options: [
+      { text: "He offered to pay for everyone's lunch that day.", correct:true,
+        reason: "<b>Offer + to + infinitive</b>, with <i>today</i> shifting to <i>that day</i> since the time reference has moved." },
+      { text: "He offered paying for everyone's lunch that day.", correct:false,
+        reason: "<i>Offer</i> is followed by <i>to</i> + infinitive, not the <i>-ing</i> form." },
+      { text: "He offered that he pay for everyone's lunch that day.", correct:false,
+        reason: "<i>Offer</i> doesn't take a <i>that</i>-clause in standard usage." },
+      { text: "He offered us to pay for everyone's lunch today.", correct:false,
+        reason: "No object follows <i>offered</i> here, and <i>today</i> should shift to <i>that day</i> &ndash; the correct form is <i>offered to pay&hellip;that day</i>." },
+    ]
+  },
+
+  // ---------- ADMIT ----------
+  {
+    tag: "admit",
+    direct: '<span class="speaker">He said,</span> &ldquo;I broke the vase.&rdquo;',
+    options: [
+      { text: "He admitted breaking the vase.", correct:true,
+        reason: "<b>Admit + -ing</b> reports a confession about a past action." },
+      { text: "He admitted to broke the vase.", correct:false,
+        reason: "After <i>admit to</i>, the verb must take the <i>-ing</i> form (<i>breaking</i>), not the past simple form." },
+      { text: "He admitted that broke the vase.", correct:false,
+        reason: "After <i>that</i>, a full clause with a subject is needed: <i>that he had broken</i>, not just <i>that broke</i>." },
+      { text: "He admitted break the vase.", correct:false,
+        reason: "The bare base form can't follow <i>admitted</i> directly &ndash; it needs <i>-ing</i> or a <i>that</i>-clause." },
+    ]
+  },
+  {
+    tag: "admit",
+    direct: '<span class="speaker">She said,</span> &ldquo;Honestly, I was wrong.&rdquo;',
+    options: [
+      { text: "She admitted that she had been wrong.", correct:true,
+        reason: "<b>Admit + that</b> + clause, with the expected backshift: <i>was</i> &rarr; <i>had been</i>." },
+      { text: "She admitted to was wrong.", correct:false,
+        reason: "After <i>admit to</i>, the verb must take the <i>-ing</i> form (<i>being wrong</i>), not <i>was</i>." },
+      { text: "She admitted was wrong.", correct:false,
+        reason: "<i>Admitted</i> can't be followed directly by a finite verb like this without <i>that</i> introducing the clause." },
+      { text: "She admitted her being wrong.", correct:false,
+        reason: "<i>Admit</i> doesn't take a possessive + -ing object like this &ndash; use <i>admitted being wrong</i> or <i>admitted that she had been wrong</i>." },
+    ]
+  },
+
+  // ---------- WARN ----------
+  {
+    tag: "warn",
+    direct: '<span class="speaker">A colleague said to me,</span> &ldquo;Be careful, the floor is wet.&rdquo;',
+    options: [
+      { text: "My colleague warned me that the floor was wet.", correct:true,
+        reason: "<b>Warn + object + that</b> + clause, with the expected backshift: <i>is</i> &rarr; <i>was</i>." },
+      { text: "My colleague warned to me that the floor was wet.", correct:false,
+        reason: "<i>Warn</i> takes a direct object, not <i>to</i> + person &ndash; it should be <i>warned me</i>, not <i>warned to me</i>." },
+      { text: "My colleague warned me the floor is wet.", correct:false,
+        reason: "No backshift applied &ndash; <i>is</i> should become <i>was</i>." },
+      { text: "My colleague warned that floor was wet.", correct:false,
+        reason: "The object is missing &ndash; we need to say who was warned: <i>warned me that&hellip;</i>." },
+    ]
+  },
+  {
+    tag: "warn",
+    direct: '<span class="speaker">The instructor said,</span> &ldquo;Don&rsquo;t touch the electrical wires.&rdquo;',
+    options: [
+      { text: "The instructor warned us not to touch the electrical wires.", correct:true,
+        reason: "<b>Warn + object + not to + infinitive</b> reports a negative command as a warning." },
+      { text: "The instructor warned us to not touch the electrical wires.", correct:false,
+        reason: "The negative should come before <i>to</i> (<i>not to touch</i>), not after it." },
+      { text: "The instructor warned us don't touch the electrical wires.", correct:false,
+        reason: "After <i>warned + object</i>, the verb needs the to-infinitive form (<i>not to touch</i>), not the base imperative form." },
+      { text: "The instructor warned not touching the electrical wires.", correct:false,
+        reason: "<i>Warn</i> with an object needs <i>not to</i> + infinitive, not the <i>-ing</i> form &ndash; and an object is missing too." },
+    ]
+  },
+
+  // ---------- DENY ----------
+  {
+    tag: "deny",
+    direct: '<span class="speaker">He said,</span> &ldquo;I didn&rsquo;t steal the money.&rdquo;',
+    options: [
+      { text: "He denied stealing the money.", correct:true,
+        reason: "<b>Deny + -ing</b> reports a denial of a past action &ndash; already inherently negative, so no extra <i>not</i> is needed." },
+      { text: "He denied to steal the money.", correct:false,
+        reason: "<i>Deny</i> is never followed directly by <i>to</i> + infinitive." },
+      { text: "He denied that steal the money.", correct:false,
+        reason: "After <i>that</i>, a full clause with a subject is needed: <i>that he had stolen</i>, not just <i>that steal</i>." },
+      { text: "He denied has stolen the money.", correct:false,
+        reason: "<i>Denied</i> can't be followed directly by a finite verb like this without <i>that</i> introducing the clause." },
+    ]
+  },
+  {
+    tag: "deny",
+    direct: '<span class="speaker">She said,</span> &ldquo;I never said that.&rdquo;',
+    options: [
+      { text: "She denied ever saying that.", correct:true,
+        reason: "<b>Deny + -ing</b>, with <i>never</i> naturally becoming <i>ever</i> inside the already-negative <i>denied</i>." },
+      { text: "She denied to ever say that.", correct:false,
+        reason: "<i>Deny</i> is never followed directly by <i>to</i> + infinitive." },
+      { text: "She denied that ever saying that.", correct:false,
+        reason: "This mixes two structures &ndash; <i>that</i> should introduce a full clause, not an -ing form." },
+      { text: "She denied never say that.", correct:false,
+        reason: "The bare base form can't follow <i>denied</i> directly, and <i>never</i> is redundant since <i>deny</i> is already negative &ndash; <i>denied ever saying</i> is correct." },
+    ]
+  },
+
+  // ---------- APOLOGISE ----------
+  {
+    tag: "apologise",
+    direct: '<span class="speaker">He said,</span> &ldquo;I&rsquo;m sorry I forgot your birthday.&rdquo;',
+    options: [
+      { text: "He apologised for forgetting my birthday.", correct:true,
+        reason: "<b>Apologise FOR + -ing</b> &ndash; the hidden preposition rule." },
+      { text: "He apologised to forget my birthday.", correct:false,
+        reason: "<i>Apologise</i> is never followed directly by <i>to</i> + infinitive." },
+      { text: "He apologised that forgetting my birthday.", correct:false,
+        reason: "<i>That</i> needs a full clause with its own subject and verb, not an -ing form." },
+      { text: "He apologised forgetting my birthday.", correct:false,
+        reason: "The preposition <i>for</i> is missing &ndash; it must be <i>apologised for forgetting</i>." },
+    ]
+  },
+  {
+    tag: "apologise",
+    direct: '<span class="speaker">They said,</span> &ldquo;We&rsquo;re sorry for arriving late.&rdquo;',
+    options: [
+      { text: "They apologised for arriving late.", correct:true,
+        reason: "<b>Apologise FOR + -ing</b>, keeping the same structure as the original apology." },
+      { text: "They apologised to arrive late.", correct:false,
+        reason: "<i>Apologise</i> is never followed directly by <i>to</i> + infinitive." },
+      { text: "They apologised that they arrive late.", correct:false,
+        reason: "<i>That</i> needs a full clause with correct tense (<i>had arrived</i>), and still misses the natural <i>for + -ing</i> pattern used with <i>apologise</i>." },
+      { text: "They apologised arriving late.", correct:false,
+        reason: "The preposition <i>for</i> is missing &ndash; it must be <i>apologised for arriving</i>." },
+    ]
+  },
+];
+
+const root = document.getElementById('quizRoot');
+let firstClickScore = new Set();
+
+items.forEach((item, i) => {
+  const card = document.createElement('div');
+  card.className = 'item';
+
+  const letters = ['A','B','C','D'];
+  let optsHtml = '';
+  item.options.forEach((opt, j) => {
+    optsHtml += `
+      <button class="opt" id="opt-${i}-${j}" onclick="reveal(${i},${j})">
+        <span class="letter">${letters[j]}</span>${opt.text}
+      </button>
+      <div class="reason" id="reason-${i}-${j}"></div>
+    `;
+  });
+
+  card.innerHTML = `
+    <span class="tag">${item.tag}</span>
+    <div><span class="qnum">${i+1}.</span></div>
+    <div class="direct">${item.direct}</div>
+    ${optsHtml}
+  `;
+  root.appendChild(card);
+});
+
+function reveal(i, j) {
+  const item = items[i];
+  const opt = item.options[j];
+  const btn = document.getElementById(`opt-${i}-${j}`);
+  const box = document.getElementById(`reason-${i}-${j}`);
+
+  const alreadyOpen = box.classList.contains('show');
+  if (alreadyOpen) {
+    box.classList.remove('show');
+    return;
+  }
+
+  box.classList.add('show');
+  box.classList.remove('right','wrong');
+  box.classList.add(opt.correct ? 'right' : 'wrong');
+  box.innerHTML = (opt.correct ? '<b>&#10003; Correct.</b> ' : '<b>&#10007; Incorrect.</b> ') + opt.reason;
+
+  btn.classList.remove('chosen-right','chosen-wrong');
+  btn.classList.add(opt.correct ? 'chosen-right' : 'chosen-wrong');
+
+  const key = i + '-first';
+  if (!firstClickScore.has(i)) {
+    firstClickScore.add(i);
+    if (opt.correct) {
+      firstClickScore.add(key);
+    }
+    updateScore();
+  }
+}
+
+function updateScore() {
+  let correct = 0;
+  items.forEach((item, i) => {
+    if (firstClickScore.has(i + '-first')) correct++;
+  });
+  document.getElementById('scoreCount').textContent = correct;
+}
+
+function resetAll() {
+  items.forEach((item, i) => {
+    item.options.forEach((opt, j) => {
+      const btn = document.getElementById(`opt-${i}-${j}`);
+      const box = document.getElementById(`reason-${i}-${j}`);
+      btn.classList.remove('chosen-right','chosen-wrong');
+      box.classList.remove('show','right','wrong');
+      box.innerHTML = '';
+    });
+  });
+  firstClickScore = new Set();
+  updateScore();
+}
+</script>
+</body>
+</html>

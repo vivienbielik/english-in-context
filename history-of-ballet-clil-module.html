@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The History of Ballet | English in Context</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#2c6e68; --teal-dark:#1d4a46; --teal-light:#e4efee;
+    --terracotta:#c1666b; --amber:#e8a33d; --cream:#fdf6ec;
+    --ink:#2b2620; --card:#ffffff;
+    --radius:18px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--cream); color:var(--ink);
+    font-family:'Source Sans 3', sans-serif; line-height:1.55;
+  }
+  h1,h2,h3,.brand{font-family:'Fraunces', serif;}
+  .app{max-width:960px; margin:0 auto; padding:20px 18px 60px;}
+  header.top{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 4px 20px; border-bottom:2px solid var(--teal-light);
+  }
+  .brand{font-weight:700; font-size:1.3rem; color:var(--teal-dark);}
+  .brand span{color:var(--terracotta);}
+  .unit-tag{
+    background:var(--teal); color:#fff; padding:5px 14px; border-radius:999px;
+    font-size:.8rem; font-weight:600; letter-spacing:.03em;
+  }
+  .hero{
+    background:linear-gradient(135deg, #6a3b53 0%, #3d2036 100%);
+    color:#fff; border-radius:var(--radius); padding:34px 28px; margin:24px 0;
+  }
+  .hero h1{margin:0 0 10px; font-size:1.9rem;}
+  .hero p{margin:0; opacity:.92; font-size:1.05rem; max-width:64ch;}
+  .hero .era{
+    display:inline-block; margin-top:14px; background:var(--amber); color:#3a2600;
+    padding:6px 16px; border-radius:999px; font-weight:700; font-size:.85rem;
+  }
+  nav.steps{display:flex; gap:8px; flex-wrap:wrap; margin:20px 0 26px;}
+  nav.steps button{
+    flex:1 1 100px; border:2px solid var(--teal-light); background:#fff;
+    color:var(--teal-dark); border-radius:12px; padding:9px 6px; font-weight:600;
+    font-size:.76rem; cursor:pointer; transition:.2s;
+  }
+  nav.steps button.active{background:var(--teal); color:#fff; border-color:var(--teal);}
+  nav.steps button:hover{border-color:var(--teal);}
+  .progress-bar{height:6px; background:var(--teal-light); border-radius:6px; overflow:hidden; margin-bottom:26px;}
+  .progress-fill{height:100%; background:var(--amber); transition:width .3s;}
+
+  section.panel{
+    background:var(--card); border-radius:var(--radius); padding:28px 26px;
+    box-shadow:0 3px 18px rgba(44,110,104,.10); display:none;
+  }
+  section.panel.active{display:block; animation:fade .35s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+
+  h2.panel-title{color:var(--teal-dark); font-size:1.5rem; margin-top:0; display:flex; align-items:center; gap:10px;}
+  h2.panel-title .num{
+    background:var(--terracotta); color:#fff; width:34px; height:34px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0;
+  }
+
+  .poll-q{font-size:1.1rem; font-weight:600; margin-bottom:18px;}
+  .poll-options{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:14px;}
+  .poll-opt{
+    border:2px solid var(--teal-light); border-radius:14px; padding:16px; cursor:pointer;
+    text-align:center; transition:.2s; background:#fffdf9;
+  }
+  .poll-opt:hover{border-color:var(--amber); transform:translateY(-2px);}
+  .poll-opt.chosen{border-color:var(--teal); background:var(--teal-light);}
+  .poll-opt svg{width:64px; height:64px; margin-bottom:8px;}
+  .poll-opt .label{font-weight:600; font-size:.92rem;}
+  .poll-feedback{margin-top:16px; padding:12px 16px; border-radius:10px; background:var(--teal-light); display:none; font-size:.95rem;}
+  .poll-feedback.show{display:block;}
+
+  .lead{font-size:1.05rem; margin-bottom:20px;}
+  .fact-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin:18px 0 24px;}
+  .fact-card{background:var(--teal-light); border-radius:14px; padding:16px 18px;}
+  .fact-card h3{margin:0 0 6px; font-size:1rem; color:var(--teal-dark);}
+  .fact-card p{margin:0; font-size:.94rem;}
+  .timeline{border-left:3px solid var(--amber); padding-left:18px; margin:18px 0;}
+  .t-item{margin-bottom:16px; position:relative;}
+  .t-item::before{
+    content:''; position:absolute; left:-24px; top:4px; width:12px; height:12px;
+    border-radius:50%; background:var(--amber);
+  }
+  .t-item .year{font-weight:700; color:var(--terracotta);}
+
+  /* Ballet work cards */
+  .work-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px;}
+  .work-card{
+    border:2px solid var(--teal-light); border-radius:16px; overflow:hidden; background:#fffdf9;
+  }
+  .work-head{
+    background:var(--teal); color:#fff; padding:14px 18px;
+  }
+  .work-head .work-title{font-weight:700; font-size:1.05rem; font-family:'Fraunces', serif;}
+  .work-head .work-meta{font-size:.8rem; opacity:.9; margin-top:2px;}
+  .work-body{padding:14px 18px;}
+  .work-body p{margin:0 0 8px; font-size:.92rem;}
+  .work-body .story{font-style:italic; color:#6a5a4a;}
+
+  .vocab-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px;}
+  .flip-card{perspective:1000px; height:130px; cursor:pointer;}
+  .flip-inner{position:relative; width:100%; height:100%; transition:transform .5s; transform-style:preserve-3d;}
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{
+    position:absolute; inset:0; border-radius:14px; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; text-align:center; padding:10px; backface-visibility:hidden;
+  }
+  .flip-front{background:var(--teal); color:#fff;}
+  .flip-back{background:var(--amber); color:#3a2600; transform:rotateY(180deg);}
+  .flip-face .en{font-weight:700; font-size:1.05rem;}
+  .flip-face .sk{font-weight:700; font-size:1.05rem;}
+  .flip-face small{opacity:.85; font-size:.75rem; margin-top:4px;}
+
+  .video-block{margin-bottom:28px;}
+  .video-title{font-weight:700; color:var(--teal-dark); margin-bottom:4px; font-size:1.05rem;}
+  .video-sub{font-size:.85rem; color:#6a5a4a; margin-bottom:8px;}
+  .video-wrap{position:relative; padding-bottom:56.25%; height:0; border-radius:14px; overflow:hidden; box-shadow:0 3px 14px rgba(0,0,0,.15);}
+  .video-wrap iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0;}
+  .listen-q{background:var(--teal-light); border-radius:12px; padding:14px 18px; margin-top:10px; font-size:.95rem;}
+  .listen-q ol{margin:6px 0 0; padding-left:20px;}
+
+  .create-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px;}
+  .create-card{border:2px solid var(--teal-light); border-radius:14px; padding:18px; background:#fffdf9;}
+  .create-card .icon{font-size:1.7rem;}
+  .create-card h3{margin:8px 0 6px; font-size:1.02rem; color:var(--teal-dark);}
+  .create-card p{margin:0; font-size:.92rem;}
+
+  .nav-buttons{display:flex; justify-content:space-between; margin-top:28px;}
+  .nav-buttons button{
+    background:var(--teal); color:#fff; border:none; padding:11px 22px; border-radius:10px;
+    font-weight:700; cursor:pointer; font-size:.95rem;
+  }
+  .nav-buttons button:disabled{opacity:.35; cursor:default;}
+  .nav-buttons button.secondary{background:#fff; color:var(--teal-dark); border:2px solid var(--teal);}
+  footer{text-align:center; font-size:.8rem; color:#8a8175; margin-top:34px;}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="top">
+    <div class="brand">English <span>in</span> Context</div>
+    <div class="unit-tag">CLIL Music Module</div>
+  </header>
+
+  <div class="hero">
+    <h1>The History of Ballet</h1>
+    <p>Meet the most famous ballets ever written, the composers who wrote their music, and the stories danced on stage.</p>
+    <span class="era">From royal courts to modern theatres</span>
+  </div>
+
+  <nav class="steps" id="stepNav"></nav>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+  <!-- STEP 0: Warm-up -->
+  <section class="panel" data-step="0">
+    <h2 class="panel-title"><span class="num">1</span>Warm-up</h2>
+    <p class="poll-q">Look at the three pictures. Which one shows a ballerina's special shoes for dancing on her toes?</p>
+    <div class="poll-options" id="pollOptions">
+      <div class="poll-opt" data-correct="false">
+        <svg viewBox="0 0 64 64"><rect width="64" height="64" rx="10" fill="#e4efee"/><ellipse cx="32" cy="44" rx="20" ry="8" fill="#333"/><rect x="26" y="14" width="12" height="30" rx="4" fill="#333"/></svg>
+        <div class="label">Running trainers</div>
+      </div>
+      <div class="poll-opt" data-correct="true">
+        <svg viewBox="0 0 64 64"><rect width="64" height="64" rx="10" fill="#f7e3e3"/><path d="M22 46 Q20 28 30 16 Q40 20 40 34 Q40 44 32 48 Q26 48 22 46Z" fill="#fbeee3" stroke="#c1666b" stroke-width="2"/><line x1="30" y1="48" x2="30" y2="58" stroke="#c1666b" stroke-width="3"/></svg>
+        <div class="label">Pointe shoes</div>
+      </div>
+      <div class="poll-opt" data-correct="false">
+        <svg viewBox="0 0 64 64"><rect width="64" height="64" rx="10" fill="#f2d9b1"/><rect x="16" y="34" width="32" height="16" rx="6" fill="#5a3a1a"/><rect x="20" y="30" width="8" height="10" fill="#5a3a1a"/></svg>
+        <div class="label">Winter boots</div>
+      </div>
+    </div>
+    <div class="poll-feedback" id="pollFeedback"></div>
+  </section>
+
+  <!-- STEP 1: Learn -->
+  <section class="panel" data-step="1">
+    <h2 class="panel-title"><span class="num">2</span>Learn</h2>
+    <p class="lead"><strong>Ballet</strong> is a type of dance performed on a theatre stage, usually telling a story through movement and music, without words. Dancers train for many years to master special steps and positions.</p>
+
+    <h3 style="color:var(--teal-dark); margin-bottom:6px;">Timeline: How ballet began</h3>
+    <div class="timeline">
+      <div class="t-item"><span class="year">15th–16th century</span> — Ballet began at Renaissance courts in Italy, as elegant dances performed at royal parties.</div>
+      <div class="t-item"><span class="year">1661</span> — In France, King Louis XIV (who loved to dance himself) founded the first ballet school, the Académie Royale de Danse.</div>
+      <div class="t-item"><span class="year">1700s–1800s</span> — Ballet moved from royal courts to public theatres. Dancers began to wear the tutu and dance <strong>en pointe</strong> (on the tips of their toes).</div>
+      <div class="t-item"><span class="year">Late 1800s</span> — Russia became the new home of great ballet. Choreographer Marius Petipa created famous ballets in St Petersburg, often with music by Tchaikovsky.</div>
+      <div class="t-item"><span class="year">Early 1900s</span> — The company Ballets Russes brought modern, daring ballets to Paris, including works by Stravinsky.</div>
+    </div>
+
+    <div class="fact-grid">
+      <div class="fact-card">
+        <h3>🎭 Who makes a ballet?</h3>
+        <p>A <strong>composer</strong> writes the music. A <strong>choreographer</strong> invents the dance steps. The <strong>corps de ballet</strong> is the group of dancers who dance together, while a <strong>prima ballerina</strong> is the leading female dancer.</p>
+      </div>
+      <div class="fact-card">
+        <h3>👗 What is a tutu?</h3>
+        <p>A tutu is the short, stiff skirt worn by ballerinas. It lets the audience see the dancer's legs clearly during difficult steps and jumps.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 2: Famous works -->
+  <section class="panel" data-step="2">
+    <h2 class="panel-title"><span class="num">3</span>Famous Ballets &amp; Composers</h2>
+    <p class="lead">Here are five of the most important ballets in history.</p>
+    <div class="work-grid">
+
+      <div class="work-card">
+        <div class="work-head">
+          <div class="work-title">Swan Lake</div>
+          <div class="work-meta">Composer: Pyotr Ilyich Tchaikovsky · 1877, Russia</div>
+        </div>
+        <div class="work-body">
+          <p class="story">A princess named Odette is turned into a swan by an evil sorcerer's curse. A prince falls in love with her, but the sorcerer tricks him — can true love break the spell?</p>
+          <p>Famous for its beautiful, sad main melody and the dancers' arm movements, which look like a swan's wings.</p>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-head">
+          <div class="work-title">The Nutcracker</div>
+          <div class="work-meta">Composer: Pyotr Ilyich Tchaikovsky · 1892, Russia</div>
+        </div>
+        <div class="work-body">
+          <p class="story">On Christmas Eve, a girl named Clara receives a nutcracker doll as a gift. At midnight it comes to life, defeats the Mouse King, and takes Clara to a magical land of sweets.</p>
+          <p>A very popular Christmas ballet, famous for the "Dance of the Sugar Plum Fairy" and the "Waltz of the Flowers."</p>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-head">
+          <div class="work-title">Giselle</div>
+          <div class="work-meta">Composer: Adolphe Adam · 1841, France</div>
+        </div>
+        <div class="work-body">
+          <p class="story">A village girl named Giselle dies of a broken heart after learning her lover already has a fiancée. Her ghost joins a group of spirits, but her love protects him from their revenge.</p>
+          <p>One of the oldest ballets still performed today — a classic example of the Romantic style.</p>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-head">
+          <div class="work-title">Romeo and Juliet</div>
+          <div class="work-meta">Composer: Sergei Prokofiev · 1935, Soviet Union</div>
+        </div>
+        <div class="work-body">
+          <p class="story">Based on Shakespeare's play: two young people from rival families fall in love in the Italian city of Verona, with a tragic ending.</p>
+          <p>Famous for the powerful, marching "Dance of the Knights" theme.</p>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-head">
+          <div class="work-title">The Rite of Spring</div>
+          <div class="work-meta">Composer: Igor Stravinsky · 1913, France</div>
+        </div>
+        <div class="work-body">
+          <p class="story">Dancers act out an ancient pagan ceremony: a village celebrates the arrival of spring, and a young girl is chosen to dance herself to death as a sacrifice.</p>
+          <p>Famous for causing a scandal at its premiere — the strange rhythms and steps shocked the Paris audience!</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STEP 3: Vocabulary -->
+  <section class="panel" data-step="3">
+    <h2 class="panel-title"><span class="num">4</span>Vocabulary</h2>
+    <p class="lead">Click on each card to see the Slovak translation.</p>
+    <div class="vocab-grid" id="vocabGrid"></div>
+  </section>
+
+  <!-- STEP 4: Listen -->
+  <section class="panel" data-step="4">
+    <h2 class="panel-title"><span class="num">5</span>Listen</h2>
+
+    <div class="video-block">
+      <div class="video-title">🎵 Extract 1 — "Swan Theme" from Swan Lake (Tchaikovsky)</div>
+      <div class="video-sub">London Philharmonic Orchestra</div>
+      <div class="video-wrap"><iframe src="https://www.youtube.com/embed/9cNQFB0TDfY" title="Swan Lake Theme" allowfullscreen></iframe></div>
+      <div class="listen-q">
+        <strong>Listen and think:</strong>
+        <ol>
+          <li>Is the melody happy or sad? What feeling does it give you?</li>
+          <li>Can you hear one instrument playing the main tune? Which family does it belong to — strings, brass, or woodwind?</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="video-block">
+      <div class="video-title">🎵 Extract 2 — "Dance of the Sugar Plum Fairy" from The Nutcracker (Tchaikovsky)</div>
+      <div class="video-sub">The Royal Ballet — with dancers</div>
+      <div class="video-wrap"><iframe src="https://www.youtube.com/embed/zV1qLYukTH8" title="Dance of the Sugar Plum Fairy" allowfullscreen></iframe></div>
+      <div class="listen-q">
+        <strong>Listen and think:</strong>
+        <ol>
+          <li>This piece uses a special bell-like instrument called the celesta. Can you hear it?</li>
+          <li>Watch the ballerina's movements. Do they look light and delicate, or heavy and strong?</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="video-block">
+      <div class="video-title">🎵 Extract 3 — "Augurs of Spring" from The Rite of Spring (Stravinsky)</div>
+      <div class="video-sub">London Symphony Orchestra, conducted by Leonard Bernstein</div>
+      <div class="video-wrap"><iframe src="https://www.youtube.com/embed/jwcPdC548dM" title="Augurs of Spring" allowfullscreen></iframe></div>
+      <div class="listen-q">
+        <strong>Listen and think:</strong>
+        <ol>
+          <li>Is this music similar to or very different from the first two extracts? How?</li>
+          <li>Do you understand why this music shocked audiences in Paris in 1913?</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 5: Create -->
+  <section class="panel" data-step="5">
+    <h2 class="panel-title"><span class="num">6</span>Create</h2>
+    <p class="lead">Choose one project. Work alone or with a partner.</p>
+    <div class="create-grid">
+      <div class="create-card">
+        <div class="icon">📖</div>
+        <h3>Write a short synopsis</h3>
+        <p>Choose one ballet from Step 3. Write a 5-sentence summary of the story for a theatre programme.</p>
+      </div>
+      <div class="create-card">
+        <div class="icon">🩰</div>
+        <h3>Invent a new ballet</h3>
+        <p>In pairs, invent a new ballet story. Give it a title, name the main characters, and describe the ending.</p>
+      </div>
+      <div class="create-card">
+        <div class="icon">🎨</div>
+        <h3>Design a poster</h3>
+        <p>Draw a poster for a ballet performance. Include the title, composer's name, and one exciting image from the story.</p>
+      </div>
+      <div class="create-card">
+        <div class="icon">📰</div>
+        <h3>Write a newspaper report</h3>
+        <p>Imagine you were at the 1913 premiere of The Rite of Spring. Write a short newspaper report about what happened in the theatre.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="nav-buttons">
+    <button class="secondary" id="prevBtn">← Back</button>
+    <button id="nextBtn">Next →</button>
+  </div>
+
+  <footer>English in Context · CLIL Music · The History of Ballet</footer>
+</div>
+
+<script>
+const steps = ["Warm-up","Learn","Famous Ballets","Vocabulary","Listen","Create"];
+const vocab = [
+  ["ballet","balet"],
+  ["choreographer","choreograf"],
+  ["ballerina","balerína"],
+  ["corps de ballet","zbor tanečníkov"],
+  ["pointe shoes","špičky (baletná obuv)"],
+  ["tutu","tutu (baletná sukienka)"],
+  ["premiere","premiéra"],
+  ["composer","skladateľ"],
+  ["curse","kliatba"],
+  ["sacrifice","obeť"],
+  ["applause","potlesk"],
+  ["stage","javisko"],
+];
+
+let current = 0;
+const nav = document.getElementById('stepNav');
+steps.forEach((s,i)=>{
+  const b=document.createElement('button');
+  b.textContent=(i+1)+'. '+s;
+  b.addEventListener('click',()=>goTo(i));
+  nav.appendChild(b);
+});
+const navButtons = nav.querySelectorAll('button');
+const panels = document.querySelectorAll('.panel');
+const progressFill = document.getElementById('progressFill');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+function goTo(i){
+  current = Math.max(0, Math.min(steps.length-1, i));
+  panels.forEach(p=>p.classList.toggle('active', +p.dataset.step===current));
+  navButtons.forEach((b,idx)=>b.classList.toggle('active', idx===current));
+  progressFill.style.width = ((current+1)/steps.length*100)+'%';
+  prevBtn.disabled = current===0;
+  nextBtn.textContent = current===steps.length-1 ? 'Finished ✓' : 'Next →';
+  nextBtn.disabled = current===steps.length-1;
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+prevBtn.addEventListener('click',()=>goTo(current-1));
+nextBtn.addEventListener('click',()=>goTo(current+1));
+
+document.querySelectorAll('.poll-opt').forEach(opt=>{
+  opt.addEventListener('click',()=>{
+    document.querySelectorAll('.poll-opt').forEach(o=>o.classList.remove('chosen'));
+    opt.classList.add('chosen');
+    const fb = document.getElementById('pollFeedback');
+    fb.classList.add('show');
+    fb.textContent = opt.dataset.correct==='true'
+      ? "Correct! Pointe shoes have a hard, flat tip so a ballerina can balance and dance on her toes."
+      : "Not quite — look again. Pointe shoes are soft pink or white, with a hard box at the toe.";
+  });
+});
+
+const vocabGrid = document.getElementById('vocabGrid');
+vocab.forEach(([en,sk])=>{
+  const card=document.createElement('div');
+  card.className='flip-card';
+  card.innerHTML=`<div class="flip-inner">
+    <div class="flip-face flip-front"><div class="en">${en}</div><small>tap to flip</small></div>
+    <div class="flip-face flip-back"><div class="sk">${sk}</div><small>Slovak</small></div>
+  </div>`;
+  card.addEventListener('click',()=>card.classList.toggle('flipped'));
+  vocabGrid.appendChild(card);
+});
+
+goTo(0);
+</script>
+</body>
+</html>

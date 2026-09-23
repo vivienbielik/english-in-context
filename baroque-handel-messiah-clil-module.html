@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baroque Music: Handel &amp; the Messiah | English in Context</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#2c6e68; --teal-dark:#1d4a46; --teal-light:#e4efee;
+    --terracotta:#c1666b; --amber:#e8a33d; --cream:#fdf6ec;
+    --ink:#2b2620; --card:#ffffff;
+    --radius:18px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--cream); color:var(--ink);
+    font-family:'Source Sans 3', sans-serif; line-height:1.55;
+  }
+  h1,h2,h3,.brand{font-family:'Fraunces', serif;}
+  .app{max-width:920px; margin:0 auto; padding:20px 18px 60px;}
+  header.top{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 4px 20px; border-bottom:2px solid var(--teal-light);
+  }
+  .brand{font-weight:700; font-size:1.3rem; color:var(--teal-dark);}
+  .brand span{color:var(--terracotta);}
+  .unit-tag{
+    background:var(--teal); color:#fff; padding:5px 14px; border-radius:999px;
+    font-size:.8rem; font-weight:600; letter-spacing:.03em;
+  }
+  .hero{
+    background:linear-gradient(135deg, var(--terracotta) 0%, #8f3d43 100%);
+    color:#fff; border-radius:var(--radius); padding:34px 28px; margin:24px 0;
+  }
+  .hero h1{margin:0 0 10px; font-size:1.9rem;}
+  .hero p{margin:0; opacity:.92; font-size:1.05rem; max-width:60ch;}
+  .hero .era{
+    display:inline-block; margin-top:14px; background:var(--amber); color:#3a2600;
+    padding:6px 16px; border-radius:999px; font-weight:700; font-size:.85rem;
+  }
+  nav.steps{display:flex; gap:8px; flex-wrap:wrap; margin:20px 0 26px;}
+  nav.steps button{
+    flex:1 1 100px; border:2px solid var(--teal-light); background:#fff;
+    color:var(--teal-dark); border-radius:12px; padding:9px 6px; font-weight:600;
+    font-size:.78rem; cursor:pointer; transition:.2s;
+  }
+  nav.steps button.active{background:var(--teal); color:#fff; border-color:var(--teal);}
+  nav.steps button:hover{border-color:var(--teal);}
+  .progress-bar{height:6px; background:var(--teal-light); border-radius:6px; overflow:hidden; margin-bottom:26px;}
+  .progress-fill{height:100%; background:var(--amber); transition:width .3s;}
+
+  section.panel{
+    background:var(--card); border-radius:var(--radius); padding:28px 26px;
+    box-shadow:0 3px 18px rgba(44,110,104,.10); display:none;
+  }
+  section.panel.active{display:block; animation:fade .35s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+
+  h2.panel-title{color:var(--teal-dark); font-size:1.5rem; margin-top:0; display:flex; align-items:center; gap:10px;}
+  h2.panel-title .num{
+    background:var(--terracotta); color:#fff; width:34px; height:34px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0;
+  }
+
+  .poll-q{font-size:1.1rem; font-weight:600; margin-bottom:18px;}
+  .poll-options{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:14px;}
+  .poll-opt{
+    border:2px solid var(--teal-light); border-radius:14px; padding:16px; cursor:pointer;
+    text-align:center; transition:.2s; background:#fffdf9;
+  }
+  .poll-opt:hover{border-color:var(--amber); transform:translateY(-2px);}
+  .poll-opt.chosen{border-color:var(--teal); background:var(--teal-light);}
+  .poll-opt svg{width:64px; height:64px; margin-bottom:8px;}
+  .poll-opt .label{font-weight:600; font-size:.92rem;}
+  .poll-feedback{margin-top:16px; padding:12px 16px; border-radius:10px; background:var(--teal-light); display:none; font-size:.95rem;}
+  .poll-feedback.show{display:block;}
+
+  .lead{font-size:1.05rem; margin-bottom:20px;}
+  .fact-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin:18px 0 24px;}
+  .fact-card{background:var(--teal-light); border-radius:14px; padding:16px 18px;}
+  .fact-card h3{margin:0 0 6px; font-size:1rem; color:var(--teal-dark);}
+  .fact-card p{margin:0; font-size:.94rem;}
+  .timeline{border-left:3px solid var(--amber); padding-left:18px; margin:18px 0;}
+  .t-item{margin-bottom:16px; position:relative;}
+  .t-item::before{
+    content:''; position:absolute; left:-24px; top:4px; width:12px; height:12px;
+    border-radius:50%; background:var(--amber);
+  }
+  .t-item .year{font-weight:700; color:var(--terracotta);}
+
+  .vocab-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px;}
+  .flip-card{perspective:1000px; height:130px; cursor:pointer;}
+  .flip-inner{position:relative; width:100%; height:100%; transition:transform .5s; transform-style:preserve-3d;}
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{
+    position:absolute; inset:0; border-radius:14px; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; text-align:center; padding:10px; backface-visibility:hidden;
+  }
+  .flip-front{background:var(--teal); color:#fff;}
+  .flip-back{background:var(--amber); color:#3a2600; transform:rotateY(180deg);}
+  .flip-face .en{font-weight:700; font-size:1.05rem;}
+  .flip-face .sk{font-weight:700; font-size:1.05rem;}
+  .flip-face small{opacity:.85; font-size:.75rem; margin-top:4px;}
+
+  .video-block{margin-bottom:28px;}
+  .video-title{font-weight:700; color:var(--teal-dark); margin-bottom:8px; font-size:1.05rem;}
+  .video-wrap{position:relative; padding-bottom:56.25%; height:0; border-radius:14px; overflow:hidden; box-shadow:0 3px 14px rgba(0,0,0,.15);}
+  .video-wrap iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0;}
+  .listen-q{background:var(--teal-light); border-radius:12px; padding:14px 18px; margin-top:10px; font-size:.95rem;}
+  .listen-q ol{margin:6px 0 0; padding-left:20px;}
+
+  .create-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px;}
+  .create-card{border:2px solid var(--teal-light); border-radius:14px; padding:18px; background:#fffdf9;}
+  .create-card .icon{font-size:1.7rem;}
+  .create-card h3{margin:8px 0 6px; font-size:1.02rem; color:var(--teal-dark);}
+  .create-card p{margin:0; font-size:.92rem;}
+
+  .nav-buttons{display:flex; justify-content:space-between; margin-top:28px;}
+  .nav-buttons button{
+    background:var(--teal); color:#fff; border:none; padding:11px 22px; border-radius:10px;
+    font-weight:700; cursor:pointer; font-size:.95rem;
+  }
+  .nav-buttons button:disabled{opacity:.35; cursor:default;}
+  .nav-buttons button.secondary{background:#fff; color:var(--teal-dark); border:2px solid var(--teal);}
+  footer{text-align:center; font-size:.8rem; color:#8a8175; margin-top:34px;}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="top">
+    <div class="brand">English <span>in</span> Context</div>
+    <div class="unit-tag">CLIL Music Module</div>
+  </header>
+
+  <div class="hero">
+    <h1>George Frideric Handel &amp; the Messiah</h1>
+    <p>Meet the composer of one of the most famous pieces of music ever written, and discover the story of his masterpiece, "Messiah".</p>
+    <span class="era">Baroque · c. 1600–1750</span>
+  </div>
+
+  <nav class="steps" id="stepNav"></nav>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+  <!-- STEP 0: Warm-up -->
+  <section class="panel" data-step="0">
+    <h2 class="panel-title"><span class="num">1</span>Warm-up</h2>
+    <p class="poll-q">Look at the three pictures. Which one is a harpsichord — a keyboard instrument from the Baroque period?</p>
+    <div class="poll-options" id="pollOptions">
+      <div class="poll-opt" data-correct="true">
+        <svg viewBox="0 0 64 64"><rect width="64" height="64" rx="10" fill="#f2d9b1"/><path d="M12 44 L12 20 L48 16 L52 44 Z" fill="#5a3a1a"/><rect x="14" y="40" width="34" height="6" fill="#fff"/></svg>
+        <div class="label">A harpsichord</div>
+      </div>
+      <div class="poll-opt" data-correct="false">
+        <svg viewBox="0 0 64 64"><rect width="64" height="64" rx="10" fill="#e4efee"/><rect x="10" y="26" width="44" height="16" rx="3" fill="#222"/><rect x="12" y="28" width="40" height="6" fill="#fff"/></svg>
+        <div class="label">A modern digital keyboard</div>
+      </div>
+      <div class="poll-opt" data-correct="false">
+        <svg viewBox="0 0 64 64"><rect width="64" height="64" rx="10" fill="#f7e3e3"/><circle cx="32" cy="32" r="14" fill="none" stroke="#333" stroke-width="4"/><circle cx="32" cy="32" r="4" fill="#333"/></svg>
+        <div class="label">A drum kit</div>
+      </div>
+    </div>
+    <div class="poll-feedback" id="pollFeedback"></div>
+  </section>
+
+  <!-- STEP 1: Learn -->
+  <section class="panel" data-step="1">
+    <h2 class="panel-title"><span class="num">2</span>Learn</h2>
+    <p class="lead">The <strong>Baroque</strong> period in music lasted from about 1600 to 1750. Music from this time is often grand, dramatic, and full of energy. Composers used a small keyboard instrument called the <strong>harpsichord</strong>, and they liked strong contrasts — loud and quiet, fast and slow.</p>
+
+    <div class="fact-grid">
+      <div class="fact-card">
+        <h3>🎹 Who was Handel?</h3>
+        <p>George Frideric Handel (1685–1759) was born in Germany but spent most of his life in London, England. He wrote operas, orchestral music (like "Water Music"), and religious works called <strong>oratorios</strong>.</p>
+      </div>
+      <div class="fact-card">
+        <h3>📖 What is an oratorio?</h3>
+        <p>An oratorio is like an opera, but without costumes, acting, or scenery. Singers and an orchestra tell a story — often a religious story — just through music.</p>
+      </div>
+    </div>
+
+    <h3 style="color:var(--teal-dark); margin-bottom:6px;">The story of Messiah</h3>
+    <div class="timeline">
+      <div class="t-item"><span class="year">Summer 1741</span> — A friend gave Handel a text about the life of Jesus Christ. Handel started writing music very quickly.</div>
+      <div class="t-item"><span class="year">24 days</span> — Handel wrote the whole oratorio — about 260 pages of music — in only 24 days! He worked so hard that he almost forgot to eat.</div>
+      <div class="t-item"><span class="year">13 April 1742</span> — "Messiah" had its first performance in Dublin, Ireland. Over 700 people came to listen, and the money helped free 142 people from prison.</div>
+      <div class="t-item"><span class="year">Today</span> — "Messiah" is performed every year all around the world, especially at Christmas and Easter.</div>
+    </div>
+
+    <div class="fact-card" style="background:#fdeee0;">
+      <h3>🎉 The famous "Hallelujah Chorus"</h3>
+      <p>The most famous part of "Messiah" is the <strong>Hallelujah Chorus</strong>. There is a tradition that the audience stands up during this chorus — people say it started because King George II stood up the first time he heard it in London!</p>
+    </div>
+  </section>
+
+  <!-- STEP 2: Vocabulary -->
+  <section class="panel" data-step="2">
+    <h2 class="panel-title"><span class="num">3</span>Vocabulary</h2>
+    <p class="lead">Click on each card to see the Slovak translation.</p>
+    <div class="vocab-grid" id="vocabGrid"></div>
+  </section>
+
+  <!-- STEP 3: Listen -->
+  <section class="panel" data-step="3">
+    <h2 class="panel-title"><span class="num">4</span>Listen</h2>
+
+    <div class="video-block">
+      <div class="video-title">🎵 Extract 1 — "Hallelujah Chorus" from Messiah (Handel)</div>
+      <div class="video-wrap"><iframe src="https://www.youtube.com/embed/IUZEtVbJT5c" title="Hallelujah Chorus" allowfullscreen></iframe></div>
+      <div class="listen-q">
+        <strong>Listen and think:</strong>
+        <ol>
+          <li>How many times can you count the word "Hallelujah"?</li>
+          <li>Does the music feel happy, sad, or triumphant (very joyful and proud)?</li>
+          <li>Can you hear the chorus (many singers) and the orchestra playing together?</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="video-block">
+      <div class="video-title">🎵 Extract 2 — "Alla Hornpipe" from Water Music (Handel)</div>
+      <div class="video-wrap"><iframe src="https://www.youtube.com/embed/0Hs3fEFlrcQ" title="Alla Hornpipe, Water Music" allowfullscreen></iframe></div>
+      <div class="listen-q">
+        <strong>Listen and think:</strong>
+        <ol>
+          <li>This music has no singing. What instruments can you hear?</li>
+          <li>Is the rhythm dance-like? Could you march or walk to it?</li>
+          <li>Handel wrote this for a royal party on a boat! Can you imagine why it sounds so grand?</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 4: Create -->
+  <section class="panel" data-step="4">
+    <h2 class="panel-title"><span class="num">5</span>Create</h2>
+    <p class="lead">Choose one project. Work alone or with a partner.</p>
+    <div class="create-grid">
+      <div class="create-card">
+        <div class="icon">📰</div>
+        <h3>Write a concert poster</h3>
+        <p>Design a poster for the first performance of "Messiah" in Dublin in 1742. Include the date, place, and one exciting sentence to attract the audience.</p>
+      </div>
+      <div class="create-card">
+        <div class="icon">🎤</div>
+        <h3>Conduct the chorus</h3>
+        <p>Listen to the Hallelujah Chorus again. Stand up and "conduct" the music with your hands, showing loud and quiet, fast and slow parts.</p>
+      </div>
+      <div class="create-card">
+        <div class="icon">📝</div>
+        <h3>Interview Handel</h3>
+        <p>In pairs, write five interview questions you would ask Handel about writing "Messiah" in only 24 days. Then act out the interview.</p>
+      </div>
+      <div class="create-card">
+        <div class="icon">🎨</div>
+        <h3>Draw the scene</h3>
+        <p>Draw King George II standing up during the Hallelujah Chorus, with the orchestra and chorus performing. Label the instruments in English.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="nav-buttons">
+    <button class="secondary" id="prevBtn">← Back</button>
+    <button id="nextBtn">Next →</button>
+  </div>
+
+  <footer>English in Context · CLIL Music · Baroque: Handel &amp; the Messiah</footer>
+</div>
+
+<script>
+const steps = ["Warm-up","Learn","Vocabulary","Listen","Create"];
+const vocab = [
+  ["Baroque","barok"],
+  ["composer","skladateľ"],
+  ["oratorio","oratórium"],
+  ["chorus","zbor"],
+  ["orchestra","orchester"],
+  ["harpsichord","čembalo"],
+  ["premiere","premiéra"],
+  ["masterpiece","majstrovské dielo"],
+  ["audience","publikum"],
+  ["king","kráľ"],
+  ["triumphant (adj.)","víťazoslávny"],
+  ["charity","dobročinnosť"],
+];
+
+let current = 0;
+const nav = document.getElementById('stepNav');
+steps.forEach((s,i)=>{
+  const b=document.createElement('button');
+  b.textContent=(i+1)+'. '+s;
+  b.addEventListener('click',()=>goTo(i));
+  nav.appendChild(b);
+});
+const navButtons = nav.querySelectorAll('button');
+const panels = document.querySelectorAll('.panel');
+const progressFill = document.getElementById('progressFill');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+function goTo(i){
+  current = Math.max(0, Math.min(steps.length-1, i));
+  panels.forEach(p=>p.classList.toggle('active', +p.dataset.step===current));
+  navButtons.forEach((b,idx)=>b.classList.toggle('active', idx===current));
+  progressFill.style.width = ((current+1)/steps.length*100)+'%';
+  prevBtn.disabled = current===0;
+  nextBtn.textContent = current===steps.length-1 ? 'Finished ✓' : 'Next →';
+  nextBtn.disabled = current===steps.length-1;
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+prevBtn.addEventListener('click',()=>goTo(current-1));
+nextBtn.addEventListener('click',()=>goTo(current+1));
+
+document.querySelectorAll('.poll-opt').forEach(opt=>{
+  opt.addEventListener('click',()=>{
+    document.querySelectorAll('.poll-opt').forEach(o=>o.classList.remove('chosen'));
+    opt.classList.add('chosen');
+    const fb = document.getElementById('pollFeedback');
+    fb.classList.add('show');
+    fb.textContent = opt.dataset.correct==='true'
+      ? "Correct! The harpsichord was the most important keyboard instrument of the Baroque period."
+      : "Not quite — look again. A harpsichord is an old wooden instrument, not electronic!";
+  });
+});
+
+const vocabGrid = document.getElementById('vocabGrid');
+vocab.forEach(([en,sk])=>{
+  const card=document.createElement('div');
+  card.className='flip-card';
+  card.innerHTML=`<div class="flip-inner">
+    <div class="flip-face flip-front"><div class="en">${en}</div><small>tap to flip</small></div>
+    <div class="flip-face flip-back"><div class="sk">${sk}</div><small>Slovak</small></div>
+  </div>`;
+  card.addEventListener('click',()=>card.classList.toggle('flipped'));
+  vocabGrid.appendChild(card);
+});
+
+goTo(0);
+</script>
+</body>
+</html>

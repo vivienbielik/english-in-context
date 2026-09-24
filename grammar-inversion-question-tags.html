@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English in Context · Grammar · Inversion &amp; Question Tags</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+
+:root{
+  --teal-deep:#1F5C56; --teal:#2F7A72; --teal-tint:#E4EFEC;
+  --terracotta:#C1603C; --terracotta-tint:#F4E2D8;
+  --amber:#D9A441; --amber-tint:#F7EDD9;
+  --berry:#8C4A5E; --berry-tint:#F1E1E6;
+  --cream:#FBF6EC; --card:#FFFDF8; --ink:#2A2420; --ink-soft:#6B6259;
+  --line:#E6DFD0; --good:#3B7A57; --good-tint:#E4F0E7; --bad:#B5473A; --bad-tint:#F7E5E1;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0; background:var(--cream); color:var(--ink); font-family:'Source Sans 3',sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:'Fraunces',serif; font-weight:600; margin:0;}
+p{margin:0 0 .9em; max-width:66ch;}
+.wrap{max-width:980px; margin:0 auto; padding:0 1.5rem;}
+
+#progress{position:fixed; top:0; left:0; height:4px; width:0%; background:var(--amber); z-index:100; transition:width .1s linear;}
+
+nav{position:sticky; top:4px; z-index:90; background:rgba(251,246,236,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+nav .wrap{display:flex; gap:1.2rem; overflow-x:auto; padding:.8rem 1.5rem; scrollbar-width:none;}
+nav .wrap::-webkit-scrollbar{display:none;}
+nav a{color:var(--ink-soft); text-decoration:none; font-size:.87rem; font-weight:600; white-space:nowrap; padding-bottom:.25rem; border-bottom:2px solid transparent;}
+nav a.active{color:var(--teal-deep); border-bottom-color:var(--amber);}
+
+.hero{background:linear-gradient(160deg,var(--teal-deep) 0%,var(--teal) 65%); color:#fff; padding:3rem 1.5rem 3.6rem; position:relative; overflow:hidden;}
+.hero::after{content:"";position:absolute;right:-40px;top:-40px;width:260px;height:260px;border:1px solid rgba(255,255,255,.16);border-radius:50%;}
+.hero::before{content:"";position:absolute;right:70px;bottom:-100px;width:190px;height:190px;border:1px solid rgba(255,255,255,.12);border-radius:50%;}
+.hero-inner{max-width:980px;margin:0 auto;position:relative;z-index:1;}
+.hero .kicker{color:var(--amber); font-weight:600; margin-bottom:.5rem; font-size:.95rem;}
+.hero h1{font-size:2.4rem; color:#fff; max-width:22ch;}
+.hero p.lede{color:rgba(255,255,255,.86); max-width:58ch; margin-top:.9rem; font-size:1.03rem;}
+.hero-meta{display:flex; gap:1.6rem; margin-top:1.6rem; flex-wrap:wrap;}
+.hero-meta div{font-size:.85rem; color:rgba(255,255,255,.75);}
+.hero-meta strong{display:block; color:#fff; font-family:'Fraunces',serif; font-size:1.15rem;}
+
+section{padding:3.2rem 0; border-bottom:1px solid var(--line);}
+section:last-of-type{border-bottom:none;}
+.section-head{margin-bottom:1.6rem;}
+.section-head .tag{color:var(--terracotta); font-weight:600; font-size:.82rem; margin-bottom:.35rem; display:block;}
+.section-head h2{font-size:1.85rem;}
+.section-head p{color:var(--ink-soft); margin-top:.5rem;}
+
+.card{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:1.5rem 1.6rem;}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:1.2rem;}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:1.1rem;}
+@media(max-width:720px){.grid2,.grid3{grid-template-columns:1fr;}}
+
+.poll-q{margin-bottom:1.6rem;}
+.poll-q .q{font-weight:600; margin-bottom:.6rem;}
+.poll-opts{display:flex; flex-wrap:wrap; gap:.6rem;}
+.poll-opt{border:1px solid var(--line); background:var(--card); color:var(--ink); padding:.55rem 1rem; border-radius:20px; cursor:pointer; font-size:.92rem;}
+.poll-opt.picked{background:var(--teal-tint); border-color:var(--teal); color:var(--teal-deep); font-weight:600;}
+
+.reading{border-left:3px solid var(--teal); padding-left:1.3rem;}
+.reading p{max-width:none;}
+.check-box{margin-top:1.5rem; background:var(--teal-tint); border-radius:10px; padding:1.2rem 1.4rem;}
+.check-box .q{font-weight:600; margin-bottom:.5rem;}
+.check-box .opts{display:flex; flex-direction:column; gap:.4rem; margin-bottom:1rem;}
+.check-box label{display:flex; gap:.5rem; align-items:flex-start; cursor:pointer; font-size:.95rem;}
+.result-line{font-weight:600; font-size:.9rem; padding:.3rem 0; min-height:1.4em;}
+.result-line.good{color:var(--good);}
+.result-line.bad{color:var(--bad);}
+button.check-btn{background:var(--teal-deep); color:#fff; border:none; padding:.6rem 1.3rem; border-radius:20px; font-weight:600; cursor:pointer; font-size:.9rem;}
+button.check-btn:hover{background:var(--teal);}
+button.ghost-btn{background:transparent; color:var(--teal-deep); border:1px solid var(--teal-deep); padding:.55rem 1.2rem; border-radius:20px; font-weight:600; cursor:pointer; font-size:.88rem;}
+
+.flash-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem;}
+@media(max-width:720px){.flash-grid{grid-template-columns:repeat(2,1fr);}}
+.flash{perspective:1000px; height:120px; cursor:pointer;}
+.flash-inner{position:relative; width:100%; height:100%; transition:transform .5s; transform-style:preserve-3d;}
+.flash.flipped .flash-inner{transform:rotateY(180deg);}
+.flash-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:10px; display:flex; align-items:center; justify-content:center; text-align:center; padding:.7rem; font-size:.92rem;}
+.flash-front{background:var(--teal-deep); color:#fff; font-weight:600; font-family:'Fraunces',serif; font-size:1.02rem;}
+.flash-back{background:var(--card); border:1px solid var(--line); color:var(--ink); transform:rotateY(180deg); font-size:.83rem;}
+
+.match-wrap{display:grid; grid-template-columns:1fr 1fr; gap:2rem;}
+@media(max-width:720px){.match-wrap{grid-template-columns:1fr; gap:.8rem;}}
+.match-col{display:flex; flex-direction:column; gap:.6rem;}
+.match-item{border:1px solid var(--line); background:var(--card); padding:.65rem .9rem; border-radius:8px; cursor:pointer; font-size:.9rem;}
+.match-item.selected{border-color:var(--amber); background:var(--terracotta-tint);}
+.match-item.matched{border-color:var(--good); background:var(--good-tint); cursor:default;}
+.match-item.wrong{animation:shake .3s;}
+@keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-5px);}75%{transform:translateX(5px);}}
+
+table.grammar-table{width:100%; border-collapse:collapse; font-size:.88rem; margin:1rem 0;}
+table.grammar-table th, table.grammar-table td{border:1px solid var(--line); padding:.55rem .7rem; text-align:left;}
+table.grammar-table th{background:var(--teal-tint); color:var(--teal-deep); font-weight:700;}
+
+.note-box{background:var(--terracotta-tint); border-left:3px solid var(--terracotta); padding:1rem 1.2rem; border-radius:0 8px 8px 0; margin:1.2rem 0; font-size:.92rem;}
+.note-box strong{color:var(--terracotta);}
+
+.cloze-item{margin-bottom:1rem; font-size:.96rem; line-height:2;}
+.cloze-item select, .cloze-item input.text-input{border:1px solid var(--teal); border-radius:6px; padding:.25rem .5rem; font-family:inherit; font-size:.92rem; background:#fff; color:var(--ink); margin:0 .15rem;}
+.cloze-item select.correct, .text-input.correct{border-color:var(--good); background:var(--good-tint);}
+.cloze-item select.incorrect, .text-input.incorrect{border-color:var(--bad); background:var(--bad-tint);}
+.text-input{width:150px;}
+
+.chip-pool{display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:1.4rem;}
+.chip{background:var(--card); border:1px solid var(--teal); color:var(--teal-deep); padding:.4rem .85rem; border-radius:16px; cursor:pointer; font-size:.87rem; font-weight:600;}
+.chip.selected{background:var(--teal-deep); color:#fff;}
+.chip.placed{opacity:.35; cursor:default;}
+.buckets{display:grid; grid-template-columns:repeat(4,1fr); gap:1rem;}
+@media(max-width:820px){.buckets{grid-template-columns:repeat(2,1fr);}}
+.bucket{border:2px dashed var(--line); border-radius:10px; padding:.9rem; min-height:130px;}
+.bucket h4{font-size:.8rem; color:var(--teal-deep); margin-bottom:.6rem; font-family:'Fraunces',serif;}
+.bucket .placed-chip{display:inline-block; margin:.15rem; padding:.3rem .6rem; border-radius:12px; font-size:.78rem;}
+.bucket .placed-chip.right{background:var(--good-tint); color:var(--good);}
+.bucket .placed-chip.wrong{background:var(--bad-tint); color:var(--bad);}
+
+.transform-item{margin-bottom:1.5rem;}
+.transform-item .direct{font-style:italic; margin-bottom:.5rem;}
+.transform-item textarea{width:100%; min-height:56px; border:1px solid var(--line); border-radius:8px; padding:.6rem .8rem; font-family:inherit; font-size:.92rem; resize:vertical;}
+.model-answer{display:none; margin-top:.5rem; background:var(--teal-tint); padding:.6rem .9rem; border-radius:8px; font-size:.9rem; color:var(--teal-deep);}
+.model-answer.shown{display:block;}
+
+.quiz-item{margin-bottom:1.4rem; padding-bottom:1.4rem; border-bottom:1px solid var(--line);}
+.quiz-item:last-of-type{border-bottom:none;}
+.quiz-item .q{font-weight:600; margin-bottom:.6rem;}
+.quiz-item .opts{display:flex; flex-direction:column; gap:.4rem;}
+.quiz-item label{display:flex; gap:.5rem; align-items:flex-start; cursor:pointer; font-size:.95rem;}
+#quizScore{margin-top:1rem; font-family:'Fraunces',serif; font-size:1.3rem; color:var(--teal-deep); display:none;}
+
+.ex-block{margin-bottom:2.6rem;}
+.ex-head{display:flex; align-items:baseline; gap:.6rem; margin-bottom:.3rem; flex-wrap:wrap;}
+.ex-head .ex-num{background:var(--teal-deep); color:#fff; font-family:'Fraunces',serif; font-weight:700; width:2rem; height:2rem; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.95rem; flex-shrink:0;}
+.ex-head h3{font-size:1.1rem;}
+.ex-type{color:var(--terracotta); font-size:.8rem; font-weight:600; font-style:italic;}
+.ex-instructions{color:var(--ink-soft); font-size:.9rem; margin:.3rem 0 1rem 2.6rem;}
+.ex-body{margin-left:2.6rem;}
+@media(max-width:600px){.ex-body,.ex-instructions{margin-left:0;}}
+
+.oddset{margin-bottom:1.3rem;}
+.oddset .items{display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:.4rem;}
+.oddset .oitem{border:1px solid var(--line); background:var(--card); padding:.4rem .8rem; border-radius:16px; cursor:pointer; font-size:.85rem;}
+.oddset .oitem.right{background:var(--good-tint); border-color:var(--good); color:var(--good); font-weight:600;}
+.oddset .oitem.wrong{background:var(--bad-tint); border-color:var(--bad); color:var(--bad);}
+.oddset .explain{display:none; font-size:.86rem; color:var(--teal-deep); background:var(--teal-tint); padding:.5rem .8rem; border-radius:8px;}
+.oddset .explain.shown{display:block;}
+
+.writeup-box{margin-top:1.2rem;}
+.writeup-box textarea{width:100%; min-height:110px; border:1px solid var(--line); border-radius:10px; padding:.8rem; font-family:inherit; font-size:.92rem; resize:vertical;}
+.writeup-meta{display:flex; justify-content:space-between; align-items:center; margin-top:.5rem; font-size:.82rem; color:var(--ink-soft);}
+
+.chart-row{margin-bottom:12px;}
+.chart-label{font-size:.85rem; font-weight:600; margin-bottom:4px;}
+.chart-bar-bg{background:var(--line); border-radius:4px; height:24px; width:100%;}
+.chart-bar{height:24px; border-radius:4px; color:#fff; font-size:.78rem; text-align:right; padding-right:8px; line-height:24px; font-weight:600;}
+.proportion-bar{display:flex; height:34px; border-radius:8px; overflow:hidden; margin-bottom:.8rem;}
+.proportion-seg{display:flex; align-items:center; justify-content:center; color:#fff; font-size:.75rem; font-weight:700;}
+.chart-legend{display:flex; flex-wrap:wrap; gap:.6rem; margin-top:.6rem;}
+.chart-legend span{display:inline-flex; align-items:center; gap:.35rem; font-size:.8rem; color:var(--ink-soft);}
+.chart-legend .dot{width:10px; height:10px; border-radius:50%; display:inline-block;}
+
+.audio-box{background:var(--berry-tint); border-radius:10px; padding:1.2rem 1.4rem; margin:1rem 0;}
+.audio-box p{margin-bottom:.6rem; font-size:.9rem; color:var(--berry); font-weight:600;}
+audio{width:100%;}
+.transcript-box{display:none; margin-top:1rem; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:1.2rem 1.4rem; font-size:.9rem;}
+.transcript-box.shown{display:block;}
+.transcript-box p{margin-bottom:.7rem;}
+
+.reflect-box textarea{width:100%; min-height:150px; border:1px solid var(--line); border-radius:10px; padding:1rem; font-family:inherit; font-size:.96rem; resize:vertical;}
+.reflect-meta{display:flex; justify-content:space-between; align-items:center; margin-top:.6rem; font-size:.85rem; color:var(--ink-soft);}
+
+footer{padding:2.5rem 1.5rem 3rem; text-align:center; color:var(--ink-soft); font-size:.85rem;}
+
+/* ===== Impersonal passive (Part 4B/4C) ===== */
+.ip-opts{display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.5rem;}
+.ip-opt{border:1px solid var(--line); background:var(--card); padding:.45rem .9rem; border-radius:16px; cursor:pointer; font:inherit; font-size:.9rem; color:var(--ink);}
+.ip-opt:hover{border-color:var(--teal);}
+.ip-opt.right{background:var(--good-tint); color:var(--good); border-color:var(--good); font-weight:600;}
+.ip-opt.bad{background:var(--bad-tint); color:var(--bad); border-color:var(--bad);}
+.ip-opt:disabled{cursor:default;}
+.ip-score{margin-top:.8rem; font-weight:600; color:var(--teal-deep);}
+.ip-ok{color:var(--good) !important; font-weight:600;}
+.ip-no{color:var(--bad) !important; font-weight:600;}
+select.ip-select{border:1px solid var(--teal); border-radius:6px; padding:.25rem .4rem; font:inherit; font-size:.92rem; background:#fff; color:var(--ink); margin:0 .15rem;}
+input.text-input.ip-good{border-color:var(--good); background:var(--good-tint);}
+input.text-input.ip-badin{border-color:var(--bad); background:var(--bad-tint);}
+.ip-src{color:var(--ink-soft); font-size:.9rem; margin-bottom:.2rem;}
+.ip-kw{color:var(--terracotta); font-weight:700; letter-spacing:.04em;}
+.ip-hint{color:var(--terracotta); font-weight:600; font-size:.85rem;}
+.ip-match{display:grid; grid-template-columns:1fr 1fr; gap:.6rem 1.2rem;}
+.ip-match-col{display:flex; flex-direction:column; gap:.6rem;}
+.ip-mitem{border:1px solid var(--line); background:var(--card); padding:.6rem .8rem; border-radius:10px; cursor:pointer; text-align:left; font:inherit; font-size:.9rem; color:var(--ink);}
+.ip-mitem.sel{border-color:var(--teal); box-shadow:0 0 0 2px var(--teal-tint);}
+.ip-mitem.done{background:var(--good-tint); border-color:var(--good); cursor:default;}
+.ip-mitem.shake{animation:shake .3s; border-color:var(--bad);}
+.ip-built{min-height:2.6rem; border:1px dashed var(--teal); border-radius:10px; padding:.4rem; display:flex; flex-wrap:wrap; gap:.4rem; margin:.5rem 0;}
+.ip-bank{display:flex; flex-wrap:wrap; gap:.4rem;}
+.ip-word{border:1px solid var(--line); background:var(--card); padding:.35rem .7rem; border-radius:14px; cursor:pointer; font:inherit; font-size:.9rem; color:var(--ink);}
+.ip-built .ip-word{background:var(--teal-tint); border-color:var(--teal);}
+.ip-row-btns{display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.3rem;}
+.ip-head{font-family:'Fraunces',Georgia,serif; font-weight:700; letter-spacing:.02em; color:var(--teal-deep);}
+textarea.ip-ta{width:100%; min-height:3.2rem; border:1px solid var(--teal); border-radius:8px; padding:.5rem .7rem; font:inherit; font-size:.92rem; margin:.4rem 0; resize:vertical;}
+@media (max-width:640px){ .ip-match{grid-template-columns:1fr;} }
+
+.inv-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.1rem;}
+.inv-card{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:1.1rem 1.25rem; border-top:4px solid var(--teal);}
+.inv-card h4{font-family:'Fraunces',Georgia,serif; font-size:1.05rem; margin:0 0 .35rem; color:var(--teal-deep);}
+.inv-num{display:inline-grid; place-items:center; width:1.7rem; height:1.7rem; border-radius:50%; background:var(--amber); color:#fff; font-weight:700; font-size:.85rem; margin-right:.45rem;}
+.inv-form{display:block; background:var(--teal-tint); color:var(--teal-deep); font-weight:600; font-size:.86rem; padding:.35rem .6rem; border-radius:6px; margin:.35rem 0 .55rem;}
+.inv-card ul{margin:.2rem 0 .4rem; padding-left:1.1rem; font-size:.92rem;} .inv-card li{margin:.25rem 0;}
+.inv-card .inv-note{font-size:.84rem; color:var(--ink-soft); margin:0;}
+.inv-card .inv-note b{color:var(--ink);}
+.cmp{display:grid; grid-template-columns:1fr 1fr; gap:.8rem;}
+.cmp div{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:.8rem 1rem;}
+.cmp strong{display:block; color:var(--terracotta); font-size:.8rem; text-transform:uppercase; letter-spacing:.05em;}
+@media(max-width:640px){.cmp{grid-template-columns:1fr;}}
+.tablewrap{overflow-x:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<nav>
+  <div class="wrap">
+    <a href="#basics">Basics</a>
+    <a href="#types">14 Types</a>
+    <a href="#use">How to Use It</a>
+    <a href="#tags">Question Tags</a>
+    <a href="#exercises">Exercises</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="kicker">English in Context · B2–C1 · Maturita Exam · Grammar</span>
+    <h1>Inversion &amp; Question Tags</h1>
+    <p class="lede">“Never have I seen…”, “Had I known…”, “Not only did she…”: fourteen types of inversion, how and when to use them, and question tags with all their exceptions. Eight self-checking exercises included.</p>
+    <div class="hero-meta">
+      <div><strong>B2–C1</strong>Level</div>
+      <div><strong>~90 min</strong>Self-paced</div>
+      <div><strong>8</strong>Exercises</div>
+    </div>
+    <p style="margin-top:1.2rem;"><a href="index.html#elt" style="color:inherit; font-weight:600;">← English Language Teaching</a></p>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section id="basics">
+  <div class="section-head">
+    <span class="tag">Part 1 · Basics</span>
+    <h2>What Is Inversion?</h2>
+    <p>Inversion means changing the normal English word order (subject + verb) so that the verb, or part of it, comes <strong>before</strong> the subject.</p>
+  </div>
+  <div class="cmp">
+    <div><strong>Normal order</strong>I have <em>never</em> seen such chaos.</div>
+    <div><strong>Inversion</strong><em>Never</em> <b>have I</b> seen such chaos.</div>
+  </div>
+  <div class="card" style="margin-top:1.2rem;">
+    <h3 style="font-size:1.1rem; margin-bottom:.5rem;">Two kinds of inversion</h3>
+    <p><strong>1. Auxiliary inversion (most common):</strong> auxiliary / modal / <em>be</em> + subject + main verb.<br>
+    <em>Rarely <b>does he</b> complain. · Never <b>will I</b> forget it. · Not only <b>was she</b> late…</em></p>
+    <p>If the sentence has no auxiliary, add <strong>do / does / did</strong>, just like in questions:<br>
+    <em>He rarely complains → Rarely <b>does</b> he <b>complain</b>.</em> (not <em>✗ Rarely complains he</em>)</p>
+    <p style="margin-bottom:0;"><strong>2. Full inversion:</strong> the whole verb comes before a <strong>noun</strong> subject, with no <em>do</em>.<br>
+    <em>Here <b>comes the bus</b>. · On the hill <b>stood a castle</b>. · “Help!” <b>shouted the boy</b>.</em></p>
+  </div>
+  <h3 style="margin-top:1.8rem; font-size:1.15rem;">Questions: the everyday inversion</h3>
+  <table class="grammar-table">
+    <tr><th>Type</th><th>Rule</th><th>Example</th></tr>
+    <tr><td>Yes/No questions</td><td>aux + S + V</td><td><b>Have you</b> finished? <b>Does she</b> speak French?</td></tr>
+    <tr><td>Wh- questions</td><td>Wh- + aux + S + V</td><td>Where <b>did you</b> go? Why <b>is he</b> crying?</td></tr>
+    <tr><td>Subject questions ⚠️</td><td>NO inversion, no <em>do</em></td><td><b>Who called</b> you? <b>What happened</b>? (not ✗ Who did call you?)</td></tr>
+    <tr><td>Indirect questions ⚠️</td><td>NO inversion</td><td>Can you tell me where <b>the station is</b>? (not ✗ where is the station)</td></tr>
+  </table>
+</section>
+
+<section id="types">
+  <div class="section-head">
+    <span class="tag">Part 2 · Grammar Lab</span>
+    <h2>14 Types of Inversion</h2>
+    <p>Each card shows the structure, examples and the most common trap. Types 1–10 are the ones most often tested at C1 level.</p>
+  </div>
+  <div class="inv-grid"><div class="inv-card"><h4><span class="inv-num">1</span>Negative &amp; limiting adverbials</h4><span class="inv-form">Never / Rarely / Seldom / Hardly ever / Nowhere + auxiliary + subject</span><ul><li><b>Never have I seen</b> such a beautiful sunset.</li><li><b>Rarely do</b> teenagers <b>read</b> printed newspapers today.</li><li><b>Nowhere else can</b> you <b>find</b> such fresh seafood.</li></ul><p class="inv-note">⚠️ Use do / does / did when there is no auxiliary: <i>Seldom <b>does</b> she complain.</i></p></div><div class="inv-card"><h4><span class="inv-num">2</span>Negative phrases with “no”</h4><span class="inv-form">At no time / Under no circumstances / On no account / In no way / By no means + aux + S</span><ul><li><b>Under no circumstances should</b> you <b>share</b> your password.</li><li><b>At no time was</b> the patient <b>in danger</b>.</li><li><b>On no account must</b> this door <b>be left</b> open.</li></ul><p class="inv-note">⚠️ Typical in rules, warnings and formal letters.</p></div><div class="inv-card"><h4><span class="inv-num">3</span>Not only … but (also)</h4><span class="inv-form">Not only + aux + S + V, but S (also) + V</span><ul><li><b>Not only did</b> she <b>win</b> the race, <b>but</b> she <b>also broke</b> the record.</li><li><b>Not only is</b> the app free, <b>but</b> it is <b>also</b> safe.</li></ul><p class="inv-note">⚠️ Only the <b>first</b> part is inverted. The part after <i>but</i> has normal word order.</p></div><div class="inv-card"><h4><span class="inv-num">4</span>Hardly / Scarcely / Barely … when · No sooner … than</h4><span class="inv-form">Hardly + had + S + PP … when + past simple</span><ul><li><b>Hardly had</b> we <b>arrived</b> <b>when</b> it started to rain.</li><li><b>No sooner had</b> the concert <b>started than</b> the power went off.</li><li><b>Scarcely had</b> I <b>sat down when</b> the phone rang.</li></ul><p class="inv-note">⚠️ <b>Hardly … when</b>, but <b>No sooner … than</b>. Don't mix them! Usually with the Past Perfect.</p></div><div class="inv-card"><h4><span class="inv-num">5</span>Only + time / manner expressions</h4><span class="inv-form">Only after / Only when / Only then / Only by / Only in this way / Only if + … + aux + S</span><ul><li><b>Only after</b> the exam <b>did</b> I <b>realise</b> my mistake.</li><li><b>Only by working</b> together <b>can</b> we <b>solve</b> the problem.</li><li><b>Only then did</b> he <b>understand</b> the truth.</li></ul><p class="inv-note">⚠️ With <i>Only after / when / if / by</i> + clause, the inversion is in the <b>main</b> clause: <i>Only when I left <b>did I notice</b>…</i></p></div><div class="inv-card"><h4><span class="inv-num">6</span>Not until / Not till</h4><span class="inv-form">Not until + time / clause + aux + S + V</span><ul><li><b>Not until</b> 1969 <b>did</b> a human <b>walk</b> on the Moon.</li><li><b>Not until</b> I read the book <b>did</b> I <b>understand</b> the film.</li></ul><p class="inv-note">⚠️ Inversion is in the <b>second</b> (main) clause, never after <i>until</i>.</p></div><div class="inv-card"><h4><span class="inv-num">7</span>Little</h4><span class="inv-form">Little + aux + S + V (= S didn't realise / had no idea)</span><ul><li><b>Little did</b> I <b>know</b> that my life was about to change.</li><li><b>Little do</b> they <b>realise</b> how much the project costs.</li></ul><p class="inv-note">⚠️ Used with verbs of knowing: <i>know, realise, suspect, imagine, understand</i>.</p></div><div class="inv-card"><h4><span class="inv-num">8</span>Conditional inversion (no “if”)</h4><span class="inv-form">Had + S + PP · Were + S + to / adj · Should + S + V</span><ul><li><b>Had I known</b> about the test, I would have studied. (= If I had known)</li><li><b>Were I</b> you, I would apply. / <b>Were</b> the price <b>to rise</b>, …</li><li><b>Should you need</b> help, please call us. (= If you need)</li><li><b>Had it not been for</b> the doctor, he would have died.</li></ul><p class="inv-note">⚠️ Negatives are <b>not</b> contracted: <i>Had it <b>not</b> been…</i>, never <b>✗ Hadn't it been…</b></p></div><div class="inv-card"><h4><span class="inv-num">9</span>So / Such … that</h4><span class="inv-form">So + adj / adv + aux + S … that · Such + be + noun … that</span><ul><li><b>So difficult was</b> the test <b>that</b> nobody finished it.</li><li><b>So quickly did</b> the news <b>spread that</b> the website crashed.</li><li><b>Such was</b> the demand <b>that</b> tickets sold out in minutes.</li></ul><p class="inv-note">⚠️ Very emphatic, typical of literature and formal speeches.</p></div><div class="inv-card"><h4><span class="inv-num">10</span>So / Neither / Nor (short responses)</h4><span class="inv-form">So / Neither / Nor + aux + S</span><ul><li>“I love jazz.” – “<b>So do I</b>.”</li><li>“I can't swim.” – “<b>Neither can</b> my brother.”</li><li>He didn't call, <b>nor did</b> he <b>send</b> a message.</li></ul><p class="inv-note">⚠️ Positive → <b>So</b>. Negative → <b>Neither / Nor</b>. The auxiliary must match: <i>“I've finished.” – “So <b>have</b> I.”</i></p></div><div class="inv-card"><h4><span class="inv-num">11</span>Full inversion after place &amp; direction adverbials</h4><span class="inv-form">Here / There / Down / Up / Out / Adverbial of place + verb + noun subject</span><ul><li><b>Here comes</b> the bus!</li><li><b>Down came</b> the rain.</li><li><b>On the hill stood</b> an old castle.</li><li><b>In the corner of the room sat</b> a tiny black cat.</li></ul><p class="inv-note">⚠️ The <b>whole verb</b> goes before the subject (no <i>do</i>). With a <b>pronoun</b> subject, there is no inversion: <i>Here <b>it comes</b></i>, not <b>✗ Here comes it</b>.</p></div><div class="inv-card"><h4><span class="inv-num">12</span>Comparisons with “as” and “than”</h4><span class="inv-form">as / than + aux + noun subject</span><ul><li>She works in Brussels, <b>as does</b> her husband.</li><li>Teenagers use social media more <b>than do</b> their parents.</li></ul><p class="inv-note">⚠️ Optional and formal. With pronouns, keep normal order: <i>…than <b>they do</b></i>.</p></div><div class="inv-card"><h4><span class="inv-num">13</span>Reporting verbs after direct speech</h4><span class="inv-form">“…,” + verb + noun subject</span><ul><li>“Stop talking!” <b>shouted the teacher</b>.</li><li>“We did it!” <b>cried the team</b>.</li></ul><p class="inv-note">⚠️ Common in stories. With pronouns, use normal order: <i>“Stop!” <b>she shouted</b></i>.</p></div><div class="inv-card"><h4><span class="inv-num">14</span>Wishes and exclamations</h4><span class="inv-form">May + S + V! · Long live …! · Negative question as exclamation</span><ul><li><b>May</b> all your dreams <b>come true</b>!</li><li><b>Long live</b> the King!</li><li><b>Isn't it</b> a wonderful day!</li></ul><p class="inv-note">⚠️ Formal, fixed expressions, typical for toasts, cards and speeches.</p></div></div>
+</section>
+
+<section id="use">
+  <div class="section-head">
+    <span class="tag">Part 3 · Usage</span>
+    <h2>How and When to Use Inversion</h2>
+    <p>Inversion is mainly used for <strong>emphasis</strong> and in a <strong>formal</strong> style: essays, speeches, formal letters, news, literature and exam writing tasks.</p>
+  </div>
+  <table class="grammar-table">
+    <tr><th>Situation</th><th>Useful inversion</th><th>Example</th></tr>
+    <tr><td>Formal essay (maturita writing)</td><td>Not only…, Rarely…, Only by…</td><td><em>Only by investing in education can we reduce poverty.</em></td></tr>
+    <tr><td>Formal letter / email</td><td>Should you…, Were you to…</td><td><em>Should you have any questions, do not hesitate to contact me.</em></td></tr>
+    <tr><td>Rules and warnings</td><td>Under no circumstances…, On no account…</td><td><em>On no account should students use phones during the exam.</em></td></tr>
+    <tr><td>Storytelling</td><td>Hardly… when, No sooner… than, Little did…</td><td><em>Little did she know that her life would change forever.</em></td></tr>
+    <tr><td>Everyday conversation</td><td>So do I, Neither can I, Here comes…</td><td><em>“I'm tired.” – “So am I.”</em></td></tr>
+  </table>
+
+  <h3 style="margin-top:1.8rem; font-size:1.15rem;">Exceptions: when NOT to invert</h3>
+  <div class="note-box"><strong>“Only” + subject:</strong> if <em>only</em> describes the subject, there is no inversion. <em><b>Only Peter knew</b> the answer.</em> (not ✗ Only did Peter know)</div>
+  <div class="note-box"><strong>Negative word not at the start:</strong> <em>I have <b>never</b> seen it.</em> Inversion happens only when the negative expression starts the clause.</div>
+  <div class="note-box"><strong>“Not until” / “Only after” + clause:</strong> the inversion is in the main clause, not in the time clause. <em>Not until <b>he left</b> <b>did I</b> relax.</em> (not ✗ Not until did he leave…)</div>
+  <div class="note-box"><strong>Pronoun subjects with full inversion:</strong> <em>Here <b>it comes</b>. Off <b>they went</b>. “Wait!” <b>he said</b>.</em></div>
+  <div class="note-box"><strong>Time phrases with “no”:</strong> <em><b>In no time</b></em> means “very quickly”, not a negative, so there is no inversion: <em>In no time <b>we</b> had finished.</em> Compare: <em>At no time <b>did we</b> give up.</em></div>
+  <div class="note-box"><strong>Contractions in conditional inversion:</strong> <em>Had it <b>not</b> been for…</em> ✓ &nbsp; <em>✗ Hadn't it been for…</em></div>
+  <div class="note-box"><strong>💡 Exam hack:</strong> In keyword transformations, if the key word is <em>NEVER, RARELY, SOONER, ONLY, UNTIL, LITTLE, HAD, SHOULD</em> or <em>SUCH</em>, think “inversion” first. Then check: did I add <em>do/does/did</em>? Is the tense the same as in the original?</div>
+</section>
+
+<section id="tags">
+  <div class="section-head">
+    <span class="tag">Part 4 · Question Tags</span>
+    <h2>Question Tags: Rules &amp; Exceptions</h2>
+    <p>A question tag is a short question at the end of a sentence. It is also a form of inversion: auxiliary + pronoun.</p>
+  </div>
+  <div class="card">
+    <h3 style="font-size:1.1rem; margin-bottom:.5rem;">Basic rules</h3>
+    <p><strong>1.</strong> Positive sentence → negative tag: <em>You're coming, <b>aren't you</b>?</em><br>
+    <strong>2.</strong> Negative sentence → positive tag: <em>She can't drive, <b>can she</b>?</em><br>
+    <strong>3.</strong> Use the same auxiliary or modal. If there is none, use <em>do / does / did</em>: <em>He plays the guitar, <b>doesn't he</b>?</em><br>
+    <strong>4.</strong> Use a pronoun, not the noun: <em>Your sister lives in Nitra, doesn't <b>she</b>?</em></p>
+    <p style="margin-bottom:0;"><strong>Intonation:</strong> ↘ <strong>falling</strong> = you expect agreement (<em>It's cold, isn't it? ↘</em>). ↗ <strong>rising</strong> = a real question, you are not sure (<em>You've paid, haven't you? ↗</em>).</p>
+  </div>
+
+  <h3 style="margin-top:1.8rem; font-size:1.15rem;">Exceptions you must know</h3>
+  <div class="tablewrap">
+  <table class="grammar-table">
+    <tr><th>Sentence type</th><th>Tag</th><th>Example</th></tr>
+    <tr><td>I am</td><td>aren't I?</td><td>I'm right, <b>aren't I</b>? (not ✗ amn't I)</td></tr>
+    <tr><td>I'm not</td><td>am I?</td><td>I'm not late, <b>am I</b>?</td></tr>
+    <tr><td>Let's</td><td>shall we?</td><td>Let's go to the cinema, <b>shall we</b>?</td></tr>
+    <tr><td>Imperative (request)</td><td>will you? / would you? / can you? / won't you?</td><td>Open the window, <b>will you</b>? / Sit down, <b>won't you</b>? (invitation)</td></tr>
+    <tr><td>Negative imperative</td><td>will you?</td><td>Don't be late, <b>will you</b>?</td></tr>
+    <tr><td>There is / There are</td><td>isn't there? / aren't there?</td><td>There's a problem, <b>isn't there</b>?</td></tr>
+    <tr><td>Nobody / Somebody / Everybody / No one</td><td>they</td><td>Everybody came, <b>didn't they</b>? · Nobody called, <b>did they</b>?</td></tr>
+    <tr><td>Nothing / Everything / Something</td><td>it</td><td>Nothing happened, <b>did it</b>? · Everything's fine, <b>isn't it</b>?</td></tr>
+    <tr><td>This / That</td><td>it</td><td>That's your bag, <b>isn't it</b>?</td></tr>
+    <tr><td>These / Those</td><td>they</td><td>These are new, <b>aren't they</b>?</td></tr>
+    <tr><td>never, hardly, seldom, rarely, barely, no, few, little</td><td>positive tag</td><td>You <b>never</b> listen, <b>do you</b>? · He <b>hardly</b> ate anything, <b>did he</b>?</td></tr>
+    <tr><td>have (possession) / have got</td><td>don't / haven't</td><td>You have a car, <b>don't you</b>? · You've got a car, <b>haven't you</b>?</td></tr>
+    <tr><td>used to</td><td>didn't?</td><td>You used to live here, <b>didn't you</b>?</td></tr>
+    <tr><td>had better / would rather</td><td>hadn't? / wouldn't?</td><td>We'd better leave, <b>hadn't we</b>? · You'd rather stay, <b>wouldn't you</b>?</td></tr>
+    <tr><td>ought to</td><td>shouldn't? (oughtn't? is very formal)</td><td>We ought to help, <b>shouldn't we</b>?</td></tr>
+    <tr><td>must (obligation)</td><td>mustn't?</td><td>You must go, <b>mustn't you</b>?</td></tr>
+    <tr><td>must (deduction)</td><td>tag matches the verb that follows</td><td>He must be tired, <b>isn't he</b>? · She must have forgotten, <b>hasn't she</b>?</td></tr>
+    <tr><td>I think / I believe / I suppose + clause</td><td>tag matches the clause</td><td>I think he's right, <b>isn't he</b>? · I don't think it works, <b>does it</b>?</td></tr>
+    <tr><td>One (formal)</td><td>one</td><td>One can't be too careful, <b>can one</b>?</td></tr>
+  </table>
+  </div>
+  <div class="note-box"><strong>Same-way tags (positive + positive):</strong> used to show surprise, interest or sarcasm, not to ask. <em>So you've bought a new phone, <b>have you</b>?</em> / <em>Oh, you're a genius, <b>are you</b>?</em></div>
+  <div class="note-box"><strong>Contracted tags:</strong> negative tags are almost always contracted: <em>isn't it, don't you</em>. Full form (<em>does he not?</em>) is very formal.</div>
+</section>
+
+<section id="exercises">
+  <div class="section-head">
+    <span class="tag">Part 5 · Practice</span>
+    <h2>Exercise Bank: Inversion &amp; Question Tags</h2>
+    <p>Eight self-checking exercises. After answering, click "Why?" to see the explanation.</p>
+  </div>
+  <div class="ex-block"><div class="ex-head"><span class="ex-num">1</span><h3>Choose the Correct Inversion</h3><span class="ex-type">Multiple choice</span></div>
+    <p class="ex-instructions">Click the option that correctly completes each sentence.</p><div class="ex-body card" id="exMC"></div><div class="ip-score" id="exMC-score"></div></div>
+  <div class="ex-block"><div class="ex-head"><span class="ex-num">2</span><h3>Name the Type</h3><span class="ex-type">Matching</span></div>
+    <p class="ex-instructions">Click a sentence on the left, then the type of inversion on the right.</p><div class="ex-body card" id="exMatch"></div></div>
+  <div class="ex-block"><div class="ex-head"><span class="ex-num">3</span><h3>Key Word Transformation</h3><span class="ex-type">Typed answer · auto-check</span></div>
+    <p class="ex-instructions">Complete the second sentence using the word in capitals. Type only the missing words, then click "Check answers".</p><div class="ex-body card" id="exKW"></div>
+    <button class="check-btn" id="exKW-check">Check answers</button><div class="ip-score" id="exKW-score"></div></div>
+  <div class="ex-block"><div class="ex-head"><span class="ex-num">4</span><h3>Correct or Incorrect?</h3><span class="ex-type">Grammaticality judgement</span></div>
+    <p class="ex-instructions">Decide whether each sentence is grammatically correct.</p><div class="ex-body card" id="exTF"></div><div class="ip-score" id="exTF-score"></div></div>
+  <div class="ex-block"><div class="ex-head"><span class="ex-num">5</span><h3>Sentence Builder</h3><span class="ex-type">Word order</span></div>
+    <p class="ex-instructions">Click the words in the correct order. Click a word in your sentence to send it back.</p><div class="ex-body card" id="exOrder"></div></div>
+  <div class="ex-block"><div class="ex-head"><span class="ex-num">6</span><h3>Question Tags</h3><span class="ex-type">Dropdown gap-fill</span></div>
+    <p class="ex-instructions">Choose the correct question tag, then click "Check answers". Watch out for the exceptions!</p><div class="ex-body card" id="exTag"></div>
+    <button class="check-btn" id="exTag-check">Check answers</button><div class="ip-score" id="exTag-score"></div></div>
+  <div class="ex-block"><div class="ex-head"><span class="ex-num">7</span><h3>Write the Tag</h3><span class="ex-type">Typed answer · auto-check</span></div>
+    <p class="ex-instructions">Type the question tag (for example: <em>isn't it</em>), then click "Check answers".</p><div class="ex-body card" id="exTagType"></div>
+    <button class="check-btn" id="exTagType-check">Check answers</button><div class="ip-score" id="exTagType-score"></div></div>
+  <div class="ex-block"><div class="ex-head"><span class="ex-num">8</span><h3>Make It Formal</h3><span class="ex-type">Guided writing</span></div>
+    <p class="ex-instructions">Rewrite each sentence using the inversion in brackets. Compare your version with the model answer.</p><div class="ex-body card" id="exWrite"></div></div>
+</section>
+
+</main>
+<footer>English in Context · Grammar: Inversion &amp; Question Tags · B2–C1 · Maturita Exam · Built for classroom use</footer>
+<script>
+
+/* ================= NAV SCROLLSPY + PROGRESS BAR ================= */
+const navLinks = document.querySelectorAll('nav a');
+const sections = [...navLinks].map(a => document.querySelector(a.getAttribute('href')));
+function onScroll(){
+  const doc = document.documentElement;
+  const scrolled = (doc.scrollTop) / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = scrolled + '%';
+  let current = sections[0];
+  sections.forEach(sec => { if (sec && window.scrollY + 120 >= sec.offsetTop) current = sec; });
+  navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current.id));
+}
+window.addEventListener('scroll', onScroll);
+onScroll();
+
+/* ================= SHARED: EXPLANATION TOGGLE ================= */
+function ensureExplainBox(div, text){
+  if (!text) return;
+  let box = div.querySelector('.explain-box');
+  if (!box){
+    const btn = document.createElement('button');
+    btn.className = 'ghost-btn';
+    btn.style.cssText = 'margin-top:.5rem; font-size:.78rem; padding:.32rem .85rem;';
+    btn.textContent = 'Why?';
+    box = document.createElement('div');
+    box.className = 'model-answer explain-box';
+    box.textContent = text;
+    btn.onclick = () => { box.classList.toggle('shown'); btn.textContent = box.classList.contains('shown') ? 'Hide explanation' : 'Why?'; };
+    div.appendChild(btn);
+    div.appendChild(box);
+  } else {
+    box.textContent = text;
+  }
+}
+
+
+(function(){
+  const norm = s => s.toLowerCase().replace(/[’']/g,"'").replace(/[.,!?;:]/g,'').replace(/\s+/g,' ').trim();
+  const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const score = (id, g, t) => { const e = document.getElementById(id + '-score'); if (e) e.textContent = 'Score: ' + g + ' / ' + t; };
+
+  function mcEx(id, data, labels){
+    const box = document.getElementById(id); let done = 0, right = 0;
+    data.forEach((it, i) => {
+      const d = document.createElement('div'); d.className = 'poll-q';
+      d.innerHTML = '<div class="q">' + (i+1) + '. ' + esc(it.q || it.s) + '</div><div class="ip-opts"></div>';
+      const w = d.querySelector('.ip-opts');
+      const opts = labels || it.opts; const correct = labels ? (it.ok ? 0 : 1) : it.c;
+      opts.forEach((o, oi) => {
+        const b = document.createElement('button'); b.type = 'button'; b.className = 'ip-opt'; b.textContent = o;
+        b.onclick = () => {
+          w.querySelectorAll('.ip-opt').forEach(x => x.disabled = true);
+          w.children[correct].classList.add('right');
+          if (oi !== correct) b.classList.add('bad'); else right++;
+          done++; ensureExplainBox(d, it.why);
+          if (done === data.length) score(id, right, data.length);
+        };
+        w.appendChild(b);
+      });
+      box.appendChild(d);
+    });
+  }
+  function typeEx(id, data, render){
+    const box = document.getElementById(id);
+    data.forEach((it, i) => { const d = document.createElement('div'); d.className = 'cloze-item'; d.innerHTML = render(it, i); box.appendChild(d); });
+    document.getElementById(id + '-check').onclick = () => {
+      let g = 0;
+      box.querySelectorAll('.cloze-item').forEach((d, i) => {
+        const inp = d.querySelector('input'); const ok = data[i].ans.map(norm).includes(norm(inp.value));
+        if (ok) g++; inp.classList.toggle('ip-good', ok); inp.classList.toggle('ip-badin', !ok);
+        ensureExplainBox(d, (ok ? '✓ Correct! ' : '✗ ') + 'Model answer: ' + ((data[i].pre ? data[i].pre + ' ' : '') + data[i].ans[0] + ' ' + (data[i].post || '')).trim().replace(/^./, c => c.toUpperCase()));
+      });
+      score(id, g, data.length);
+    };
+  }
+  function selEx(id, data){
+    const box = document.getElementById(id);
+    data.forEach((it, i) => {
+      const d = document.createElement('div'); d.className = 'cloze-item';
+      d.innerHTML = (i+1) + '. ' + esc(it.pre) + ' <select class="ip-select"><option value="">choose…</option>' + it.opts.map((o, oi) => '<option value="' + oi + '">' + esc(o) + '</option>').join('') + '</select> ?';
+      box.appendChild(d);
+    });
+    document.getElementById(id + '-check').onclick = () => {
+      let g = 0;
+      box.querySelectorAll('.cloze-item').forEach((d, i) => {
+        const s = d.querySelector('select'); const ok = s.value !== '' && +s.value === data[i].c;
+        if (ok) g++; s.classList.toggle('ip-ok', ok); s.classList.toggle('ip-no', !ok);
+        ensureExplainBox(d, (ok ? '✓ ' : '✗ Correct: ' + data[i].opts[data[i].c] + '. ') + data[i].why);
+      });
+      score(id, g, data.length);
+    };
+  }
+  function matchEx(id, data){
+    const box = document.getElementById(id);
+    box.innerHTML = '<div class="ip-match"><div class="ip-match-col"></div><div class="ip-match-col"></div></div><div class="ip-score"></div>';
+    const [L, R] = box.querySelectorAll('.ip-match-col'); const sc = box.querySelector('.ip-score');
+    let picked = null, n = 0;
+    data.forEach((it, i) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'ip-mitem'; b.textContent = it.l;
+      b.onclick = () => { if (b.classList.contains('done')) return; L.querySelectorAll('.ip-mitem').forEach(x => x.classList.remove('sel')); b.classList.add('sel'); picked = i; };
+      L.appendChild(b); });
+    data.map((_, i) => i).sort(() => Math.random() - .5).forEach(i => {
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'ip-mitem'; b.textContent = data[i].r;
+      b.onclick = () => { if (picked === null || b.classList.contains('done')) return;
+        if (picked === i) { b.classList.add('done'); L.children[i].classList.remove('sel'); L.children[i].classList.add('done'); picked = null; if (++n === data.length) sc.textContent = 'All matched! 🎉'; }
+        else { b.classList.add('shake'); setTimeout(() => b.classList.remove('shake'), 400); } };
+      R.appendChild(b); });
+  }
+  function orderEx(id, data){
+    const box = document.getElementById(id);
+    data.forEach((sent, i) => {
+      const words = sent.replace(/[.]$/, '').split(' ');
+      const d = document.createElement('div'); d.className = 'poll-q';
+      d.innerHTML = '<div class="q">Sentence ' + (i+1) + '</div><div class="ip-built"></div><div class="ip-bank"></div><div class="ip-row-btns"><button type="button" class="ghost-btn" style="font-size:.8rem;padding:.35rem .9rem;">Check</button><button type="button" class="ghost-btn" style="font-size:.8rem;padding:.35rem .9rem;">Reset</button></div><div class="ip-fb" style="margin-top:.4rem;"></div>';
+      const built = d.querySelector('.ip-built'), bank = d.querySelector('.ip-bank'), fb = d.querySelector('.ip-fb');
+      const [chk, rst] = d.querySelectorAll('.ip-row-btns button');
+      const fill = () => { bank.innerHTML = ''; built.innerHTML = ''; fb.textContent = ''; fb.className = 'ip-fb';
+        words.slice().sort(() => Math.random() - .5).forEach(w => { const b = document.createElement('button'); b.type = 'button'; b.className = 'ip-word'; b.textContent = w;
+          b.onclick = () => (b.parentElement === bank ? built : bank).appendChild(b); bank.appendChild(b); }); };
+      fill();
+      chk.onclick = () => { const got = [...built.children].map(b => b.textContent).join(' ');
+        if (norm(got) === norm(sent)) { fb.textContent = '✓ ' + sent; fb.className = 'ip-fb ip-ok'; }
+        else { fb.textContent = bank.children.length ? '✗ Use all the words first.' : '✗ Not quite. Where does the auxiliary go?'; fb.className = 'ip-fb ip-no'; } };
+      rst.onclick = fill; box.appendChild(d);
+    });
+  }
+  function writeEx(id, data){
+    const box = document.getElementById(id);
+    data.forEach((it, i) => {
+      const d = document.createElement('div'); d.className = 'poll-q';
+      d.innerHTML = '<div class="q">' + (i+1) + '. ' + esc(it.s) + '</div><textarea class="ip-ta" placeholder="Write your sentence here…" aria-label="Your sentence ' + (i+1) + '"></textarea><button type="button" class="ghost-btn" style="font-size:.8rem;padding:.35rem .9rem;">Show model answer</button><div class="model-answer">' + esc(it.m) + '</div>';
+      const b = d.querySelector('button'), m = d.querySelector('.model-answer');
+      b.onclick = () => { m.classList.toggle('shown'); b.textContent = m.classList.contains('shown') ? 'Hide model answer' : 'Show model answer'; };
+      box.appendChild(d);
+    });
+  }
+
+  mcEx('exMC', [{"q": "Never ___ such an inspiring speech.", "opts": ["I have heard", "have I heard", "I heard", "did I heard"], "c": 1, "why": "After a negative adverbial at the start: auxiliary + subject + verb → Never have I heard."}, {"q": "Rarely ___ late for school.", "opts": ["he is", "does he be", "is he", "he does"], "c": 2, "why": "With be, invert be and the subject: Rarely is he late. No do with be."}, {"q": "Not only ___ the exam, but she also got the highest score.", "opts": ["she passed", "did she pass", "passed she", "did she passed"], "c": 1, "why": "No auxiliary in 'she passed', so add did + base form: did she pass."}, {"q": "Hardly had the film started ___ the fire alarm went off.", "opts": ["than", "when", "that", "then"], "c": 1, "why": "Hardly / Scarcely / Barely … when. (No sooner … than.)"}, {"q": "No sooner ___ home than it started to snow.", "opts": ["we had got", "had we got", "did we get", "we got"], "c": 1, "why": "No sooner + had + subject + past participle … than."}, {"q": "___ I known about the traffic, I would have left earlier.", "opts": ["If", "Had", "Have", "Should"], "c": 1, "why": "Conditional inversion (3rd conditional): Had I known = If I had known."}, {"q": "___ you need any further information, please contact us.", "opts": ["Should", "Would", "Had", "Were"], "c": 0, "why": "Should you need = If you need. Typical of formal letters."}, {"q": "Only after the results were published ___ how serious the problem was.", "opts": ["we realised", "did we realise", "we did realise", "realised we"], "c": 1, "why": "With Only after + clause, invert the main clause: did we realise."}, {"q": "Little ___ that her video would go viral.", "opts": ["she knew", "did she know", "knew she", "she did know"], "c": 1, "why": "Little + did + subject + know."}, {"q": "“I can't stand horror films.” – “___.”", "opts": ["So can I", "Neither can I", "Neither I can", "So I can't"], "c": 1, "why": "Negative statement → Neither / Nor + aux + subject: Neither can I."}, {"q": "Here ___!", "opts": ["comes it", "it comes", "does it come", "comes"], "c": 1, "why": "With a pronoun subject there is no full inversion: Here it comes. (But: Here comes the bus.)"}, {"q": "So popular ___ that tickets sold out in five minutes.", "opts": ["the concert was", "was the concert", "did the concert be", "the concert were"], "c": 1, "why": "So + adjective + be + subject + that: So popular was the concert that…"}]);
+  matchEx('exMatch', [{"l": "Seldom do we get such good weather.", "r": "Negative adverbial"}, {"l": "Had she left earlier, she wouldn't have missed the train.", "r": "Conditional inversion"}, {"l": "Not until midnight did the party end.", "r": "Not until"}, {"l": "Such was his talent that he became famous at 16.", "r": "So / Such … that"}, {"l": "Round the corner came a huge lorry.", "r": "Full inversion after place / direction"}, {"l": "“Well done!” said the coach.", "r": "Reporting verb after direct speech"}, {"l": "Only by practising every day can you improve.", "r": "Only + manner expression"}]);
+  typeEx('exKW', [{"src": "I have never been so embarrassed in my life.", "kw": "NEVER", "pre": "", "post": "so embarrassed in my life.", "ans": ["never have i been"]}, {"src": "As soon as she arrived, the meeting started.", "kw": "SOONER", "pre": "No", "post": "than the meeting started.", "ans": ["sooner had she arrived"]}, {"src": "If I had known the truth, I wouldn't have trusted him.", "kw": "HAD", "pre": "", "post": "the truth, I wouldn't have trusted him.", "ans": ["had i known"]}, {"src": "You must not open this door in any situation.", "kw": "CIRCUMSTANCES", "pre": "Under", "post": "this door.", "ans": ["no circumstances must you open", "no circumstances should you open"]}, {"src": "He didn't realise that he was being filmed.", "kw": "LITTLE", "pre": "", "post": "that he was being filmed.", "ans": ["little did he realise", "little did he know"]}, {"src": "I didn't understand the problem until I read the report.", "kw": "UNTIL", "pre": "Not", "post": "understand the problem.", "ans": ["until i read the report did i", "until i had read the report did i"]}, {"src": "The storm was so strong that trees fell down.", "kw": "SO", "pre": "", "post": "that trees fell down.", "ans": ["so strong was the storm"]}, {"src": "If you need help, call me.", "kw": "SHOULD", "pre": "", "post": "help, call me.", "ans": ["should you need"]}], (it, i) => '<div class="ip-src">' + (i+1) + '. ' + esc(it.src) + ' <span class="ip-kw">' + it.kw + '</span></div>' + (it.pre ? esc(it.pre) + ' ' : '') + '<input type="text" class="text-input" style="width:min(290px,100%);" aria-label="Missing words ' + (i+1) + '"> ' + esc(it.post));
+  mcEx('exTF', [{"s": "Rarely she goes to the cinema.", "ok": false, "why": "After Rarely at the start, invert: Rarely does she go to the cinema."}, {"s": "Only Anna knew the password.", "ok": true, "why": "Correct: 'only' describes the subject (Anna), so there is no inversion."}, {"s": "Not until I got home I noticed the missing wallet.", "ok": false, "why": "Invert the main clause: Not until I got home did I notice…"}, {"s": "Hadn't it been for the rain, we would have won.", "ok": false, "why": "No contraction in conditional inversion: Had it not been for the rain…"}, {"s": "Can you tell me where is the museum?", "ok": false, "why": "Indirect question → no inversion: Can you tell me where the museum is?"}, {"s": "Up went the prices of petrol.", "ok": true, "why": "Correct: full inversion after a direction adverb with a noun subject."}, {"s": "In no time we had finished the project.", "ok": true, "why": "Correct: 'in no time' means 'very quickly', so there is no inversion."}, {"s": "Not only the app is free, but it is also easy to use.", "ok": false, "why": "Invert the first part: Not only is the app free, but…"}], ['✓ Correct', '✗ Incorrect']);
+  orderEx('exOrder', ["Under no circumstances should you share your password.", "Not only did he apologise, but he also paid for the damage.", "Were I in your position, I would accept the offer.", "Scarcely had we sat down when the lights went out."]);
+  selEx('exTag', [{"pre": "I'm your best friend,", "opts": ["amn't I", "aren't I", "am not I"], "c": 1, "why": "I am → aren't I."}, {"pre": "Let's take a break,", "opts": ["shall we", "don't we", "let we"], "c": 0, "why": "Let's → shall we."}, {"pre": "Nobody called while I was out,", "opts": ["did he", "didn't they", "did they"], "c": 2, "why": "Nobody → they; 'nobody' is negative, so the tag is positive."}, {"pre": "You never tell lies,", "opts": ["don't you", "do you", "never you"], "c": 1, "why": "'Never' makes the sentence negative → positive tag."}, {"pre": "There's a pharmacy near here,", "opts": ["isn't it", "isn't there", "is there"], "c": 1, "why": "There is → isn't there."}, {"pre": "Don't forget your passport,", "opts": ["will you", "do you", "don't you"], "c": 0, "why": "Negative imperative → will you."}, {"pre": "You used to play the piano,", "opts": ["usedn't you", "didn't you", "weren't you"], "c": 1, "why": "Used to → didn't."}, {"pre": "We'd better go now,", "opts": ["hadn't we", "wouldn't we", "didn't we"], "c": 0, "why": "'d better = had better → hadn't we."}, {"pre": "Everything is ready,", "opts": ["aren't they", "isn't it", "isn't everything"], "c": 1, "why": "Everything / nothing / something → it."}, {"pre": "I don't think she's coming,", "opts": ["do I", "is she", "isn't she"], "c": 1, "why": "After 'I (don't) think', the tag matches the clause: she's coming. The negative is in 'don't think', so the tag is positive: is she."}]);
+  typeEx('exTagType', [{"pre": "Your brother lives in Bratislava,", "ans": ["doesn't he", "does not he", "does he not"]}, {"pre": "Those are your headphones,", "ans": ["aren't they", "are they not"]}, {"pre": "She has hardly eaten anything,", "ans": ["has she"]}, {"pre": "Pass me the salt,", "ans": ["will you", "would you", "can you", "could you", "won't you"]}, {"pre": "That was a great match,", "ans": ["wasn't it", "was it not"]}, {"pre": "You've got a younger sister,", "ans": ["haven't you", "have you not"]}], (it, i) => (i+1) + '. ' + esc(it.pre) + ' <input type="text" class="text-input" style="width:min(170px,100%);" aria-label="Tag ' + (i+1) + '"> ?');
+  writeEx('exWrite', [{"s": "I have rarely seen such a talented student. (Rarely)", "m": "Rarely have I seen such a talented student."}, {"s": "If you should have any questions, please contact me. (Should)", "m": "Should you have any questions, please contact me."}, {"s": "The company not only lost money, but it also lost its best employees. (Not only)", "m": "Not only did the company lose money, but it also lost its best employees."}, {"s": "We can only protect the planet by changing our habits. (Only by)", "m": "Only by changing our habits can we protect the planet."}]);
+})();
+</script>
+</body>
+</html>

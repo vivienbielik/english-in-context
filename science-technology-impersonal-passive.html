@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English in Context · Science &amp; Technology · Impersonal Passive</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+
+:root{
+  --teal-deep:#1F5C56; --teal:#2F7A72; --teal-tint:#E4EFEC;
+  --terracotta:#C1603C; --terracotta-tint:#F4E2D8;
+  --amber:#D9A441; --amber-tint:#F7EDD9;
+  --berry:#8C4A5E; --berry-tint:#F1E1E6;
+  --cream:#FBF6EC; --card:#FFFDF8; --ink:#2A2420; --ink-soft:#6B6259;
+  --line:#E6DFD0; --good:#3B7A57; --good-tint:#E4F0E7; --bad:#B5473A; --bad-tint:#F7E5E1;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0; background:var(--cream); color:var(--ink); font-family:'Source Sans 3',sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:'Fraunces',serif; font-weight:600; margin:0;}
+p{margin:0 0 .9em; max-width:66ch;}
+.wrap{max-width:980px; margin:0 auto; padding:0 1.5rem;}
+
+#progress{position:fixed; top:0; left:0; height:4px; width:0%; background:var(--amber); z-index:100; transition:width .1s linear;}
+
+nav{position:sticky; top:4px; z-index:90; background:rgba(251,246,236,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+nav .wrap{display:flex; gap:1.2rem; overflow-x:auto; padding:.8rem 1.5rem; scrollbar-width:none;}
+nav .wrap::-webkit-scrollbar{display:none;}
+nav a{color:var(--ink-soft); text-decoration:none; font-size:.87rem; font-weight:600; white-space:nowrap; padding-bottom:.25rem; border-bottom:2px solid transparent;}
+nav a.active{color:var(--teal-deep); border-bottom-color:var(--amber);}
+
+.hero{background:linear-gradient(160deg,var(--teal-deep) 0%,var(--teal) 65%); color:#fff; padding:3rem 1.5rem 3.6rem; position:relative; overflow:hidden;}
+.hero::after{content:"";position:absolute;right:-40px;top:-40px;width:260px;height:260px;border:1px solid rgba(255,255,255,.16);border-radius:50%;}
+.hero::before{content:"";position:absolute;right:70px;bottom:-100px;width:190px;height:190px;border:1px solid rgba(255,255,255,.12);border-radius:50%;}
+.hero-inner{max-width:980px;margin:0 auto;position:relative;z-index:1;}
+.hero .kicker{color:var(--amber); font-weight:600; margin-bottom:.5rem; font-size:.95rem;}
+.hero h1{font-size:2.4rem; color:#fff; max-width:22ch;}
+.hero p.lede{color:rgba(255,255,255,.86); max-width:58ch; margin-top:.9rem; font-size:1.03rem;}
+.hero-meta{display:flex; gap:1.6rem; margin-top:1.6rem; flex-wrap:wrap;}
+.hero-meta div{font-size:.85rem; color:rgba(255,255,255,.75);}
+.hero-meta strong{display:block; color:#fff; font-family:'Fraunces',serif; font-size:1.15rem;}
+
+section{padding:3.2rem 0; border-bottom:1px solid var(--line);}
+section:last-of-type{border-bottom:none;}
+.section-head{margin-bottom:1.6rem;}
+.section-head .tag{color:var(--terracotta); font-weight:600; font-size:.82rem; margin-bottom:.35rem; display:block;}
+.section-head h2{font-size:1.85rem;}
+.section-head p{color:var(--ink-soft); margin-top:.5rem;}
+
+.card{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:1.5rem 1.6rem;}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:1.2rem;}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:1.1rem;}
+@media(max-width:720px){.grid2,.grid3{grid-template-columns:1fr;}}
+
+.poll-q{margin-bottom:1.6rem;}
+.poll-q .q{font-weight:600; margin-bottom:.6rem;}
+.poll-opts{display:flex; flex-wrap:wrap; gap:.6rem;}
+.poll-opt{border:1px solid var(--line); background:var(--card); color:var(--ink); padding:.55rem 1rem; border-radius:20px; cursor:pointer; font-size:.92rem;}
+.poll-opt.picked{background:var(--teal-tint); border-color:var(--teal); color:var(--teal-deep); font-weight:600;}
+
+.reading{border-left:3px solid var(--teal); padding-left:1.3rem;}
+.reading p{max-width:none;}
+.check-box{margin-top:1.5rem; background:var(--teal-tint); border-radius:10px; padding:1.2rem 1.4rem;}
+.check-box .q{font-weight:600; margin-bottom:.5rem;}
+.check-box .opts{display:flex; flex-direction:column; gap:.4rem; margin-bottom:1rem;}
+.check-box label{display:flex; gap:.5rem; align-items:flex-start; cursor:pointer; font-size:.95rem;}
+.result-line{font-weight:600; font-size:.9rem; padding:.3rem 0; min-height:1.4em;}
+.result-line.good{color:var(--good);}
+.result-line.bad{color:var(--bad);}
+button.check-btn{background:var(--teal-deep); color:#fff; border:none; padding:.6rem 1.3rem; border-radius:20px; font-weight:600; cursor:pointer; font-size:.9rem;}
+button.check-btn:hover{background:var(--teal);}
+button.ghost-btn{background:transparent; color:var(--teal-deep); border:1px solid var(--teal-deep); padding:.55rem 1.2rem; border-radius:20px; font-weight:600; cursor:pointer; font-size:.88rem;}
+
+.flash-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem;}
+@media(max-width:720px){.flash-grid{grid-template-columns:repeat(2,1fr);}}
+.flash{perspective:1000px; height:120px; cursor:pointer;}
+.flash-inner{position:relative; width:100%; height:100%; transition:transform .5s; transform-style:preserve-3d;}
+.flash.flipped .flash-inner{transform:rotateY(180deg);}
+.flash-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:10px; display:flex; align-items:center; justify-content:center; text-align:center; padding:.7rem; font-size:.92rem;}
+.flash-front{background:var(--teal-deep); color:#fff; font-weight:600; font-family:'Fraunces',serif; font-size:1.02rem;}
+.flash-back{background:var(--card); border:1px solid var(--line); color:var(--ink); transform:rotateY(180deg); font-size:.83rem;}
+
+.match-wrap{display:grid; grid-template-columns:1fr 1fr; gap:2rem;}
+@media(max-width:720px){.match-wrap{grid-template-columns:1fr; gap:.8rem;}}
+.match-col{display:flex; flex-direction:column; gap:.6rem;}
+.match-item{border:1px solid var(--line); background:var(--card); padding:.65rem .9rem; border-radius:8px; cursor:pointer; font-size:.9rem;}
+.match-item.selected{border-color:var(--amber); background:var(--terracotta-tint);}
+.match-item.matched{border-color:var(--good); background:var(--good-tint); cursor:default;}
+.match-item.wrong{animation:shake .3s;}
+@keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-5px);}75%{transform:translateX(5px);}}
+
+table.grammar-table{width:100%; border-collapse:collapse; font-size:.88rem; margin:1rem 0;}
+table.grammar-table th, table.grammar-table td{border:1px solid var(--line); padding:.55rem .7rem; text-align:left;}
+table.grammar-table th{background:var(--teal-tint); color:var(--teal-deep); font-weight:700;}
+
+.note-box{background:var(--terracotta-tint); border-left:3px solid var(--terracotta); padding:1rem 1.2rem; border-radius:0 8px 8px 0; margin:1.2rem 0; font-size:.92rem;}
+.note-box strong{color:var(--terracotta);}
+
+.cloze-item{margin-bottom:1rem; font-size:.96rem; line-height:2;}
+.cloze-item select, .cloze-item input.text-input{border:1px solid var(--teal); border-radius:6px; padding:.25rem .5rem; font-family:inherit; font-size:.92rem; background:#fff; color:var(--ink); margin:0 .15rem;}
+.cloze-item select.correct, .text-input.correct{border-color:var(--good); background:var(--good-tint);}
+.cloze-item select.incorrect, .text-input.incorrect{border-color:var(--bad); background:var(--bad-tint);}
+.text-input{width:150px;}
+
+.chip-pool{display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:1.4rem;}
+.chip{background:var(--card); border:1px solid var(--teal); color:var(--teal-deep); padding:.4rem .85rem; border-radius:16px; cursor:pointer; font-size:.87rem; font-weight:600;}
+.chip.selected{background:var(--teal-deep); color:#fff;}
+.chip.placed{opacity:.35; cursor:default;}
+.buckets{display:grid; grid-template-columns:repeat(4,1fr); gap:1rem;}
+@media(max-width:820px){.buckets{grid-template-columns:repeat(2,1fr);}}
+.bucket{border:2px dashed var(--line); border-radius:10px; padding:.9rem; min-height:130px;}
+.bucket h4{font-size:.8rem; color:var(--teal-deep); margin-bottom:.6rem; font-family:'Fraunces',serif;}
+.bucket .placed-chip{display:inline-block; margin:.15rem; padding:.3rem .6rem; border-radius:12px; font-size:.78rem;}
+.bucket .placed-chip.right{background:var(--good-tint); color:var(--good);}
+.bucket .placed-chip.wrong{background:var(--bad-tint); color:var(--bad);}
+
+.transform-item{margin-bottom:1.5rem;}
+.transform-item .direct{font-style:italic; margin-bottom:.5rem;}
+.transform-item textarea{width:100%; min-height:56px; border:1px solid var(--line); border-radius:8px; padding:.6rem .8rem; font-family:inherit; font-size:.92rem; resize:vertical;}
+.model-answer{display:none; margin-top:.5rem; background:var(--teal-tint); padding:.6rem .9rem; border-radius:8px; font-size:.9rem; color:var(--teal-deep);}
+.model-answer.shown{display:block;}
+
+.quiz-item{margin-bottom:1.4rem; padding-bottom:1.4rem; border-bottom:1px solid var(--line);}
+.quiz-item:last-of-type{border-bottom:none;}
+.quiz-item .q{font-weight:600; margin-bottom:.6rem;}
+.quiz-item .opts{display:flex; flex-direction:column; gap:.4rem;}
+.quiz-item label{display:flex; gap:.5rem; align-items:flex-start; cursor:pointer; font-size:.95rem;}
+#quizScore{margin-top:1rem; font-family:'Fraunces',serif; font-size:1.3rem; color:var(--teal-deep); display:none;}
+
+.ex-block{margin-bottom:2.6rem;}
+.ex-head{display:flex; align-items:baseline; gap:.6rem; margin-bottom:.3rem; flex-wrap:wrap;}
+.ex-head .ex-num{background:var(--teal-deep); color:#fff; font-family:'Fraunces',serif; font-weight:700; width:2rem; height:2rem; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.95rem; flex-shrink:0;}
+.ex-head h3{font-size:1.1rem;}
+.ex-type{color:var(--terracotta); font-size:.8rem; font-weight:600; font-style:italic;}
+.ex-instructions{color:var(--ink-soft); font-size:.9rem; margin:.3rem 0 1rem 2.6rem;}
+.ex-body{margin-left:2.6rem;}
+@media(max-width:600px){.ex-body,.ex-instructions{margin-left:0;}}
+
+.oddset{margin-bottom:1.3rem;}
+.oddset .items{display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:.4rem;}
+.oddset .oitem{border:1px solid var(--line); background:var(--card); padding:.4rem .8rem; border-radius:16px; cursor:pointer; font-size:.85rem;}
+.oddset .oitem.right{background:var(--good-tint); border-color:var(--good); color:var(--good); font-weight:600;}
+.oddset .oitem.wrong{background:var(--bad-tint); border-color:var(--bad); color:var(--bad);}
+.oddset .explain{display:none; font-size:.86rem; color:var(--teal-deep); background:var(--teal-tint); padding:.5rem .8rem; border-radius:8px;}
+.oddset .explain.shown{display:block;}
+
+.writeup-box{margin-top:1.2rem;}
+.writeup-box textarea{width:100%; min-height:110px; border:1px solid var(--line); border-radius:10px; padding:.8rem; font-family:inherit; font-size:.92rem; resize:vertical;}
+.writeup-meta{display:flex; justify-content:space-between; align-items:center; margin-top:.5rem; font-size:.82rem; color:var(--ink-soft);}
+
+.chart-row{margin-bottom:12px;}
+.chart-label{font-size:.85rem; font-weight:600; margin-bottom:4px;}
+.chart-bar-bg{background:var(--line); border-radius:4px; height:24px; width:100%;}
+.chart-bar{height:24px; border-radius:4px; color:#fff; font-size:.78rem; text-align:right; padding-right:8px; line-height:24px; font-weight:600;}
+.proportion-bar{display:flex; height:34px; border-radius:8px; overflow:hidden; margin-bottom:.8rem;}
+.proportion-seg{display:flex; align-items:center; justify-content:center; color:#fff; font-size:.75rem; font-weight:700;}
+.chart-legend{display:flex; flex-wrap:wrap; gap:.6rem; margin-top:.6rem;}
+.chart-legend span{display:inline-flex; align-items:center; gap:.35rem; font-size:.8rem; color:var(--ink-soft);}
+.chart-legend .dot{width:10px; height:10px; border-radius:50%; display:inline-block;}
+
+.audio-box{background:var(--berry-tint); border-radius:10px; padding:1.2rem 1.4rem; margin:1rem 0;}
+.audio-box p{margin-bottom:.6rem; font-size:.9rem; color:var(--berry); font-weight:600;}
+audio{width:100%;}
+.transcript-box{display:none; margin-top:1rem; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:1.2rem 1.4rem; font-size:.9rem;}
+.transcript-box.shown{display:block;}
+.transcript-box p{margin-bottom:.7rem;}
+
+.reflect-box textarea{width:100%; min-height:150px; border:1px solid var(--line); border-radius:10px; padding:1rem; font-family:inherit; font-size:.96rem; resize:vertical;}
+.reflect-meta{display:flex; justify-content:space-between; align-items:center; margin-top:.6rem; font-size:.85rem; color:var(--ink-soft);}
+
+footer{padding:2.5rem 1.5rem 3rem; text-align:center; color:var(--ink-soft); font-size:.85rem;}
+
+/* ===== Impersonal passive (Part 4B/4C) ===== */
+.ip-opts{display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.5rem;}
+.ip-opt{border:1px solid var(--line); background:var(--card); padding:.45rem .9rem; border-radius:16px; cursor:pointer; font:inherit; font-size:.9rem; color:var(--ink);}
+.ip-opt:hover{border-color:var(--teal);}
+.ip-opt.right{background:var(--good-tint); color:var(--good); border-color:var(--good); font-weight:600;}
+.ip-opt.bad{background:var(--bad-tint); color:var(--bad); border-color:var(--bad);}
+.ip-opt:disabled{cursor:default;}
+.ip-score{margin-top:.8rem; font-weight:600; color:var(--teal-deep);}
+.ip-ok{color:var(--good) !important; font-weight:600;}
+.ip-no{color:var(--bad) !important; font-weight:600;}
+select.ip-select{border:1px solid var(--teal); border-radius:6px; padding:.25rem .4rem; font:inherit; font-size:.92rem; background:#fff; color:var(--ink); margin:0 .15rem;}
+input.text-input.ip-good{border-color:var(--good); background:var(--good-tint);}
+input.text-input.ip-badin{border-color:var(--bad); background:var(--bad-tint);}
+.ip-src{color:var(--ink-soft); font-size:.9rem; margin-bottom:.2rem;}
+.ip-kw{color:var(--terracotta); font-weight:700; letter-spacing:.04em;}
+.ip-hint{color:var(--terracotta); font-weight:600; font-size:.85rem;}
+.ip-match{display:grid; grid-template-columns:1fr 1fr; gap:.6rem 1.2rem;}
+.ip-match-col{display:flex; flex-direction:column; gap:.6rem;}
+.ip-mitem{border:1px solid var(--line); background:var(--card); padding:.6rem .8rem; border-radius:10px; cursor:pointer; text-align:left; font:inherit; font-size:.9rem; color:var(--ink);}
+.ip-mitem.sel{border-color:var(--teal); box-shadow:0 0 0 2px var(--teal-tint);}
+.ip-mitem.done{background:var(--good-tint); border-color:var(--good); cursor:default;}
+.ip-mitem.shake{animation:shake .3s; border-color:var(--bad);}
+.ip-built{min-height:2.6rem; border:1px dashed var(--teal); border-radius:10px; padding:.4rem; display:flex; flex-wrap:wrap; gap:.4rem; margin:.5rem 0;}
+.ip-bank{display:flex; flex-wrap:wrap; gap:.4rem;}
+.ip-word{border:1px solid var(--line); background:var(--card); padding:.35rem .7rem; border-radius:14px; cursor:pointer; font:inherit; font-size:.9rem; color:var(--ink);}
+.ip-built .ip-word{background:var(--teal-tint); border-color:var(--teal);}
+.ip-row-btns{display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.3rem;}
+.ip-head{font-family:'Fraunces',Georgia,serif; font-weight:700; letter-spacing:.02em; color:var(--teal-deep);}
+textarea.ip-ta{width:100%; min-height:3.2rem; border:1px solid var(--teal); border-radius:8px; padding:.5rem .7rem; font:inherit; font-size:.92rem; margin:.4rem 0; resize:vertical;}
+@media (max-width:640px){ .ip-match{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<nav>
+  <div class="wrap">
+    <a href="#impersonal">Rules</a>
+    <a href="#hacks">Exam Hacks</a>
+    <a href="#impexercises">Exercises</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="kicker">English in Context · C1 · Maturita Exam</span>
+    <h1>Science &amp; Technology: The Impersonal Passive</h1>
+    <p class="lede">"It is believed that…", "The drug is thought to have been…": the reporting structures used in medical, transport and technology news, with exam hacks and eight self-checking exercises.</p>
+    <div class="hero-meta">
+      <div><strong>C1</strong>Level</div>
+      <div><strong>~60 min</strong>Self-paced</div>
+      <div><strong>8</strong>Exercises</div>
+    </div>
+    <p style="margin-top:1.2rem;"><a href="science-technology-module.html" style="color:inherit; font-weight:600;">← Science &amp; Technology: Passive Voice module</a> &nbsp;·&nbsp; <a href="index.html#elt" style="color:inherit; font-weight:600;">English Language Teaching</a></p>
+  </div>
+</header>
+
+<main class="wrap">
+<!-- ===================== LANGUAGE LAB 2: IMPERSONAL PASSIVE ===================== -->
+<section id="impersonal">
+  <div class="section-head">
+    <span class="tag">Part 1 · Grammar</span>
+    <h2>Language Lab: The Impersonal Passive</h2>
+    <p>"It is believed that…", "The drug is thought to have been…": reporting structures are everywhere in science news, medical reports and technology articles. They let the writer report opinions and facts without saying who holds them.</p>
+  </div>
+
+  <div class="card">
+    <h3 style="font-size:1.1rem; margin-bottom:.5rem;">Two patterns, one meaning</h3>
+    <p><strong>Active:</strong> Scientists <u>believe</u> that the new vaccine <u>protects</u> against all variants.</p>
+    <p><strong>Pattern A (It + passive + that-clause):</strong> <em>It is believed that the new vaccine protects against all variants.</em></p>
+    <p><strong>Pattern B (Subject + passive + to-infinitive):</strong> <em>The new vaccine is believed to protect against all variants.</em></p>
+    <p style="margin-bottom:0;">Pattern B is shorter and very common in formal writing. The subject of the <em>that</em>-clause (<em>the new vaccine</em>) becomes the subject of the whole sentence.</p>
+  </div>
+
+  <h3 style="margin-top:2rem; font-size:1.15rem;">1. Verbs used in impersonal passives</h3>
+  <table class="grammar-table">
+    <tr><th>Both patterns (It… / Subject…)</th><th>Only Pattern A (It… that)</th></tr>
+    <tr><td>say, think, believe, know, consider, expect, report, claim, estimate, understand, allege, assume, fear, suppose, find, acknowledge</td><td>hope, suggest, propose, recommend, agree, decide, argue, announce</td></tr>
+    <tr><td><em>The robot is said to work 24 hours a day.</em></td><td><em>It is hoped that the treatment will be cheaper.</em><br><span style="color:var(--bad);">✗ The treatment is hoped to be cheaper.</span></td></tr>
+  </table>
+
+  <h3 style="margin-top:1.8rem; font-size:1.15rem;">2. The key rule: choose the right infinitive</h3>
+  <p>Compare two moments: the time of the <strong>reporting verb</strong> (is said, was believed) and the time of the <strong>action</strong> you are reporting.</p>
+  <table class="grammar-table">
+    <tr><th>Relation to the reporting verb</th><th>Infinitive</th><th>Example</th></tr>
+    <tr><td>Same time / general truth</td><td>to + verb</td><td>The scanner <strong>is believed to detect</strong> tumours earlier.</td></tr>
+    <tr><td>Same time, happening now</td><td>to be + -ing</td><td>Engineers <strong>are reported to be testing</strong> a new maglev train.</td></tr>
+    <tr><td>Same time, passive</td><td>to be + past participle</td><td>The drug <strong>is expected to be approved</strong> next year.</td></tr>
+    <tr><td>Earlier action</td><td>to have + past participle</td><td>Penicillin <strong>is estimated to have saved</strong> over 200 million lives.</td></tr>
+    <tr><td>Earlier action, lasting</td><td>to have been + -ing</td><td>The hackers <strong>are thought to have been operating</strong> for months.</td></tr>
+    <tr><td>Earlier action, passive</td><td>to have been + past participle</td><td>The crash <strong>is thought to have been caused</strong> by a software error.</td></tr>
+  </table>
+  <p style="font-size:.88rem; color:var(--ink-soft);">Future: with <em>expect</em> (and often <em>believe, think</em>), a simple infinitive can refer to the future: <em>Air taxis are expected to start commercial flights soon.</em> With other verbs, use Pattern A with <em>will</em>: <em>It is believed that 6G will be introduced around 2030.</em></p>
+
+  <h3 style="margin-top:1.8rem; font-size:1.15rem;">3. Step by step: from active to impersonal</h3>
+  <table class="grammar-table">
+    <tr><th>Step</th><th>Example</th></tr>
+    <tr><td>1. Active sentence</td><td>Experts <u>think</u> that the satellite <u>was damaged</u> by space debris.</td></tr>
+    <tr><td>2. Pattern A: It + be + past participle + that</td><td>It <strong>is thought</strong> that the satellite was damaged by space debris.</td></tr>
+    <tr><td>3. Move the subject of the that-clause to the front</td><td><strong>The satellite</strong> is thought…</td></tr>
+    <tr><td>4. Earlier and passive → to have been + PP</td><td>The satellite is thought <strong>to have been damaged</strong> by space debris.</td></tr>
+  </table>
+  <p>If the reporting verb is in the past, keep it in the past: <em>People believed that the drug was safe → The drug <strong>was believed to be</strong> safe.</em> (Both happened at the same time, so we use the simple infinitive.)</p>
+
+  <h3 style="margin-top:1.8rem; font-size:1.15rem;">4. There + impersonal passive</h3>
+  <p><em>It is thought that there is a link between screen time and poor sleep.</em><br>→ <strong>There is thought to be</strong> a link between screen time and poor sleep.<br>
+  <em>It is said that there were problems with the first prototype.</em><br>→ <strong>There are said to have been</strong> problems with the first prototype.</p>
+
+</section>
+
+
+<!-- ===================== EXAM HACKS ===================== -->
+<section id="hacks">
+  <div class="section-head">
+    <span class="tag">Part 2 · Exam Hacks</span>
+    <h2>Exam Hacks: Get It Right Every Time</h2>
+    <p>Quick rules to remember before a test, a keyword transformation task or the maturita exam.</p>
+  </div>
+  <div class="note-box"><strong>💡 Hack 1: Two clocks.</strong> Always ask: did the action happen at the same time as the reporting, or before it? Same time → <em>to do / to be doing / to be done</em>. Before → <em>to have done / to have been doing / to have been done</em>.</div>
+  <div class="note-box"><strong>💡 Hack 2: Copy the verb from the that-clause.</strong> The verb in the that-clause tells you which infinitive to use: <em>is testing → to be testing</em>, <em>has saved → to have saved</em>, <em>was caused → to have been caused</em>, <em>had been working → to have been working</em>.</div>
+  <div class="note-box"><strong>💡 Hack 3: Don't drop "be".</strong> The reporting verb itself must be passive: <em>The phone <strong>is</strong> said to…</em>, not <em>The phone says to…</em>. This is the most common mistake in tests.</div>
+  <div class="note-box"><strong>💡 Hack 4: "Hope", "suggest", "recommend" only work with "It".</strong> <em>It is hoped that…</em> ✓ / <em>The cure is hoped to…</em> ✗</div>
+  <div class="note-box"><strong>💡 Hack 5: Intransitive verbs stay active in the infinitive.</strong> <em>The virus is believed to have <strong>originated</strong> in bats</em>, not <em>to have been originated</em>: "originate", "happen" and "occur" have no passive.</div>
+  <div class="note-box"><strong>💡 Hack 6: Word-count transformations.</strong> In keyword tasks (3–6 words), contractions count as two words, and the key word must not be changed. Structures like <em>is thought to have been</em> use up many words, so check your count.</div>
+  <div class="note-box"><strong>💡 Hack 7: "Be supposed to" has two meanings.</strong> <em>You are supposed to wear a mask</em> = you should. <em>The app is supposed to be very secure</em> = people say it is.</div>
+  <div class="note-box"><strong>🇸🇰 For Slovak speakers:</strong> Slovak often uses <em>vraj, údajne</em> or <em>predpokladá sa, že…</em>. For example, <em>Údajne ho vyvinuli v Japonsku</em> = <em>It is said to have been developed in Japan.</em> Don't translate word for word: <em>✗ It is said him to have…</em></div>
+</section>
+
+<!-- ===================== EXERCISE BANK: IMPERSONAL PASSIVE ===================== -->
+<section id="impexercises">
+  <div class="section-head">
+    <span class="tag">Part 3 · Practice</span>
+    <h2>Exercise Bank: The Impersonal Passive</h2>
+    <p>Eight self-checking exercise types on medicine, transport and communication. Every answer comes with an explanation: click "Why?" after answering.</p>
+  </div>
+
+  <div class="ex-block">
+    <div class="ex-head"><span class="ex-num">1</span><h3>Choose the Correct Form</h3><span class="ex-type">Multiple choice</span></div>
+    <p class="ex-instructions">Click the option that correctly completes each sentence.</p>
+    <div class="ex-body card" id="ipMC"></div>
+    <div class="ip-score" id="ipMC-score"></div>
+  </div>
+
+  <div class="ex-block">
+    <div class="ex-head"><span class="ex-num">2</span><h3>Which Infinitive?</h3><span class="ex-type">Dropdown gap-fill</span></div>
+    <p class="ex-instructions">Read the first sentence. Complete the second sentence so that it means the same, then click "Check answers".</p>
+    <div class="ex-body card" id="ipSel"></div>
+    <button class="check-btn" id="ipSel-check">Check answers</button>
+    <div class="ip-score" id="ipSel-score"></div>
+  </div>
+
+  <div class="ex-block">
+    <div class="ex-head"><span class="ex-num">3</span><h3>Key Word Transformation</h3><span class="ex-type">Typed answer · auto-check</span></div>
+    <p class="ex-instructions">Complete the second sentence using the word in capitals. Type only the missing words, then click "Check answers".</p>
+    <div class="ex-body card" id="ipKW"></div>
+    <button class="check-btn" id="ipKW-check">Check answers</button>
+    <div class="ip-score" id="ipKW-score"></div>
+  </div>
+
+  <div class="ex-block">
+    <div class="ex-head"><span class="ex-num">4</span><h3>Correct or Incorrect?</h3><span class="ex-type">Grammaticality judgement</span></div>
+    <p class="ex-instructions">Decide whether each sentence is grammatically correct.</p>
+    <div class="ex-body card" id="ipTF"></div>
+    <div class="ip-score" id="ipTF-score"></div>
+  </div>
+
+  <div class="ex-block">
+    <div class="ex-head"><span class="ex-num">5</span><h3>What Does It Really Mean?</h3><span class="ex-type">Matching</span></div>
+    <p class="ex-instructions">Click a sentence on the left, then its meaning on the right. Watch the infinitive carefully!</p>
+    <div class="ex-body card" id="ipMatch"></div>
+  </div>
+
+  <div class="ex-block">
+    <div class="ex-head"><span class="ex-num">6</span><h3>Sentence Builder</h3><span class="ex-type">Word order</span></div>
+    <p class="ex-instructions">Click the words in the correct order to build the sentence. Click a word in your sentence to send it back.</p>
+    <div class="ex-body card" id="ipOrder"></div>
+  </div>
+
+  <div class="ex-block">
+    <div class="ex-head"><span class="ex-num">7</span><h3>Tech &amp; Health News Bulletin</h3><span class="ex-type">Cloze test</span></div>
+    <p class="ex-instructions">Use the words in brackets to write an impersonal passive structure in each gap. Then click "Check answers".</p>
+    <div class="ex-body card" id="ipCloze"></div>
+    <button class="check-btn" id="ipCloze-check">Check answers</button>
+    <div class="ip-score" id="ipCloze-score"></div>
+  </div>
+
+  <div class="ex-block">
+    <div class="ex-head"><span class="ex-num">8</span><h3>Headline to News Report</h3><span class="ex-type">Guided writing</span></div>
+    <p class="ex-instructions">Turn each headline into a formal sentence using an impersonal passive. Write your version, then compare it with the model answer.</p>
+    <div class="ex-body card" id="ipHead"></div>
+  </div>
+</section>
+
+
+</main>
+
+<footer>English in Context · Science &amp; Technology · Impersonal Passive · C1 · Maturita Exam · Built for classroom use</footer>
+<script>
+/* ================= NAV SCROLLSPY + PROGRESS BAR ================= */
+const navLinks = document.querySelectorAll('nav a');
+const sections = [...navLinks].map(a => document.querySelector(a.getAttribute('href')));
+function onScroll(){
+  const doc = document.documentElement;
+  const scrolled = (doc.scrollTop) / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = scrolled + '%';
+  let current = sections[0];
+  sections.forEach(sec => { if (sec && window.scrollY + 120 >= sec.offsetTop) current = sec; });
+  navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current.id));
+}
+window.addEventListener('scroll', onScroll);
+onScroll();
+
+/* ================= SHARED: EXPLANATION TOGGLE ================= */
+function ensureExplainBox(div, text){
+  if (!text) return;
+  let box = div.querySelector('.explain-box');
+  if (!box){
+    const btn = document.createElement('button');
+    btn.className = 'ghost-btn';
+    btn.style.cssText = 'margin-top:.5rem; font-size:.78rem; padding:.32rem .85rem;';
+    btn.textContent = 'Why?';
+    box = document.createElement('div');
+    box.className = 'model-answer explain-box';
+    box.textContent = text;
+    btn.onclick = () => { box.classList.toggle('shown'); btn.textContent = box.classList.contains('shown') ? 'Hide explanation' : 'Why?'; };
+    div.appendChild(btn);
+    div.appendChild(box);
+  } else {
+    box.textContent = text;
+  }
+}
+
+/* ================= IMPERSONAL PASSIVE (Part 4B/4C) ================= */
+(function(){
+  const norm = s => s.toLowerCase().replace(/[’']/g,"'").replace(/[.,!?;:]/g,'').replace(/\s+/g,' ').trim();
+  const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  function score(id, got, total){ const el=document.getElementById(id+'-score'); if(el) el.textContent = 'Score: ' + got + ' / ' + total; }
+
+  /* Ex1 MC */
+  const MC = [{"q": "The new cancer vaccine ___ available to patients by 2030.", "opts": ["is expected to be", "is expected being", "expects to be", "is expected to have been"], "c": 0, "why": "Future after 'expect' → simple infinitive: is expected to be. 'To have been' would refer to the past."}, {"q": "Penicillin ___ over 200 million lives since its discovery in 1928.", "opts": ["is estimated to save", "is estimated to have saved", "estimates to have saved", "is estimated saving"], "c": 1, "why": "The saving happened before now (since 1928) → perfect infinitive: to have saved."}, {"q": "It ___ that self-driving buses will operate in several European cities next year.", "opts": ["reports", "is reported to", "is reported", "has reported"], "c": 2, "why": "Pattern A: It + be + past participle + that-clause. 'To' is only used in Pattern B."}, {"q": "The hackers ___ from abroad for months before the attack was discovered.", "opts": ["are believed to operate", "are believed to have been operating", "believe to have operated", "are believing to have operated"], "c": 1, "why": "An earlier action that lasted for some time (for months) → to have been + -ing."}, {"q": "The prototype ___ in secret for several years before it was presented.", "opts": ["is said to be developed", "is said to have developed", "is said to have been developed", "says to have been developed"], "c": 2, "why": "Earlier + passive (someone developed the prototype) → to have been + past participle."}, {"q": "There ___ a link between late-night screen use and poor sleep.", "opts": ["is thought to be", "is thought being", "thinks to be", "is thought that"], "c": 0, "why": "There + be + past participle + to be: There is thought to be…"}, {"q": "At the moment, the new 6G network ___ tests in Japan and South Korea.", "opts": ["is believed to undergo", "is believed to be undergoing", "is believed undergoing", "believes to be undergoing"], "c": 1, "why": "An action in progress now ('at the moment') → to be + -ing."}, {"q": "It ___ that smartphones should be banned in primary schools.", "opts": ["has been suggested", "is suggested to be", "has suggested", "is suggesting"], "c": 0, "why": "'Suggest' only works in Pattern A (It + passive + that). There is no personal version: ✗ Smartphones are suggested to be banned."}, {"q": "Samuel Morse ___ the first long-distance telegraph message in 1844.", "opts": ["is known to send", "is known to have sent", "knows to have sent", "is known having sent"], "c": 1, "why": "We know it now; he sent it in 1844 (earlier) → to have sent."}, {"q": "The train crash ___ by a software error, although the investigation is still going on.", "opts": ["is thought to be caused", "is thought to have caused", "is thought to have been caused", "thinks to have been caused"], "c": 2, "why": "Earlier + passive (an error caused the crash) → to have been caused. 'To have caused' would mean the crash caused something."}];
+  const mcBox = document.getElementById('ipMC'); let mcDone = 0, mcRight = 0;
+  MC.forEach((it, i) => {
+    const d = document.createElement('div'); d.className = 'poll-q';
+    d.innerHTML = '<div class="q">' + (i+1) + '. ' + esc(it.q) + '</div><div class="ip-opts"></div>';
+    const w = d.querySelector('.ip-opts');
+    it.opts.forEach((o, oi) => {
+      const b = document.createElement('button'); b.type='button'; b.className='ip-opt'; b.textContent=o;
+      b.onclick = () => {
+        w.querySelectorAll('.ip-opt').forEach(x => x.disabled = true);
+        w.children[it.c].classList.add('right');
+        if (oi !== it.c) b.classList.add('bad'); else mcRight++;
+        mcDone++; ensureExplainBox(d, it.why);
+        if (mcDone === MC.length) score('ipMC', mcRight, MC.length);
+      };
+      w.appendChild(b);
+    });
+    mcBox.appendChild(d);
+  });
+
+  /* Ex2 dropdown */
+  const SEL = [{"src": "People believe that the new scanner detects tumours earlier.", "pre": "The new scanner is believed", "opts": ["to detect", "to have detected", "to be detected"], "c": 0, "post": "tumours earlier.", "why": "Present simple, same time → to + verb."}, {"src": "Experts say that the drone delivery service has saved hospitals thousands of euros.", "pre": "The drone delivery service is said", "opts": ["to save", "to have saved", "to be saved"], "c": 1, "post": "hospitals thousands of euros.", "why": "Present perfect (earlier) → to have + past participle."}, {"src": "It is reported that engineers are currently testing a hyperloop prototype.", "pre": "Engineers are reported", "opts": ["to test", "to have tested", "to be testing"], "c": 2, "post": "a hyperloop prototype.", "why": "Present continuous → to be + -ing."}, {"src": "It is expected that the new law will be approved next month.", "pre": "The new law is expected", "opts": ["to be approved", "to have been approved", "to approve"], "c": 0, "post": "next month.", "why": "Future passive after 'expect' → to be + past participle."}, {"src": "It is thought that the message was intercepted by hackers.", "pre": "The message is thought", "opts": ["to be intercepted", "to have been intercepted", "to have intercepted"], "c": 1, "post": "by hackers.", "why": "Past passive (earlier) → to have been + past participle."}, {"src": "It was believed that the drug was safe.", "pre": "The drug was believed", "opts": ["to have been", "being", "to be"], "c": 2, "post": "safe.", "why": "Both verbs are past and happened at the same time → simple infinitive: to be."}, {"src": "It is claimed that the company had been collecting users' data for years.", "pre": "The company is claimed", "opts": ["to be collecting", "to have been collecting", "to collect"], "c": 1, "post": "users' data for years.", "why": "Past perfect continuous (earlier, lasting) → to have been + -ing."}, {"src": "It is estimated that there are over 10,000 active satellites in orbit.", "pre": "There are estimated", "opts": ["to be", "to have been", "being"], "c": 0, "post": "over 10,000 active satellites in orbit.", "why": "There + be + past participle + to be (present, same time)."}];
+  const selBox = document.getElementById('ipSel');
+  SEL.forEach((it, i) => {
+    const d = document.createElement('div'); d.className = 'cloze-item';
+    const opts = '<option value="">choose…</option>' + it.opts.map((o, oi) => '<option value="'+oi+'">'+esc(o)+'</option>').join('');
+    d.innerHTML = '<div class="ip-src">' + (i+1) + '. ' + esc(it.src) + '</div>→ ' + esc(it.pre) + ' <select class="ip-select">' + opts + '</select> ' + esc(it.post);
+    selBox.appendChild(d);
+  });
+  document.getElementById('ipSel-check').onclick = () => {
+    let got = 0;
+    selBox.querySelectorAll('.cloze-item').forEach((d, i) => {
+      const s = d.querySelector('select'); const ok = s.value !== '' && +s.value === SEL[i].c;
+      if (ok) got++;
+      s.classList.toggle('ip-ok', ok); s.classList.toggle('ip-no', !ok);
+      ensureExplainBox(d, (ok ? '✓ ' : '✗ Correct answer: ' + SEL[i].opts[SEL[i].c] + '. ') + SEL[i].why);
+    });
+    score('ipSel', got, SEL.length);
+  };
+
+  /* Ex3 key word transformation */
+  const KW = [{"src": "People think that robotic surgery reduces recovery time.", "kw": "THOUGHT", "pre": "Robotic surgery", "post": "recovery time.", "ans": ["is thought to reduce"]}, {"src": "It is believed that the first mobile phone call was made in 1973.", "kw": "BELIEVED", "pre": "The first mobile phone call", "post": "in 1973.", "ans": ["is believed to have been made"]}, {"src": "They say that the new maglev train can travel at 600 km/h.", "kw": "SAID", "pre": "The new maglev train", "post": "at 600 km/h.", "ans": ["is said to be able to travel"]}, {"src": "It is expected that the number of electric cars will double by 2030.", "kw": "EXPECTED", "pre": "The number of electric cars", "post": "by 2030.", "ans": ["is expected to double", "is expected to have doubled"]}, {"src": "Doctors reported that the patient had been recovering well.", "kw": "REPORTED", "pre": "The patient", "post": "well.", "ans": ["was reported to have been recovering"]}, {"src": "People know that Alexander Graham Bell patented the telephone in 1876.", "kw": "KNOWN", "pre": "Alexander Graham Bell", "post": "the telephone in 1876.", "ans": ["is known to have patented"]}];
+  const kwBox = document.getElementById('ipKW');
+  KW.forEach((it, i) => {
+    const d = document.createElement('div'); d.className = 'cloze-item';
+    d.innerHTML = '<div class="ip-src">' + (i+1) + '. ' + esc(it.src) + ' <span class="ip-kw">' + it.kw + '</span></div>' + esc(it.pre) + ' <input type="text" class="text-input" style="width:min(290px,100%);" aria-label="Missing words ' + (i+1) + '"> ' + esc(it.post);
+    kwBox.appendChild(d);
+  });
+  document.getElementById('ipKW-check').onclick = () => {
+    let got = 0;
+    kwBox.querySelectorAll('.cloze-item').forEach((d, i) => {
+      const inp = d.querySelector('input'); const ok = KW[i].ans.map(norm).includes(norm(inp.value));
+      if (ok) got++;
+      inp.classList.toggle('ip-good', ok); inp.classList.toggle('ip-badin', !ok);
+      ensureExplainBox(d, (ok ? '✓ Correct! ' : '✗ ') + 'Model answer: ' + KW[i].pre + ' ' + KW[i].ans[0] + ' ' + KW[i].post);
+    });
+    score('ipKW', got, KW.length);
+  };
+
+  /* Ex4 correct / incorrect */
+  const TF = [{"s": "The new vaccine is hoped to prevent the disease.", "ok": false, "why": "'Hope' has no personal passive. Correct: It is hoped that the new vaccine will prevent the disease."}, {"s": "The engineers are said to have been working on the project since 2020.", "ok": true, "why": "Correct: an earlier, lasting action → to have been + -ing."}, {"s": "It is believed the drone to have crashed.", "ok": false, "why": "Don't mix the patterns. Correct: The drone is believed to have crashed. / It is believed that the drone crashed."}, {"s": "There are thought to be millions of fake accounts on social media.", "ok": true, "why": "Correct: There + are thought + to be."}, {"s": "The app is considered to be one of the safest messaging services.", "ok": true, "why": "Correct: consider works in Pattern B (to be is optional here)."}, {"s": "The virus is believed to have been originated in bats.", "ok": false, "why": "'Originate' is intransitive, so there is no passive. Correct: The virus is believed to have originated in bats."}, {"s": "It was reported that the bridge had been closed.", "ok": true, "why": "Correct: Pattern A with a past reporting verb."}, {"s": "The driverless bus is expected being launched next year.", "ok": false, "why": "After the reporting verb we need a to-infinitive. Correct: is expected to be launched."}];
+  const tfBox = document.getElementById('ipTF'); let tfDone = 0, tfRight = 0;
+  TF.forEach((it, i) => {
+    const d = document.createElement('div'); d.className = 'poll-q';
+    d.innerHTML = '<div class="q">' + (i+1) + '. ' + esc(it.s) + '</div><div class="ip-opts"></div>';
+    const w = d.querySelector('.ip-opts');
+    [['✓ Correct', true], ['✗ Incorrect', false]].forEach(([lab, val]) => {
+      const b = document.createElement('button'); b.type='button'; b.className='ip-opt'; b.textContent = lab;
+      b.onclick = () => {
+        w.querySelectorAll('.ip-opt').forEach(x => x.disabled = true);
+        if (val === it.ok) { b.classList.add('right'); tfRight++; } else { b.classList.add('bad'); [...w.children].find(x => x !== b).classList.add('right'); }
+        tfDone++; ensureExplainBox(d, it.why);
+        if (tfDone === TF.length) score('ipTF', tfRight, TF.length);
+      };
+      w.appendChild(b);
+    });
+    tfBox.appendChild(d);
+  });
+
+  /* Ex5 matching */
+  const MT = [{"l": "The drug is thought to cause headaches.", "r": "People think it generally causes headaches."}, {"l": "The drug is thought to have caused headaches.", "r": "People think it caused headaches in the past."}, {"l": "The drug is thought to be causing headaches.", "r": "People think it is causing headaches right now."}, {"l": "The trial is thought to have been stopped.", "r": "People think someone has stopped the trial."}, {"l": "The trial is expected to be stopped.", "r": "People expect someone will stop the trial."}, {"l": "The doctors are thought to have been working all night.", "r": "People think the doctors worked for a long time before now."}];
+  const mBox = document.getElementById('ipMatch');
+  mBox.innerHTML = '<div class="ip-match"><div class="ip-match-col" id="ipML"></div><div class="ip-match-col" id="ipMR"></div></div><div class="ip-score" id="ipMatch-score"></div>';
+  const L = document.getElementById('ipML'), R = document.getElementById('ipMR');
+  let picked = null, matched = 0;
+  MT.forEach((it, i) => { const b = document.createElement('button'); b.type='button'; b.className='ip-mitem'; b.textContent = it.l; b.dataset.i = i;
+    b.onclick = () => { if (b.classList.contains('done')) return; L.querySelectorAll('.ip-mitem').forEach(x => x.classList.remove('sel')); b.classList.add('sel'); picked = i; };
+    L.appendChild(b); });
+  MT.map((it, i) => i).sort(() => Math.random() - .5).forEach(i => {
+    const b = document.createElement('button'); b.type='button'; b.className='ip-mitem'; b.textContent = MT[i].r;
+    b.onclick = () => {
+      if (picked === null || b.classList.contains('done')) return;
+      if (picked === i) { b.classList.add('done'); const lb = L.children[i]; lb.classList.remove('sel'); lb.classList.add('done'); picked = null; matched++;
+        if (matched === MT.length) document.getElementById('ipMatch-score').textContent = 'All matched! 🎉'; }
+      else { b.classList.add('shake'); setTimeout(() => b.classList.remove('shake'), 400); }
+    };
+    R.appendChild(b); });
+
+  /* Ex6 sentence builder */
+  const OR = ["The satellite is believed to have been damaged by space debris.", "It is expected that 6G networks will be launched around 2030.", "There are said to be serious risks in using AI for diagnosis.", "Self-driving cars are thought to be safer than human drivers."];
+  const oBox = document.getElementById('ipOrder');
+  OR.forEach((sent, i) => {
+    const words = sent.replace(/\.$/, '').split(' ');
+    const d = document.createElement('div'); d.className = 'poll-q';
+    d.innerHTML = '<div class="q">Sentence ' + (i+1) + '</div><div class="ip-built" aria-label="Your sentence"></div><div class="ip-bank"></div><div class="ip-row-btns"><button type="button" class="ghost-btn" style="font-size:.8rem;padding:.35rem .9rem;">Check</button><button type="button" class="ghost-btn" style="font-size:.8rem;padding:.35rem .9rem;">Reset</button></div><div class="ip-fb" style="margin-top:.4rem;"></div>';
+    const built = d.querySelector('.ip-built'), bank = d.querySelector('.ip-bank'), fb = d.querySelector('.ip-fb');
+    const [chk, rst] = d.querySelectorAll('.ip-row-btns button');
+    function fill(){ bank.innerHTML=''; built.innerHTML=''; fb.textContent=''; fb.className='ip-fb';
+      words.map(w => w).sort(() => Math.random() - .5).forEach(w => {
+        const b = document.createElement('button'); b.type='button'; b.className='ip-word'; b.textContent = w;
+        b.onclick = () => { (b.parentElement === bank ? built : bank).appendChild(b); };
+        bank.appendChild(b); }); }
+    fill();
+    chk.onclick = () => { const got = [...built.children].map(b => b.textContent).join(' ');
+      if (norm(got) === norm(sent)) { fb.textContent = '✓ ' + sent; fb.className = 'ip-fb ip-ok'; }
+      else { fb.textContent = bank.children.length ? '✗ Use all the words first.' : '✗ Not quite. Check the position of the infinitive.'; fb.className = 'ip-fb ip-no'; } };
+    rst.onclick = fill;
+    oBox.appendChild(d);
+  });
+
+  /* Ex7 cloze */
+  const CT = ["<strong class='ip-head'>HEALTH</strong><br>A new blood test", "(believe / detect)", " over 50 types of cancer at an early stage. The test", "(report / develop)", " over ten years by an international team of scientists.", "(It / expect)", " that the test will be offered to patients within five years.<br><br><strong class='ip-head'>TRANSPORT</strong><br>A new electric air taxi", "(say / carry)", " up to four passengers at speeds of 300 km/h. The first commercial flights", "(expect / take place)", " next year.<br><br><strong class='ip-head'>COMMUNICATION</strong><br>Last week, millions of passwords", "(think / steal)", " in a major cyberattack. The hackers", "(believe / operate)", " for months before the attack was discovered. However, there", "(say / be)", " no risk to users' bank accounts."];
+  const CA = [["is believed to detect", "is believed to be able to detect"], ["is reported to have been developed"], ["it is expected"], ["is said to carry", "is said to be able to carry"], ["are expected to take place"], ["are thought to have been stolen"], ["are believed to have been operating"], ["is said to be"]];
+  const CW = ["General ability, same time → to detect.", "Earlier + passive (someone developed the test) → to have been developed.", "Pattern A: It + is expected + that.", "General fact, same time → to carry.", "Future after 'expect' → to take place (intransitive, so no passive).", "Earlier + passive → to have been stolen.", "Earlier, lasting action (for months) → to have been operating.", "There + is said + to be (uncountable 'no risk' → is)."];
+  const cBox = document.getElementById('ipCloze');
+  let html = '<p style="font-size:.96rem; line-height:2.2;">' + CT[0];
+  for (let k = 0; k < CA.length; k++) {
+    html += ' <span class="ip-hint">(' + (k+1) + ') ' + CT[1 + k*2].slice(1,-1) + '</span> <input type="text" class="text-input" data-i="' + k + '" style="width:min(260px,100%);" aria-label="Gap ' + (k+1) + '">' + CT[2 + k*2];
+  }
+  cBox.innerHTML = html + '</p><div id="ipCloze-fb"></div>';
+  document.getElementById('ipCloze-check').onclick = () => {
+    let got = 0; const lines = [];
+    cBox.querySelectorAll('input').forEach(inp => { const k = +inp.dataset.i; const ok = CA[k].map(norm).includes(norm(inp.value));
+      if (ok) got++; inp.classList.toggle('ip-good', ok); inp.classList.toggle('ip-badin', !ok);
+      lines.push('(' + (k+1) + ') ' + CA[k][0] + ': ' + CW[k]); });
+    score('ipCloze', got, CA.length);
+    const fb = document.getElementById('ipCloze-fb'); fb.innerHTML = ''; ensureExplainBox(fb, lines.join('  •  '));
+  };
+
+  /* Ex8 headlines */
+  const HD = [{"h": "SCIENTISTS: BACTERIA BECOMING RESISTANT TO ANTIBIOTICS", "m": "Bacteria are believed to be becoming resistant to antibiotics. / It is believed that bacteria are becoming resistant to antibiotics."}, {"h": "POLICE: DRIVERLESS TAXI CAUSED CRASH", "m": "The driverless taxi is thought / is reported to have caused the crash."}, {"h": "REPORT: 5 BILLION PEOPLE NOW USE SOCIAL MEDIA", "m": "Over five billion people are estimated to use social media. / It is estimated that five billion people now use social media."}, {"h": "TECH GIANT TO LAUNCH REAL-TIME TRANSLATION EARBUDS", "m": "The tech giant is expected to launch real-time translation earbuds. / Real-time translation earbuds are expected to be launched by…"}];
+  const hBox = document.getElementById('ipHead');
+  HD.forEach((it, i) => {
+    const d = document.createElement('div'); d.className = 'poll-q';
+    d.innerHTML = '<div class="q"><span class="ip-head">' + (i+1) + '. ' + esc(it.h) + '</span></div><textarea class="ip-ta" aria-label="Your sentence ' + (i+1) + '" placeholder="Write your sentence here…"></textarea><button type="button" class="ghost-btn" style="font-size:.8rem;padding:.35rem .9rem;">Show model answer</button><div class="model-answer">' + esc(it.m) + '</div>';
+    const b = d.querySelector('button'), m = d.querySelector('.model-answer');
+    b.onclick = () => { m.classList.toggle('shown'); b.textContent = m.classList.contains('shown') ? 'Hide model answer' : 'Show model answer'; };
+    hBox.appendChild(d);
+  });
+})();
+</script>
+</body>
+</html>

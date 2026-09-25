@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Family Firms &amp; Innovation — Word Formation | Maturita Exam | English in Context</title>
+<style>
+  :root{
+    --cream:#faf6ec; --card:#fffdf8; --rust:#b5502d; --rust-dark:#8f3e21;
+    --ink:#26241f; --grey:#6b6558; --line:#e7dfcd; --green:#2f5d50; --green-bg:#e7eeec;
+    --amber:#c98a1b; --amber-bg:#fbf1dc;
+    --wrong:#b3312c; --wrong-bg:#fbeceb; --right-bg:#e9f3ea;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:"Segoe UI",Arial,Helvetica,sans-serif;line-height:1.6;}
+  .wrap{max-width:880px;margin:0 auto;padding:48px 20px 110px;}
+  .back{display:inline-block;font-size:13.5px;color:var(--rust);text-decoration:none;margin-bottom:18px;font-weight:600;}
+  .back:hover{text-decoration:underline;}
+  .crumb{font-size:13px;color:var(--grey);margin-bottom:6px;}
+  .crumb strong{color:var(--rust);font-weight:600;}
+  .eyebrow{font-size:13px;font-weight:700;color:var(--rust);margin:22px 0 8px;letter-spacing:.03em;text-transform:uppercase;}
+  h1{font-family:Georgia,"Times New Roman",serif;font-size:34px;line-height:1.2;margin:0 0 16px;}
+  .lede{color:var(--grey);font-size:16.5px;max-width:70ch;margin:0 0 26px;}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px 26px;margin-bottom:22px;}
+  .card h2{font-family:Georgia,serif;font-size:20px;margin:0 0 10px;}
+  .focus{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:6px;}
+  .focus div{background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:14px;color:var(--grey);}
+  .focus b{display:block;color:var(--ink);font-size:14.5px;}
+
+  .hack{background:var(--green-bg);border:1px solid var(--green);border-radius:10px;padding:18px 24px;margin:0 0 30px;}
+  .hack h2{font-family:Georgia,serif;color:var(--green);font-size:18px;margin:0 0 6px;}
+  .hack ol{margin:0;padding-left:20px;color:var(--green);font-size:15px;}
+
+  .timerbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px;}
+  .clock{font-family:Georgia,serif;font-size:22px;font-weight:700;min-width:70px;}
+  .clock.low{color:var(--wrong);}
+
+  .exam{background:#fff;border:1.5px solid var(--ink);}
+  .exam-head{border-bottom:1.5px solid var(--ink);padding:20px 24px;text-align:center;}
+  .exam-head .sec{font-size:13px;color:var(--grey);letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px;}
+  .exam-head h2{margin:0 0 10px;font-size:20px;}
+  .exam-head h2 span{font-weight:400;font-size:15px;}
+  .exam-head p{text-align:left;font-style:italic;font-size:14.5px;margin:0 0 6px;color:#333;}
+  .box{display:inline-block;background:#e6e6e6;border:1px solid #999;font-weight:700;font-style:normal;font-size:12.5px;padding:0 5px;line-height:1.55;text-indent:0;}
+  .text{padding:22px 24px 26px;font-size:15.8px;line-height:2.3;text-align:justify;}
+  .text h3{font-family:Georgia,serif;font-size:19px;text-align:center;margin:0 0 10px;line-height:1.4;}
+  .text p{margin:0;text-indent:22px;}
+  .text p.first{text-indent:0;}
+  .gap{white-space:nowrap;}
+  .gap *{text-indent:0;}
+  .root{font-weight:700;margin-left:3px;}
+  input.blank{border:none;border-bottom:1.5px solid var(--ink);background:#fafafa;font-size:15.5px;font-family:inherit;padding:1px 5px;width:170px;color:var(--rust-dark);font-weight:600;margin-left:3px;}
+  input.blank:focus{outline:none;border-bottom-color:var(--rust);background:#fff7f2;}
+  input.blank.right{background:var(--right-bg);border-bottom-color:var(--green);color:var(--green);}
+  input.blank.wrong{background:var(--wrong-bg);border-bottom-color:var(--wrong);color:var(--wrong);}
+  .exword{font-weight:600;color:var(--grey);border-bottom:1.5px dotted #999;padding:0 4px;margin-left:3px;}
+
+  .hints{display:none;border-top:1.5px solid var(--ink);padding:16px 24px;background:var(--amber-bg);font-size:14.5px;}
+  .hints.show{display:block;}
+  .hints h4{margin:0 0 8px;font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:#80570d;}
+  .hints ol{margin:0;padding-left:0;list-style:none;columns:2;column-gap:28px;}
+  .hints li{margin-bottom:4px;break-inside:avoid;}
+
+  .toolbar{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;}
+  .btn{border:1px solid var(--rust);background:var(--rust);color:#fff;padding:9px 16px;border-radius:7px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;}
+  .btn:hover{background:var(--rust-dark);border-color:var(--rust-dark);}
+  .btn.secondary{background:transparent;color:var(--rust);}
+  .btn.secondary:hover{background:#f6e9e2;}
+  .btn.green{background:var(--green);border-color:var(--green);}
+  .btn.amber{background:var(--amber);border-color:var(--amber);}
+
+  .result{margin-top:22px;display:none;}
+  .result.show{display:block;}
+  .result .big{font-family:Georgia,serif;font-size:28px;font-weight:700;margin:0 0 4px;}
+  table.key{width:100%;border-collapse:collapse;font-size:14.5px;margin-top:14px;}
+  table.key th{text-align:left;color:var(--rust-dark);font-weight:600;border-bottom:1px solid var(--line);padding:6px 8px;font-size:13.5px;}
+  table.key td{border-bottom:1px solid var(--line);padding:8px;vertical-align:top;}
+  table.key td.ok{color:var(--green);font-weight:700;}
+  table.key td.no{color:var(--wrong);font-weight:700;}
+  table.key td.expl{color:var(--grey);}
+  .tablewrap{overflow-x:auto;}
+
+  .progress{position:sticky;bottom:12px;background:var(--ink);color:#fff;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:14px;margin-top:28px;box-shadow:0 6px 20px rgba(0,0,0,.15);font-size:14px;}
+  .progress .bar{flex:1;height:7px;background:rgba(255,255,255,.2);border-radius:5px;overflow:hidden;}
+  .progress .bar i{display:block;height:100%;width:0;background:var(--amber);transition:width .3s;}
+
+  .source{font-size:12.5px;color:var(--grey);margin-top:26px;}
+  .foot{text-align:center;color:var(--grey);font-size:13px;margin-top:40px;padding-top:22px;border-top:1px solid var(--line);}
+
+  @media (max-width:640px){
+    h1{font-size:27px;}
+    .text{padding:16px 14px;text-align:left;}
+    input.blank{width:130px;}
+    .hints ol{columns:1;}
+  }
+  @media print{
+    body{background:#fff;}
+    .back,.toolbar,.timerbar,.progress,.hack,.card,.result,.hints,.foot{display:none!important;}
+    .wrap{padding:0;max-width:none;}
+    input.blank{background:none;color:transparent;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="index.html#elt">← Back to English Language Teaching</a>
+  <div class="crumb">English Language Teaching / Maturita Exam / <strong>Work &amp; Business — Word Formation</strong></div>
+  <div class="eyebrow">Maturita B2+ · Section II – Language in Use · Part 2</div>
+  <h1>Family Firms Rethink Innovation — Word Formation</h1>
+  <p class="lede">Practise Part 2 of Language in Use (tasks 41–50) with a real Slovak business story: how a small family company, Gentlejam, turned an ordinary jar of jam into a portable snack in a tube. Use the word in brackets to form a new word that fits the gap.</p>
+
+  <div class="card">
+    <h2>What this task tests</h2>
+    <div class="focus">
+      <div><b>Nouns</b>-ment, -ty, -ity</div>
+      <div><b>Adjectives</b>-al, -able</div>
+      <div><b>Negative forms</b>in-, non-, un- + -able</div>
+      <div><b>Adverbs</b>-ly</div>
+    </div>
+  </div>
+
+  <div class="hack">
+    <h2>Exam strategy</h2>
+    <ol>
+      <li>Decide the <b>part of speech</b> first: article + ___ + of = noun; ___ + noun = adjective; ___ + verb/phrase = adverb.</li>
+      <li>Check <b>singular or plural</b> — a list of things (marches, archery…) often needs a plural noun.</li>
+      <li>Read the whole sentence: is the meaning <b>positive or negative</b>?</li>
+      <li>At advanced level you may need <b>both a prefix and a suffix</b>, or a spelling change in the root.</li>
+      <li>Spelling counts in the exam — a misspelt word gets no point.</li>
+    </ol>
+  </div>
+
+  <div class="timerbar">
+    <span class="clock" id="clock">10:00</span>
+    <button class="btn secondary" id="timerBtn" onclick="toggleTimer()">Start exam timer</button>
+    <button class="btn secondary" onclick="toggleHints()" id="hintBtn">Show hints</button>
+    <button class="btn secondary" onclick="window.print()">Print worksheet</button>
+  </div>
+
+  <div class="exam">
+    <div class="exam-head">
+      <div class="sec">Section II – Language in Use</div>
+      <h2>Part 2: Family Firms Rethink Innovation <span>(10 points)</span></h2>
+      <p>For questions <b>41–50</b>, read the text below. Use the word given in brackets to form a new word that fits into the space in the same line. There is an example at the beginning <b>(00)</b>.</p>
+      <p>Example: <span class="box">00</span> – <b>modernising</b></p>
+    </div>
+    <div class="text" id="text"></div>
+    <div class="hints" id="hints">
+      <h4>Hints — what kind of word do you need?</h4>
+      <ol id="hintList"></ol>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <button class="btn" onclick="checkAnswers()">Check my answers</button>
+    <button class="btn green" onclick="showKey()">Show answers &amp; explanations</button>
+    <button class="btn secondary" onclick="resetAll()">Start again</button>
+  </div>
+
+  <div class="card result" id="result">
+    <p class="big" id="scoreBig"></p>
+    <p id="scoreMsg" style="margin:0;color:var(--grey)"></p>
+    <div class="tablewrap" id="keyWrap"></div>
+  </div>
+
+  <div class="progress">
+    <span id="progTxt">Answered: 0 / 10</span>
+    <div class="bar"><i id="progBar"></i></div>
+  </div>
+
+  <p class="source">Source: Jana Liptáková, “Family firms rethink innovation”, <i>The Slovak Spectator</i> (spectator.sme.sk/business) — shortened and adapted for exam practice. The exam format follows the Slovak Maturita external test (NIVAM).</p>
+  <div class="foot">© <span id="yr"></span> Vivien Bieliková — English in Context. All materials shared for educational use.</div>
+</div>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ==================================================================
+   TEXT — {{n}} marks a gap
+   ================================================================== */
+const TITLE = 'Jam to Go';
+const TEXT = [
+  'Slovak family firms are redesigning their products, {{00}} production and testing artificial intelligence – but the most useful ideas often solve simple, practical problems.',
+  'The idea of selling jam in a tube came up during an {{41}} conversation between Iveta Hrabovská and her friends. Her company, Gentlejam, had focused mainly on premium alcoholic jams, usually bought as gifts. To grow, it needed a product that customers would buy more {{42}}.',
+  'A {{43}} jam was the obvious choice, but Hrabovská did not want to put just another glass jar on an already crowded shelf. “We wanted something that would make people stop in {{44}} and say: I’ve never seen this before,” she explained.',
+  'The tube turned a {{45}} product into a {{46}} sweet snack. It needs no spoon and, unlike glass, it is practically {{47}}, so it can be taken to work, left in the car or used on a trip.',
+  'The idea has also moved beyond {{48}}. The tubes are now {{49}} in around 50 shops across Slovakia, more outlets are being added, and customers keep coming back to try other flavours – a clear sign of growing customer {{50}}.'
+];
+
+/* ==================================================================
+   GAPS: root, accepted answers, hint, explanation
+   ================================================================== */
+const GAPS = {
+  '00':{root:'modern', a:['modernising']},
+  41:{root:'form', a:['informal'], hint:'negative adjective before a noun', e:'<b>form → formal → informal</b> = relaxed, not official. A friendly chat between friends is an <i>informal conversation</i>. Negative prefix <b>in-</b> + suffix <b>-al</b>.'},
+  42:{root:'regular', a:['regularly'], hint:'adverb after "buy more"', e:'<b>regular → regularly</b> — an adverb describing how often customers buy (<i>buy more regularly</i> = more often).'},
+  43:{root:'alcohol', a:['non-alcoholic','nonalcoholic'], hint:'negative adjective — prefix + suffix', e:'<b>alcohol → non-alcoholic</b> = without alcohol. The company made alcoholic jams, so the new one is the opposite. You need both <b>non-</b> and <b>-ic</b>.'},
+  44:{root:'amaze', a:['amazement'], hint:'noun after "stop in"', e:'<b>amaze → amazement</b> (-ment). Fixed phrase: <i>stop / stare / look in amazement</i> = with great surprise.'},
+  45:{root:'tradition', a:['traditional'], hint:'adjective before a noun', e:'<b>tradition → traditional</b> (-al) — an adjective describing <i>product</i>.'},
+  46:{root:'port', a:['portable'], hint:'adjective — "can be carried"', e:'<b>port → portable</b> = easy to carry. The text explains why: it can be taken to work, left in the car or used on a trip.'},
+  47:{root:'break', a:['unbreakable'], hint:'negative adjective — prefix + suffix', e:'<b>break → unbreakable</b> = impossible to break. <i>Unlike glass</i> tells you the meaning is negative: <b>un-</b> + <b>-able</b>.'},
+  48:{root:'novel', a:['novelty'], hint:'abstract noun after "beyond"', e:'<b>novel → novelty</b> = the quality of being new and unusual. <i>Move beyond novelty</i> = be more than just a new, surprising idea.'},
+  49:{root:'avail', a:['available'], hint:'adjective after "are now"', e:'<b>avail → available</b> = can be bought or found. <i>be available in shops</i> is a very common collocation.'},
+  50:{root:'loyal', a:['loyalty'], hint:'noun after "customer"', e:'<b>loyal → loyalty</b> (-ty). <i>Customer loyalty</i> = customers choosing the same brand again and again — like the people who come back to try other flavours.'}
+};
+const NUMS = [41,42,43,44,45,46,47,48,49,50];
+const norm = s => (s||'').toLowerCase().replace(/[’‘]/g,"'").replace(/\s+/g,' ').trim();
+
+/* ---------- render ---------- */
+document.getElementById('text').innerHTML = '<h3>'+TITLE+'</h3>' + TEXT.map((p,i) => '<p'+(i===0?' class="first"':'')+'>' + p.replace(/\{\{(\w+)\}\}/g, (m,n) => {
+  const g = GAPS[n];
+  const field = n==='00' ? '<span class="exword">'+GAPS['00'].a[0]+'</span>' : '<input class="blank" id="i'+n+'" autocomplete="off" spellcheck="false" autocapitalize="off" aria-label="gap '+n+'" oninput="updateProgress()">';
+  return '<span class="gap"><span class="box">'+n+'</span>'+field+'</span> <span class="root">('+g.root+')</span>';
+}) + '</p>').join('');
+document.getElementById('hintList').innerHTML = NUMS.map(n => '<li><span class="box">'+n+'</span> '+GAPS[n].hint+'</li>').join('');
+
+function updateProgress(){
+  const done = NUMS.filter(n => document.getElementById('i'+n).value.trim()).length;
+  document.getElementById('progTxt').textContent = 'Answered: '+done+' / '+NUMS.length;
+  document.getElementById('progBar').style.width = (done/NUMS.length*100)+'%';
+}
+function toggleHints(){
+  const h = document.getElementById('hints');
+  h.classList.toggle('show');
+  document.getElementById('hintBtn').textContent = h.classList.contains('show') ? 'Hide hints' : 'Show hints';
+}
+
+function grade(){
+  let ok = 0;
+  const rows = NUMS.map(n => {
+    const el = document.getElementById('i'+n);
+    const g = GAPS[n];
+    const good = g.a.map(norm).includes(norm(el.value));
+    el.classList.remove('right','wrong');
+    el.classList.add(good ? 'right' : 'wrong');
+    if (good) ok++;
+    return {n, g, val: el.value.trim(), good};
+  });
+  return {ok, rows};
+}
+function renderResult(ok, rows, full){
+  const pct = Math.round(ok/NUMS.length*100);
+  document.getElementById('scoreBig').textContent = ok+' / '+NUMS.length+' points ('+pct+' %)';
+  document.getElementById('scoreMsg').textContent = pct>=90 ? 'Excellent — exam-ready!' : pct>=70 ? 'Good work. Look at the explanations for the ones you missed.' : pct>=50 ? 'Not bad — study the explanations, then try again.' : 'Keep practising: turn on the hints and try again.';
+  const shown = full ? rows : rows.filter(r => !r.good);
+  document.getElementById('keyWrap').innerHTML = shown.length ? '<table class="key"><tr><th>Gap</th><th>Your answer</th><th>Correct</th><th>Why?</th></tr>' + shown.map(r =>
+    '<tr><td><span class="box">'+r.n+'</span></td><td class="'+(r.good?'ok':'no')+'">'+(r.val||'—')+'</td><td><b>'+r.g.a[0]+'</b></td><td class="expl">'+r.g.e+'</td></tr>').join('') + '</table>' : '';
+  const res = document.getElementById('result');
+  res.classList.add('show');
+  res.scrollIntoView({behavior:'smooth', block:'start'});
+  stopTimer();
+}
+function checkAnswers(){ const {ok, rows} = grade(); renderResult(ok, rows, false); }
+function showKey(){ const {ok, rows} = grade(); renderResult(ok, rows, true); }
+function resetAll(){
+  NUMS.forEach(n => { const el = document.getElementById('i'+n); el.value=''; el.classList.remove('right','wrong'); });
+  document.getElementById('result').classList.remove('show');
+  stopTimer(); secs = 600; drawClock();
+  document.getElementById('timerBtn').textContent = 'Start exam timer';
+  updateProgress();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* ---------- timer ---------- */
+let secs = 600, tid = null;
+function drawClock(){
+  const c = document.getElementById('clock');
+  c.textContent = String(Math.floor(secs/60)).padStart(2,'0')+':'+String(secs%60).padStart(2,'0');
+  c.classList.toggle('low', secs <= 60);
+}
+function toggleTimer(){
+  const b = document.getElementById('timerBtn');
+  if (tid){ stopTimer(); b.textContent = 'Resume timer'; return; }
+  b.textContent = 'Pause timer';
+  tid = setInterval(()=>{ secs--; drawClock(); if (secs<=0){ stopTimer(); alert('Time is up! Check your answers.'); checkAnswers(); } }, 1000);
+}
+function stopTimer(){ clearInterval(tid); tid = null; }
+updateProgress();
+</script>
+</body>
+</html>

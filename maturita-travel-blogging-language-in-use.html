@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travel Blogging — Language in Use (Multiple Choice) | Maturita B2 | English in Context</title>
+<style>
+  :root{
+    --cream:#faf6ec; --card:#fffdf8; --rust:#b5502d; --rust-dark:#8f3e21;
+    --ink:#26241f; --grey:#6b6558; --line:#e7dfcd; --green:#2f5d50; --green-bg:#e7eeec;
+    --amber:#c98a1b; --amber-bg:#fbf1dc;
+    --wrong:#b3312c; --wrong-bg:#fbeceb; --right-bg:#e9f3ea;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:"Segoe UI",Arial,Helvetica,sans-serif;line-height:1.6;}
+  .wrap{max-width:880px;margin:0 auto;padding:48px 20px 110px;}
+  .back{display:inline-block;font-size:13.5px;color:var(--rust);text-decoration:none;margin-bottom:18px;font-weight:600;}
+  .back:hover{text-decoration:underline;}
+  .crumb{font-size:13px;color:var(--grey);margin-bottom:6px;}
+  .crumb strong{color:var(--rust);font-weight:600;}
+  .eyebrow{font-size:13px;font-weight:700;color:var(--rust);margin:22px 0 8px;letter-spacing:.03em;text-transform:uppercase;}
+  h1{font-family:Georgia,"Times New Roman",serif;font-size:34px;line-height:1.2;margin:0 0 16px;}
+  .lede{color:var(--grey);font-size:16.5px;max-width:70ch;margin:0 0 26px;}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px 26px;margin-bottom:22px;}
+  .card h2{font-family:Georgia,serif;font-size:20px;margin:0 0 10px;}
+  .focus{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:6px;}
+  .focus div{background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:14px;color:var(--grey);}
+  .focus b{display:block;color:var(--ink);font-size:14.5px;}
+  .tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:4px;padding:1px 7px;}
+  .t-tense{background:#e3ecf6;color:#2a4d74;}
+  .t-vocab{background:var(--amber-bg);color:#80570d;}
+  .t-prep{background:var(--green-bg);color:var(--green);}
+  .t-gram{background:#f6e9e2;color:var(--rust-dark);}
+
+  .hack{background:var(--green-bg);border:1px solid var(--green);border-radius:10px;padding:18px 24px;margin:0 0 30px;}
+  .hack h2{font-family:Georgia,serif;color:var(--green);font-size:18px;margin:0 0 6px;}
+  .hack ol{margin:0;padding-left:20px;color:var(--green);font-size:15px;}
+
+  .timerbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px;}
+  .clock{font-family:Georgia,serif;font-size:22px;font-weight:700;min-width:70px;}
+  .clock.low{color:var(--wrong);}
+
+  /* exam frame */
+  .exam{background:#fff;border:1.5px solid var(--ink);}
+  .exam-head{border-bottom:1.5px solid var(--ink);padding:20px 24px;text-align:center;}
+  .exam-head .sec{font-size:13px;color:var(--grey);letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px;}
+  .exam-head h2{margin:0 0 10px;font-size:20px;}
+  .exam-head h2 span{font-weight:400;font-size:15px;}
+  .exam-head p{text-align:left;font-style:italic;font-size:14.5px;margin:0 0 6px;color:#333;}
+  .ex-box{display:inline-block;background:#e6e6e6;border:1px solid #aaa;font-weight:700;font-style:normal;font-size:12.5px;padding:0 5px;}
+  .text{padding:22px 24px;font-size:15.8px;line-height:2.15;text-align:justify;border-bottom:1.5px solid var(--ink);}
+  .text p{margin:0;text-indent:22px;}
+  .text p:first-child{text-indent:0;}
+  .gap,.gap *{text-indent:0;}
+  .gap{display:inline-flex;align-items:center;gap:4px;cursor:pointer;vertical-align:1px;}
+  .gap .n{display:inline-block;background:#e6e6e6;border:1px solid #999;font-weight:700;font-size:12.5px;padding:0 5px;line-height:1.55;}
+  .gap .w{display:inline-block;min-width:54px;border-bottom:1.5px dotted #999;font-weight:600;color:var(--rust-dark);line-height:1.3;padding:0 2px;}
+  .gap.ex .w{color:var(--grey);}
+  .gap.right .w{color:var(--green);background:var(--right-bg);border-bottom-color:var(--green);}
+  .gap.wrong .w{color:var(--wrong);background:var(--wrong-bg);border-bottom-color:var(--wrong);text-decoration:line-through;}
+  .gap.flash .n{background:var(--amber);color:#fff;border-color:var(--amber);}
+
+  table.opts{width:100%;border-collapse:collapse;font-size:15px;}
+  table.opts td{border-bottom:1px solid #222;padding:7px 8px;vertical-align:middle;}
+  table.opts tr:last-child td{border-bottom:none;}
+  table.opts td.num{width:54px;text-align:center;}
+  table.opts td.num span{display:inline-block;background:#e6e6e6;border:1px solid #999;font-weight:700;font-size:12.5px;padding:0 5px;}
+  .opt{display:flex;align-items:center;gap:6px;cursor:pointer;border-radius:5px;padding:3px 6px;border:1px solid transparent;}
+  .opt input{accent-color:var(--rust);margin:0;}
+  .opt b{font-weight:700;}
+  .opt.right{background:var(--right-bg);border-color:var(--green);color:var(--green);}
+  .opt.wrong{background:var(--wrong-bg);border-color:var(--wrong);color:var(--wrong);}
+  .optgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;}
+  tr.expl td{background:#fcfaf4;font-size:14px;color:var(--grey);border-bottom:1px solid #222;padding:8px 12px 10px 62px;}
+  tr.expl{display:none;}
+  tr.expl.show{display:table-row;}
+  tr.exrow td{color:var(--grey);}
+
+  .toolbar{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;}
+  .btn{border:1px solid var(--rust);background:var(--rust);color:#fff;padding:9px 16px;border-radius:7px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;}
+  .btn:hover{background:var(--rust-dark);border-color:var(--rust-dark);}
+  .btn.secondary{background:transparent;color:var(--rust);}
+  .btn.secondary:hover{background:#f6e9e2;}
+  .btn.green{background:var(--green);border-color:var(--green);}
+
+  .result{margin-top:22px;display:none;}
+  .result.show{display:block;}
+  .result .big{font-family:Georgia,serif;font-size:28px;font-weight:700;margin:0 0 4px;}
+  .breakdown{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:14px;}
+  .breakdown div{background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:14px;}
+  .breakdown .meter{height:6px;background:var(--line);border-radius:4px;overflow:hidden;margin-top:6px;}
+  .breakdown .meter i{display:block;height:100%;background:var(--green);}
+
+  .progress{position:sticky;bottom:12px;background:var(--ink);color:#fff;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:14px;margin-top:28px;box-shadow:0 6px 20px rgba(0,0,0,.15);font-size:14px;}
+  .progress .bar{flex:1;height:7px;background:rgba(255,255,255,.2);border-radius:5px;overflow:hidden;}
+  .progress .bar i{display:block;height:100%;width:0;background:var(--amber);transition:width .3s;}
+
+  .source{font-size:12.5px;color:var(--grey);margin-top:26px;}
+  .foot{text-align:center;color:var(--grey);font-size:13px;margin-top:40px;padding-top:22px;border-top:1px solid var(--line);}
+
+  @media (max-width:640px){
+    h1{font-size:27px;}
+    .text{padding:16px 14px;text-align:left;}
+    .optgrid{grid-template-columns:1fr 1fr;}
+    table.opts td.num{width:40px;}
+    tr.expl td{padding-left:14px;}
+  }
+  @media print{
+    body{background:#fff;}
+    .back,.toolbar,.timerbar,.progress,.hack,.card,.result,tr.expl,.foot{display:none!important;}
+    .wrap{padding:0;max-width:none;}
+    .opt input{display:none;}
+    .gap .w{min-width:60px;color:transparent!important;background:none!important;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="index.html#elt">← Back to English Language Teaching</a>
+  <div class="crumb">English Language Teaching / Maturita Exam / <strong>Travel &amp; Tourism — Language in Use</strong></div>
+  <div class="eyebrow">Maturita B2 · Section II – Language in Use · Part 1</div>
+  <h1>Travel Blogging — Multiple-Choice Cloze</h1>
+  <p class="lede">Practise the multiple-choice part of the Maturita exam (tasks 21–40). Read the text about a young travel blogger and choose the correct option (A)–(D) for each gap. The task tests tenses, vocabulary and synonyms, collocations, prepositions and grammar words — just like the real exam.</p>
+
+  <div class="card">
+    <h2>What this task tests</h2>
+    <div class="focus">
+      <div><span class="tag t-tense">Tenses</span><b>4 gaps</b>past continuous, past perfect, present perfect, 2nd conditional</div>
+      <div><span class="tag t-vocab">Vocabulary</span><b>8 gaps</b>synonyms, collocations, fixed phrases</div>
+      <div><span class="tag t-prep">Prepositions</span><b>5 gaps</b>fixed phrases with prepositions, phrasal verbs</div>
+      <div><span class="tag t-gram">Grammar words</span><b>3 gaps</b>linkers, relative pronouns, quantifiers</div>
+    </div>
+  </div>
+
+  <div class="hack">
+    <h2>Exam strategy</h2>
+    <ol>
+      <li>Read the whole text first for general meaning — don’t look at the options yet.</li>
+      <li>Look at the words <b>before and after</b> each gap: many answers depend on a preposition or a fixed phrase.</li>
+      <li>For tenses, find the <b>time signal</b> (by the end of…, over the years…, if…).</li>
+      <li>Try your answer in the sentence and read it again. In the real exam you have about <b>15–20 minutes</b> for this part.</li>
+    </ol>
+  </div>
+
+  <div class="timerbar">
+    <span class="clock" id="clock">20:00</span>
+    <button class="btn secondary" id="timerBtn" onclick="toggleTimer()">Start exam timer</button>
+    <button class="btn secondary" onclick="window.print()">Print worksheet</button>
+  </div>
+
+  <div class="exam">
+    <div class="exam-head">
+      <div class="sec">Section II – Language in Use</div>
+      <h2>Part 1: From Holiday Snaps to a Full-Time Job <span>(20 points)</span></h2>
+      <p>In the following text, there are some missing words or phrases numbered <b>21–40</b>. Choose only <b>one</b> correct answer from the options <b>(A)–(D)</b> to complete the text. There is an example at the beginning <b>(00)</b>.</p>
+      <p>Example: <span class="ex-box">00</span> – (B)</p>
+    </div>
+    <div class="text" id="text"></div>
+    <table class="opts" id="opts"></table>
+  </div>
+
+  <div class="toolbar">
+    <button class="btn" onclick="checkAnswers()">Check my answers</button>
+    <button class="btn green" onclick="showExplanations()">Show answers &amp; explanations</button>
+    <button class="btn secondary" onclick="resetAll()">Start again</button>
+  </div>
+
+  <div class="card result" id="result">
+    <p class="big" id="scoreBig"></p>
+    <p id="scoreMsg" style="margin:0;color:var(--grey)"></p>
+    <div class="breakdown" id="breakdown"></div>
+  </div>
+
+  <div class="progress">
+    <span id="progTxt">Answered: 0 / 20</span>
+    <div class="bar"><i id="progBar"></i></div>
+  </div>
+
+  <p class="source">Text written for English in Context; the topic and ideas are inspired by “Travel Blogging Tips”, Two Monkeys Travel Group (twomonkeystravelgroup.com), adapted. The exam format follows the Slovak Maturita B2 external test (NIVAM).</p>
+  <div class="foot">© <span id="yr"></span> Vivien Bieliková — English in Context. All materials shared for educational use.</div>
+</div>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ==================================================================
+   TEXT — {{n}} marks a gap
+   ================================================================== */
+const TEXT = [
+  "Mia Collins, 29, was never {{00}} on writing at school, so when she started sharing photos from her gap year in Asia, she had no idea she would one day {{21}} it into a career. At first, her blog was simply a way to keep in touch {{22}} friends and family back home. She wrote about the hostels where she {{23}}, the food she tried and the places that were worth visiting.",
+  "By the end of that year, thousands of strangers {{24}} her blog, and one of her posts about the night markets of Vietnam {{25}} viral. Being a travel blogger may sound like a dream job, but Mia is quick to point out that it is {{26}} from easy. “People only see the beaches and the sunsets,” she says. “They don’t see the hours I spend editing photos, answering emails and {{27}} deadlines.”",
+  "For the first two years, the blog earned her {{28}} any money, so she worked part-time as an English teacher {{29}} building her audience. Her patience eventually paid {{30}}. Today, Mia makes a living from advertising and partnerships with hotels and tour companies, most of {{31}} invite her to review their services. In {{32}} for free accommodation, she is expected to write an honest review. “Honesty is everything,” she insists. “If I {{33}} that a terrible hotel was wonderful, my readers would never trust me again.”",
+  "She also believes that a good blogger should do more than just {{34}} beautiful pictures. Her most popular articles are practical guides on {{35}} money while travelling, learning a few phrases in the local language and respecting local customs.",
+  "For Mia, however, the best part of the job is the people she has met {{36}} the way. Over the years, she {{37}} friends with other bloggers from all over the world, and she regularly receives messages from readers who have finally found the courage to step {{38}} their comfort zone. “That is what makes all the hard work {{39}} it,” she smiles. Her advice to anyone who is thinking of starting a blog? “Write about what you truly love, be patient, and don’t {{40}} up after the first few months.”"
+];
+
+/* ==================================================================
+   ITEMS: n, options, correct index, category, explanation
+   ================================================================== */
+const ITEMS = [
+  {n:'00', o:['fond','keen','interested','good'], c:1, cat:'prep', e:'Example.'},
+  {n:21, o:['grow','turn','become','develop'], c:1, cat:'vocab', e:'<b>turn something into something</b> = change it into something else. <i>Grow, become</i> and <i>develop</i> cannot be followed by <i>it into</i>.'},
+  {n:22, o:['to','for','with','by'], c:2, cat:'prep', e:'Fixed phrase: <b>keep in touch with</b> someone = stay in contact.'},
+  {n:23, o:['stays','has stayed','was staying','is staying'], c:2, cat:'tense', e:'<b>Past continuous</b> — a temporary situation in the past (during her gap year). The present tenses don’t fit a past story.'},
+  {n:24, o:['have discovered','had discovered','discovered','are discovering'], c:1, cat:'tense', e:'<b>By the end of that year</b> + past = <b>past perfect</b>: the action was completed before a point in the past.'},
+  {n:25, o:['got','became','went','turned'], c:2, cat:'vocab', e:'Collocation: a post/video <b>goes viral</b> = spreads quickly online.'},
+  {n:26, o:['far','long','away','distant'], c:0, cat:'vocab', e:'Fixed phrase: <b>far from easy</b> = not easy at all.'},
+  {n:27, o:['reaching','making','catching','meeting'], c:3, cat:'vocab', e:'Collocation: <b>meet a deadline</b> = finish something on time. (You can <i>miss</i> a deadline, but not <i>reach</i> or <i>catch</i> one.)'},
+  {n:28, o:['hardly','nearly','almost','rarely'], c:0, cat:'gram', e:'<b>hardly any</b> = almost no. <i>Nearly/almost</i> would need <i>no</i> (almost no money); <i>rarely</i> describes frequency.'},
+  {n:29, o:['during','while','meanwhile','since'], c:1, cat:'gram', e:'<b>while + -ing</b> = at the same time as. <i>During</i> is followed by a noun (during the summer), not a verb.'},
+  {n:30, o:['back','up','off','out'], c:2, cat:'prep', e:'Phrasal verb: <b>pay off</b> = bring good results after a lot of effort. (<i>Pay back</i> = return money.)'},
+  {n:31, o:['them','which','whom','that'], c:1, cat:'gram', e:'After <b>most of / some of / all of</b> in a non-defining relative clause, use <b>which</b> for things and <b>whom</b> for people. Hotels and companies are things. <i>That</i> can never follow a preposition.'},
+  {n:32, o:['exchange','change','trade','swap'], c:0, cat:'vocab', e:'Fixed phrase: <b>in exchange for</b> = as payment for (synonym: <i>in return for</i>).'},
+  {n:33, o:['say','said','had said','would say'], c:1, cat:'tense', e:'<b>Second conditional</b> (imaginary situation): <i>If + past simple, … would + infinitive</i>. Look at “my readers <b>would</b> never trust me”.'},
+  {n:34, o:['do','make','have','take'], c:3, cat:'vocab', e:'Collocation: <b>take a picture / photo</b>. We don’t say <i>make/do a picture</i> in English (compare Slovak <i>urobiť fotku</i>).'},
+  {n:35, o:['sparing','keeping','saving','storing'], c:2, cat:'vocab', e:'Synonyms with different uses: <b>save money</b> = spend less. <i>Spare</i> = give/have available; <i>store</i> = keep things in a place.'},
+  {n:36, o:['by','in','through','along'], c:3, cat:'prep', e:'Fixed phrase: <b>along the way</b> = during a journey or process.'},
+  {n:37, o:['has made','made','is making','had made'], c:0, cat:'tense', e:'<b>Over the years</b> (up to now) + result in the present = <b>present perfect</b>. Collocation: <b>make friends</b>.'},
+  {n:38, o:['off','away','over','outside'], c:3, cat:'prep', e:'Fixed phrase: <b>step outside / out of your comfort zone</b> = try something new or difficult.'},
+  {n:39, o:['worthy','valuable','deserving','worth'], c:3, cat:'vocab', e:'<b>make something worth it</b> = make it worth the effort. <i>Worthy</i> needs <i>of</i> (worthy of praise).'},
+  {n:40, o:['give','take','put','set'], c:0, cat:'prep', e:'Phrasal verb in a negative imperative: <b>don’t give up</b> = don’t stop trying.'}
+];
+
+const CATS = {tense:['Tenses','t-tense'], vocab:['Vocabulary','t-vocab'], prep:['Prepositions & phrasal verbs','t-prep'], gram:['Grammar words','t-gram']};
+const L = ['A','B','C','D'];
+
+/* ---------- render text ---------- */
+const textEl = document.getElementById('text');
+textEl.innerHTML = TEXT.map(p => '<p>' + p.replace(/\{\{(\w+)\}\}/g, (m, n) => {
+  const isEx = n === '00';
+  return '<span class="gap'+(isEx?' ex':'')+'" data-n="'+n+'" onclick="jump(\''+n+'\')"><span class="n">'+n+'</span><span class="w" id="w'+n+'">'+(isEx?'keen':'')+'</span></span>';
+}) + '</p>').join('');
+
+/* ---------- render options ---------- */
+const optsEl = document.getElementById('opts');
+optsEl.innerHTML = ITEMS.map(it => {
+  const isEx = it.n === '00';
+  const cells = it.o.map((o,j) => '<label class="opt" id="o'+it.n+'_'+j+'"><input type="radio" name="q'+it.n+'" value="'+j+'"'+(isEx?(j===it.c?' checked disabled':' disabled'):'')+' onchange="pick(\''+it.n+'\','+j+')"><b>('+L[j]+')</b> '+o+'</label>').join('');
+  return '<tr class="'+(isEx?'exrow':'')+'" id="row'+it.n+'"><td class="num"><span>'+it.n+'</span></td><td><div class="optgrid">'+cells+'</div></td></tr>' +
+    (isEx ? '' : '<tr class="expl" id="ex'+it.n+'"><td colspan="2"><span class="tag '+CATS[it.cat][1]+'">'+CATS[it.cat][0]+'</span> &nbsp;Correct answer: <b>('+L[it.c]+') '+it.o[it.c]+'</b> — '+it.e+'</td></tr>');
+}).join('');
+
+const Q = ITEMS.filter(i => i.n !== '00');
+
+function pick(n, j){
+  const it = ITEMS.find(i => String(i.n) === String(n));
+  document.getElementById('w'+n).textContent = it.o[j];
+  const g = document.querySelector('.gap[data-n="'+n+'"]');
+  g.classList.remove('right','wrong');
+  document.querySelectorAll('#row'+n+' .opt').forEach(o=>o.classList.remove('right','wrong'));
+  updateProgress();
+}
+function jump(n){
+  const row = document.getElementById('row'+n);
+  row.scrollIntoView({behavior:'smooth', block:'center'});
+  const g = document.querySelector('.gap[data-n="'+n+'"]');
+  g.classList.add('flash'); setTimeout(()=>g.classList.remove('flash'), 1200);
+}
+function answerOf(it){
+  const s = document.querySelector('input[name="q'+it.n+'"]:checked');
+  return s ? +s.value : null;
+}
+function updateProgress(){
+  const done = Q.filter(it => answerOf(it) !== null).length;
+  document.getElementById('progTxt').textContent = 'Answered: '+done+' / '+Q.length;
+  document.getElementById('progBar').style.width = (done/Q.length*100)+'%';
+}
+
+function checkAnswers(){
+  let ok = 0; const byCat = {};
+  Q.forEach(it => {
+    const a = answerOf(it);
+    const g = document.querySelector('.gap[data-n="'+it.n+'"]');
+    g.classList.remove('right','wrong');
+    document.querySelectorAll('#row'+it.n+' .opt').forEach(o=>o.classList.remove('right','wrong'));
+    byCat[it.cat] = byCat[it.cat] || [0,0]; byCat[it.cat][1]++;
+    if (a === it.c){ ok++; byCat[it.cat][0]++; g.classList.add('right'); document.getElementById('o'+it.n+'_'+a).classList.add('right'); }
+    else {
+      g.classList.add('wrong');
+      if (a !== null) document.getElementById('o'+it.n+'_'+a).classList.add('wrong');
+      document.getElementById('ex'+it.n).classList.add('show');
+    }
+  });
+  const pct = Math.round(ok/Q.length*100);
+  document.getElementById('scoreBig').textContent = ok+' / '+Q.length+' points ('+pct+' %)';
+  document.getElementById('scoreMsg').textContent = pct>=90 ? 'Excellent — exam-ready!' : pct>=70 ? 'Good work. Read the explanations for the gaps you missed.' : pct>=50 ? 'Not bad — study the explanations and try again.' : 'Keep practising: read the explanations carefully, then start again.';
+  document.getElementById('breakdown').innerHTML = Object.keys(CATS).filter(k=>byCat[k]).map(k =>
+    '<div><span class="tag '+CATS[k][1]+'">'+CATS[k][0]+'</span><br><b>'+byCat[k][0]+' / '+byCat[k][1]+'</b><div class="meter"><i style="width:'+(byCat[k][0]/byCat[k][1]*100)+'%"></i></div></div>').join('');
+  document.getElementById('result').classList.add('show');
+  document.getElementById('result').scrollIntoView({behavior:'smooth', block:'center'});
+  stopTimer();
+}
+function showExplanations(){
+  checkAnswers();
+  Q.forEach(it => {
+    document.getElementById('ex'+it.n).classList.add('show');
+    document.getElementById('o'+it.n+'_'+it.c).classList.add('right');
+  });
+}
+function resetAll(){
+  Q.forEach(it => {
+    document.querySelectorAll('input[name="q'+it.n+'"]').forEach(r=>r.checked=false);
+    document.getElementById('w'+it.n).textContent='';
+    document.querySelector('.gap[data-n="'+it.n+'"]').classList.remove('right','wrong');
+    document.querySelectorAll('#row'+it.n+' .opt').forEach(o=>o.classList.remove('right','wrong'));
+    document.getElementById('ex'+it.n).classList.remove('show');
+  });
+  document.getElementById('result').classList.remove('show');
+  stopTimer(); secs = 1200; drawClock();
+  document.getElementById('timerBtn').textContent = 'Start exam timer';
+  updateProgress();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* ---------- timer ---------- */
+let secs = 1200, tid = null;
+function drawClock(){
+  const m = Math.floor(secs/60), s = secs%60;
+  const c = document.getElementById('clock');
+  c.textContent = String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+  c.classList.toggle('low', secs <= 120);
+}
+function toggleTimer(){
+  const b = document.getElementById('timerBtn');
+  if (tid){ stopTimer(); b.textContent = 'Resume timer'; return; }
+  b.textContent = 'Pause timer';
+  tid = setInterval(()=>{ secs--; drawClock(); if (secs<=0){ stopTimer(); alert('Time is up! Check your answers.'); checkAnswers(); } }, 1000);
+}
+function stopTimer(){ clearInterval(tid); tid = null; }
+updateProgress();
+</script>
+</body>
+</html>

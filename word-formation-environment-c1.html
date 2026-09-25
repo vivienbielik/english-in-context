@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Word Formation — The Environment | C1 Vocabulary | English in Context</title>
+<style>
+  :root{
+    --cream:#faf6ec; --card:#fffdf8; --rust:#b5502d; --rust-dark:#8f3e21;
+    --ink:#26241f; --grey:#6b6558; --line:#e7dfcd; --green:#2f5d50; --green-bg:#e7eeec;
+    --amber:#c98a1b; --amber-bg:#fbf1dc;
+    --wrong:#b3312c; --wrong-bg:#fbeceb; --right-bg:#e9f3ea;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:"Segoe UI",Arial,Helvetica,sans-serif;line-height:1.6;}
+  .wrap{max-width:860px;margin:0 auto;padding:48px 20px 96px;}
+  .back{display:inline-block;font-size:13.5px;color:var(--rust);text-decoration:none;margin-bottom:18px;font-weight:600;}
+  .back:hover{text-decoration:underline;}
+  .crumb{font-size:13px;color:var(--grey);margin-bottom:6px;}
+  .crumb strong{color:var(--rust);font-weight:600;}
+  .eyebrow{font-size:13px;font-weight:700;color:var(--rust);margin:22px 0 8px;letter-spacing:.03em;text-transform:uppercase;}
+  h1{font-family:Georgia,"Times New Roman",serif;font-size:34px;line-height:1.2;margin:0 0 16px;}
+  .lede{color:var(--grey);font-size:16.5px;max-width:70ch;margin:0 0 30px;}
+  .pills{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 36px;}
+  .pill{font-size:12.5px;background:#f6e9e2;color:var(--rust-dark);border-radius:20px;padding:3px 12px;font-weight:600;}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px 26px;margin-bottom:22px;}
+  .card h2{font-family:Georgia,serif;font-size:21px;margin:0 0 12px;}
+  .card p{margin:0 0 12px;} .card p:last-child{margin-bottom:0;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  @media (max-width:680px){.grid2{grid-template-columns:1fr;}}
+  .rule h3{font-size:15.5px;margin:0 0 6px;color:var(--rust-dark);}
+  .rule p,.rule li{font-size:14.5px;color:var(--grey);}
+  .rule ul{margin:0;padding-left:18px;}
+  .rule b{color:var(--ink);}
+  .hack{background:var(--green-bg);border:1px solid var(--green);border-radius:10px;padding:20px 24px;margin:8px 0 44px;}
+  .hack h2{font-family:Georgia,serif;color:var(--green);font-size:19px;margin:0 0 8px;}
+  .hack ol{margin:0;padding-left:20px;color:var(--green);font-size:15px;}
+  .hack li{margin-bottom:4px;}
+
+  .toc{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px;margin:0 0 36px;padding:0;list-style:none;}
+  .toc a{display:block;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:14px;color:var(--ink);text-decoration:none;}
+  .toc a:hover{border-color:var(--rust);}
+  .toc span{color:var(--rust);font-weight:700;margin-right:6px;}
+
+  .section-title{font-family:Georgia,serif;font-size:26px;margin:8px 0 6px;}
+  .section-lede{color:var(--grey);margin:0 0 26px;}
+
+  .exercise{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px 26px 24px;margin-bottom:26px;scroll-margin-top:16px;}
+  .exercise h3{font-size:14px;color:var(--rust);margin:0 0 2px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;}
+  .exercise h4{font-family:Georgia,serif;font-size:20px;margin:0 0 6px;}
+  .exercise .instr{color:var(--grey);font-size:14.5px;margin:0 0 18px;}
+
+  .text-box{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px 22px;font-size:15.8px;line-height:2.25;}
+  .text-box h5{font-family:Georgia,serif;font-size:18px;margin:0 0 8px;line-height:1.4;}
+  .text-box p{margin:0 0 10px;}
+  .gapnum{font-weight:700;color:var(--rust);font-size:13px;margin-right:2px;}
+  .kw{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.05em;color:var(--green);background:var(--green-bg);border-radius:4px;padding:0 6px;line-height:1.7;margin-left:3px;vertical-align:1px;}
+
+  .q{display:flex;gap:10px;align-items:baseline;margin-bottom:12px;font-size:15.5px;}
+  .q .num{font-weight:700;min-width:22px;}
+  .q .body{flex:1;}
+  .q .kw{margin-left:8px;}
+
+  input.blank{border:none;border-bottom:1.5px solid var(--ink);background:transparent;font-size:15.5px;font-family:inherit;padding:1px 4px;width:150px;color:var(--rust-dark);font-weight:600;border-radius:0;}
+  input.blank.short{width:74px;}
+  input.blank:focus{outline:none;border-bottom-color:var(--rust);background:#fff7f2;}
+  select.blank{font-family:inherit;font-size:14.5px;padding:2px 4px;border:1.5px solid var(--line);border-radius:6px;background:#fff;color:var(--rust-dark);font-weight:600;}
+  .right{background:var(--right-bg)!important;border-color:var(--green)!important;color:var(--green)!important;}
+  .wrong{background:var(--wrong-bg)!important;border-color:var(--wrong)!important;color:var(--wrong)!important;}
+  .fix{font-size:12.5px;font-weight:700;color:var(--green);margin-left:6px;}
+
+  .choices{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:6px;}
+  .choice{display:inline-flex;align-items:center;gap:6px;font-size:15px;cursor:pointer;padding:2px 6px;border-radius:5px;border:1px solid transparent;}
+  .choice input{accent-color:var(--rust);}
+
+  table.fam{width:100%;border-collapse:collapse;font-size:15px;}
+  table.fam th{text-align:left;color:var(--rust-dark);font-weight:600;border-bottom:1px solid var(--line);padding:6px 6px 8px;font-size:14px;}
+  table.fam td{padding:8px 6px;border-bottom:1px solid var(--line);}
+  table.fam td.given{font-weight:700;}
+  table.fam input.blank{width:100%;max-width:160px;}
+  .tablewrap{overflow-x:auto;}
+
+  .toolbar{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;}
+  .btn{border:1px solid var(--rust);background:var(--rust);color:#fff;padding:8px 16px;border-radius:7px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;}
+  .btn:hover{background:var(--rust-dark);border-color:var(--rust-dark);}
+  .btn.secondary{background:transparent;color:var(--rust);}
+  .btn.secondary:hover{background:#f6e9e2;}
+  .score{font-size:14px;color:var(--grey);margin-top:12px;min-height:18px;font-weight:600;}
+
+  .total{position:sticky;bottom:12px;background:var(--ink);color:#fff;border-radius:10px;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:30px;box-shadow:0 6px 20px rgba(0,0,0,.15);}
+  .total .bar{flex:1;min-width:140px;height:8px;background:rgba(255,255,255,.2);border-radius:5px;overflow:hidden;}
+  .total .bar i{display:block;height:100%;width:0;background:var(--amber);transition:width .4s;}
+  .total b{font-size:15px;}
+  .foot{text-align:center;color:var(--grey);font-size:13px;margin-top:50px;padding-top:22px;border-top:1px solid var(--line);}
+  @media (max-width:560px){h1{font-size:28px;} .exercise,.card{padding:18px 16px;} .text-box{padding:16px 14px;} input.blank{width:120px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="index.html#elt">← Back to English Language Teaching</a>
+  <div class="crumb">English Language Teaching / <strong>C1 Vocabulary — Word Formation</strong></div>
+  <div class="eyebrow">Advanced · C1 · Self-checking</div>
+  <h1>Word Formation — The Environment: The True Cost of Convenience</h1>
+  <p class="lede">A self-paced C1 lesson on building words with prefixes and suffixes. Read the key rules, then work through ten different exercise types set in the context of the environment, consumption and sustainable living. Every exercise checks itself.</p>
+  <div class="pills"><span class="pill">Nouns</span><span class="pill">Adjectives</span><span class="pill">Verbs</span><span class="pill">Adverbs</span><span class="pill">Negative prefixes</span><span class="pill">Prefixes of meaning</span><span class="pill">10 exercises</span></div>
+
+  <!-- ===== THEORY ===== -->
+  <div class="card">
+    <h2>How word formation works</h2>
+    <p>In a word-formation task you get a <b>root word in capitals</b> and must change it so it fits the gap grammatically <em>and</em> logically. You may need to add a prefix, a suffix, or both — and sometimes change the spelling of the root.</p>
+    <div class="grid2">
+      <div class="rule">
+        <h3>1 · Noun suffixes</h3>
+        <ul>
+          <li><b>-tion / -sion / -ation:</b> pollute → pollution, emit → emission</li>
+          <li><b>-ment:</b> commit → commitment</li>
+          <li><b>-ness / -ity:</b> aware → awareness, scarce → scarcity</li>
+          <li><b>-ance / -ence:</b> rely → reliance, depend → dependence</li>
+          <li><b>-er / -or / -ist:</b> pollute → polluter, activism → activist</li>
+          <li><b>-dom / -th:</b> wise → wisdom, grow → growth</li>
+        </ul>
+      </div>
+      <div class="rule">
+        <h3>2 · Adjective suffixes</h3>
+        <ul>
+          <li><b>-able / -ible:</b> afford → affordable, access → accessible</li>
+          <li><b>-al / -ic / -ical:</b> environment → environmental, catastrophe → catastrophic</li>
+          <li><b>-ful / -less:</b> waste → wasteful, point → pointless</li>
+          <li><b>-ive / -ous:</b> persuade → persuasive, danger → dangerous</li>
+          <li><b>-ing / -ed:</b> astonishing (causes the feeling) vs. astonished (has it)</li>
+        </ul>
+      </div>
+      <div class="rule">
+        <h3>3 · Negative prefixes</h3>
+        <ul>
+          <li><b>un-</b> the most common: unrealistic, unaware</li>
+          <li><b>in-</b> (Latin roots): inadequate, inability</li>
+          <li><b>im-</b> before <b>p, m, b</b>: impossible, immature, imbalance</li>
+          <li><b>il-</b> before <b>l</b>: illegal, illogical</li>
+          <li><b>ir-</b> before <b>r</b>: irreversible, irresponsible</li>
+          <li><b>dis-</b>, <b>mis-</b> (wrongly), <b>non-</b>: disobey, mislead, non-renewable</li>
+        </ul>
+      </div>
+      <div class="rule">
+        <h3>4 · Verbs and adverbs</h3>
+        <ul>
+          <li><b>-ise/-ize:</b> modern → modernise · <b>-ify:</b> pure → purify</li>
+          <li><b>-en:</b> strong → strengthen · <b>en-:</b> danger → endanger, able → enable</li>
+          <li><b>-ly</b> for adverbs: economic → economically (note <b>-ically</b>), argue → arguably</li>
+          <li>Prefixes of meaning: <b>over-, under-, re-, out-, co-, counter-, mal-, pre-, post-, anti-</b></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="hack">
+    <h2>Exam hack — 4 questions to ask at every gap</h2>
+    <ol>
+      <li><b>Which part of speech?</b> Look at the words around the gap: <em>a / the + ___ + of</em> = noun; <em>very / more + ___</em> = adjective; <em>___ + verb</em> = adverb.</li>
+      <li><b>Singular or plural?</b> Is there <em>a</em>, <em>many</em>, or a plural verb?</li>
+      <li><b>Positive or negative?</b> Read the whole sentence — words like <em>but, however, despite</em> often signal a negative prefix.</li>
+      <li><b>Spelling!</b> Check changes to the root: <em>pronounce → pronunciation, maintain → maintenance, deny → undeniably</em>.</li>
+    </ol>
+  </div>
+
+  <h2 class="section-title">Practice: 10 exercises</h2>
+  <p class="section-lede">Type your answers (British or American spelling is accepted), then press <b>Check</b>. Use <b>Show answers</b> only after you have tried.</p>
+  <ul class="toc" id="toc"></ul>
+
+  <div id="exercises"></div>
+
+  <div class="total">
+    <b id="totalTxt">Total: 0 / 0</b>
+    <div class="bar"><i id="totalBar"></i></div>
+    <button class="btn" style="background:var(--amber);border-color:var(--amber)" onclick="checkAll()">Check all</button>
+  </div>
+
+  <div class="foot">© <span id="yr"></span> Vivien Bieliková — English in Context. All materials shared for educational use.</div>
+</div>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ==================================================================
+   EXERCISE DATA
+   In texts: [[KEYWORD|answer1|answer2]] creates a gap.
+   ================================================================== */
+const EX = [
+{
+  id:'ex1', type:'text', label:'Exercise 1', title:'Reading in context: The True Cost of Convenience',
+  instr:'Read the article. Use the word in capitals to form a word that fits each gap.',
+  heading:'The True Cost of Convenience',
+  paras:[
+    'For decades, economic success was measured almost [[EXCLUSIVE|exclusively]] by how much a country produced and consumed. Few people questioned the [[WISE|wisdom]] of this approach, and the idea that the planet might one day run out of resources seemed [[THINK|unthinkable]].',
+    'Today, however, the picture looks very different. Scientists warn that our [[DEPEND|dependence|dependency]] on fossil fuels is pushing global temperatures to dangerous levels, while the [[DESTROY|destruction]] of rainforests is happening at an [[PRECEDENT|unprecedented]] rate.',
+    'Yet many of us remain strangely [[RESPOND|unresponsive]] to these warnings. Part of the problem is that the consequences of our everyday choices are largely [[VISIBLE|invisible]]: the plastic bottle we throw away simply disappears from view. Experts argue that real change requires not only [[TECHNOLOGY|technological]] innovation, but also a genuine [[WILLING|willingness]] to consume less.'
+  ]
+},
+{
+  id:'ex2', type:'sent', label:'Exercise 2', title:'Forming nouns',
+  instr:'Complete each sentence with a noun formed from the word in capitals. Watch out for plurals and spelling changes.',
+  items:[
+    ['The [[ACCUMULATE|accumulation]] of plastic waste in the oceans is now visible from space.'],
+    ['There is growing public [[AWARE|awareness]] of the link between diet and climate change.'],
+    ['The company was criticised for its heavy [[RELY|reliance]] on single-use packaging.'],
+    ['Carbon [[EMIT|emissions]] from aviation have risen sharply over the last decade.'],
+    ['Many engineers question the [[FEASIBLE|feasibility]] of the plan to capture carbon from the air.'],
+    ['The [[SCARCE|scarcity]] of fresh water is likely to cause conflicts in the future.'],
+    ['Local residents voiced strong [[OPPOSE|opposition]] to the new motorway.'],
+    ['The [[MAINTAIN|maintenance]] of public parks costs the city millions every year.'],
+    ['The islanders showed remarkable [[RESILIENT|resilience]] after the devastating floods.'],
+    ['Hundreds of environmental [[ACTIVE|activists]] gathered outside parliament on Friday.']
+  ]
+},
+{
+  id:'ex3', type:'prefix', label:'Exercise 3', title:'Negative prefixes',
+  instr:'Choose the correct negative prefix to complete the word.',
+  options:['un','in','im','il','ir','dis','mis','non'],
+  items:[
+    ['Dumping chemicals into the river is not only harmful but also {{il}}legal.'],
+    ['Scientists fear that the damage to coral reefs may be {{ir}}reversible.'],
+    ['Shoppers are often {{mis}}led by vague “eco-friendly” labels on products.'],
+    ['Coal and oil are {{non}}-renewable sources of energy.'],
+    ['The protesters’ act of civil {{dis}}obedience blocked the city centre for hours.'],
+    ['The government’s response to the drought was widely criticised as {{in}}adequate.'],
+    ['Cutting down forests creates a serious {{im}}balance in the local ecosystem.'],
+    ['It is {{un}}realistic to expect people to give up their cars overnight.'],
+    ['The argument that one person’s actions don’t matter is completely {{il}}logical.'],
+    ['Critics claim the contribution of recycling to cutting emissions is {{in}}significant.']
+  ]
+},
+{
+  id:'ex4', type:'sent', label:'Exercise 4', title:'Forming adjectives',
+  instr:'Complete each sentence with an adjective formed from the word in capitals. Some need a negative prefix too.',
+  items:[
+    ['Solar panels have become far more [[AFFORD|affordable]] in recent years.'],
+    ['A [[CATASTROPHE|catastrophic]] rise in sea levels could flood entire cities.'],
+    ['[[SUSTAIN|Sustainable]] farming protects the soil for future generations.'],
+    ['We need to assess the [[ENVIRONMENT|environmental]] impact of every new building project.'],
+    ['Spending time in nature has a [[BENEFIT|beneficial]] effect on our mental health.'],
+    ['Some of the chemicals used in cheap clothing are highly [[TOXIN|toxic]].'],
+    ['Throwing away edible food is one of our most [[WASTE|wasteful]] habits.'],
+    ['Many cafés have stopped selling coffee in [[DISPOSE|disposable]] cups.'],
+    ['The plan to build a nuclear power station near the lake proved highly [[CONTROVERSY|controversial]].'],
+    ['The speaker made a very [[PERSUADE|persuasive]] case for a meat-free week.']
+  ]
+},
+{
+  id:'ex5', type:'sent', label:'Exercise 5', title:'Forming verbs',
+  instr:'Complete each sentence with a verb formed from the word in capitals, using -en, en-, -ise/-ize or -ify. Use the correct form of the verb.',
+  items:[
+    ['The new law aims to [[STRONG|strengthen]] the protection of national parks.'],
+    ['Governments must [[PRIORITY|prioritise|prioritize]] public transport over new roads.'],
+    ['Rising temperatures [[DANGER|endanger]] hundreds of animal and plant species.'],
+    ['It is difficult to [[CLASS|classify]] some types of plastic for recycling.'],
+    ['The country plans to [[MODERN|modernise|modernize]] its electricity grid by 2035.'],
+    ['Cheap solar technology will [[ABLE|enable]] remote villages to produce their own power.'],
+    ['In many regions, water has to be [[PURE|purified]] before it is safe to drink.'],
+    ['The long drought has [[WIDE|widened]] the gap between rich and poor farmers.'],
+    ['Simple changes at home can [[MINIMUM|minimise|minimize]] the amount of energy we waste.'],
+    ['Cities should [[DIVERSE|diversify]] their energy sources to avoid blackouts.']
+  ]
+},
+{
+  id:'ex6', type:'mc', label:'Exercise 6', title:'Choose the correct form',
+  instr:'Choose the correctly formed word that fits the sentence.',
+  items:[
+    ['Her lifelong ___ to protecting wildlife was finally recognised with an award.', ['commitment','committal','committance','committment'], 0],
+    ['The ___ of the Amazon is releasing huge amounts of carbon into the atmosphere.', ['disforestation','deforestation','unforestation','deforestry'], 1],
+    ['Most plastic packaging is not ___ and stays in landfills for centuries.', ['biodegradeable','degradative','biodegradable','biodegradative'], 2],
+    ['After years of research, the results remain ___ inconclusive.', ['frustratedly','frustratively','frustratingful','frustratingly'], 3],
+    ['There has been a ___ drop in air pollution since the car ban.', ['noticeable','noticable','noticing','noticeful'], 0],
+    ['Climate change is ___ linked to human activity.', ['undeniedly','undeniably','indeniably','undenyingly'], 1],
+    ['The ___ of the new recycling scheme will be reviewed next year.', ['effectivity','effectiveship','effectiveness','effectivation'], 2],
+    ['The new nature reserve is easily ___ by bike from the city centre.', ['accessable','accessive','accessory','accessible'], 3],
+    ['The agreement was hailed as a ___ in the fight against climate change.', ['breakthrough','breakdown','outbreak','breakup'], 0],
+    ['An ___ amount of food — about a third — is wasted every year.', ['astonished','astonishing','astonishment','astonishable'], 1]
+  ]
+},
+{
+  id:'ex7', type:'table', label:'Exercise 7', title:'Word families',
+  instr:'Complete the word-family table. One form is given in each row. A dash (—) means no common form exists.',
+  cols:['Noun','Verb','Adjective','Adverb'],
+  rows:[
+    [['protection'],'protect',['protective'],['protectively']],
+    ['destruction',['destroy'],['destructive'],['destructively']],
+    [['sustainability'],'sustain',['sustainable'],['sustainably']],
+    ['danger',['endanger'],['dangerous'],['dangerously']],
+    [['efficiency'],'—','efficient',['efficiently']]
+  ]
+},
+{
+  id:'ex8', type:'sent', label:'Exercise 8', title:'Error correction',
+  instr:'Each sentence contains ONE incorrectly formed word. Find it and write the correct form in the gap.',
+  items:[
+    ['The government’s <u>unability</u> to act has angered young voters. → [[|inability]]'],
+    ['The <u>irresponsable</u> behaviour of some tourists is damaging the coastline. → [[|irresponsible]]'],
+    ['The <u>disappearence</u> of bees threatens global food production. → [[|disappearance]]'],
+    ['Planting trees in cities is <u>benefitial</u> for everyone’s health. → [[|beneficial]]'],
+    ['There has been a <u>dramatical</u> increase in extreme weather events. → [[|dramatic]]'],
+    ['Scientists are unanimous in their <u>believe</u> that urgent action is needed. → [[|belief]]'],
+    ['Local farmers suffered a huge financial <u>lose</u> after the storm. → [[|loss]]'],
+    ['The survival of polar bears depends on the <u>preservement</u> of Arctic ice. → [[|preservation]]'],
+    ['Many people still don’t understand the <u>seriosity</u> of the problem. → [[|seriousness]]'],
+    ['The <u>inconsiderated</u> actions of a few campers started the forest fire. → [[|inconsiderate]]']
+  ]
+},
+{
+  id:'ex9', type:'text', label:'Exercise 9', title:'Letter to the editor',
+  instr:'A resident has written to a local newspaper. Use the word in capitals to form a word that fits each gap.',
+  heading:'Save Riverside Meadow!',
+  paras:[
+    'Dear Editor,',
+    'I am writing to express my deep [[SATISFY|dissatisfaction]] with the council’s decision to build a car park on Riverside Meadow. The meadow is [[ARGUE|arguably]] the most beautiful green space in our town, and its loss would be [[REPLACE|irreplaceable]].',
+    'The council claims that the project is [[ECONOMY|economically]] necessary, yet it has failed to provide any [[CONVINCE|convincing]] evidence. Moreover, the public [[CONSULT|consultation]] was a sham: most residents only learnt of the plans after they had been approved.',
+    'Instead of more parking, the council should invest in [[IMPROVE|improved|improving]] public transport. Surely it is [[DEFEND|indefensible]] to sacrifice nature when [[ALTERNATE|alternative]] solutions exist. Our children deserve to grow up in a town where [[BIODIVERSE|biodiversity]] is valued, not destroyed.',
+    'Yours faithfully,<br>A concerned resident'
+  ]
+},
+{
+  id:'ex10', type:'prefix', label:'Exercise 10', title:'Prefixes that change meaning',
+  instr:'Choose the prefix that gives each word the right meaning in the sentence. Use each prefix once.',
+  options:['over','under','re','out','co','counter','mal','pre','post','anti'],
+  items:[
+    ['Many megacities are {{over}}populated, with too many people and too little housing.'],
+    ['The health benefits of cycling to work are often {{under}}estimated.'],
+    ['Glass bottles can be washed and {{re}}used dozens of times.'],
+    ['In several countries, wind power now {{out}}performs coal as a source of electricity.'],
+    ['The two charities agreed to {{co}}operate on a joint tree-planting campaign.'],
+    ['Some pesticides proved {{counter}}productive, killing the very insects farmers needed.'],
+    ['Children in drought-hit regions often suffer from {{mal}}nutrition.'],
+    ['Global temperatures are now about 1.2 °C higher than in {{pre}}-industrial times.'],
+    ['Many people changed their travel habits in the {{post}}-pandemic world.'],
+    ['The school launched an {{anti}}-littering campaign in the local park.']
+  ]
+}
+];
+
+/* ==================================================================
+   RENDERING
+   ================================================================== */
+const norm = s => (s||'').toLowerCase().replace(/[’‘]/g,"'").replace(/\s+/g,' ').trim();
+const esc = s => s.replace(/"/g,'&quot;');
+const scores = {};
+
+function gapHTML(inner){
+  const parts = inner.split('|');
+  const kw = parts.shift();
+  const ans = parts.join('|');
+  return '<input class="blank" data-ans="'+esc(ans)+'" autocomplete="off" spellcheck="false" aria-label="answer">' +
+         (kw ? '<span class="kw">'+kw+'</span>' : '');
+}
+function fillGaps(str, numbered, counter){
+  return str.replace(/\[\[(.*?)\]\]/g, (m, inner) => {
+    counter.n++;
+    return (numbered ? '<span class="gapnum">('+counter.n+')</span>' : '') + gapHTML(inner);
+  });
+}
+function prefixHTML(str, opts){
+  return str.replace(/\{\{(.*?)\}\}/g, (m, ans) =>
+    '<select class="blank" data-ans="'+ans+'"><option value="">—</option>' +
+    opts.map(o=>'<option value="'+o+'">'+o+'-</option>').join('') + '</select>');
+}
+
+const host = document.getElementById('exercises');
+const toc = document.getElementById('toc');
+EX.forEach((ex, i) => {
+  toc.insertAdjacentHTML('beforeend','<li><a href="#'+ex.id+'"><span>'+(i+1)+'</span>'+ex.title+'</a></li>');
+  let body = '';
+  if (ex.type === 'text'){
+    const c = {n:0};
+    body = '<div class="text-box"><h5>'+ex.heading+'</h5>' + ex.paras.map(p=>'<p>'+fillGaps(p,true,c)+'</p>').join('') + '</div>';
+  } else if (ex.type === 'sent'){
+    const c = {n:0};
+    body = ex.items.map((it,k)=>'<div class="q"><span class="num">'+(k+1)+'.</span><span class="body">'+fillGaps(it[0],false,c)+'</span></div>').join('');
+  } else if (ex.type === 'prefix'){
+    body = ex.items.map((it,k)=>'<div class="q"><span class="num">'+(k+1)+'.</span><span class="body">'+prefixHTML(it[0],ex.options)+'</span></div>').join('');
+  } else if (ex.type === 'mc'){
+    body = ex.items.map((it,k)=>{
+      const [s, opts, correct] = it;
+      return '<div class="q mcq" data-correct="'+correct+'"><span class="num">'+(k+1)+'.</span><span class="body">'+s.replace('___','<b>_____</b>')+
+        '<div class="choices">'+opts.map((o,j)=>'<label class="choice"><input type="radio" name="'+ex.id+'_'+k+'" value="'+j+'"> '+String.fromCharCode(97+j)+') '+o+'</label>').join('')+'</div></span></div>';
+    }).join('');
+  } else if (ex.type === 'table'){
+    body = '<div class="tablewrap"><table class="fam"><tr>'+ex.cols.map(c=>'<th>'+c+'</th>').join('')+'</tr>' +
+      ex.rows.map(r=>'<tr>'+r.map(cell => Array.isArray(cell)
+        ? '<td><input class="blank" data-ans="'+esc(cell.join('|'))+'" autocomplete="off" spellcheck="false"></td>'
+        : '<td class="given">'+cell+'</td>').join('')+'</tr>').join('') + '</table></div>';
+  }
+  host.insertAdjacentHTML('beforeend',
+    '<section class="exercise" id="'+ex.id+'"><h3>'+ex.label+'</h3><h4>'+ex.title+'</h4><p class="instr">'+ex.instr+'</p>' + body +
+    '<div class="toolbar"><button class="btn" onclick="check(\''+ex.id+'\')">Check</button>' +
+    '<button class="btn secondary" onclick="reveal(\''+ex.id+'\')">Show answers</button>' +
+    '<button class="btn secondary" onclick="resetEx(\''+ex.id+'\')">Reset</button></div>' +
+    '<div class="score" id="'+ex.id+'_score"></div></section>');
+});
+
+/* ==================================================================
+   CHECKING
+   ================================================================== */
+function clearMarks(sec){
+  sec.querySelectorAll('.right,.wrong').forEach(e=>e.classList.remove('right','wrong'));
+  sec.querySelectorAll('.fix').forEach(e=>e.remove());
+}
+function check(id){
+  const sec = document.getElementById(id);
+  clearMarks(sec);
+  let ok = 0, total = 0;
+  sec.querySelectorAll('.blank').forEach(el=>{
+    total++;
+    const answers = el.dataset.ans.split('|').map(norm);
+    if (answers.includes(norm(el.value))){ el.classList.add('right'); ok++; }
+    else el.classList.add('wrong');
+  });
+  sec.querySelectorAll('.mcq').forEach(q=>{
+    total++;
+    const sel = q.querySelector('input:checked');
+    const correct = q.dataset.correct;
+    if (sel){
+      const lab = sel.parentElement;
+      if (sel.value === correct){ lab.classList.add('right'); ok++; } else lab.classList.add('wrong');
+    } else {
+    }
+  });
+  scores[id] = [ok,total];
+  const pct = Math.round(ok/total*100);
+  const msg = pct===100 ? ' — excellent!' : pct>=70 ? ' — well done, check the red ones.' : ' — look at the rules again and try once more.';
+  document.getElementById(id+'_score').textContent = 'Score: '+ok+' / '+total+msg;
+  updateTotal();
+}
+function reveal(id){
+  const sec = document.getElementById(id);
+  check(id);
+  sec.querySelectorAll('.blank.wrong').forEach(el=>{
+    const first = el.dataset.ans.split('|')[0];
+    el.insertAdjacentHTML('afterend','<span class="fix">✓ '+(el.tagName==='SELECT'?first+'-':first)+'</span>');
+  });
+  sec.querySelectorAll('.mcq').forEach(q=>{
+    const c = q.querySelectorAll('.choice')[q.dataset.correct];
+    if (!c.classList.contains('right')) c.classList.add('right');
+  });
+}
+function resetEx(id){
+  const sec = document.getElementById(id);
+  clearMarks(sec);
+  sec.querySelectorAll('input.blank').forEach(el=>el.value='');
+  sec.querySelectorAll('select.blank').forEach(el=>el.value='');
+  sec.querySelectorAll('input[type=radio]').forEach(el=>el.checked=false);
+  document.getElementById(id+'_score').textContent='';
+  delete scores[id];
+  updateTotal();
+}
+function checkAll(){ EX.forEach(e=>check(e.id)); }
+function updateTotal(){
+  let ok=0,total=0;
+  Object.values(scores).forEach(([a,b])=>{ok+=a;total+=b;});
+  const all = EX.reduce((s,e)=>s+document.getElementById(e.id).querySelectorAll('.blank,.mcq').length,0);
+  document.getElementById('totalTxt').textContent = 'Total: '+ok+' / '+all;
+  document.getElementById('totalBar').style.width = (ok/all*100)+'%';
+}
+updateTotal();
+</script>
+</body>
+</html>

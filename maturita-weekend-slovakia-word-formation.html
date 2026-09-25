@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weekend in Slovakia — Word Formation | Maturita Exam | English in Context</title>
+<style>
+  :root{
+    --cream:#faf6ec; --card:#fffdf8; --rust:#b5502d; --rust-dark:#8f3e21;
+    --ink:#26241f; --grey:#6b6558; --line:#e7dfcd; --green:#2f5d50; --green-bg:#e7eeec;
+    --amber:#c98a1b; --amber-bg:#fbf1dc;
+    --wrong:#b3312c; --wrong-bg:#fbeceb; --right-bg:#e9f3ea;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:"Segoe UI",Arial,Helvetica,sans-serif;line-height:1.6;}
+  .wrap{max-width:880px;margin:0 auto;padding:48px 20px 110px;}
+  .back{display:inline-block;font-size:13.5px;color:var(--rust);text-decoration:none;margin-bottom:18px;font-weight:600;}
+  .back:hover{text-decoration:underline;}
+  .crumb{font-size:13px;color:var(--grey);margin-bottom:6px;}
+  .crumb strong{color:var(--rust);font-weight:600;}
+  .eyebrow{font-size:13px;font-weight:700;color:var(--rust);margin:22px 0 8px;letter-spacing:.03em;text-transform:uppercase;}
+  h1{font-family:Georgia,"Times New Roman",serif;font-size:34px;line-height:1.2;margin:0 0 16px;}
+  .lede{color:var(--grey);font-size:16.5px;max-width:70ch;margin:0 0 26px;}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px 26px;margin-bottom:22px;}
+  .card h2{font-family:Georgia,serif;font-size:20px;margin:0 0 10px;}
+  .focus{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:6px;}
+  .focus div{background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:14px;color:var(--grey);}
+  .focus b{display:block;color:var(--ink);font-size:14.5px;}
+
+  .hack{background:var(--green-bg);border:1px solid var(--green);border-radius:10px;padding:18px 24px;margin:0 0 30px;}
+  .hack h2{font-family:Georgia,serif;color:var(--green);font-size:18px;margin:0 0 6px;}
+  .hack ol{margin:0;padding-left:20px;color:var(--green);font-size:15px;}
+
+  .timerbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px;}
+  .clock{font-family:Georgia,serif;font-size:22px;font-weight:700;min-width:70px;}
+  .clock.low{color:var(--wrong);}
+
+  .exam{background:#fff;border:1.5px solid var(--ink);}
+  .exam-head{border-bottom:1.5px solid var(--ink);padding:20px 24px;text-align:center;}
+  .exam-head .sec{font-size:13px;color:var(--grey);letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px;}
+  .exam-head h2{margin:0 0 10px;font-size:20px;}
+  .exam-head h2 span{font-weight:400;font-size:15px;}
+  .exam-head p{text-align:left;font-style:italic;font-size:14.5px;margin:0 0 6px;color:#333;}
+  .box{display:inline-block;background:#e6e6e6;border:1px solid #999;font-weight:700;font-style:normal;font-size:12.5px;padding:0 5px;line-height:1.55;text-indent:0;}
+  .text{padding:22px 24px 26px;font-size:15.8px;line-height:2.3;text-align:justify;}
+  .text h3{font-family:Georgia,serif;font-size:19px;text-align:center;margin:0 0 10px;line-height:1.4;}
+  .text p{margin:0;text-indent:22px;}
+  .text p.first{text-indent:0;}
+  .gap{white-space:nowrap;}
+  .gap *{text-indent:0;}
+  .root{font-weight:700;margin-left:3px;}
+  input.blank{border:none;border-bottom:1.5px solid var(--ink);background:#fafafa;font-size:15.5px;font-family:inherit;padding:1px 5px;width:170px;color:var(--rust-dark);font-weight:600;margin-left:3px;}
+  input.blank:focus{outline:none;border-bottom-color:var(--rust);background:#fff7f2;}
+  input.blank.right{background:var(--right-bg);border-bottom-color:var(--green);color:var(--green);}
+  input.blank.wrong{background:var(--wrong-bg);border-bottom-color:var(--wrong);color:var(--wrong);}
+  .exword{font-weight:600;color:var(--grey);border-bottom:1.5px dotted #999;padding:0 4px;margin-left:3px;}
+
+  .hints{display:none;border-top:1.5px solid var(--ink);padding:16px 24px;background:var(--amber-bg);font-size:14.5px;}
+  .hints.show{display:block;}
+  .hints h4{margin:0 0 8px;font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:#80570d;}
+  .hints ol{margin:0;padding-left:0;list-style:none;columns:2;column-gap:28px;}
+  .hints li{margin-bottom:4px;break-inside:avoid;}
+
+  .toolbar{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;}
+  .btn{border:1px solid var(--rust);background:var(--rust);color:#fff;padding:9px 16px;border-radius:7px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;}
+  .btn:hover{background:var(--rust-dark);border-color:var(--rust-dark);}
+  .btn.secondary{background:transparent;color:var(--rust);}
+  .btn.secondary:hover{background:#f6e9e2;}
+  .btn.green{background:var(--green);border-color:var(--green);}
+  .btn.amber{background:var(--amber);border-color:var(--amber);}
+
+  .result{margin-top:22px;display:none;}
+  .result.show{display:block;}
+  .result .big{font-family:Georgia,serif;font-size:28px;font-weight:700;margin:0 0 4px;}
+  table.key{width:100%;border-collapse:collapse;font-size:14.5px;margin-top:14px;}
+  table.key th{text-align:left;color:var(--rust-dark);font-weight:600;border-bottom:1px solid var(--line);padding:6px 8px;font-size:13.5px;}
+  table.key td{border-bottom:1px solid var(--line);padding:8px;vertical-align:top;}
+  table.key td.ok{color:var(--green);font-weight:700;}
+  table.key td.no{color:var(--wrong);font-weight:700;}
+  table.key td.expl{color:var(--grey);}
+  .tablewrap{overflow-x:auto;}
+
+  .progress{position:sticky;bottom:12px;background:var(--ink);color:#fff;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:14px;margin-top:28px;box-shadow:0 6px 20px rgba(0,0,0,.15);font-size:14px;}
+  .progress .bar{flex:1;height:7px;background:rgba(255,255,255,.2);border-radius:5px;overflow:hidden;}
+  .progress .bar i{display:block;height:100%;width:0;background:var(--amber);transition:width .3s;}
+
+  .source{font-size:12.5px;color:var(--grey);margin-top:26px;}
+  .foot{text-align:center;color:var(--grey);font-size:13px;margin-top:40px;padding-top:22px;border-top:1px solid var(--line);}
+
+  @media (max-width:640px){
+    h1{font-size:27px;}
+    .text{padding:16px 14px;text-align:left;}
+    input.blank{width:130px;}
+    .hints ol{columns:1;}
+  }
+  @media print{
+    body{background:#fff;}
+    .back,.toolbar,.timerbar,.progress,.hack,.card,.result,.hints,.foot{display:none!important;}
+    .wrap{padding:0;max-width:none;}
+    input.blank{background:none;color:transparent;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="index.html#elt">← Back to English Language Teaching</a>
+  <div class="crumb">English Language Teaching / Maturita Exam / <strong>Culture &amp; Free Time — Word Formation</strong></div>
+  <div class="eyebrow">Maturita B2+ · Section II – Language in Use · Part 2</div>
+  <h1>A Weekend in Slovakia — Word Formation</h1>
+  <p class="lede">Practise Part 2 of Language in Use (tasks 41–50) with a real Slovak weekend guide: Roman games in Rusovce, the Divadelná Nitra theatre festival, light installations in Banská Bystrica, the Noc vedy science night and kite festivals. Use the word in brackets to form a new word that fits the gap.</p>
+
+  <div class="card">
+    <h2>What this task tests</h2>
+    <div class="focus">
+      <div><b>Nouns</b>-tion, -ing, -y, -sion — plus spelling changes</div>
+      <div><b>Adjectives</b>-ical, -istic</div>
+      <div><b>Negative forms</b>un- + past participle</div>
+      <div><b>Adverbs &amp; compounds</b>prefix + suffix together, compound adjectives</div>
+    </div>
+  </div>
+
+  <div class="hack">
+    <h2>Exam strategy</h2>
+    <ol>
+      <li>Decide the <b>part of speech</b> first: article + ___ + of = noun; ___ + noun = adjective; ___ + verb/phrase = adverb.</li>
+      <li>Check <b>singular or plural</b> — a list of things (marches, archery…) often needs a plural noun.</li>
+      <li>Read the whole sentence: is the meaning <b>positive or negative</b>?</li>
+      <li>At advanced level you may need <b>both a prefix and a suffix</b>, or a spelling change in the root.</li>
+      <li>Spelling counts in the exam — a misspelt word gets no point.</li>
+    </ol>
+  </div>
+
+  <div class="timerbar">
+    <span class="clock" id="clock">10:00</span>
+    <button class="btn secondary" id="timerBtn" onclick="toggleTimer()">Start exam timer</button>
+    <button class="btn secondary" onclick="toggleHints()" id="hintBtn">Show hints</button>
+    <button class="btn secondary" onclick="window.print()">Print worksheet</button>
+  </div>
+
+  <div class="exam">
+    <div class="exam-head">
+      <div class="sec">Section II – Language in Use</div>
+      <h2>Part 2: Seven Ways to Enjoy Slovakia This Weekend <span>(10 points)</span></h2>
+      <p>For questions <b>41–50</b>, read the text below. Use the word given in brackets to form a new word that fits into the space in the same line. There is an example at the beginning <b>(00)</b>.</p>
+      <p>Example: <span class="box">00</span> – <b>daily</b></p>
+    </div>
+    <div class="text" id="text"></div>
+    <div class="hints" id="hints">
+      <h4>Hints — what kind of word do you need?</h4>
+      <ol id="hintList"></ol>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <button class="btn" onclick="checkAnswers()">Check my answers</button>
+    <button class="btn green" onclick="showKey()">Show answers &amp; explanations</button>
+    <button class="btn secondary" onclick="resetAll()">Start again</button>
+  </div>
+
+  <div class="card result" id="result">
+    <p class="big" id="scoreBig"></p>
+    <p id="scoreMsg" style="margin:0;color:var(--grey)"></p>
+    <div class="tablewrap" id="keyWrap"></div>
+  </div>
+
+  <div class="progress">
+    <span id="progTxt">Answered: 0 / 10</span>
+    <div class="bar"><i id="progBar"></i></div>
+  </div>
+
+  <p class="source">Source: Matúš Beňo, “Weekend: 7 ways to enjoy Slovakia this weekend”, <i>The Slovak Spectator</i> (spectator.sme.sk), 25–27 September 2026 — shortened and adapted for exam practice. The exam format follows the Slovak Maturita external test (NIVAM).</p>
+  <div class="foot">© <span id="yr"></span> Vivien Bieliková — English in Context. All materials shared for educational use.</div>
+</div>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ==================================================================
+   TEXT — {{n}} marks a gap
+   ================================================================== */
+const TITLE = 'A Weekend Full of History, Light and Kites';
+const TEXT = [
+  'If you fancy a journey back in time, head to Rusovce, a borough of Bratislava. Once home to the Roman military camp Gerulata, a UNESCO World Heritage Site since 2021, the place will come alive on Saturday with scenes from {{00}} life in ancient times. Visitors can look forward to battle {{41}}, marches, archery and {{42}} showcases.',
+  'Theatre lovers should head to Nitra. Despite receiving no {{43}} from the Arts Support Fund, the 35th Divadelná Nitra festival will go ahead, although in a smaller form. This year it reflects on {{44}} freedom, democracy and totalitarian regimes, and it opens with a version of Shakespeare’s <i>Macbeth</i> – a play about the rise of {{45}}, the {{46}} of others and the fall of power.',
+  'Meanwhile, the Light in the City Festival in Banská Bystrica will use light and video-mapping installations to reveal courtyards, passages and arcades of the historic centre that usually go {{47}}. Back in Nitra, wandering puppeteers and barrel organ players – once banned by the communist regime – will fill the streets with the atmosphere of times long gone. {{48}} is free.',
+  'On Friday, Noc vedy, the biggest science festival in Slovakia, takes place {{49}} in five towns, while observatories in Levice, Hurbanovo and elsewhere also open their doors. Finally, autumn is kite season: at the International Kite Day in Chrenovec-Brusno and Kanianka, everyone who brings a kite gets a small gift – and those whose kites are {{50}} receive an extra bonus.'
+];
+
+/* ==================================================================
+   GAPS: root, accepted answers, hint, explanation
+   ================================================================== */
+const GAPS = {
+  '00':{root:'day', a:['daily']},
+  41:{root:'demonstrate', a:['demonstrations'], hint:'noun — plural (part of a list)', e:'<b>demonstrate → demonstration</b> (-tion). It is part of a list of events (marches, archery…), so it must be <b>plural</b>: battle demonstrations.'},
+  42:{root:'archaeology', a:['archaeological','archeological'], hint:'adjective before a noun', e:'<b>archaeology → archaeological</b> (-ical) — an adjective describing the noun <i>showcases</i>.'},
+  43:{root:'fund', a:['funding'], hint:'uncountable noun', e:'<b>fund → funding</b> = money given for a purpose. After <i>receive no</i> we need an uncountable noun (<i>funds</i> is possible in general English, but the text refers to support in general).'},
+  44:{root:'art', a:['artistic'], hint:'adjective before a noun', e:'<b>art → artistic</b> (-istic) — <i>artistic freedom</i> is a common collocation. (<i>Artful</i> means clever or cunning.)'},
+  45:{root:'tyrant', a:['tyranny'], hint:'abstract noun — watch the spelling', e:'<b>tyrant → tyranny</b> — the abstract noun for cruel, unfair rule. Note the spelling change: <b>-ant → -anny</b>.'},
+  46:{root:'manipulate', a:['manipulation'], hint:'noun after "the … of"', e:'<b>manipulate → manipulation</b> — <i>the … of others</i> requires a noun. Drop the final <b>-e</b> and add <b>-ion</b>.'},
+  47:{root:'notice', a:['unnoticed'], hint:'negative past participle (prefix + suffix)', e:'<b>notice → unnoticed</b> — fixed phrase <i>go unnoticed</i> = not be seen or noticed. You need a negative prefix <b>un-</b> and the <b>-ed</b> form.'},
+  48:{root:'admit', a:['admission'], hint:'noun — start of a sentence', e:'<b>admit → admission</b> = the right to enter / the price of entry (<i>Admission is free</i>). Spelling change: <b>-mit → -mission</b>. (<i>Admittance</i> exists but is used for permission to enter a place, e.g. <i>No admittance</i>.)'},
+  49:{root:'dominate', a:['predominantly'], hint:'adverb — prefix + suffix', e:'<b>dominate → predominantly</b> = mainly, mostly. This needs a prefix (<b>pre-</b>), an adjective suffix (<b>-ant</b>) and the adverb ending (<b>-ly</b>).'},
+  50:{root:'hand', a:['handmade','hand-made'], hint:'compound adjective', e:'<b>hand → handmade</b> = made by hand, not by a machine. A compound adjective (<i>hand-made</i> is also accepted).'}
+};
+const NUMS = [41,42,43,44,45,46,47,48,49,50];
+const norm = s => (s||'').toLowerCase().replace(/[’‘]/g,"'").replace(/\s+/g,' ').trim();
+
+/* ---------- render ---------- */
+document.getElementById('text').innerHTML = '<h3>'+TITLE+'</h3>' + TEXT.map((p,i) => '<p'+(i===0?' class="first"':'')+'>' + p.replace(/\{\{(\w+)\}\}/g, (m,n) => {
+  const g = GAPS[n];
+  const field = n==='00' ? '<span class="exword">daily</span>' : '<input class="blank" id="i'+n+'" autocomplete="off" spellcheck="false" autocapitalize="off" aria-label="gap '+n+'" oninput="updateProgress()">';
+  return '<span class="gap"><span class="box">'+n+'</span>'+field+'</span> <span class="root">('+g.root+')</span>';
+}) + '</p>').join('');
+document.getElementById('hintList').innerHTML = NUMS.map(n => '<li><span class="box">'+n+'</span> '+GAPS[n].hint+'</li>').join('');
+
+function updateProgress(){
+  const done = NUMS.filter(n => document.getElementById('i'+n).value.trim()).length;
+  document.getElementById('progTxt').textContent = 'Answered: '+done+' / '+NUMS.length;
+  document.getElementById('progBar').style.width = (done/NUMS.length*100)+'%';
+}
+function toggleHints(){
+  const h = document.getElementById('hints');
+  h.classList.toggle('show');
+  document.getElementById('hintBtn').textContent = h.classList.contains('show') ? 'Hide hints' : 'Show hints';
+}
+
+function grade(){
+  let ok = 0;
+  const rows = NUMS.map(n => {
+    const el = document.getElementById('i'+n);
+    const g = GAPS[n];
+    const good = g.a.map(norm).includes(norm(el.value));
+    el.classList.remove('right','wrong');
+    el.classList.add(good ? 'right' : 'wrong');
+    if (good) ok++;
+    return {n, g, val: el.value.trim(), good};
+  });
+  return {ok, rows};
+}
+function renderResult(ok, rows, full){
+  const pct = Math.round(ok/NUMS.length*100);
+  document.getElementById('scoreBig').textContent = ok+' / '+NUMS.length+' points ('+pct+' %)';
+  document.getElementById('scoreMsg').textContent = pct>=90 ? 'Excellent — exam-ready!' : pct>=70 ? 'Good work. Look at the explanations for the ones you missed.' : pct>=50 ? 'Not bad — study the explanations, then try again.' : 'Keep practising: turn on the hints and try again.';
+  const shown = full ? rows : rows.filter(r => !r.good);
+  document.getElementById('keyWrap').innerHTML = shown.length ? '<table class="key"><tr><th>Gap</th><th>Your answer</th><th>Correct</th><th>Why?</th></tr>' + shown.map(r =>
+    '<tr><td><span class="box">'+r.n+'</span></td><td class="'+(r.good?'ok':'no')+'">'+(r.val||'—')+'</td><td><b>'+r.g.a[0]+'</b></td><td class="expl">'+r.g.e+'</td></tr>').join('') + '</table>' : '';
+  const res = document.getElementById('result');
+  res.classList.add('show');
+  res.scrollIntoView({behavior:'smooth', block:'start'});
+  stopTimer();
+}
+function checkAnswers(){ const {ok, rows} = grade(); renderResult(ok, rows, false); }
+function showKey(){ const {ok, rows} = grade(); renderResult(ok, rows, true); }
+function resetAll(){
+  NUMS.forEach(n => { const el = document.getElementById('i'+n); el.value=''; el.classList.remove('right','wrong'); });
+  document.getElementById('result').classList.remove('show');
+  stopTimer(); secs = 600; drawClock();
+  document.getElementById('timerBtn').textContent = 'Start exam timer';
+  updateProgress();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* ---------- timer ---------- */
+let secs = 600, tid = null;
+function drawClock(){
+  const c = document.getElementById('clock');
+  c.textContent = String(Math.floor(secs/60)).padStart(2,'0')+':'+String(secs%60).padStart(2,'0');
+  c.classList.toggle('low', secs <= 60);
+}
+function toggleTimer(){
+  const b = document.getElementById('timerBtn');
+  if (tid){ stopTimer(); b.textContent = 'Resume timer'; return; }
+  b.textContent = 'Pause timer';
+  tid = setInterval(()=>{ secs--; drawClock(); if (secs<=0){ stopTimer(); alert('Time is up! Check your answers.'); checkAnswers(); } }, 1000);
+}
+function stopTimer(){ clearInterval(tid); tid = null; }
+updateProgress();
+</script>
+</body>
+</html>

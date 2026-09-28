@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Listening: Robots, AI and Designer Baby Dilemmas | Science and Technology | English in Context</title>
+<style>
+  :root{
+    --cream:#faf6ec;
+    --card:#fffdf8;
+    --rust:#b5502d;
+    --rust-dark:#8f3e21;
+    --rust-pale:#f6e9e2;
+    --ink:#26241f;
+    --grey:#6b6558;
+    --line:#e7dfcd;
+    --green:#2f5d50;
+    --green-bg:#e7eeec;
+    --wrong:#b3312c;
+    --wrong-bg:#fbeceb;
+    --right-bg:#e9f3ea;
+    --amber-bg:#faf1da;
+    --amber-ink:#7a5615;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:"Segoe UI",Arial,Helvetica,sans-serif;line-height:1.55;}
+  .wrap{max-width:840px;margin:0 auto;padding:56px 24px 96px;}
+
+  .crumb{font-size:13px;letter-spacing:.02em;color:var(--grey);margin-bottom:6px;}
+  .crumb a{color:var(--grey);text-decoration:none;}
+  .crumb a:hover{color:var(--rust);}
+  .crumb strong{color:var(--rust);font-weight:600;}
+
+  .eyebrow{font-size:13px;font-weight:700;color:var(--rust);margin:22px 0 8px;}
+  h1{font-family:Georgia,"Times New Roman",serif;font-size:32px;line-height:1.2;margin:0 0 16px;}
+  .lede{color:var(--grey);font-size:16.5px;max-width:70ch;margin:0 0 26px;}
+
+  .exam-info{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:26px;}
+  .exam-info div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13.5px;color:var(--grey);}
+  .exam-info b{display:block;font-size:18px;color:var(--ink);font-family:Georgia,serif;}
+
+  .audio-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px 26px;margin-bottom:22px;}
+  .audio-card .tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.03em;color:var(--rust-dark);background:var(--rust-pale);border-radius:5px;padding:2px 9px;margin-bottom:10px;}
+  audio{width:100%;margin-top:8px;}
+  .plays{font-size:13.5px;color:var(--grey);margin-top:10px;}
+  .plays b{color:var(--rust);}
+
+  .note{background:var(--amber-bg);color:var(--amber-ink);border-radius:10px;padding:14px 18px;font-size:14.5px;margin-bottom:26px;}
+  .note ul{margin:6px 0 0;padding-left:20px;}
+
+  .section-title{font-family:Georgia,serif;font-size:24px;margin:40px 0 4px;}
+  .section-title .pts{font-family:"Segoe UI",Arial,sans-serif;font-size:13px;font-weight:700;color:#fff;background:var(--rust);border-radius:999px;padding:3px 11px;margin-left:10px;vertical-align:middle;}
+  .section-lede{color:var(--grey);margin:0 0 18px;}
+
+  .exercise{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px 26px 24px;margin-bottom:18px;}
+  .q{padding:14px 0;border-bottom:1px solid var(--line);}
+  .q:first-child{padding-top:0;}
+  .q:last-of-type{border-bottom:none;}
+  .qn{font-weight:700;margin-bottom:8px;font-size:15.5px;}
+  .num{color:var(--rust);margin-right:4px;}
+  .choices{display:flex;flex-direction:column;gap:6px;margin:6px 0 4px;}
+  .choices.row{flex-direction:row;flex-wrap:wrap;gap:8px 22px;}
+  .choice{display:flex;align-items:flex-start;gap:8px;font-size:15px;cursor:pointer;padding:5px 10px;border-radius:7px;border:1px solid transparent;}
+  .choice:hover{background:var(--rust-pale);}
+  .choice input{accent-color:var(--rust);margin-top:4px;}
+  .choice .letter{font-weight:700;color:var(--rust-dark);min-width:16px;}
+  .choice.right{background:var(--right-bg);border-color:var(--green);}
+  .choice.wrong{background:var(--wrong-bg);border-color:var(--wrong);}
+  .evidence{display:none;margin-top:8px;font-size:13.5px;color:var(--amber-ink);background:var(--amber-bg);padding:8px 12px;border-radius:7px;}
+  .evidence i{color:var(--ink);}
+
+  .tfns-table{width:100%;border-collapse:collapse;font-size:15px;}
+  .tfns-table th{font-size:12.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--grey);text-align:center;padding:6px;border-bottom:2px solid var(--line);}
+  .tfns-table th:nth-child(2){text-align:left;}
+  .tfns-table td{padding:12px 6px;border-bottom:1px solid var(--line);vertical-align:top;}
+  .tfns-table td.opt{text-align:center;width:62px;}
+  .tfns-table input{accent-color:var(--rust);width:18px;height:18px;cursor:pointer;}
+  .tfns-table tr.right td{background:var(--right-bg);}
+  .tfns-table tr.wrong td{background:var(--wrong-bg);}
+  .tfns-table .evidence{margin-top:6px;}
+
+  .order-item{display:flex;gap:14px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--line);}
+  .order-item:last-child{border-bottom:none;}
+  .order-item select{font-size:15px;padding:5px 8px;border-radius:7px;border:2px solid var(--line);background:#fff;min-width:64px;font-weight:700;color:var(--rust-dark);}
+  .order-item.right select{border-color:var(--green);background:var(--right-bg);}
+  .order-item.wrong select{border-color:var(--wrong);background:var(--wrong-bg);}
+  .order-item .st{flex:1;font-size:15px;}
+  .order-item .st b{color:var(--rust-dark);margin-right:6px;}
+  .order-item .fix{font-size:13px;font-weight:700;color:var(--wrong);margin-left:6px;}
+
+  .toolbar{display:flex;gap:10px;margin:18px 0 6px;flex-wrap:wrap;}
+  .btn{border:1px solid var(--rust);background:var(--rust);color:#fff;padding:9px 18px;border-radius:7px;font-size:14px;font-weight:600;cursor:pointer;}
+  .btn:hover{background:var(--rust-dark);border-color:var(--rust-dark);}
+  .btn.secondary{background:transparent;color:var(--rust);}
+  .btn.secondary:hover{background:var(--rust-pale);}
+  .score{font-size:14.5px;color:var(--green);font-weight:700;margin-top:6px;min-height:18px;}
+
+  .results{background:var(--card);border:2px solid var(--rust);border-radius:12px;padding:22px 26px;margin-top:34px;}
+  .results h2{font-family:Georgia,serif;font-size:22px;margin:0 0 12px;}
+  .results table{width:100%;border-collapse:collapse;font-size:15px;}
+  .results td{padding:8px 4px;border-bottom:1px solid var(--line);}
+  .results td:last-child{text-align:right;font-weight:700;}
+  .results tr.total td{border-bottom:none;font-size:17px;color:var(--rust-dark);}
+  .bar{height:10px;background:var(--line);border-radius:999px;overflow:hidden;margin:14px 0 8px;}
+  .bar div{height:100%;width:0;background:var(--rust);transition:width .4s;}
+  #verdict{font-size:14.5px;color:var(--grey);}
+
+  .toggle-btn{display:inline-block;border:1px solid var(--rust);background:transparent;color:var(--rust);padding:8px 16px;border-radius:7px;font-size:14px;font-weight:600;cursor:pointer;margin:34px 0 16px;}
+  .toggle-btn:hover{background:var(--rust-pale);}
+  .script{display:none;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px 28px;margin-bottom:30px;font-size:15px;}
+  .script.open{display:block;}
+  .script h2{font-family:Georgia,serif;font-size:19px;margin:22px 0 8px;color:var(--rust-dark);}
+  .script h2:first-child{margin-top:0;}
+  .script p{margin:0 0 12px;}
+  .script .ts{font-size:12px;color:var(--grey);font-weight:700;margin-right:6px;}
+
+  .vocab{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px 18px;font-size:14.5px;}
+  .vocab div{padding:6px 0;border-bottom:1px dashed var(--line);}
+  .vocab b{color:var(--rust-dark);}
+
+  .foot{text-align:center;color:var(--grey);font-size:13px;margin-top:44px;padding-top:20px;border-top:1px solid var(--line);}
+  @media(max-width:600px){
+    .wrap{padding:36px 16px 70px;}
+    h1{font-size:26px;}
+    .exercise,.audio-card,.results,.script{padding:18px 16px;}
+    .tfns-table td.opt{width:40px;}
+    .tfns-table th{font-size:11px;padding:4px 2px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="crumb"><a href="index.html#elt">English Language Teaching</a> &nbsp;&rsaquo;&nbsp; Listening Extracts &nbsp;&rsaquo;&nbsp; <strong>Science and Technology</strong></div>
+
+  <div class="eyebrow">Maturita Exam &middot; Listening Comprehension &middot; B2</div>
+  <h1>Robots, AI and Designer Baby Dilemmas</h1>
+  <p class="lede">A short presentation on our dependence on technology: robotic surgery, artificial intelligence in education, and the ethical dilemmas of modern science. Complete three Maturita-style tasks for a total of 25 points.</p>
+
+  <div class="exam-info">
+    <div><b>1 : 35</b>length of the recording</div>
+    <div><b>2×</b>you may listen twice</div>
+    <div><b>3 tasks</b>MC · T/F/NS · order</div>
+    <div><b>25 points</b>maximum score</div>
+  </div>
+
+  <div class="audio-card">
+    <span class="tag">LISTENING &middot; AUDIO</span>
+    <audio controls preload="metadata" id="player">
+      <source src="robots-ai-designer-baby-dilemmas.m4a" type="audio/mp4">
+      Your browser does not support the audio element.
+    </audio>
+    <div class="plays">Times listened: <b id="plays">0</b> / 2</div>
+  </div>
+
+  <div class="note">
+    <b>How to work like in the exam</b>
+    <ul>
+      <li>Read all three tasks first (about 2 minutes).</li>
+      <li>Listen for the first time and answer what you can. Listen again and check your answers.</li>
+      <li>Open the script only after you have checked your answers.</li>
+    </ul>
+  </div>
+
+  <!-- ============ TASK 1 ============ -->
+  <div class="section-title">Task 1 · Multiple Choice <span class="pts">10 points</span></div>
+  <p class="section-lede">Choose the correct answer (A, B, C or D). Only one answer is correct.</p>
+  <div class="exercise" id="task1"></div>
+  <div class="toolbar">
+    <button class="btn" onclick="checkMC()">Check Task 1</button>
+    <button class="btn secondary" onclick="clearTask('task1')">Clear</button>
+  </div>
+  <div class="score" id="task1-score"></div>
+
+  <!-- ============ TASK 2 ============ -->
+  <div class="section-title">Task 2 · True, False or Not Stated <span class="pts">5 points</span></div>
+  <p class="section-lede">Decide whether each statement is <b>True (T)</b>, <b>False (F)</b>, or whether the information is <b>Not Stated (NS)</b> in the recording.</p>
+  <div class="exercise">
+    <table class="tfns-table" id="task2"></table>
+  </div>
+  <div class="toolbar">
+    <button class="btn" onclick="checkTF()">Check Task 2</button>
+    <button class="btn secondary" onclick="clearTask('task2')">Clear</button>
+  </div>
+  <div class="score" id="task2-score"></div>
+
+  <!-- ============ TASK 3 ============ -->
+  <div class="section-title">Task 3 · Put the Ideas in Order <span class="pts">10 points</span></div>
+  <p class="section-lede">The ten ideas below are mixed up. Number them <b>1–10</b> in the order in which the speaker mentions them. Each number can be used only once.</p>
+  <div class="exercise" id="task3"></div>
+  <div class="toolbar">
+    <button class="btn" onclick="checkOrder()">Check Task 3</button>
+    <button class="btn secondary" onclick="clearTask('task3')">Clear</button>
+  </div>
+  <div class="score" id="task3-score"></div>
+
+  <!-- ============ RESULTS ============ -->
+  <div class="results">
+    <h2>Your Result</h2>
+    <table>
+      <tr><td>Task 1 · Multiple choice</td><td id="r1">– / 10</td></tr>
+      <tr><td>Task 2 · True / False / Not Stated</td><td id="r2">– / 5</td></tr>
+      <tr><td>Task 3 · Order of ideas</td><td id="r3">– / 10</td></tr>
+      <tr class="total"><td>Total</td><td id="rt">0 / 25</td></tr>
+    </table>
+    <div class="bar"><div id="rbar"></div></div>
+    <div id="verdict">Check each task to see your score.</div>
+    <div class="toolbar">
+      <button class="btn" onclick="checkMC();checkTF();checkOrder()">Check all tasks</button>
+      <button class="btn secondary" onclick="clearTask('task1');clearTask('task2');clearTask('task3')">Start again</button>
+    </div>
+  </div>
+
+  <!-- ============ SCRIPT ============ -->
+  <button class="toggle-btn" onclick="toggleScript()" id="scriptBtn">Show script</button>
+
+  <div class="script" id="scriptBox">
+    <h2>Introduction: Progress and Its Price</h2>
+    <p><span class="ts">0:00</span>This is the brief on the future of science and technology. Today, we&rsquo;re looking at a presentation unpacking our extreme dependence on technology, framing that crazy tension between lightning-fast scientific progress and the massive moral dilemmas it creates.</p>
+
+    <h2>1. Robotic Surgery and Automation</h2>
+    <p><span class="ts">0:13</span>First, let&rsquo;s talk robotic surgery and physical automation. These surgical robots are totally poised to revolutionise healthcare and assist people with disabilities. But honestly, you have to ask yourself: while they improve our physical quality of life, how badly are they going to disrupt employment and the everyday job market?</p>
+
+    <h2>2. Artificial Intelligence in Education</h2>
+    <p><span class="ts">0:33</span>Second, while robotics automate the body, artificial intelligence is automating the mind. Everyday AI tools like Siri, Alexa and ChatGPT are completely shaking up education, directly threatening students&rsquo; creativity, critical thinking and hard work.</p>
+    <p><span class="ts">0:48</span>Plus, how can an AI ever be truly unbiased if it was developed by humans with our own messy perceptions and feelings? Could it really replace human teachers?</p>
+
+    <h2>3. Ethical Dilemmas</h2>
+    <p><span class="ts">0:57</span>Finally, altering both our bodies and minds inevitably leads to severe ethical crises. To put it in perspective, a massive 86% of people view data privacy as a very critical dilemma. But we have to contrast this digital concern with wild biological dilemmas on the horizon, like cryonics for immortality, or altering human embryos to select a child&rsquo;s traits prior to birth.</p>
+    <p><span class="ts">1:21</span>Seriously, if we begin selecting a child&rsquo;s traits before birth, are we basically treating human life like customising a new smartphone?</p>
+
+    <h2>Conclusion</h2>
+    <p><span class="ts">1:29</span>Humanity&rsquo;s ultimate challenge isn&rsquo;t inventing the next big thing, but figuring out the ethics to survive what we&rsquo;ve already built.</p>
+
+    <h2>Useful Vocabulary</h2>
+    <div class="vocab">
+      <div><b>be poised to</b> – byť pripravený, chystať sa</div>
+      <div><b>disrupt</b> – narušiť</div>
+      <div><b>the job market</b> – trh práce</div>
+      <div><b>shake up</b> – otriasť, radikálne zmeniť</div>
+      <div><b>unbiased</b> – nestranný, objektívny</div>
+      <div><b>perception</b> – vnímanie</div>
+      <div><b>inevitably</b> – nevyhnutne</div>
+      <div><b>dilemma</b> – dilema</div>
+      <div><b>data privacy</b> – ochrana osobných údajov</div>
+      <div><b>cryonics</b> – kryonika (zmrazovanie tiel)</div>
+      <div><b>embryo</b> – embryo, zárodok</div>
+      <div><b>traits</b> – vlastnosti, znaky</div>
+      <div><b>prior to</b> – pred</div>
+      <div><b>customise</b> – prispôsobiť podľa seba</div>
+    </div>
+  </div>
+
+  <div class="foot">English in Context &middot; Maturita Exam &middot; Science and Technology &middot; Listening: Robots, AI and Designer Baby Dilemmas</div>
+</div>
+
+<script>
+/* ============ DATA ============ */
+const MC = [
+  {q:'What is the main focus of the presentation?', o:['The history of the most important inventions','The conflict between fast scientific progress and the moral problems it causes','The best careers in science and technology','The high cost of modern technology'], a:1, e:'"…framing that crazy tension between lightning-fast scientific progress and the massive moral dilemmas it creates."'},
+  {q:'According to the speaker, surgical robots are expected to', o:['replace surgeons in most hospitals.','make operations cheaper for patients.','revolutionise healthcare and help people with disabilities.','be used mainly in emergency medicine.'], a:2, e:'"These surgical robots are totally poised to revolutionise healthcare and assist people with disabilities."'},
+  {q:'What concern does the speaker raise about robotics?', o:['Its effect on employment and the job market','The safety of patients during operations','The amount of energy robots use','The difficulty of repairing robots'], a:0, e:'"…how badly are they going to disrupt employment and the everyday job market?"'},
+  {q:'How does the speaker compare robotics and artificial intelligence?', o:['AI is more dangerous than robotics.','Robotics automates the body, while AI automates the mind.','Robotics is developing faster than AI.','AI and robotics will soon be the same thing.'], a:1, e:'"…while robotics automate the body, artificial intelligence is automating the mind."'},
+  {q:'Which AI tools are mentioned in the recording?', o:['Google Translate, Siri and Gemini','Alexa, Duolingo and ChatGPT','Siri, Alexa and ChatGPT','ChatGPT, Copilot and Siri'], a:2, e:'"Everyday AI tools like Siri, Alexa and ChatGPT…"'},
+  {q:'According to the speaker, AI tools threaten students\'', o:['memory, handwriting and teamwork.','creativity, critical thinking and hard work.','motivation, health and social life.','reading, writing and speaking skills.'], a:1, e:'"…directly threatening students\' creativity, critical thinking and hard work."'},
+  {q:'Why does the speaker doubt that AI can be truly unbiased?', o:['It was created by humans with their own perceptions and feelings.','It is trained on too little information.','Companies use it only to make money.','It cannot understand different languages.'], a:0, e:'"…how can an AI ever be truly unbiased if it was developed by humans with our own messy perceptions and feelings?"'},
+  {q:'What percentage of people see data privacy as a very critical dilemma?', o:['16 %','68 %','86 %','96 %'], a:2, e:'"…a massive 86% of people view data privacy as a very critical dilemma."'},
+  {q:'The speaker compares selecting a child\'s traits before birth to', o:['building a new robot.','ordering food online.','choosing a new car.','customising a new smartphone.'], a:3, e:'"…are we basically treating human life like customising a new smartphone?"'},
+  {q:'According to the conclusion, humanity\'s greatest challenge is', o:['inventing the next big technology.','finding the ethics to survive what we have already built.','stopping scientific progress completely.','making technology available to everyone.'], a:1, e:'"Humanity\'s ultimate challenge isn\'t inventing the next big thing, but figuring out the ethics to survive what we\'ve already built."'}
+];
+
+const TF = [
+  {s:'The speaker thinks that AI tools are having a strong impact on education.', a:'T', e:'"…AI tools like Siri, Alexa and ChatGPT are completely shaking up education."'},
+  {s:'The speaker states that AI will definitely replace human teachers.', a:'F', e:'The speaker only asks a question: "Could it really replace human teachers?" It is not a statement that it will happen.'},
+  {s:'Most doctors are in favour of robotic surgery.', a:'NS', e:'The recording does not mention doctors\' opinions of robotic surgery.'},
+  {s:'Fewer than half of people consider data privacy a serious problem.', a:'F', e:'The recording says 86 % of people see it as a very critical dilemma, which is far more than half.'},
+  {s:'The survey on data privacy was carried out among teenagers.', a:'NS', e:'The speaker gives the percentage but says nothing about who took part in the survey.'}
+];
+
+// correct position (1–10) of each idea; shown to students in mixed order (letters A–J)
+const IDEAS = [
+  {t:'AI may reflect the perceptions and feelings of the people who created it.', n:6},
+  {t:'Surgical robots could transform healthcare and help people with disabilities.', n:2},
+  {t:'Choosing a baby\'s traits could make human life look like a product.', n:9},
+  {t:'AI is doing to the mind what robots are doing to the body.', n:4},
+  {t:'Our society depends heavily on technology.', n:1},
+  {t:'A large majority of people see data privacy as a serious problem.', n:8},
+  {t:'Robots might have a negative effect on jobs.', n:3},
+  {t:'The real challenge for humanity is ethical, not technological.', n:10},
+  {t:'Popular AI tools are changing the way students learn.', n:5},
+  {t:'It is not clear whether AI could take the place of teachers.', n:7}
+];
+
+const SCORES = {task1:null, task2:null, task3:null};
+
+/* ============ RENDER ============ */
+(function(){
+  const L = ['A','B','C','D'];
+  document.getElementById('task1').innerHTML = MC.map((m, i) =>
+    '<div class="q" data-i="' + i + '"><div class="qn"><span class="num">' + (i+1) + '.</span>' + m.q + '</div><div class="choices">' +
+    m.o.map((o, j) => '<label class="choice"><input type="radio" name="mc' + i + '" value="' + j + '"><span class="letter">' + L[j] + '</span><span>' + o + '</span></label>').join('') +
+    '</div><div class="evidence"><b>In the recording:</b> <i>' + m.e + '</i></div></div>').join('');
+
+  document.getElementById('task2').innerHTML = '<tr><th>#</th><th>Statement</th><th>T</th><th>F</th><th>NS</th></tr>' +
+    TF.map((t, i) => '<tr data-i="' + i + '"><td><b style="color:var(--rust)">' + (i+1) + '.</b></td><td>' + t.s + '<div class="evidence"></div></td>' +
+    ['T','F','NS'].map(v => '<td class="opt"><input type="radio" name="tf' + i + '" value="' + v + '" aria-label="' + v + '"></td>').join('') + '</tr>').join('');
+
+  const opts = '<option value="">–</option>' + Array.from({length:10}, (_, i) => '<option>' + (i+1) + '</option>').join('');
+  document.getElementById('task3').innerHTML = IDEAS.map((d, i) =>
+    '<div class="order-item" data-i="' + i + '"><select aria-label="Position of idea ' + 'ABCDEFGHIJ'[i] + '">' + opts + '</select><div class="st"><b>' + 'ABCDEFGHIJ'[i] + '</b>' + d.t + '<span class="fix"></span></div></div>').join('');
+})();
+
+/* ============ CHECKING ============ */
+function checkMC(){
+  let s = 0;
+  document.querySelectorAll('#task1 .q').forEach(q => {
+    const m = MC[q.dataset.i];
+    const sel = q.querySelector('input:checked');
+    q.querySelectorAll('.choice').forEach((c, j) => { c.classList.remove('right','wrong'); if(j === m.a) c.classList.add('right'); });
+    if(sel && +sel.value === m.a) s++;
+    else if(sel) sel.closest('.choice').classList.add('wrong');
+    q.querySelector('.evidence').style.display = 'block';
+  });
+  setScore('task1', s, 10);
+}
+function checkTF(){
+  let s = 0;
+  document.querySelectorAll('#task2 tr[data-i]').forEach(r => {
+    const t = TF[r.dataset.i];
+    const sel = r.querySelector('input:checked');
+    const ok = sel && sel.value === t.a;
+    r.classList.remove('right','wrong'); r.classList.add(ok ? 'right' : 'wrong');
+    if(ok) s++;
+    const ev = r.querySelector('.evidence');
+    ev.innerHTML = (ok ? '✓ ' : '✗ Correct answer: <b>' + ({T:'True',F:'False',NS:'Not Stated'})[t.a] + '</b>. ') + t.e;
+    ev.style.display = 'block';
+  });
+  setScore('task2', s, 5);
+}
+function checkOrder(){
+  let s = 0;
+  const used = {};
+  document.querySelectorAll('#task3 select').forEach(x => { if(x.value) used[x.value] = (used[x.value] || 0) + 1; });
+  document.querySelectorAll('#task3 .order-item').forEach(r => {
+    const d = IDEAS[r.dataset.i], v = r.querySelector('select').value;
+    const ok = +v === d.n;
+    r.classList.remove('right','wrong'); r.classList.add(ok ? 'right' : 'wrong');
+    if(ok) s++;
+    r.querySelector('.fix').textContent = ok ? ' ✓' : ' → ' + d.n;
+  });
+  const dup = Object.keys(used).filter(k => used[k] > 1);
+  setScore('task3', s, 10, dup.length ? 'You used the number ' + dup.join(', ') + ' more than once.' : '');
+}
+function setScore(id, s, max, extra){
+  SCORES[id] = s;
+  document.getElementById(id + '-score').textContent = 'Score: ' + s + ' / ' + max + ' points' + (extra ? ' · ' + extra : '');
+  updateResults();
+}
+function updateResults(){
+  const max = {task1:10, task2:5, task3:10};
+  let tot = 0, done = 0;
+  ['task1','task2','task3'].forEach((k, i) => {
+    const v = SCORES[k];
+    document.getElementById('r' + (i+1)).textContent = (v === null ? '–' : v) + ' / ' + max[k];
+    if(v !== null){ tot += v; done++; }
+  });
+  document.getElementById('rt').textContent = tot + ' / 25';
+  const pct = Math.round(tot / 25 * 100);
+  document.getElementById('rbar').style.width = pct + '%';
+  document.getElementById('verdict').textContent = done < 3
+    ? 'Checked ' + done + ' of 3 tasks. Current total: ' + pct + ' %.'
+    : pct + ' % · ' + (pct >= 85 ? 'Excellent! You are well prepared for the Maturita listening test.' : pct >= 65 ? 'Good work. Listen again and read the script to see where you lost points.' : 'Keep practising. Read the script while you listen, then try the tasks again.');
+}
+function clearTask(id){
+  const box = document.getElementById(id);
+  box.querySelectorAll('input').forEach(x => x.checked = false);
+  box.querySelectorAll('select').forEach(x => x.value = '');
+  box.querySelectorAll('.right,.wrong').forEach(x => x.classList.remove('right','wrong'));
+  box.querySelectorAll('.evidence').forEach(x => x.style.display = 'none');
+  box.querySelectorAll('.fix').forEach(x => x.textContent = '');
+  document.getElementById(id + '-score').textContent = '';
+  SCORES[id] = null;
+  updateResults();
+}
+
+/* ============ AUDIO & SCRIPT ============ */
+let plays = 0;
+document.getElementById('player').addEventListener('ended', () => {
+  plays++;
+  document.getElementById('plays').textContent = plays;
+  if(plays === 2) document.querySelector('.plays').innerHTML = 'Times listened: <b>2</b> / 2 · In the exam, this is the end of the recording. Check your answers now.';
+});
+function toggleScript(){
+  const box = document.getElementById('scriptBox'), btn = document.getElementById('scriptBtn');
+  if(!box.classList.contains('open') && SCORES.task1 === null && SCORES.task2 === null && SCORES.task3 === null){
+    if(!confirm('In the exam you cannot read the script. Open it anyway?')) return;
+  }
+  box.classList.toggle('open');
+  btn.textContent = box.classList.contains('open') ? 'Hide script' : 'Show script';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writing a Composition — PFIČ B2 | Maturita Exam | English in Context</title>
+<style>
+  :root{
+    --cream:#faf6ec; --card:#fffdf8; --rust:#b5502d; --rust-dark:#8f3e21;
+    --ink:#26241f; --grey:#6b6558; --line:#e7dfcd; --green:#2f5d50; --green-bg:#e7eeec;
+    --amber:#c98a1b; --amber-bg:#fbf1dc; --blue:#2a4d74; --blue-bg:#e3ecf6;
+    --wrong:#b3312c; --wrong-bg:#fbeceb; --right-bg:#e9f3ea;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:"Segoe UI",Arial,Helvetica,sans-serif;line-height:1.6;}
+  .wrap{max-width:920px;margin:0 auto;padding:40px 20px 100px;}
+  a{color:var(--rust);}
+  .back{display:inline-block;font-size:13.5px;color:var(--rust);text-decoration:none;margin-bottom:18px;font-weight:600;}
+  .back:hover{text-decoration:underline;}
+  .crumb{font-size:13px;color:var(--grey);margin-bottom:6px;}
+  .crumb strong{color:var(--rust);font-weight:600;}
+  .eyebrow{font-size:13px;font-weight:700;color:var(--rust);margin:22px 0 8px;letter-spacing:.03em;text-transform:uppercase;}
+  h1{font-family:Georgia,"Times New Roman",serif;font-size:36px;line-height:1.2;margin:0 0 16px;}
+  .lede{color:var(--grey);font-size:16.5px;max-width:72ch;margin:0 0 26px;}
+
+  /* sticky nav */
+  nav.sections{position:sticky;top:0;z-index:20;background:var(--cream);border-bottom:1px solid var(--line);margin:0 -20px 30px;padding:10px 20px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin;}
+  nav.sections a{flex:none;font-size:13.5px;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:20px;padding:5px 12px;white-space:nowrap;}
+  nav.sections a:hover,nav.sections a.on{border-color:var(--rust);color:var(--rust);}
+  nav.sections a b{color:var(--rust);margin-right:4px;}
+
+  section.part{margin:0 0 56px;scroll-margin-top:64px;}
+  .part-num{font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--rust);}
+  h2.pt{font-family:Georgia,serif;font-size:28px;margin:2px 0 8px;line-height:1.25;}
+  .pt-lede{color:var(--grey);margin:0 0 22px;max-width:72ch;}
+  h3{font-family:Georgia,serif;font-size:20px;margin:26px 0 10px;}
+  h4{font-size:15px;margin:0 0 6px;color:var(--rust-dark);}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin-bottom:18px;}
+  .card p{margin:0 0 10px;} .card p:last-child{margin-bottom:0;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+  @media (max-width:760px){.grid3,.grid4{grid-template-columns:1fr 1fr;}}
+  @media (max-width:560px){.grid2,.grid3,.grid4{grid-template-columns:1fr;}}
+
+  .fact{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;}
+  .fact .big{font-family:Georgia,serif;font-size:26px;font-weight:700;color:var(--rust);line-height:1.1;}
+  .fact span{font-size:13.5px;color:var(--grey);}
+
+  .note{background:var(--amber-bg);border-left:4px solid var(--amber);border-radius:0 8px 8px 0;padding:12px 16px;font-size:14.5px;margin:14px 0;}
+  .hack{background:var(--green-bg);border:1px solid var(--green);border-radius:10px;padding:16px 22px;margin:16px 0;color:var(--green);}
+  .hack h4{color:var(--green);font-size:16px;}
+  .hack ul,.hack ol{margin:0;padding-left:20px;}
+
+  table.t{width:100%;border-collapse:collapse;font-size:14.5px;}
+  table.t th{text-align:left;color:var(--rust-dark);font-weight:600;border-bottom:1.5px solid var(--line);padding:8px 8px;font-size:13.5px;vertical-align:bottom;}
+  table.t td{border-bottom:1px solid var(--line);padding:9px 8px;vertical-align:top;}
+  table.t tr:last-child td{border-bottom:none;}
+  .tw{overflow-x:auto;}
+  .ex{color:var(--grey);font-style:italic;}
+  .old{color:var(--grey);text-decoration:line-through;text-decoration-color:rgba(179,49,44,.5);}
+  .up{color:var(--green);font-weight:600;}
+
+  /* structure diagram */
+  .plan{display:flex;flex-direction:column;gap:8px;}
+  .plan .blk{display:grid;grid-template-columns:130px 1fr 74px;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-left:5px solid var(--rust);border-radius:8px;padding:10px 14px;font-size:14.5px;}
+  .plan .blk.body{border-left-color:var(--green);}
+  .plan .blk.end{border-left-color:var(--amber);}
+  .plan .blk b{font-size:14px;}
+  .plan .blk .w{font-size:12.5px;color:var(--grey);text-align:right;}
+  @media (max-width:560px){.plan .blk{grid-template-columns:1fr;gap:2px;} .plan .blk .w{text-align:left;}}
+
+  /* linker groups */
+  .lk{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;}
+  .lk h4{display:flex;align-items:center;gap:8px;}
+  .lk .dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex:none;}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 10px;}
+  .chip{font-size:13.5px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:2px 10px;}
+  .chip.adv{border-color:var(--green);color:var(--green);font-weight:600;}
+  .lk .ex{font-size:14px;margin:0;}
+
+  .starter{margin:0;padding:0;list-style:none;}
+  .starter li{padding:7px 0 7px 22px;border-bottom:1px dashed var(--line);position:relative;font-size:15px;}
+  .starter li:last-child{border-bottom:none;}
+  .starter li::before{content:"›";position:absolute;left:4px;color:var(--rust);font-weight:700;}
+  .starter li i{color:var(--grey);}
+
+  /* tasks */
+  .task{background:#fff;border:1.5px solid var(--ink);border-radius:2px;padding:16px 18px;position:relative;}
+  .task .yr{position:absolute;top:-11px;left:14px;background:var(--ink);color:#fff;font-size:12px;font-weight:700;padding:1px 9px;border-radius:3px;letter-spacing:.03em;}
+  .task .yr.prac{background:var(--green);}
+  .task .topic{font-size:12.5px;color:var(--grey);text-transform:uppercase;letter-spacing:.05em;margin:4px 0 4px;}
+  .task p{margin:0 0 6px;font-size:14.8px;}
+  .task ul{margin:4px 0 8px;padding-left:20px;font-size:14.5px;}
+  .task .links{display:flex;gap:12px;flex-wrap:wrap;font-size:13.5px;}
+  .task .links a{font-weight:600;}
+  .taskgrid{display:grid;grid-template-columns:1fr 1fr;gap:22px 16px;margin-top:16px;}
+  @media (max-width:640px){.taskgrid{grid-template-columns:1fr;}}
+  .filter{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 6px;}
+  .fbtn{font-size:13px;border:1px solid var(--line);background:#fff;border-radius:16px;padding:4px 12px;cursor:pointer;font-family:inherit;}
+  .fbtn.on{background:var(--ink);color:#fff;border-color:var(--ink);}
+
+  /* model essays */
+  .tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+  .tab{font-family:inherit;font-size:13.5px;border:1px solid var(--line);background:#fff;border-radius:7px;padding:7px 12px;cursor:pointer;text-align:left;line-height:1.3;}
+  .tab small{display:block;color:var(--grey);font-size:11.5px;}
+  .tab.on{border-color:var(--rust);background:#f6e9e2;}
+  .essay-wrap{display:grid;grid-template-columns:1fr 250px;gap:18px;}
+  @media (max-width:760px){.essay-wrap{grid-template-columns:1fr;}}
+  .paper{background:#fff;border:1px solid var(--line);border-radius:6px;padding:26px 28px;box-shadow:0 2px 0 var(--line);font-family:Georgia,"Times New Roman",serif;font-size:16.3px;line-height:1.8;}
+  .paper h5{font-size:20px;text-align:center;margin:0 0 14px;}
+  .paper p{margin:0 0 12px;position:relative;}
+  .paper .plabel{display:none;font-family:"Segoe UI",Arial,sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--rust);margin-bottom:2px;}
+  .paper.labels .plabel{display:block;}
+  .paper mark.lnk{background:transparent;color:inherit;}
+  .paper.hl mark.lnk{background:#fdebb8;color:var(--ink);border-radius:3px;padding:0 2px;box-shadow:inset 0 -2px 0 var(--amber);}
+  .side{display:flex;flex-direction:column;gap:12px;}
+  .side .box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:14px;}
+  .side .box h4{font-size:13.5px;}
+  .toggle{display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer;margin:4px 0;}
+  .toggle input{accent-color:var(--rust);width:16px;height:16px;}
+  .score{display:grid;grid-template-columns:1fr auto;gap:2px 8px;font-size:13.5px;}
+  .score b{text-align:right;}
+
+  /* good vs weak */
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media (max-width:760px){.vs{grid-template-columns:1fr;}}
+  .vs .paper{font-size:15px;padding:20px 20px;}
+  .badge{display:inline-block;font-family:"Segoe UI",Arial,sans-serif;font-size:12px;font-weight:700;border-radius:4px;padding:2px 9px;margin-bottom:10px;}
+  .badge.bad{background:var(--wrong-bg);color:var(--wrong);}
+  .badge.good{background:var(--right-bg);color:var(--green);}
+  mark.err{background:transparent;color:inherit;}
+  .show-err mark.err{background:var(--wrong-bg);color:var(--wrong);text-decoration:underline wavy rgba(179,49,44,.6);text-underline-offset:3px;}
+  .show-err mark.err::after{content:" → " attr(data-fix);color:var(--green);font-weight:700;font-family:"Segoe UI",Arial,sans-serif;font-size:13px;text-decoration:none;display:inline;}
+  ul.comments{margin:6px 0 0;padding-left:18px;font-size:14px;}
+  ul.comments li{margin-bottom:5px;}
+
+  /* exercises */
+  .exercise{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin-bottom:22px;scroll-margin-top:64px;}
+  .exercise .lbl{font-size:13px;color:var(--rust);font-weight:700;text-transform:uppercase;letter-spacing:.04em;}
+  .exercise h4.t{font-family:Georgia,serif;font-size:20px;color:var(--ink);margin:0 0 4px;}
+  .exercise .instr{color:var(--grey);font-size:14.5px;margin:0 0 16px;}
+  .q{margin-bottom:12px;font-size:15px;}
+  .q .num{font-weight:700;margin-right:6px;}
+  .opts{display:flex;flex-direction:column;gap:6px;margin-top:6px;}
+  .opt{display:flex;align-items:flex-start;gap:8px;cursor:pointer;border:1px solid var(--line);background:#fff;border-radius:7px;padding:8px 12px;font-size:14.8px;}
+  .opt input{accent-color:var(--rust);margin-top:5px;flex:none;}
+  .opt.right{background:var(--right-bg);border-color:var(--green);}
+  .opt.wrong{background:var(--wrong-bg);border-color:var(--wrong);}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:4px;}
+  @media (max-width:560px){.row2{grid-template-columns:1fr;}}
+  .fb{font-size:13.8px;color:var(--grey);margin-top:6px;display:none;padding-left:4px;}
+  .fb.show{display:block;}
+  select.sel{font-family:inherit;font-size:14.5px;padding:3px 6px;border:1.5px solid var(--line);border-radius:6px;background:#fff;color:var(--rust-dark);font-weight:600;max-width:100%;}
+  select.sel.right{border-color:var(--green);background:var(--right-bg);color:var(--green);}
+  select.sel.wrong{border-color:var(--wrong);background:var(--wrong-bg);color:var(--wrong);}
+  .para-text{background:#fff;border:1px solid var(--line);border-radius:8px;padding:16px 18px;line-height:2.2;font-size:15.3px;}
+  .order-item{display:grid;grid-template-columns:74px 1fr;gap:12px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin-bottom:8px;font-size:14.5px;}
+  .toolbar{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+  .btn{border:1px solid var(--rust);background:var(--rust);color:#fff;padding:8px 15px;border-radius:7px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;}
+  .btn:hover{background:var(--rust-dark);border-color:var(--rust-dark);}
+  .btn.secondary{background:transparent;color:var(--rust);}
+  .btn.secondary:hover{background:#f6e9e2;}
+  .btn.green{background:var(--green);border-color:var(--green);}
+  .res{font-size:14px;font-weight:600;color:var(--grey);margin-top:10px;min-height:18px;}
+
+  /* writing lab */
+  .lab{display:grid;grid-template-columns:1fr 270px;gap:18px;}
+  @media (max-width:760px){.lab{grid-template-columns:1fr;}}
+  textarea#draft{width:100%;min-height:420px;border:1px solid var(--line);border-radius:8px;padding:18px 20px;font-family:Georgia,serif;font-size:16px;line-height:1.75;background:#fff;color:var(--ink);resize:vertical;}
+  textarea#draft:focus{outline:2px solid #f0d2c4;border-color:var(--rust);}
+  .meter{height:10px;background:var(--line);border-radius:6px;overflow:hidden;position:relative;margin:8px 0 4px;}
+  .meter i{display:block;height:100%;width:0;background:var(--wrong);transition:width .2s,background .2s;}
+  .meter .zone{position:absolute;top:0;bottom:0;border-left:2px solid var(--ink);border-right:2px solid var(--ink);background:rgba(47,93,80,.18);}
+  .wc{font-family:Georgia,serif;font-size:30px;font-weight:700;}
+  .wcmsg{font-size:13.5px;color:var(--grey);}
+  .checklist label{display:flex;gap:8px;align-items:flex-start;font-size:14px;margin-bottom:6px;cursor:pointer;}
+  .checklist input{accent-color:var(--green);margin-top:4px;flex:none;}
+  .lk-found{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;}
+  .lk-found span{font-size:12.5px;background:var(--right-bg);color:var(--green);border-radius:10px;padding:1px 8px;}
+  select#labTask{width:100%;font-family:inherit;font-size:14px;padding:6px;border:1px solid var(--line);border-radius:6px;background:#fff;}
+  .labtask{background:#fff;border:1.5px solid var(--ink);padding:12px 14px;font-size:14.5px;margin-bottom:12px;}
+  .labtask ul{margin:4px 0 0;padding-left:20px;}
+
+  .source{font-size:12.5px;color:var(--grey);margin-top:24px;}
+  .foot{text-align:center;color:var(--grey);font-size:13px;margin-top:40px;padding-top:22px;border-top:1px solid var(--line);}
+  @media (max-width:560px){h1{font-size:28px;} h2.pt{font-size:24px;} .paper{padding:18px 16px;} .card,.exercise{padding:18px 16px;}}
+  @media print{
+    nav.sections,.toolbar,.back,.tabs .tab:not(.on),.side .toggle,#lab,.filter{display:none!important;}
+    body{background:#fff;} .wrap{padding:0;max-width:none;}
+    section.part{page-break-inside:auto;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<a class="back" href="index.html#elt">← Back to English Language Teaching</a>
+<div class="crumb">English Language Teaching / Maturita Exam / <strong>Writing a Composition (PFIČ)</strong></div>
+<div class="eyebrow">Maturita B2 · Písomná forma internej časti (PFIČ) · Advanced writing</div>
+<h1>How to Write a Maturita Composition</h1>
+<p class="lede">Everything you need for the written part of the English Maturita: exam facts and marking criteria, paragraph plans for each genre, advanced linking words and sentence starters, real tasks from previous years, model compositions with annotations, a weak-vs-strong comparison and interactive exercises. Finish in the Writing Lab with a live word counter.</p>
+
+<nav class="sections" id="nav">
+  <a href="#facts"><b>1</b>Exam facts</a>
+  <a href="#structure"><b>2</b>Structure</a>
+  <a href="#linkers"><b>3</b>Linking words</a>
+  <a href="#starters"><b>4</b>Sentence starters</a>
+  <a href="#tasks"><b>5</b>Past tasks</a>
+  <a href="#models"><b>6</b>Model compositions</a>
+  <a href="#compare"><b>7</b>Weak vs strong</a>
+  <a href="#practice"><b>8</b>Exercises &amp; worksheets</a>
+  <a href="#lab"><b>9</b>Writing lab</a>
+</nav>
+
+<!-- =============== 1 FACTS =============== -->
+<section class="part" id="facts">
+  <div class="part-num">Part 1</div>
+  <h2 class="pt">The exam at a glance</h2>
+  <p class="pt-lede">The composition is the <b>written form of the internal part</b> of the Maturita (PFIČ). It is written on the same days as the external test (EČ), but it is marked by your own teachers using national criteria from NIVAM.</p>
+  <div class="grid4">
+    <div class="fact"><div class="big">60 min</div><span>time for level B2 (90 min for C1)</span></div>
+    <div class="fact"><div class="big">200–220</div><span>words for B2 — under 120 words = 0 points</span></div>
+    <div class="fact"><div class="big">1 task</div><span>a set title, genre and 3 content points (older tasks: 5)</span></div>
+    <div class="fact"><div class="big">20 pts</div><span>4 criteria × 5 points</span></div>
+  </div>
+  <div class="note"><b>Remember:</b> no dictionaries, notebooks or textbooks. You get stamped paper for a draft (koncept), but only the official answer sheet is marked. Write in joined handwriting, or make capital and small letters clearly different — unclear capitals count as spelling mistakes.</div>
+
+  <h3>How your composition is marked</h3>
+  <div class="tw"><table class="t">
+    <tr><th>Criterion</th><th>What the examiner checks</th><th>How to get 5 points</th></tr>
+    <tr><td><b>I. Content</b><br><span class="ex">Obsah textu</span></td><td>Does the text answer the task? Are <b>all</b> content points covered?</td><td>Develop <b>every</b> bullet point clearly and in detail. A missing or thin point costs points straight away.</td></tr>
+    <tr><td><b>II. Organisation</b><br><span class="ex">Členenie a stavba textu</span></td><td>Genre features, paragraphs, logical links between ideas</td><td>Title, introduction, one paragraph per bullet point, conclusion. Link ideas with a <b>variety</b> of connectors.</td></tr>
+    <tr><td><b>III. Grammar</b><br><span class="ex">Morfológia, syntax, pravopis</span></td><td>Accuracy, range of structures, spelling</td><td>Mix simple and complex sentences: relative clauses, conditionals, passive, participle clauses, inversion. Errors should be rare.</td></tr>
+    <tr><td><b>IV. Vocabulary</b><br><span class="ex">Slovná zásoba</span></td><td>Range and accuracy of words and collocations</td><td>Rich, topic-specific vocabulary, correct collocations, no repetition of <i>good, bad, very, a lot of</i>.</td></tr>
+  </table></div>
+  <div class="hack"><h4>Word-count rules</h4>
+    <ul>
+      <li>Every word counts — articles, prepositions, conjunctions and numbers written as words.</li>
+      <li>120–199 words: the shortage lowers your marks in <b>all four</b> criteria.</li>
+      <li>Writing more than 220 words is not penalised, but a long, rambling text usually contains more mistakes. Aim for 210.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- =============== 2 STRUCTURE =============== -->
+<section class="part" id="structure">
+  <div class="part-num">Part 2</div>
+  <h2 class="pt">Structure: one paragraph per job</h2>
+  <p class="pt-lede">The safest plan for every PFIČ genre is five paragraphs. Each content point from the task gets its own body paragraph — then the examiner can tick them off easily.</p>
+  <div class="plan">
+    <div class="blk"><b>Title</b><span>Copy the title from the task (or, in an article, write a catchy one).</span><span class="w">—</span></div>
+    <div class="blk"><b>Introduction</b><span>Hook the reader, introduce the topic in your own words and state your opinion or aim.</span><span class="w">~35 words</span></div>
+    <div class="blk body"><b>Body 1</b><span>Content point 1 — topic sentence + explanation + example.</span><span class="w">~45 words</span></div>
+    <div class="blk body"><b>Body 2</b><span>Content point 2 — topic sentence + explanation + example.</span><span class="w">~45 words</span></div>
+    <div class="blk body"><b>Body 3</b><span>Content point 3 — often personal: your experience, plan or vision.</span><span class="w">~45 words</span></div>
+    <div class="blk end"><b>Conclusion</b><span>Sum up, restate your opinion in new words, finish with a final thought, recommendation or question.</span><span class="w">~35 words</span></div>
+  </div>
+
+  <h3>Which genre? Know the differences</h3>
+  <div class="grid3">
+    <div class="card"><h4>Opinion essay</h4><p style="font-size:14.5px">Formal. State your view in the introduction and support it with reasons and examples. Restate it in the conclusion.</p><p style="font-size:14px" class="ex">“In my view…”, “I firmly believe…”, “To sum up, …”</p></div>
+    <div class="card"><h4>For-and-against / balanced essay</h4><p style="font-size:14.5px">Formal and objective. Present both sides fairly; give your opinion only in the conclusion.</p><p style="font-size:14px" class="ex">“On the one hand…”, “Critics argue that…”, “On balance, …”</p></div>
+    <div class="card"><h4>Article (school magazine)</h4><p style="font-size:14.5px">Semi-formal and lively. Catchy title, address the reader directly, rhetorical questions, end with advice or a question.</p><p style="font-size:14px" class="ex">“Have you ever wondered…?”, “Why not…?”</p></div>
+  </div>
+  <div class="note">In all three genres: <b>no contractions</b> in essays (<i>do not</i>, not <i>don't</i>), no <i>Hi everyone!</i> or <i>Bye!</i>, and no lists with bullet points — write full paragraphs.</div>
+</section>
+
+<!-- =============== 3 LINKERS =============== -->
+<section class="part" id="linkers">
+  <div class="part-num">Part 3</div>
+  <h2 class="pt">Advanced linking words</h2>
+  <p class="pt-lede">Linking words hold your composition together and are checked under <b>Organisation</b>. Words in <span class="chip adv" style="font-size:12.5px">green</span> are especially good at an advanced level. Vary them — never start three sentences with <i>Also</i>.</p>
+
+  <h3>For the introduction</h3>
+  <div class="grid2">
+    <div class="lk"><h4><span class="dot" style="background:var(--rust)"></span>Introducing the topic</h4>
+      <div class="chips"><span class="chip adv">It is often said that…</span><span class="chip adv">In recent years, there has been a growing debate about…</span><span class="chip adv">Few would deny that…</span><span class="chip">Nowadays,…</span><span class="chip">These days,…</span><span class="chip adv">Hardly a day goes by without…</span></div>
+      <p class="ex">Hardly a day goes by without a new study on the effects of social media.</p></div>
+    <div class="lk"><h4><span class="dot" style="background:var(--rust)"></span>Stating your aim or opinion</h4>
+      <div class="chips"><span class="chip adv">This essay will examine…</span><span class="chip adv">In my view,…</span><span class="chip adv">I would argue that…</span><span class="chip">I think that…</span><span class="chip adv">It is my firm belief that…</span></div>
+      <p class="ex">In my view, however, the two do not necessarily exclude each other.</p></div>
+  </div>
+
+  <h3>For the body paragraphs</h3>
+  <div class="grid2">
+    <div class="lk"><h4><span class="dot" style="background:var(--green)"></span>Adding ideas</h4>
+      <div class="chips"><span class="chip adv">Moreover,</span><span class="chip adv">Furthermore,</span><span class="chip adv">What is more,</span><span class="chip">In addition,</span><span class="chip adv">Not only… but also…</span><span class="chip">Besides,</span></div>
+      <p class="ex">Reading has <b>not only</b> broadened my vocabulary <b>but also</b> taught me to see the world differently.</p></div>
+    <div class="lk"><h4><span class="dot" style="background:var(--green)"></span>Contrasting</h4>
+      <div class="chips"><span class="chip">However,</span><span class="chip adv">Nevertheless,</span><span class="chip adv">Nonetheless,</span><span class="chip">On the other hand,</span><span class="chip adv">whereas / while</span><span class="chip">although / even though</span><span class="chip adv">despite / in spite of + noun/-ing</span><span class="chip adv">By contrast,</span></div>
+      <p class="ex">Paper books are heavy, <b>whereas</b> an e-reader can store thousands of titles.</p></div>
+    <div class="lk"><h4><span class="dot" style="background:var(--green)"></span>Cause and effect</h4>
+      <div class="chips"><span class="chip adv">Consequently,</span><span class="chip">As a result,</span><span class="chip">Therefore,</span><span class="chip adv">…, which is why…</span><span class="chip adv">owing to / due to + noun</span><span class="chip">because / since / as</span><span class="chip adv">This leads to…</span></div>
+      <p class="ex">Imported goods tend to be cheaper, <b>which is why</b> many families choose them.</p></div>
+    <div class="lk"><h4><span class="dot" style="background:var(--green)"></span>Giving examples</h4>
+      <div class="chips"><span class="chip">For example,</span><span class="chip">For instance,</span><span class="chip">such as</span><span class="chip adv">A case in point is…</span><span class="chip adv">To illustrate,</span><span class="chip adv">namely</span></div>
+      <p class="ex"><b>A case in point is</b> my aunt, who runs a thriving architecture studio.</p></div>
+    <div class="lk"><h4><span class="dot" style="background:var(--green)"></span>Sequencing</h4>
+      <div class="chips"><span class="chip adv">First and foremost,</span><span class="chip">First of all, / To begin with,</span><span class="chip">Secondly,</span><span class="chip adv">Subsequently,</span><span class="chip">Finally,</span><span class="chip adv">Last but not least,</span></div>
+      <p class="ex"><b>First and foremost</b>, I have always been fascinated by wild nature.</p></div>
+    <div class="lk"><h4><span class="dot" style="background:var(--green)"></span>Emphasising &amp; conceding</h4>
+      <div class="chips"><span class="chip adv">Indeed,</span><span class="chip">In fact,</span><span class="chip">Above all,</span><span class="chip adv">It is worth noting that…</span><span class="chip adv">Admittedly,</span><span class="chip adv">It cannot be denied that…</span><span class="chip adv">Even so,</span></div>
+      <p class="ex"><b>It cannot be denied that</b> work has a significant influence on family life.</p></div>
+    <div class="lk"><h4><span class="dot" style="background:var(--green)"></span>Condition</h4>
+      <div class="chips"><span class="chip adv">provided that</span><span class="chip">as long as</span><span class="chip">unless</span><span class="chip adv">otherwise</span><span class="chip">in case</span></div>
+      <p class="ex">A career and a family can go hand in hand, <b>provided that</b> we set clear priorities.</p></div>
+    <div class="lk"><h4><span class="dot" style="background:var(--green)"></span>Referring to a point</h4>
+      <div class="chips"><span class="chip adv">As far as… is concerned,</span><span class="chip adv">When it comes to…,</span><span class="chip">As for…,</span><span class="chip adv">With regard to…,</span></div>
+      <p class="ex"><b>When it comes to</b> electronics, foreign brands usually offer a wider choice.</p></div>
+  </div>
+
+  <h3>For the conclusion</h3>
+  <div class="lk"><h4><span class="dot" style="background:var(--amber)"></span>Summing up</h4>
+    <div class="chips"><span class="chip adv">All things considered,</span><span class="chip adv">Taking everything into account,</span><span class="chip adv">On balance,</span><span class="chip">To sum up, / To conclude,</span><span class="chip">In conclusion,</span><span class="chip">All in all,</span><span class="chip adv">Weighing up both sides,</span></div>
+    <p class="ex"><b>All things considered</b>, Lofoten is far more than a holiday destination for me.</p></div>
+
+  <h3>Upgrade your linkers</h3>
+  <div class="tw"><table class="t">
+    <tr><th>Instead of (B1)</th><th>Try (B2+)</th><th>Watch the grammar</th></tr>
+    <tr><td class="old">Also, …</td><td class="up">Moreover, / What is more,</td><td>Comma after the linker; start of a sentence.</td></tr>
+    <tr><td class="old">But …</td><td class="up">However, / Nevertheless,</td><td><i>However</i> starts a new sentence and needs a comma.</td></tr>
+    <tr><td class="old">So …</td><td class="up">Consequently, / …, which is why…</td><td><i>which is why</i> follows a comma, inside one sentence.</td></tr>
+    <tr><td class="old">Although it was expensive, <u>but</u> we bought it.</td><td class="up">Although it was expensive, we bought it.</td><td>Never use <i>although</i> and <i>but</i> together.</td></tr>
+    <tr><td class="old">Despite <u>of</u> the rain / Despite it rained</td><td class="up">Despite the rain / Despite the fact that it rained</td><td><i>despite / in spite of</i> + noun or -ing, never + clause.</td></tr>
+    <tr><td class="old">In the other hand</td><td class="up">On the other hand</td><td>Always <b>on</b>. Use it after <i>On the one hand</i> or a contrasting idea.</td></tr>
+    <tr><td class="old">Firstly of all</td><td class="up">First of all, / Firstly,</td><td>Choose one — not a mixture.</td></tr>
+    <tr><td class="old">In my opinion, I think that…</td><td class="up">In my opinion, … / I believe that…</td><td>Don't say the same thing twice.</td></tr>
+    <tr><td class="old">At the end, …</td><td class="up">In the end, / Finally, / In conclusion,</td><td><i>At the end of</i> = the last part of something (at the end of the film).</td></tr>
+  </table></div>
+</section>
+
+<!-- =============== 4 STARTERS =============== -->
+<section class="part" id="starters">
+  <div class="part-num">Part 4</div>
+  <h2 class="pt">Sentence starters</h2>
+  <p class="pt-lede">Ready-made beginnings for each part of the composition. Learn five or six you like and practise adapting them to any topic.</p>
+  <div class="grid2">
+    <div class="card"><h4>Introduction — hooks</h4><ul class="starter">
+      <li><b>Rhetorical question:</b> Have you ever wondered what life would be like without…?</li>
+      <li><b>General statement:</b> In today's fast-paced world, more and more people…</li>
+      <li><b>Scene:</b> Walk into any … and you will see…</li>
+      <li><b>Contrast:</b> Not so long ago, … Today, however, …</li>
+      <li><b>Common view:</b> It is widely believed that… But is that really the case?</li>
+    </ul></div>
+    <div class="card"><h4>Introduction — thesis</h4><ul class="starter">
+      <li>In this essay, I would like to explain why…</li>
+      <li>In my view, there are several good reasons for this trend.</li>
+      <li>I would argue that the advantages clearly outweigh the disadvantages.</li>
+      <li>Although opinions differ, I am convinced that…</li>
+      <li>Let us take a closer look at both sides of the argument.</li>
+    </ul></div>
+    <div class="card"><h4>Body — topic sentences</h4><ul class="starter">
+      <li>One of the main reasons why … is that…</li>
+      <li>Another important factor to consider is…</li>
+      <li>As far as … is concerned, there is no simple answer.</li>
+      <li>When it comes to …, the situation is rather different.</li>
+      <li>There are strong arguments in favour of / against…</li>
+    </ul></div>
+    <div class="card"><h4>Body — examples &amp; personal experience</h4><ul class="starter">
+      <li>A good example of this is…</li>
+      <li>From my own experience, I can say that…</li>
+      <li>Last summer, for instance, I…</li>
+      <li>I will never forget the day when…</li>
+      <li>Someone who has always inspired me is…, who…</li>
+    </ul></div>
+    <div class="card"><h4>Body — the other side</h4><ul class="starter">
+      <li>Critics, however, argue that…</li>
+      <li>Admittedly, … Even so, …</li>
+      <li>It cannot be denied that…; nevertheless, …</li>
+      <li>On the other hand, it would be unrealistic to…</li>
+      <li>Some people claim that… , but I am not convinced.</li>
+    </ul></div>
+    <div class="card"><h4>Body — future, plans &amp; hypothesis</h4><ul class="starter">
+      <li>As for my own future, I would like to…</li>
+      <li>If I had the chance to…, I would…</li>
+      <li>In ten years' time, I hope I will have…</li>
+      <li>I intend to … , perhaps by …-ing</li>
+      <li>Were I in their position, I would… <i>(inversion — very advanced)</i></li>
+    </ul></div>
+    <div class="card"><h4>Conclusion</h4><ul class="starter">
+      <li>All things considered, I firmly believe that…</li>
+      <li>Taking everything into account, the best approach is…</li>
+      <li>On balance, the benefits seem to outweigh the drawbacks.</li>
+      <li>To sum up, … can go hand in hand, provided that…</li>
+      <li>Only time will tell whether…</li>
+    </ul></div>
+    <div class="card"><h4>Article — talking to the reader</h4><ul class="starter">
+      <li>Are … really going out of fashion?</li>
+      <li>Believe it or not, …</li>
+      <li>Let's face it: …</li>
+      <li>So, next time you …, why not … instead?</li>
+      <li>Give it a try — you might be surprised!</li>
+    </ul></div>
+  </div>
+
+  <h3>Same starters, different topics</h3>
+  <p class="pt-lede" style="margin-bottom:12px">See how one pattern works for many Maturita topics.</p>
+  <div class="tw"><table class="t">
+    <tr><th>Pattern</th><th>Topic</th><th>Example</th></tr>
+    <tr><td rowspan="3"><b>In recent years, there has been a growing interest in…</b></td><td>Health &amp; sport</td><td>…in healthy lifestyles, especially among teenagers.</td></tr>
+    <tr><td>Environment</td><td>…in eco-friendly ways of travelling.</td></tr>
+    <tr><td>Food</td><td>…in local, seasonal food.</td></tr>
+    <tr><td rowspan="3"><b>One of the main reasons why … is that…</b></td><td>Science &amp; technology</td><td>One of the main reasons why smartphones are so popular is that they combine dozens of devices in one.</td></tr>
+    <tr><td>Education</td><td>One of the main reasons why students study abroad is that it opens doors to better jobs.</td></tr>
+    <tr><td>Housing</td><td>One of the main reasons why young people stay with their parents is that rents are too high.</td></tr>
+    <tr><td rowspan="3"><b>If I had the chance to…, I would…</b></td><td>Travel</td><td>If I had the chance to live abroad for a year, I would choose Ireland.</td></tr>
+    <tr><td>Work</td><td>If I had the chance to start my own business, I would open a café for students.</td></tr>
+    <tr><td>Role models</td><td>If I had the chance to meet my idol, I would ask her how she copes with pressure.</td></tr>
+    <tr><td rowspan="3"><b>All things considered, … can…, provided that…</b></td><td>Media</td><td>All things considered, social media can be a useful tool, provided that we use it wisely.</td></tr>
+    <tr><td>Family</td><td>…a big family can be a source of great joy, provided that everyone respects each other.</td></tr>
+    <tr><td>Culture</td><td>…old traditions can survive, provided that young people are involved.</td></tr>
+  </table></div>
+</section>
+
+<!-- =============== 5 TASKS =============== -->
+<section class="part" id="tasks">
+  <div class="part-num">Part 5</div>
+  <h2 class="pt">Tasks from previous years</h2>
+  <p class="pt-lede">Official PFIČ tasks for English B2 published by NIVAM (formerly NÚCEM), plus extra practice tasks written in the same format. Click <b>Write it in the Lab</b> to practise any of them.</p>
+  <div class="filter" id="taskFilter">
+    <button class="fbtn on" data-f="all">All</button>
+    <button class="fbtn" data-f="official">Official NIVAM tasks</button>
+    <button class="fbtn" data-f="practice">Practice tasks</button>
+  </div>
+  <div class="taskgrid" id="taskGrid"></div>
+</section>
+
+<!-- =============== 6 MODELS =============== -->
+<section class="part" id="models">
+  <div class="part-num">Part 6</div>
+  <h2 class="pt">Model compositions</h2>
+  <p class="pt-lede">Four model answers to real Maturita tasks, each between 200 and 220 words. Turn on the highlights to see how the linking words and the paragraph plan work.</p>
+  <div class="tabs" id="modelTabs"></div>
+  <div class="essay-wrap">
+    <div class="paper" id="paper"></div>
+    <div class="side">
+      <div class="box">
+        <label class="toggle"><input type="checkbox" id="tgLinks" checked> Highlight linking words</label>
+        <label class="toggle"><input type="checkbox" id="tgLabels" checked> Show paragraph plan</label>
+      </div>
+      <div class="box" id="modelTask"></div>
+      <div class="box"><h4>Why this answer scores well</h4><div id="modelWhy" style="font-size:13.8px"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== 7 COMPARE =============== -->
+<section class="part" id="compare">
+  <div class="part-num">Part 7</div>
+  <h2 class="pt">Weak vs strong: the same task, two answers</h2>
+  <div class="task" style="margin:10px 0 20px"><span class="yr">Maturita 2023</span>
+    <div class="topic">Nature and us · Essay for a school magazine competition</div>
+    <p>Write an essay (200–220 words) entitled <b>Nowadays People Like Enjoying Nature</b>. Include:</p>
+    <ul><li>the reasons for the increasing popularity of agro-tourism (tourism in the countryside)</li><li>the possibilities of enjoying nature and agro-tourism in Slovakia</li><li>your contribution to nature protection in your region</li></ul>
+  </div>
+  <label class="toggle" style="margin-bottom:12px"><input type="checkbox" id="tgErr"> <b>Show the mistakes and corrections in the weak answer</b></label>
+  <div class="vs">
+    <div>
+      <div class="paper" id="weak"><span class="badge bad">Weak answer · about 8/20</span><h5>Nowadays People Like Enjoying Nature</h5><div id="weakText"></div></div>
+      <div class="card" style="margin-top:12px"><h4>Examiner's comments</h4><ul class="comments">
+        <li><b>Content 2/5:</b> point 3 (your contribution to nature protection) is completely missing; point 2 is only a list of places.</li>
+        <li><b>Organisation 2/5:</b> no paragraphs, informal greeting and “Bye!”, the same linker (<i>Also</i>) three times, one very long run-on sentence.</li>
+        <li><b>Grammar 2/5:</b> frequent basic errors (<i>more better, there is many, tourists comes</i>), only simple sentences.</li>
+        <li><b>Vocabulary 2/5:</b> repetitive (<i>very, many, also</i>), informal (<i>super cool</i>), wrong words (<i>home cheese</i>).</li>
+        <li><b>Length:</b> 176 words — below the 200–220 range.</li>
+      </ul></div>
+    </div>
+    <div>
+      <div class="paper" id="strong"><span class="badge good">Strong answer · 20/20</span><h5>Nowadays People Like Enjoying Nature</h5><div id="strongText"></div></div>
+      <div class="card" style="margin-top:12px"><h4>Examiner's comments</h4><ul class="comments">
+        <li><b>Content 5/5:</b> each point has its own paragraph with explanation and a personal example.</li>
+        <li><b>Organisation 5/5:</b> clear introduction and conclusion, varied linkers (<i>First of all, Moreover, for instance, however, To conclude, provided that</i>).</li>
+        <li><b>Grammar 5/5:</b> present perfect continuous, relative clauses, conditional, gerund subject (<i>Spending a few days… allows…</i>).</li>
+        <li><b>Vocabulary 5/5:</b> topic words and collocations: <i>on the rise, picturesque regions, clean-up events, rediscover nature</i>.</li>
+        <li><b>Length:</b> 217 words.</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== 8 PRACTICE =============== -->
+<section class="part" id="practice">
+  <div class="part-num">Part 8</div>
+  <h2 class="pt">Exercises: correct or incorrect?</h2>
+  <p class="pt-lede">Six self-checking exercises based on the mistakes Maturita students make most often.</p>
+
+  <div class="card" id="printables" style="border-color:var(--green)">
+    <h3 style="margin-top:0">Printable worksheets for group work</h3>
+    <p style="font-size:14.5px;color:var(--grey)">Offline versions of these exercises for pairs and small groups — print on A4, cut out the cards and paragraphs, and play in class.</p>
+    <div class="tw"><table class="t">
+      <tr><th>Worksheet</th><th>Activity</th><th>Time</th><th></th></tr>
+      <tr><td><b>1 · Linking Words — Card Sort</b></td><td>Sort 36 linker cards into six groups, then write challenge sentences.</td><td>25 min</td><td><a href="pfic-ws1-linking-words-card-sort.pdf" download>PDF ↓</a></td></tr>
+      <tr><td><b>2 · Spot the Mistake</b></td><td>Team challenge in three rounds: correct sentence, formal or informal, fix it.</td><td>30 min</td><td><a href="pfic-ws2-spot-the-mistake.pdf" download>PDF ↓</a></td></tr>
+      <tr><td><b>3 · Essay Jigsaw</b></td><td>Cut-out paragraphs of two model essays to put in order, plus a linker gap-fill.</td><td>30 min</td><td><a href="pfic-ws3-essay-jigsaw.pdf" download>PDF ↓</a></td></tr>
+      <tr><td><b>4 · Be the Examiner</b></td><td>Mark a weak answer with the four criteria, correct 12+ mistakes, write the missing paragraph.</td><td>40 min</td><td><a href="pfic-ws4-be-the-examiner.pdf" download>PDF ↓</a></td></tr>
+      <tr><td><b>5 · Plan &amp; Write Together</b></td><td>Task cards, group roles, a planning frame and a peer-review checklist.</td><td>45 min</td><td><a href="pfic-ws5-plan-and-write.pdf" download>PDF ↓</a></td></tr>
+      <tr><td><b>Teacher's answer key</b></td><td>Answers for worksheets 1–4.</td><td>—</td><td><a href="pfic-worksheets-answer-key.pdf" download>PDF ↓</a></td></tr>
+    </table></div>
+  </div>
+  <div id="exHost"></div>
+</section>
+
+<!-- =============== 9 LAB =============== -->
+<section class="part" id="lab">
+  <div class="part-num">Part 9</div>
+  <h2 class="pt">Writing lab</h2>
+  <p class="pt-lede">Choose a task and write your composition. The counter shows when you reach the 200–220 range, and the linker detector lists the linking words you have used. Your draft is kept in this browser only.</p>
+  <div class="lab">
+    <div>
+      <select id="labTask" aria-label="Choose a task"></select>
+      <div class="labtask" id="labTaskBox" style="margin-top:10px"></div>
+      <textarea id="draft" placeholder="Write your title here…&#10;&#10;Then your introduction…"></textarea>
+      <div class="toolbar">
+        <button class="btn" onclick="downloadDraft()">Download as text file</button>
+        <button class="btn secondary" onclick="clearDraft()">Clear</button>
+      </div>
+    </div>
+    <div class="side">
+      <div class="box"><h4>Word count</h4><div class="wc" id="wc">0</div>
+        <div class="meter"><div class="zone" style="left:66.6%;width:6.7%"></div><i id="wcBar"></i></div>
+        <div class="wcmsg" id="wcMsg">Target: 200–220 words</div></div>
+      <div class="box"><h4>Paragraphs</h4><div id="paraCount" style="font-size:14px">0 paragraphs</div></div>
+      <div class="box"><h4>Linking words used</h4><div id="lkCount" style="font-size:14px">0 different linkers</div><div class="lk-found" id="lkFound"></div></div>
+      <div class="box checklist"><h4>Before you hand it in</h4>
+        <label><input type="checkbox"> Title copied from the task</label>
+        <label><input type="checkbox"> Every content point has its own paragraph</label>
+        <label><input type="checkbox"> Introduction + conclusion</label>
+        <label><input type="checkbox"> Correct genre and register (no contractions in an essay)</label>
+        <label><input type="checkbox"> At least 6 different linkers</label>
+        <label><input type="checkbox"> Complex structures: relative clause, conditional, passive…</label>
+        <label><input type="checkbox"> Checked: articles, 3rd person -s, tenses, spelling</label>
+        <label><input type="checkbox"> 200–220 words</label>
+      </div>
+    </div>
+  </div>
+</section>
+
+<p class="source">Official tasks: © Národný inštitút vzdelávania a mládeže (NIVAM, formerly NÚCEM), <a href="https://www2.nucem.sk/sk/merania/narodne-merania/maturita" target="_blank" rel="noopener">nucem.sk</a>. Task wording is quoted or closely paraphrased from the official PDFs. Marking criteria summarised from “Pokyny a kritériá na hodnotenie PFIČ MS 2026”. Model compositions, practice tasks and exercises were written for English in Context.</p>
+<div class="foot">© <span id="yr"></span> Vivien Bieliková — English in Context. All materials shared for educational use.</div>
+</div>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+const ESSAYS = {"place": "Everyone has a place they return to in their imagination whenever everyday life becomes too hectic. For me, it is not a busy capital city but the Lofoten Islands, an archipelago off the north-west coast of Norway.\n\nPicture jagged mountains rising out of a turquoise sea, red fishing cabins standing on wooden stilts and beaches as white as those in the Caribbean. Although the weather is often cold and unpredictable, the atmosphere is calm, especially under the midnight sun or the dancing northern lights.\n\nThere are two main reasons why the islands attract me so much. First and foremost, I have always been fascinated by wild nature, and Lofoten offers some of the most breathtaking hiking trails in Europe. Secondly, I am drawn to the slow pace of life there, where people seem to live in harmony with the seasons rather than with their smartphones.\n\nIf I had the chance to spend a few months there, I believe it would change my life considerably. At present, my days are filled with deadlines, notifications and constant noise. On the islands, however, I would learn to slow down, appreciate silence and focus on what matters.\n\nAll things considered, Lofoten is far more than a holiday destination for me. It represents the kind of life I would like to lead one day.", "reading": "Walk into any school canteen and you will see dozens of students scrolling through short videos. It is no wonder, then, that many people claim reading books is becoming less important for young people. But is that really the case?\n\nPersonally, I cannot imagine my life without books. Reading has not only broadened my vocabulary but also taught me to see the world through other people's eyes. Whenever I feel stressed, a good novel is the best way to switch off.\n\nWhat about printed books? On the one hand, nothing compares with the smell of new paper, and reading in print is much kinder to your eyes than staring at a screen. What is more, you are not constantly distracted by notifications. On the other hand, paper books are expensive, heavy to carry and take up a lot of space, whereas an e-reader can store thousands of titles.\n\nLast but not least, have you ever tried reading in English? At first, it may seem challenging, but it is one of the most effective ways to improve your language skills. You pick up new expressions naturally and, as a result, your own writing improves too.\n\nSo, next time you reach for your phone, why not pick up a book instead? You might be surprised how much you enjoy it.", "career": "In today's competitive world, many young people feel they have to choose between a successful career and a happy family life. In my opinion, however, the two do not necessarily exclude each other.\n\nA good example of someone who has managed to combine both is my aunt, who runs a small but thriving architecture studio in Nitra. Despite her demanding job, she always makes time for her two children, and she is living proof that success does not have to come at the expense of family.\n\nNevertheless, it cannot be denied that work has a significant influence on family life. Long working hours, business trips and constant availability on the phone often lead to stress and tension at home. Consequently, parents may miss important moments in their children's lives. On the other hand, a stable income gives families financial security and more opportunities, for instance to travel or to study.\n\nAs for my own future, I would like to become a doctor, which is admittedly a very time-consuming profession. Even so, I intend to find a healthy work-life balance, perhaps by working part-time while my children are small.\n\nTo sum up, I firmly believe that a career and a family life can go hand in hand, provided that we set clear priorities.", "products": "When we go shopping, we are faced with a huge variety of goods from all over the world. As a result, many consumers wonder whether they should give preference to Slovak products or foreign ones.\n\nAs far as quality is concerned, there is no simple answer. Slovak food, such as dairy products or honey, is often fresher and contains fewer preservatives because it does not have to be transported over long distances. However, when it comes to electronics or clothing, foreign brands usually offer a wider choice and more advanced technology.\n\nPrice is another important factor. Imported goods made in countries with lower labour costs tend to be cheaper, which is why many families on a limited budget choose them. Slovak products, by contrast, are sometimes more expensive, even though they are made locally.\n\nThere are strong arguments in favour of supporting Slovak production. Buying local creates jobs, helps small farmers and reduces the carbon footprint of transport. On the other hand, it would be unrealistic to buy only Slovak goods, since many products are simply not manufactured here.\n\nIn conclusion, I believe the best approach is a sensible balance. Whenever possible, we should choose quality local products, but we should not be afraid of foreign ones when they offer better value.", "strong": "In recent years, more and more people have been swapping crowded seaside resorts for quiet farms and mountain villages. Agro-tourism is clearly on the rise and, in my view, there are several good reasons for this trend.\n\nFirst of all, many people who live in cities suffer from stress and constant noise. Spending a few days in the countryside allows them to slow down and breathe fresh air. Moreover, visitors can taste fresh, home-made food and learn how it is produced, which is particularly appealing to families with children.\n\nSlovakia offers countless opportunities for this kind of holiday. Apart from world-famous mountains such as the High Tatras, there are picturesque regions like Orava or Kysuce, where tourists can stay on family farms, ride horses or help with the harvest. Last summer, for instance, my family spent a week on a sheep farm near Detva, and it was one of the most relaxing holidays we have ever had.\n\nEnjoying nature, however, also means protecting it. In my region, I regularly take part in clean-up events organised by our school, and I always try to travel by bike or train rather than by car. It is a small contribution, but it matters.\n\nTo conclude, agro-tourism is an excellent way to rediscover nature, provided that we treat it with respect.", "weak": "Hi everyone! Nowadays people like enjoying nature. I think it is because of many reasons. People are stressed in the cities and they want relax. Also the food in countryside is more better and more healthy. Also in the countryside is quiet. Also it is cheaper then hotels by the sea. In Slovakia there is many possibilities. We have mountains, lakes and farms. For example I was on a farm with my family last summer and it was super cool, we were riding horses and we were eating home cheese and I liked it very much and my sister liked it too. You can also go to the Tatras or Slovak Paradise. There are also many caves and castles which are very old and very interesting and many people visit them every year. Slovakia is very beautiful country and a lot of tourists comes here from other countries like Poland, Hungary or Czech Republic. In conclusion, I think that nature is very important and people should enjoy it more because it is good for them. Bye!", "transport": "Transport plays a huge role in my everyday life. I live in a small village near Levice, so I have to commute to school by bus every day. The journey takes almost forty minutes, which means I have to get up very early. On the other hand, I can use the time to revise or listen to music.\n\nWhen it comes to protecting the environment, I try to be responsible. Whenever the weather is nice, I cycle to the train station instead of asking my parents to drive me. In addition, my friends and I share rides when we go to concerts in Nitra.\n\nAll in all, transport makes my life easier, but we should all think about its impact on the planet."};
+
+/* ================= LINKERS (for highlighting & detection) ================= */
+const LINKERS = ["first and foremost","first of all","to begin with","secondly","finally","last but not least","subsequently",
+ "moreover","furthermore","what is more","in addition","besides","not only","but also",
+ "however","nevertheless","nonetheless","on the one hand","on the other hand","whereas","while","although","even though","despite","in spite of","by contrast","even so","admittedly",
+ "consequently","as a result","therefore","which is why","owing to","due to","because","since",
+ "for example","for instance","such as","a case in point","to illustrate","namely",
+ "indeed","in fact","above all","it is worth noting","it cannot be denied","particularly","especially",
+ "provided that","as long as","unless","otherwise",
+ "as far as","is concerned","when it comes to","as for","with regard to",
+ "in my view","in my opinion","personally","i firmly believe","i believe","i would argue",
+ "all things considered","taking everything into account","on balance","to sum up","to conclude","in conclusion","all in all","weighing up",
+ "if","whenever","at present","at first","apart from"];
+const LK_SORTED = [...LINKERS].sort((a,b)=>b.length-a.length);
+const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+const LK_RE = new RegExp('\\b(' + LK_SORTED.map(l => esc(l).replace(/\\,$/,',')).join('|') + ')(?![a-z])','gi');
+const DETECT = LINKERS.filter(l=>!['if','while','since','because','especially','particularly','at first','at present','whenever','apart from','is concerned'].includes(l));
+
+function highlight(text){ return text.replace(LK_RE, m => '<mark class="lnk">'+m+'</mark>'); }
+function words(t){ return (t.match(/[A-Za-zÀ-ž0-9]+(?:['’-][A-Za-zÀ-ž0-9]+)*/g)||[]).length; }
+
+/* ================= TASKS ================= */
+const TASKS = [
+ {id:'t26', type:'official', yr:'Maturita 2026', topic:'Countries, towns and places · Opinion essay', title:'The Place I Am Dreaming Of', pts:['a description of the place (where it is, what it looks like, what atmosphere it has)','two reasons why the place is attractive to you','how visiting / living in this place would change your life compared to now'], pdf:'https://www2.nucem.sk/dl/6402/2026_zadanie_AJB2_2.pdf', model:'place'},
+ {id:'t25', type:'official', yr:'Maturita 2025', topic:'Books and literature · Article for the school magazine', title:'Reading books is gradually becoming less important for young people', pts:['the importance of reading books in your life','the advantages and disadvantages of reading books in print','the benefits of reading books in a foreign language'], pdf:'https://www2.nucem.sk/dl/6155/2025_zadanie_AJB2_1.pdf', model:'reading'},
+ {id:'t24', type:'official', yr:'Maturita 2024', topic:'Employment · Opinion essay', title:'A Career or a Family Life?', pts:['an example of a person with a successful career','the influence of work on family life','your vision for a career in your future'], pdf:'https://www2.nucem.sk/dl/5825/2024_zadanie_AJB2_2.pdf', model:'career'},
+ {id:'t23', type:'official', yr:'Maturita 2023', topic:'Nature and us · Essay for a school magazine competition', title:'Nowadays People Like Enjoying Nature', pts:['the reasons for the increasing popularity of agro-tourism (tourism in the countryside)','the possibilities of enjoying nature and agro-tourism in Slovakia','your contribution to nature protection in your region'], pdf:'https://www2.nucem.sk/dl/5489/2023_zadanie_AJB2_3.pdf', model:'strong'},
+ {id:'t22', type:'official', yr:'Maturita 2022', topic:'Transport and travelling · Opinion essay', title:'Transport and Travelling in My Life', pts:['how transport and travelling affect the quality of your everyday life','your responsibility for the environment when you travel / commute','a memorable travel experience (any means of transport)'], pdf:'https://www2.nucem.sk/dl/5130/2022_zadanie_AJB2_2.pdf'},
+ {id:'t20a', type:'official', yr:'Practice task 2020 (NÚCEM)', topic:'People and society · Article for a school magazine competition', title:'Helping Our Society', pts:['how society helps homeless people','how people help each other in times of crisis (e.g. quarantine, restricted movement)','your own experience of helping someone in a difficult situation without expecting anything in return'], pdf:'https://www2.nucem.sk/dl/4742/2020_CVICNE_PFIC_AJB2.pdf'},
+ {id:'t20b', type:'official', yr:'Practice task 2020 (NÚCEM)', topic:'Science and technology · Opinion essay', title:'The Influence of Science and Technology on Our Society', pts:['the influence of technology on communication in society','the role of technology in consumer society','the use of science and technology in emergencies (e.g. coronavirus, diseases of civilisation)'], pdf:'https://www2.nucem.sk/dl/4742/2020_CVICNE_PFIC_AJB2.pdf'},
+ {id:'t20c', type:'official', yr:'Practice task 2020 (NÚCEM)', topic:'Shopping and services · Balanced essay', title:'Buying Slovak or Foreign Products?', pts:['the quality of Slovak and foreign products','the prices of Slovak and foreign products','arguments for and against supporting Slovak production'], pdf:'https://www2.nucem.sk/dl/4742/2020_CVICNE_PFIC_AJB2.pdf', model:'products'},
+ {id:'t13', type:'official', yr:'Maturita 2013', topic:'Books and literature · Essay', title:'Can a Book Still Be Your Best Friend?', pts:['support your view with five arguments or personal examples','include an introduction and a conclusion'], pdf:'https://www2.nucem.sk/dl/1836/zadanie_AJB2_2.pdf'},
+ {id:'t12', type:'official', yr:'Maturita 2012', topic:'Education · Essay', title:'An Ideal School', pts:['the setting you would study in','relationships between teachers and students','the subjects you would study','testing','extra-curricular activities'], pdf:'https://www2.nucem.sk/dl/1972/zadanie_AJB2_1.pdf'},
+ {id:'p1', type:'practice', yr:'Practice task', topic:'Science and technology · Opinion essay', title:'Can Artificial Intelligence Replace Teachers?', pts:['how you use AI tools in your studies','the advantages and risks of AI in education','what a good teacher can offer that a machine cannot']},
+ {id:'p2', type:'practice', yr:'Practice task', topic:'Health and sport · Article for the school magazine', title:'Healthy Body, Healthy Mind', pts:['the lifestyle habits of young people today','how sport has influenced your life','advice for students who find it hard to stay active']},
+ {id:'p3', type:'practice', yr:'Practice task', topic:'Housing · Balanced essay', title:'Living in a City or in the Countryside?', pts:['the advantages of living in a city','the advantages of living in the countryside','where you would like to live in the future and why']},
+ {id:'p4', type:'practice', yr:'Practice task', topic:'Mass media · Opinion essay', title:'Social Media: Friend or Enemy?', pts:['how social media influences young people\'s relationships','the problem of fake news','the rules you follow when you use social media']},
+ {id:'p5', type:'practice', yr:'Practice task', topic:'Multicultural society · Article for an international school magazine', title:'Slovakia Through the Eyes of a Visitor', pts:['a place in Slovakia every foreign visitor should see','a Slovak tradition or custom worth experiencing','what you would change to make Slovakia more attractive to tourists']},
+ {id:'p6', type:'practice', yr:'Practice task', topic:'Role models · Opinion essay', title:'Do Young People Need Idols?', pts:['a famous person who inspires you and why','the positive and negative influence of celebrities on teenagers','a person from your everyday life you admire']},
+ {id:'p7', type:'practice', yr:'Practice task', topic:'Food and eating habits · Essay for a school competition', title:'We Are What We Eat', pts:['the eating habits of Slovak families','the growing popularity of fast food and food delivery','your own tips for a healthy and sustainable diet']},
+ {id:'p8', type:'practice', yr:'Practice task', topic:'Culture and art · Opinion essay', title:'Is Traditional Culture Still Relevant Today?', pts:['a Slovak tradition you personally enjoy','why some young people lose interest in folk culture','how schools and towns could keep traditions alive']}
+];
+const tg = document.getElementById('taskGrid');
+function renderTasks(f){
+  tg.innerHTML = TASKS.filter(t => f==='all' || t.type===f).map(t =>
+    '<div class="task"><span class="yr'+(t.type==='practice'?' prac':'')+'">'+t.yr+'</span><div class="topic">'+t.topic+'</div>'+
+    '<p><b>'+t.title+'</b> <span class="ex">(200–220 words)</span></p><ul>'+t.pts.map(p=>'<li>'+p+'</li>').join('')+'</ul>'+
+    '<div class="links">'+(t.pdf?'<a href="'+t.pdf+'" target="_blank" rel="noopener">Official PDF ↗</a>':'')+
+    (t.model?'<a href="#models" onclick="showModel(\''+t.model+'\')">See the model answer</a>':'')+
+    '<a href="#lab" onclick="setLabTask(\''+t.id+'\')">Write it in the Lab</a></div></div>').join('');
+}
+document.querySelectorAll('#taskFilter .fbtn').forEach(b => b.onclick = () => {
+  document.querySelectorAll('#taskFilter .fbtn').forEach(x=>x.classList.remove('on')); b.classList.add('on'); renderTasks(b.dataset.f);
+});
+renderTasks('all');
+
+/* ================= MODELS ================= */
+const MODELS = {
+  place:{title:'The Place I Am Dreaming Of', tab:'2026 · Opinion essay', task:'t26',
+    labels:['Introduction — hook + the place','Point 1 — description: location, look, atmosphere','Point 2 — two reasons it is attractive','Point 3 — how it would change my life','Conclusion — final thought'],
+    why:['Each of the three points has its own paragraph.','Descriptive language: <i>jagged mountains, turquoise sea, wooden stilts</i>.','2nd conditional for the imaginary change: <i>If I had the chance…, it would…</i>','Contrast of now and future: <i>At present… On the islands, however…</i>']},
+  reading:{title:'Are Books Really Going Out of Fashion?', tab:'2025 · Article', task:'t25',
+    labels:['Introduction — scene + question to the reader','Point 1 — the importance of reading in my life','Point 2 — print: advantages and disadvantages','Point 3 — reading in a foreign language','Conclusion — advice to the reader'],
+    why:['Article style: catchy title, rhetorical questions, <i>you</i> addresses the reader.','<i>Not only… but also</i> and <i>On the one hand… On the other hand</i> for balance.','Ends with a call to action: <i>why not pick up a book instead?</i>','Semi-formal register — contractions are acceptable in an article, but this model avoids them to stay safe.']},
+  career:{title:'A Career or a Family Life?', tab:'2024 · Opinion essay', task:'t24',
+    labels:['Introduction — topic + clear opinion','Point 1 — a person with a successful career','Point 2 — the influence of work on family life','Point 3 — my vision for the future','Conclusion — opinion restated'],
+    why:['The opinion is stated in the introduction and repeated in new words at the end.','Advanced linkers: <i>Nevertheless, It cannot be denied that, Consequently, Even so, provided that</i>.','Collocations: <i>at the expense of, work-life balance, go hand in hand</i>.','Relative clauses: <i>my aunt, who runs…</i>; <i>a doctor, which is…</i>']},
+  products:{title:'Should We Buy Slovak or Foreign Products?', tab:'2020 · Balanced essay', task:'t20c',
+    labels:['Introduction — the dilemma','Point 1 — quality','Point 2 — prices','Point 3 — for and against Slovak production','Conclusion — balanced opinion'],
+    why:['Balanced genre: both sides are presented before the writer\'s own view.','Referring phrases: <i>As far as quality is concerned, When it comes to…</i>','Contrast linkers: <i>However, by contrast, even though, On the other hand</i>.','Topic vocabulary: <i>preservatives, labour costs, carbon footprint, better value</i>.']}
+};
+const ORDER = ['place','reading','career','products'];
+const mt = document.getElementById('modelTabs');
+mt.innerHTML = ORDER.map(k => '<button class="tab" data-k="'+k+'" onclick="showModel(\''+k+'\')">'+MODELS[k].title+'<small>'+MODELS[k].tab+'</small></button>').join('');
+function showModel(k){
+  const m = MODELS[k], text = ESSAYS[k];
+  document.querySelectorAll('#modelTabs .tab').forEach(t => t.classList.toggle('on', t.dataset.k===k));
+  const paras = text.split(/\n\n/);
+  document.getElementById('paper').innerHTML = '<h5>'+m.title+'</h5>' + paras.map((p,i) => '<div class="plabel">'+(m.labels[i]||'')+'</div><p>'+highlight(p)+'</p>').join('') +
+    '<p style="font-family:Segoe UI,Arial,sans-serif;font-size:12.5px;color:var(--grey);text-align:right;margin:0">'+words(text)+' words (without the title)</p>';
+  const t = TASKS.find(x=>x.id===m.task);
+  document.getElementById('modelTask').innerHTML = '<h4>The task — '+t.yr+'</h4><div style="font-size:13.5px"><b>'+t.title+'</b><ul style="margin:4px 0 0;padding-left:18px">'+t.pts.map(p=>'<li>'+p+'</li>').join('')+'</ul></div>';
+  document.getElementById('modelWhy').innerHTML = '<ul style="margin:0;padding-left:18px">'+m.why.map(w=>'<li style="margin-bottom:4px">'+w+'</li>').join('')+'</ul>';
+  applyToggles();
+}
+function applyToggles(){
+  const p = document.getElementById('paper');
+  p.classList.toggle('hl', document.getElementById('tgLinks').checked);
+  p.classList.toggle('labels', document.getElementById('tgLabels').checked);
+}
+document.getElementById('tgLinks').onchange = applyToggles;
+document.getElementById('tgLabels').onchange = applyToggles;
+showModel('place');
+
+/* ================= WEAK vs STRONG ================= */
+const WEAK_HTML = `<p><mark class="err" data-fix="(no greeting in an essay)">Hi everyone!</mark> Nowadays people like enjoying nature. I think it is because of many reasons. People are stressed in the cities and they <mark class="err" data-fix="want to relax">want relax</mark>. <mark class="err" data-fix="Moreover,">Also</mark> the food in <mark class="err" data-fix="the countryside">countryside</mark> is <mark class="err" data-fix="better">more better</mark> and <mark class="err" data-fix="healthier">more healthy</mark>. Also <mark class="err" data-fix="it is quiet in the countryside">in the countryside is quiet</mark>. Also it is cheaper <mark class="err" data-fix="than">then</mark> hotels by the sea. In Slovakia <mark class="err" data-fix="there are many opportunities">there is many possibilities</mark>. We have mountains, lakes and farms. For example I was on a farm with my family last summer and it was <mark class="err" data-fix="really enjoyable">super cool</mark>, we were riding horses and we were eating <mark class="err" data-fix="home-made cheese">home cheese</mark> <mark class="err" data-fix="(run-on sentence — split it)">and I liked it very much and my sister liked it too</mark>. You can also go to the Tatras or Slovak Paradise. There are also many caves and castles which are very old and very interesting and many people visit them every year. Slovakia is <mark class="err" data-fix="a very beautiful country">very beautiful country</mark> and a lot of tourists <mark class="err" data-fix="come">comes</mark> here from other countries like Poland, Hungary or <mark class="err" data-fix="the Czech Republic">Czech Republic</mark>. In conclusion, I think that nature is very important and people should enjoy it more because it is good for them. <mark class="err" data-fix="(no goodbye in an essay)">Bye!</mark></p>`;
+document.getElementById('weakText').innerHTML = WEAK_HTML;
+document.getElementById('strongText').innerHTML = ESSAYS.strong.split(/\n\n/).map(p=>'<p>'+p+'</p>').join('');
+document.getElementById('tgErr').onchange = e => document.getElementById('weak').classList.toggle('show-err', e.target.checked);
+
+/* ================= EXERCISES ================= */
+const EXH = document.getElementById('exHost');
+
+/* Ex1 — correct or incorrect sentence */
+const EX1 = [
+ ['On the other hand, city life can be very stressful.','In the other hand, city life can be very stressful.','Always <b>on</b> the other hand.'],
+ ['I agree with this statement.','I am agree with this statement.','<i>agree</i> is a verb — no <i>am</i>.'],
+ ['First of all, let us look at the prices.','Firstly of all, let us look at the prices.','<i>First of all</i> or <i>Firstly</i> — not a mixture.'],
+ ['Despite the bad weather, we went hiking.','Despite of the bad weather, we went hiking.','<i>despite</i> + noun, without <i>of</i> (but: <i>in spite of</i>).'],
+ ['Although it was expensive, we bought it.','Although it was expensive, but we bought it.','Never use <i>although</i> and <i>but</i> in the same sentence.'],
+ ['Nowadays, people are more aware of their health.','Nowadays, people is more aware of their health.','<i>people</i> is plural: <i>people are</i>.'],
+ ['This information is very useful.','These informations are very useful.','<i>information</i> is uncountable.'],
+ ['We discussed the problem in class.','We discussed about the problem in class.','<i>discuss something</i> — no preposition.'],
+ ['It depends on the situation.','It depends of the situation.','<i>depend on</i>.'],
+ ['In my opinion, reading is essential.','In my opinion, I think that reading is essential.','Don\'t double your opinion phrase.'],
+ ['People who live in cities often feel stressed.','People which live in cities often feel stressed.','<i>who</i> for people, <i>which</i> for things.'],
+ ['I have been learning English for eight years.','I am learning English for eight years.','Duration up to now: present perfect (continuous).']
+];
+function shuffle(a){ return a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(v=>v[1]); }
+let h = '<div class="exercise" id="e1"><div class="lbl">Exercise 1</div><h4 class="t">Which sentence is correct?</h4><p class="instr">Choose the correct sentence in each pair. These are the most common mistakes in Maturita compositions.</p>';
+EX1.forEach((it,i) => {
+  const order = Math.random()<.5 ? [0,1] : [1,0];
+  h += '<div class="q" data-c="0"><span class="num">'+(i+1)+'.</span><div class="row2">'+order.map(j=>'<label class="opt"><input type="radio" name="e1_'+i+'" value="'+j+'"> '+it[j]+'</label>').join('')+'</div><div class="fb">'+it[2]+'</div></div>';
+});
+h += '<div class="toolbar"><button class="btn" onclick="checkRadio(\'e1\')">Check</button><button class="btn secondary" onclick="resetEx(\'e1\')">Reset</button></div><div class="res" id="e1_res"></div></div>';
+
+/* Ex2 — best introduction / conclusion */
+const EX2 = [
+ {q:'Task: <b>A Career or a Family Life?</b> Which is the best <b>introduction</b>?', o:[
+   ['Hello, my name is Peter and I am 18 years old. I want to write about career and family because it is the topic.', 'Too informal; introduces the writer instead of the topic; no opinion.'],
+   ['In today\'s fast-paced world, many young people wonder whether it is possible to build a successful career and have a happy family at the same time. In my view, with careful planning, the two can go hand in hand.', 'A general hook, the topic in your own words and a clear opinion.'],
+   ['Career is very important. Family is very important too. Everybody has a career and a family. I think both are important and I will write about it.', 'Repetitive and simple; says nothing specific.']], c:1},
+ {q:'Task: <b>Buying Slovak or Foreign Products?</b> Which is the best <b>conclusion</b>?', o:[
+   ['So that is all about products. Thank you for reading. Bye!', 'Informal, no summary, no opinion.'],
+   ['In conclusion, foreign products are cheaper. Slovak food is fresher. There are also electronics. Also we should buy Slovak products.', 'Just a list of facts — adds <i>Also</i>, no clear balanced opinion.'],
+   ['All things considered, the best approach is a sensible balance: we should choose quality local products whenever possible, but we should not be afraid of foreign ones when they offer better value.', 'Sums up both sides and gives a balanced, well-linked opinion.']], c:2},
+ {q:'Task: <b>Reading books is gradually becoming less important for young people</b> (article). Which is the best <b>opening</b>?', o:[
+   ['Are books really going out of fashion? Walk into any school canteen and you will see dozens of students scrolling through short videos.', 'Engages the reader with a question and a vivid scene — perfect for an article.'],
+   ['This article is about books. Books are important. I will write three points.', 'Announces the structure mechanically; no hook.'],
+   ['Books were invented many centuries ago by Johannes Gutenberg in 1440 in Germany and since then people read them.', 'Off-topic history lesson and factually inaccurate (he invented the printing press).']], c:0}
+];
+h += '<div class="exercise" id="e2"><div class="lbl">Exercise 2</div><h4 class="t">Choose the best introduction or conclusion</h4><p class="instr">Read each task and choose the option an examiner would give full marks for.</p>';
+EX2.forEach((it,i) => {
+  h += '<div class="q" data-c="'+it.c+'"><span class="num">'+(i+1)+'.</span>'+it.q+'<div class="opts">'+it.o.map((o,j)=>'<label class="opt"><input type="radio" name="e2_'+i+'" value="'+j+'"><span>'+String.fromCharCode(65+j)+') '+o[0]+'<span class="fb" data-j="'+j+'"><b>'+(j===it.c?'✓ ':'✗ ')+'</b>'+o[1]+'</span></span></label>').join('')+'</div></div>';
+});
+h += '<div class="toolbar"><button class="btn" onclick="checkRadio(\'e2\',true)">Check</button><button class="btn secondary" onclick="resetEx(\'e2\')">Reset</button></div><div class="res" id="e2_res"></div></div>';
+
+/* Ex3 — choose linkers in a paragraph */
+const EX3 = {text:'Technology has completely changed the way we communicate. [[Firstly|However|Therefore]], social networks allow us to stay in touch with friends who live abroad. [[Moreover|Although|Instead]], video calls have made it possible to work and study from home. [[Nevertheless|Because|For example]], there are also serious drawbacks. Many teenagers spend hours online every night; [[as a result|in addition|despite]], they do not get enough sleep. [[Although|Despite|However]] technology is extremely useful, it can easily become addictive. [[For instance|On the contrary|Whereas]], some students check their phones more than a hundred times a day. [[All things considered|First of all|Meanwhile]], technology is a good servant but a bad master.',
+ fb:['<b>Firstly</b> — the first argument.','<b>Moreover</b> — adds a second advantage.','<b>Nevertheless</b> — introduces the opposite side.','<b>as a result</b> — shows the effect (after a semicolon).','<b>Although</b> + clause. <i>Despite</i> would need a noun; <i>However</i> can\'t join two clauses.','<b>For instance</b> — gives an example.','<b>All things considered</b> — sums up.']};
+let gi = 0;
+const ex3html = EX3.text.replace(/\[\[(.*?)\]\]/g, (m, inner) => {
+  const opts = inner.split('|'); const n = gi++;
+  return '<select class="sel" data-a="'+opts[0]+'" data-i="'+n+'"><option value="">('+(n+1)+') …</option>'+shuffle(opts).map(o=>'<option>'+o+'</option>').join('')+'</select>';
+});
+h += '<div class="exercise" id="e3"><div class="lbl">Exercise 3</div><h4 class="t">Choose the right linking word</h4><p class="instr">Complete the paragraph from an opinion essay on technology. Look at the punctuation and the meaning around each gap.</p><div class="para-text">'+ex3html+'</div><ol class="fb" id="e3_fb" style="padding-left:20px;margin-top:12px">'+EX3.fb.map(f=>'<li>'+f+'</li>').join('')+'</ol>';
+h += '<div class="toolbar"><button class="btn" onclick="checkSel(\'e3\')">Check</button><button class="btn secondary" onclick="resetEx(\'e3\')">Reset</button></div><div class="res" id="e3_res"></div></div>';
+
+/* Ex4 — register */
+const EX4 = [
+ ['Kids spend too much time on their phones.','Children spend too much time on their phones.',1,'<i>kids</i> is informal.'],
+ ['A great number of students choose to study abroad.','Loads of students choose to study abroad.',0,'<i>loads of</i> is colloquial.'],
+ ['I\'m gonna explain why this matters.','I will explain why this matters.',1,'<i>gonna</i> and contractions are not used in essays.'],
+ ['Anyway, there are also disadvantages.','Nevertheless, there are also disadvantages.',1,'<i>Anyway</i> is spoken English.'],
+ ['The trip was extremely enjoyable.','The trip was super cool.',0,'<i>super cool</i> is slang.'],
+ ['Tourists can obtain information at the visitor centre.','Tourists can get stuff at the visitor centre.',0,'<i>get stuff</i> is vague and informal.'],
+ ['It does not make sense to ban mobile phones completely.','It doesn\'t make sense to ban mobile phones completely.',0,'Full forms (<i>does not</i>) in a formal essay.'],
+ ['Well, I think this is a big problem, you know.','In my view, this is a serious problem.',1,'Fillers like <i>well, you know</i> belong to speech.']
+];
+h += '<div class="exercise" id="e4"><div class="lbl">Exercise 4</div><h4 class="t">Formal or informal?</h4><p class="instr">You are writing an <b>opinion essay</b>. Choose the sentence with the appropriate register.</p>';
+EX4.forEach((it,i) => {
+  h += '<div class="q" data-c="'+it[2]+'"><span class="num">'+(i+1)+'.</span><div class="row2">'+[0,1].map(j=>'<label class="opt"><input type="radio" name="e4_'+i+'" value="'+j+'"> '+it[j]+'</label>').join('')+'</div><div class="fb">'+it[3]+'</div></div>';
+});
+h += '<div class="toolbar"><button class="btn" onclick="checkRadio(\'e4\')">Check</button><button class="btn secondary" onclick="resetEx(\'e4\')">Reset</button></div><div class="res" id="e4_res"></div></div>';
+
+/* Ex5 — paragraph order (career model) */
+const careerParas = ESSAYS.career.split(/\n\n/);
+const e5order = shuffle(careerParas.map((p,i)=>i));
+h += '<div class="exercise" id="e5"><div class="lbl">Exercise 5</div><h4 class="t">Put the paragraphs in order</h4><p class="instr">Task: <b>A Career or a Family Life?</b> — (1) a person with a successful career, (2) the influence of work on family life, (3) your vision for your future career. Number the paragraphs 1–5.</p>';
+e5order.forEach((orig,k) => {
+  h += '<div class="order-item"><select class="sel" data-a="'+(orig+1)+'"><option value="">No.</option>'+[1,2,3,4,5].map(n=>'<option>'+n+'</option>').join('')+'</select><div>'+careerParas[orig]+'</div></div>';
+});
+h += '<div class="fb" id="e5_fb">Clues: the introduction states the opinion; <i>A good example of someone…</i> covers point 1; <i>Nevertheless, … work has a significant influence…</i> is point 2; <i>As for my own future…</i> is point 3; <i>To sum up…</i> concludes.</div>';
+h += '<div class="toolbar"><button class="btn" onclick="checkSel(\'e5\')">Check</button><button class="btn secondary" onclick="resetEx(\'e5\')">Reset</button></div><div class="res" id="e5_res"></div></div>';
+
+/* Ex6 — content points */
+h += '<div class="exercise" id="e6"><div class="lbl">Exercise 6</div><h4 class="t">Be the examiner: are all the points covered?</h4><p class="instr">Task (Maturita 2022): <b>Transport and Travelling in My Life</b> — include (1) how transport and travelling affect the quality of your everyday life, (2) your responsibility for the environment when you travel, (3) a memorable travel experience. Read the student\'s answer and decide.</p>';
+h += '<div class="paper" style="font-size:15px;margin-bottom:14px"><h5 style="font-size:17px">Transport and Travelling in My Life</h5>'+ESSAYS.transport.split(/\n\n/).map(p=>'<p>'+p+'</p>').join('')+'</div>';
+const EX6 = [
+ ['Point 1 — transport in everyday life', ['Covered','Only mentioned','Missing'], 0, 'Covered: commuting by bus, getting up early, using the time to revise.'],
+ ['Point 2 — responsibility for the environment', ['Covered','Only mentioned','Missing'], 0, 'Covered: cycling to the station, sharing rides.'],
+ ['Point 3 — a memorable travel experience', ['Covered','Only mentioned','Missing'], 2, 'Missing: there is no story about a memorable journey at all.'],
+ ['How long is the text?', ['About 210 words','About 170 words','About 120 words'], 2, 'Only 123 words — just above the 120-word minimum. The shortage lowers the marks in all four criteria.'],
+ ['What is the maximum this student can get for Content?', ['5 points','3 points','0 points'], 1, 'With one point missing, Content can be 3 at best. The fix: add a paragraph about a memorable trip (about 60–80 words).']
+];
+EX6.forEach((it,i) => {
+  h += '<div class="q" data-c="'+it[2]+'"><span class="num">'+(i+1)+'.</span><b>'+it[0]+'</b><div class="row2" style="grid-template-columns:repeat(3,1fr)">'+it[1].map((o,j)=>'<label class="opt"><input type="radio" name="e6_'+i+'" value="'+j+'"> '+o+'</label>').join('')+'</div><div class="fb">'+it[3]+'</div></div>';
+});
+h += '<div class="toolbar"><button class="btn" onclick="checkRadio(\'e6\')">Check</button><button class="btn secondary" onclick="resetEx(\'e6\')">Reset</button></div><div class="res" id="e6_res"></div></div>';
+EXH.innerHTML = h;
+
+function report(id, ok, total){
+  const pct = Math.round(ok/total*100);
+  document.getElementById(id+'_res').textContent = 'Score: '+ok+' / '+total+(pct===100?' — excellent!':pct>=70?' — well done. Read the feedback for the red ones.':' — read the feedback and try again.');
+}
+function checkRadio(id, perOption){
+  const box = document.getElementById(id); let ok = 0, total = 0;
+  box.querySelectorAll('.q').forEach(q => {
+    total++;
+    const c = q.dataset.c;
+    q.querySelectorAll('.opt').forEach(o=>o.classList.remove('right','wrong'));
+    const sel = q.querySelector('input:checked');
+    if (sel){
+      const good = sel.value === c;
+      sel.closest('.opt').classList.add(good?'right':'wrong');
+      if (good) ok++;
+    }
+    q.querySelector('input[value="'+c+'"]').closest('.opt').classList.add('right');
+    if (perOption) q.querySelectorAll('.fb').forEach(f=>f.classList.add('show'));
+    else { const f = q.querySelector('.fb'); if (f) f.classList.add('show'); }
+  });
+  report(id, ok, total);
+}
+function checkSel(id){
+  const box = document.getElementById(id); let ok = 0, total = 0;
+  box.querySelectorAll('select.sel').forEach(s => {
+    total++; s.classList.remove('right','wrong');
+    const good = s.value === s.dataset.a; s.classList.add(good?'right':'wrong'); if (good) ok++;
+  });
+  const fb = document.getElementById(id+'_fb'); if (fb) fb.classList.add('show');
+  report(id, ok, total);
+}
+function resetEx(id){
+  const box = document.getElementById(id);
+  box.querySelectorAll('input[type=radio]').forEach(r=>r.checked=false);
+  box.querySelectorAll('select.sel').forEach(s=>{s.value='';s.classList.remove('right','wrong');});
+  box.querySelectorAll('.opt').forEach(o=>o.classList.remove('right','wrong'));
+  box.querySelectorAll('.fb').forEach(f=>f.classList.remove('show'));
+  document.getElementById(id+'_res').textContent='';
+}
+
+/* ================= WRITING LAB ================= */
+const labSel = document.getElementById('labTask');
+labSel.innerHTML = TASKS.map(t=>'<option value="'+t.id+'">'+t.yr+' — '+t.title+'</option>').join('');
+function showLabTask(){
+  const t = TASKS.find(x=>x.id===labSel.value);
+  document.getElementById('labTaskBox').innerHTML = '<div class="topic" style="font-size:12px;color:var(--grey);text-transform:uppercase;letter-spacing:.05em">'+t.topic+'</div><b>'+t.title+'</b> (200–220 words)<ul>'+t.pts.map(p=>'<li>'+p+'</li>').join('')+'</ul>';
+}
+function setLabTask(id){ labSel.value = id; showLabTask(); }
+labSel.onchange = showLabTask; showLabTask();
+
+const draft = document.getElementById('draft');
+function store(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+function load(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+const saved = load('eic_pfic_draft'); if (saved) draft.value = saved;
+function analyse(){
+  const t = draft.value; const n = words(t);
+  document.getElementById('wc').textContent = n;
+  const bar = document.getElementById('wcBar');
+  bar.style.width = Math.min(n/300*100,100)+'%';
+  let msg, col;
+  if (n < 120){ msg = 'Below 120 words the composition gets 0 points.'; col = 'var(--wrong)'; }
+  else if (n < 200){ msg = (200-n)+' more words to reach the target.'; col = 'var(--amber)'; }
+  else if (n <= 220){ msg = 'Perfect — you are in the 200–220 range.'; col = 'var(--green)'; }
+  else { msg = 'Over 220 words — not penalised, but check for mistakes and repetition.'; col = 'var(--amber)'; }
+  bar.style.background = col; document.getElementById('wcMsg').textContent = msg;
+  const paras = t.split(/\n\s*\n/).filter(p=>p.trim()).length;
+  document.getElementById('paraCount').innerHTML = paras+' paragraph'+(paras===1?'':'s')+' <span style="color:var(--grey)">(title + 5 is ideal)</span>';
+  const low = ' '+t.toLowerCase().replace(/[’]/g,"'")+' ';
+  const found = DETECT.filter(l => new RegExp('\\b'+esc(l)+'\\b').test(low));
+  document.getElementById('lkCount').textContent = found.length+' different linker'+(found.length===1?'':'s')+(found.length>=6?' — great variety!':'');
+  document.getElementById('lkFound').innerHTML = found.map(f=>'<span>'+f+'</span>').join('');
+  store('eic_pfic_draft', t);
+}
+draft.addEventListener('input', analyse); analyse();
+function downloadDraft(){
+  const t = TASKS.find(x=>x.id===labSel.value);
+  const blob = new Blob(['Task: '+t.title+'\n\n'+draft.value+'\n\n('+words(draft.value)+' words)'], {type:'text/plain'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'maturita-composition.txt'; a.click();
+}
+function clearDraft(){ if (confirm('Delete your draft?')){ draft.value=''; analyse(); } }
+
+/* ================= NAV highlight ================= */
+let lastNav = -1;
+const navLinks = [...document.querySelectorAll('#nav a')];
+const secs = navLinks.map(a=>document.querySelector(a.getAttribute('href')));
+window.addEventListener('scroll', () => {
+  let cur = 0; secs.forEach((s,i)=>{ if (s.getBoundingClientRect().top < 180) cur = i; });
+  if (cur !== lastNav){
+    lastNav = cur;
+    navLinks.forEach((a,i)=>a.classList.toggle('on', i===cur));
+    const nav = document.getElementById('nav'), a = navLinks[cur];
+    nav.scrollLeft = a.offsetLeft - nav.clientWidth/2 + a.clientWidth/2;
+  }
+}, {passive:true});
+</script>
+</body>
+</html>

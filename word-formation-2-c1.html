@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Word Formation 2 — Society, Environment, Food, Fashion, Family | C1 | English in Context</title>
+<style>
+  :root{
+    --cream:#faf6ec; --card:#fffdf8; --rust:#b5502d; --rust-dark:#8f3e21;
+    --ink:#26241f; --grey:#6b6558; --line:#e7dfcd; --green:#2f5d50; --green-bg:#e7eeec;
+    --amber:#c98a1b; --amber-bg:#fbf1dc;
+    --wrong:#b3312c; --wrong-bg:#fbeceb; --right-bg:#e9f3ea;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:"Segoe UI",Arial,Helvetica,sans-serif;line-height:1.6;}
+  .wrap{max-width:900px;margin:0 auto;padding:44px 20px 110px;}
+  .back{display:inline-block;font-size:13.5px;color:var(--rust);text-decoration:none;margin-bottom:18px;font-weight:600;}
+  .back:hover{text-decoration:underline;}
+  .crumb{font-size:13px;color:var(--grey);margin-bottom:6px;}
+  .crumb strong{color:var(--rust);font-weight:600;}
+  .eyebrow{font-size:13px;font-weight:700;color:var(--rust);margin:22px 0 8px;letter-spacing:.03em;text-transform:uppercase;}
+  h1{font-family:Georgia,"Times New Roman",serif;font-size:34px;line-height:1.2;margin:0 0 16px;}
+  .lede{color:var(--grey);font-size:16.5px;max-width:72ch;margin:0 0 26px;}
+  h2.sec{font-family:Georgia,serif;font-size:25px;margin:34px 0 8px;}
+  .sec-lede{color:var(--grey);margin:0 0 18px;}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin-bottom:20px;}
+  table.t{width:100%;border-collapse:collapse;font-size:14.5px;}
+  table.t th{text-align:left;color:var(--rust-dark);font-weight:600;border-bottom:1.5px solid var(--line);padding:7px 8px;font-size:13.5px;}
+  table.t td{border-bottom:1px solid var(--line);padding:8px;vertical-align:top;}
+  table.t tr:last-child td{border-bottom:none;}
+  table.t td b{color:var(--ink);}
+  .tw{overflow-x:auto;}
+  .arrow{color:var(--rust);font-weight:700;padding:0 3px;}
+  .ex{color:var(--grey);font-style:italic;}
+  .tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:4px;padding:1px 7px;background:#f6e9e2;color:var(--rust-dark);}
+
+  .hack{background:var(--green-bg);border:1px solid var(--green);border-radius:10px;padding:16px 22px;margin:0 0 26px;color:var(--green);}
+  .hack h3{font-family:Georgia,serif;font-size:18px;margin:0 0 6px;}
+  .hack ol{margin:0;padding-left:20px;font-size:15px;}
+
+  .toc{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:0 0 30px;}
+  @media (max-width:720px){.toc{grid-template-columns:1fr 1fr;}}
+  .toc a{display:block;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 12px;color:var(--ink);text-decoration:none;font-size:14px;line-height:1.35;}
+  .toc a:hover{border-color:var(--rust);}
+  .toc a b{display:block;color:var(--rust);font-size:12px;text-transform:uppercase;letter-spacing:.05em;}
+  .toc a span{display:block;font-size:12.5px;color:var(--grey);margin-top:3px;}
+
+  .exam{background:#fff;border:1.5px solid var(--ink);margin-bottom:8px;scroll-margin-top:16px;}
+  .exam-head{border-bottom:1.5px solid var(--ink);padding:16px 22px;}
+  .exam-head .topic{font-size:12.5px;color:var(--grey);letter-spacing:.06em;text-transform:uppercase;}
+  .exam-head h3{margin:2px 0 8px;font-size:20px;}
+  .exam-head h3 span{font-weight:400;font-size:14.5px;color:var(--grey);}
+  .exam-head p{font-style:italic;font-size:14.3px;margin:0;color:#333;}
+  .box{display:inline-block;background:#e6e6e6;border:1px solid #999;font-weight:700;font-style:normal;font-size:12.5px;padding:0 5px;line-height:1.55;text-indent:0;}
+  .text{padding:20px 22px 22px;font-size:15.8px;line-height:2.3;text-align:justify;}
+  .text h4{font-family:Georgia,serif;font-size:19px;text-align:center;margin:0 0 8px;line-height:1.4;}
+  .text p{margin:0;text-indent:22px;}
+  .text p.first{text-indent:0;}
+  .gap{white-space:nowrap;} .gap *{text-indent:0;}
+  .root{font-weight:700;margin-left:3px;}
+  input.blank{border:none;border-bottom:1.5px solid var(--ink);background:#fafafa;font-size:15.5px;font-family:inherit;padding:1px 5px;width:178px;color:var(--rust-dark);font-weight:600;margin-left:3px;border-radius:0;}
+  input.blank:focus{outline:none;border-bottom-color:var(--rust);background:#fff7f2;}
+  input.blank.right{background:var(--right-bg);border-bottom-color:var(--green);color:var(--green);}
+  input.blank.wrong{background:var(--wrong-bg);border-bottom-color:var(--wrong);color:var(--wrong);}
+  .exword{font-weight:600;color:var(--grey);border-bottom:1.5px dotted #999;padding:0 4px;margin-left:3px;}
+  .hints{display:none;border-top:1.5px solid var(--ink);padding:14px 22px;background:var(--amber-bg);font-size:14.3px;}
+  .hints.show{display:block;}
+  .hints ol{margin:0;padding:0;list-style:none;columns:2;column-gap:26px;}
+  .hints li{margin-bottom:4px;break-inside:avoid;}
+  @media (max-width:620px){.hints ol{columns:1;}}
+
+  .toolbar{display:flex;gap:10px;margin:14px 0 6px;flex-wrap:wrap;}
+  .btn{border:1px solid var(--rust);background:var(--rust);color:#fff;padding:8px 15px;border-radius:7px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;}
+  .btn:hover{background:var(--rust-dark);border-color:var(--rust-dark);}
+  .btn.secondary{background:transparent;color:var(--rust);}
+  .btn.secondary:hover{background:#f6e9e2;}
+  .btn.green{background:var(--green);border-color:var(--green);}
+  .result{display:none;margin-bottom:40px;}
+  .result.show{display:block;}
+  .result .big{font-family:Georgia,serif;font-size:22px;font-weight:700;margin:6px 0 2px;}
+  table.key{width:100%;border-collapse:collapse;font-size:14.3px;margin-top:10px;background:var(--card);border:1px solid var(--line);}
+  table.key th{text-align:left;color:var(--rust-dark);font-weight:600;border-bottom:1px solid var(--line);padding:6px 8px;font-size:13px;}
+  table.key td{border-bottom:1px solid var(--line);padding:7px 8px;vertical-align:top;}
+  table.key td.ok{color:var(--green);font-weight:700;}
+  table.key td.no{color:var(--wrong);font-weight:700;}
+  table.key td.ex2{color:var(--grey);}
+  .spacer{height:34px;}
+
+  .progress{position:sticky;bottom:12px;background:var(--ink);color:#fff;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:14px;margin-top:20px;box-shadow:0 6px 20px rgba(0,0,0,.15);font-size:14px;flex-wrap:wrap;}
+  .progress .bar{flex:1;min-width:120px;height:7px;background:rgba(255,255,255,.2);border-radius:5px;overflow:hidden;}
+  .progress .bar i{display:block;height:100%;width:0;background:var(--amber);transition:width .3s;}
+  .source{font-size:12.5px;color:var(--grey);margin-top:26px;}
+  .foot{text-align:center;color:var(--grey);font-size:13px;margin-top:40px;padding-top:22px;border-top:1px solid var(--line);}
+  @media (max-width:600px){ h1{font-size:27px;} .text{padding:16px 14px;text-align:left;} input.blank{width:150px;} .card{padding:18px 16px;} }
+  @media print{
+    body{background:#fff;} .back,.toolbar,.progress,.hack,.result,.hints,.foot,.toc{display:none!important;}
+    .wrap{padding:0;max-width:none;} input.blank{background:none;color:transparent;}
+    .exam{page-break-inside:avoid;margin-bottom:24px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<a class="back" href="index.html#elt">← Back to English Language Teaching</a>
+<div class="crumb">English Language Teaching / C1 Vocabulary / <strong>Word Formation 2</strong></div>
+<div class="eyebrow">Advanced · C1 · Maturita Part 2 format · Self-checking</div>
+<h1>Word Formation 2 — Five Academic Texts</h1>
+<p class="lede">Five exam-style texts on Multicultural Society, the Environment, Food, Fashion and the Family, with 50 gaps in total. The roots require more than a simple suffix: internal spelling changes (<i>hate → hatred, navy → naval</i>), verb-forming affixes (<i>tough → toughen, money → monetise</i>), negative and attitude prefixes (<i>il-, ir-, mis-, anti-, pro-, counter-</i>) and less predictable nouns (<i>lenient → leniency, long → longevity</i>).</p>
+
+<!-- ===== SPOTLIGHT ===== -->
+<div class="card">
+  <h2 class="sec" style="margin-top:0">Spotlight: tricky transformations</h2>
+  <p class="sec-lede" style="margin-bottom:12px">Learn these families before you start. They are the ones that trip up advanced students.</p>
+  <div class="tw"><table class="t">
+    <tr><th>Root</th><th>Word family</th><th>Watch out</th></tr>
+    <tr><td><b>long</b></td><td>length <span class="arrow">→</span> lengthen · longevity · lengthy</td><td><i>prolong</i> means the same as <i>lengthen</i> but is a separate word, not formed from <i>long</i> in the exam.</td></tr>
+    <tr><td><b>right</b></td><td>upright · righteous · rightful · rightly</td><td><i>upright</i> = vertical or honest: <i>an upright posture, an upright citizen</i>.</td></tr>
+    <tr><td><b>money</b></td><td>monetary · monetise / monetize · monetisation</td><td>The stem changes to <b>monet-</b>: <i>monetary policy</i>.</td></tr>
+    <tr><td><b>navy</b></td><td>naval</td><td>Internal change <b>-vy → -val</b>: <i>a naval officer</i>. (<i>Navy blue</i> is a colour.)</td></tr>
+    <tr><td><b>electric</b></td><td>electrify · electrician · electricity · electrocute</td><td><i>electrocute</i> = kill or injure with electricity.</td></tr>
+    <tr><td><b>abound</b> / abundant</td><td>abundance · abundantly</td><td>-ant <span class="arrow">→</span> -ance: <i>an abundance of</i>.</td></tr>
+    <tr><td><b>hate</b></td><td>hatred · hateful · hater</td><td><b>hatred</b> (not <i>hateness</i>) — an abstract noun with -red.</td></tr>
+    <tr><td><b>linger</b></td><td>lingering</td><td>An -ing adjective: <i>lingering doubts, lingering effects</i>.</td></tr>
+    <tr><td><b>lenient</b></td><td>leniency · leniently</td><td>-ent <span class="arrow">→</span> -ency (also <i>dependency, efficiency</i>).</td></tr>
+    <tr><td><b>active</b></td><td>proactive · inactive · activist · activate</td><td><b>pro-</b> = acting in advance; opposite: <i>reactive</i>.</td></tr>
+    <tr><td><b>social</b></td><td>antisocial · unsociable · socialise · society</td><td><i>antisocial behaviour</i> = harmful to others; <i>unsociable</i> = not friendly.</td></tr>
+    <tr><td><b>legitimate</b></td><td>illegitimate · legitimacy · legitimise</td><td><i>legit</i> is informal slang — never use it in an essay.</td></tr>
+    <tr><td><b>literate</b></td><td>illiterate · literacy · illiteracy</td><td>-ate <span class="arrow">→</span> -acy (also <i>accurate → accuracy</i>).</td></tr>
+    <tr><td><b>tough</b></td><td>toughen · toughness</td><td><b>-en</b> verbs: <i>strengthen, widen, shorten, lengthen</i>.</td></tr>
+    <tr><td><b>able</b></td><td>enable · unable · inability · ability · disabled</td><td>Adjective <i>unable</i>, but noun <b>in</b>ability; verb <b>en</b>able.</td></tr>
+  </table></div>
+</div>
+
+<div class="hack">
+  <h3>Advanced strategy</h3>
+  <ol>
+    <li>Identify the <b>part of speech</b> from the words around the gap.</li>
+    <li>Read the whole sentence: words like <i>yet, rather than, merely, condemn</i> often signal a <b>negative prefix</b>.</li>
+    <li>Choose the right negative prefix: <b>il-</b> before l, <b>ir-</b> before r, <b>im-</b> before p/m/b, <b>mis-</b> = wrongly, <b>anti-</b> = against, <b>counter-</b> = with the opposite effect.</li>
+    <li>Check whether the root needs an <b>internal change</b>: <i>navy → naval, long → longevity, money → monet-</i>.</li>
+  </ol>
+</div>
+
+<div class="toc" id="toc"></div>
+<div id="host"></div>
+
+<div class="progress">
+  <b id="totTxt">Total: 0 / 50</b>
+  <div class="bar"><i id="totBar"></i></div>
+  <button class="btn" style="background:var(--amber);border-color:var(--amber)" onclick="checkAll()">Check all</button>
+</div>
+
+<p class="source">Texts written for English in Context. The format follows Part 2 of the Language in Use section of the Slovak Maturita external test (NIVAM). British and American spellings are accepted (-ise/-ize, -lled/-led).</p>
+<div class="foot">© <span id="yr"></span> Vivien Bieliková — English in Context. All materials shared for educational use.</div>
+</div>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ==================================================================
+   DATA — {{n}} in text = gap n. Gap 0 is the example.
+   ================================================================== */
+const EX = [
+{
+  id:'ex1', topic:'Multicultural Society', title:'Diversity and Its Discontents', short:'hatred, illiteracy, proactive…',
+  text:[
+    'Few would dispute that Europe is currently experiencing migration on an {{0}} scale. Yet cultural {{1}} is not, in itself, a guarantee of social cohesion. Where newcomers encounter {{2}} or even open ethnic {{3}}, they tend to withdraw into isolated communities.',
+    'Sociologists point out that the {{4}} to communicate in the host language remains the single greatest barrier to successful {{5}}. In some communities, adult {{6}} compounds the problem, as parents cannot support their children’s schooling.',
+    'Rather than merely reacting once tensions erupt, policymakers should adopt a {{7}} strategy, investing in language tuition and mentoring schemes. The media bear responsibility, too: young migrants are disproportionately blamed for {{8}} behaviour such as vandalism, which only entrenches prejudice. Critics who question the {{9}} of multicultural policies argue that newcomers should simply abandon their heritage. Such demands, however, are not only unrealistic but also deeply {{10}}.'
+  ],
+  gaps:{
+    0:['precedent',['unprecedented']],
+    1:['diverse',['diversity'],'noun after an adjective','<b>diverse → diversity</b> (-ity). <i>Cultural diversity</i> is a key collocation.'],
+    2:['tolerate',['intolerance'],'negative noun','<b>tolerate → tolerance → intolerance</b>. The context (<i>or even open… hatred</i>) shows a negative meaning.'],
+    3:['hate',['hatred'],'abstract noun — unusual suffix','<b>hate → hatred</b>. A rare suffix <b>-red</b>; <i>ethnic hatred</i> is a fixed collocation. (<i>Hateness</i> does not exist.)'],
+    4:['able',['inability'],'negative noun after "the … to"','<b>able → ability → inability</b>. Careful: the adjective is <i>unable</i>, but the noun is <b>in</b>ability.'],
+    5:['integrate',['integration'],'noun after an adjective','<b>integrate → integration</b> — drop the -e and add -ion.'],
+    6:['literate',['illiteracy'],'negative noun — two changes','<b>literate → illiteracy</b>: negative prefix <b>il-</b> (before l) and <b>-ate → -acy</b>. Adult illiteracy = adults who cannot read and write.'],
+    7:['active',['proactive','pro-active'],'adjective — acting in advance','<b>active → proactive</b>. <i>Rather than merely reacting</i> tells you the opposite of reactive: acting <b>before</b> problems arise.'],
+    8:['social',['antisocial','anti-social'],'negative adjective — harmful to others','<b>social → antisocial</b>. <i>Antisocial behaviour</i> (vandalism, noise) harms others. <i>Unsociable</i> only means "not friendly".'],
+    9:['legitimate',['legitimacy'],'abstract noun after "the … of"','<b>legitimate → legitimacy</b> (-ate → -acy) = the quality of being fair, legal and acceptable.'],
+    10:['product',['counterproductive','counter-productive'],'adjective — prefix + suffix','<b>product → productive → counterproductive</b> = having the opposite effect to the one intended.']
+  }
+},
+{
+  id:'ex2', topic:'Environment', title:'Living on Borrowed Time', short:'abundance, lengthening, electrocuted…',
+  text:[
+    'Environmental {{0}} is no longer a distant threat. For centuries, the apparent {{1}} of natural resources encouraged humanity to treat the planet as an inexhaustible storehouse. Today, the consequences of this {{2}} model are impossible to ignore.',
+    'Rising temperatures are steadily {{3}} the wildfire season, while rainfall patterns have become increasingly {{4}}. Scientists warn that some of this damage may already be {{5}}. Even pesticides banned decades ago continue to have {{6}} effects on soil and groundwater.',
+    'Wildlife faces threats from unexpected quarters: thousands of birds of prey are {{7}} every year when they land on poorly insulated power lines. Meanwhile, {{8}} logging continues to devastate the Amazon. Environmental lawyers insist that governments must {{9}} the penalties for such crimes and drastically reduce our {{10}} on fossil fuels.'
+  ],
+  gaps:{
+    0:['degrade',['degradation']],
+    1:['abound',['abundance'],'noun after "the apparent … of"','<b>abound → abundant → abundance</b>. Collocation: <i>an abundance of resources</i>.'],
+    2:['sustain',['unsustainable'],'negative adjective','<b>sustain → sustainable → unsustainable</b> = cannot continue without causing damage.'],
+    3:['long',['lengthening'],'verb in the -ing form (present continuous)','<b>long → length → lengthen → lengthening</b>. <i>Are steadily …ing</i> needs the continuous form. (<i>Prolonging</i> means the same, but it is not formed from <i>long</i>.)'],
+    4:['predict',['unpredictable'],'negative adjective','<b>predict → predictable → unpredictable</b>.'],
+    5:['reverse',['irreversible'],'negative adjective — watch the prefix','<b>reverse → irreversible</b>: <b>ir-</b> before r and <b>-ible</b>, not -able.'],
+    6:['linger',['lingering'],'-ing adjective before a noun','<b>linger → lingering</b> = continuing for a long time. Collocation: <i>lingering effects</i>.'],
+    7:['electric',['electrocuted'],'passive past participle','<b>electric → electrocute → electrocuted</b> = killed or injured by an electric shock. Passive: <i>are electrocuted</i>.'],
+    8:['legal',['illegal'],'negative adjective','<b>legal → illegal</b> (<b>il-</b> before l).'],
+    9:['tough',['toughen'],'verb after "must"','<b>tough → toughen</b> (-en = make something more…). Compare <i>strengthen, widen</i>.'],
+    10:['depend',['dependence','dependency'],'noun after "our"','<b>depend → dependence / dependency</b>. Collocation: <i>dependence on fossil fuels</i>.']
+  }
+},
+{
+  id:'ex3', topic:'Food', title:'The Politics of the Plate', short:'leniency, monetise, mislabelled…',
+  text:[
+    'In a {{0}} economy, the food on our plates often travels thousands of kilometres. Paradoxically, the world now produces more calories than ever, yet millions of children remain {{1}}, while {{2}} rates in wealthy nations continue to soar.',
+    'Nutritionists blame the {{3}} appeal of ultra-processed snacks, many of which are engineered to be highly {{4}}. Critics also point to the {{5}} of regulators, who rarely punish manufacturers whose products are deliberately {{6}} as “healthy” or “natural”.',
+    'Social media has added a new dimension. Food influencers now {{7}} every recipe they post, often promoting extravagant dishes that encourage {{8}}. At the same time, the {{9}} of fresh produce has become a pressing concern for low-income families. Perhaps the most {{10}} statistic of all is that roughly a third of all food produced is simply thrown away.'
+  ],
+  gaps:{
+    0:['globe',['globalised','globalized']],
+    1:['nourish',['malnourished','undernourished'],'negative adjective — prefix + -ed','<b>nourish → malnourished</b> (<b>mal-</b> = badly). <i>Undernourished</i> is also correct.'],
+    2:['obese',['obesity'],'noun before "rates"','<b>obese → obesity</b> (-ity). <i>Obesity rates</i> is a compound noun.'],
+    3:['resist',['irresistible'],'negative adjective — ir- + -ible','<b>resist → irresistible</b> = too attractive to refuse. <b>ir-</b> before r and <b>-ible</b>.'],
+    4:['addict',['addictive'],'adjective after "highly"','<b>addict → addictive</b> = causing addiction. (<i>Addicted</i> describes the person, not the product.)'],
+    5:['lenient',['leniency'],'abstract noun after "the … of"','<b>lenient → leniency</b> (-ent → -ency) = being too mild when punishing.'],
+    6:['label',['mislabelled','mislabeled'],'past participle — "wrongly"','<b>label → mislabel → mislabelled</b>. <b>mis-</b> = wrongly. British English doubles the l: <i>mislabelled</i>.'],
+    7:['money',['monetise','monetize'],'verb — stem change','<b>money → monetise</b> = earn money from something. The stem changes to <b>monet-</b> (compare <i>monetary</i>).'],
+    8:['consume',['overconsumption','over-consumption'],'noun — prefix of degree','<b>consume → consumption → overconsumption</b> = consuming too much. <b>over-</b> = too much.'],
+    9:['afford',['affordability'],'noun after "the … of"','<b>afford → affordable → affordability</b> — two suffixes.'],
+    10:['scandal',['scandalous'],'adjective after "the most"','<b>scandal → scandalous</b> (-ous) = shocking and morally wrong.']
+  }
+},
+{
+  id:'ex4', topic:'Fashion', title:'Fast Fashion and Its Discontents', short:'upright, naval, longevity…',
+  text:[
+    'Few industries are as culturally {{0}} as fashion. In the nineteenth century, tightly laced corsets forced women into a rigid, {{1}} posture, while the iconic striped Breton shirt began life as part of a French {{2}} uniform.',
+    'Today, however, the industry is dominated by cheap, {{3}} clothing designed to be worn only a handful of times. Manufacturers rely on planned {{4}}, releasing new collections almost every week. Behind the low prices lies the systematic {{5}} of garment workers, many of whom earn less than a living wage — a practice most consumers would condemn as deeply {{6}}.',
+    'Fortunately, a growing number of {{7}} conscious shoppers are demanding greater {{8}} about supply chains. They value the {{9}} of a well-made garment over the fleeting thrill of a new trend, and they increasingly prize the {{10}} of second-hand and vintage pieces.'
+  ],
+  gaps:{
+    0:['influence',['influential']],
+    1:['right',['upright'],'adjective — prefix','<b>right → upright</b> = straight, vertical. Collocation: <i>an upright posture</i>.'],
+    2:['navy',['naval'],'adjective — internal change','<b>navy → naval</b> — the stem changes (<b>-vy → -val</b>). <i>A naval uniform</i> = of the navy.'],
+    3:['dispose',['disposable'],'adjective — can be thrown away','<b>dispose → disposable</b> (-able) = made to be thrown away after use.'],
+    4:['obsolete',['obsolescence'],'noun after "planned"','<b>obsolete → obsolescence</b>. <i>Planned obsolescence</i> = making products that quickly become out of date.'],
+    5:['exploit',['exploitation'],'noun after "the systematic … of"','<b>exploit → exploitation</b> (-ation) = treating workers unfairly for profit.'],
+    6:['ethic',['unethical'],'negative adjective after "deeply"','<b>ethic → ethical → unethical</b>. <i>Condemn</i> signals the negative meaning.'],
+    7:['environment',['environmentally'],'adverb before an adjective','<b>environment → environmentally</b>. An adverb modifies the adjective <i>conscious</i>: <i>environmentally conscious</i>.'],
+    8:['transparent',['transparency'],'noun after "greater"','<b>transparent → transparency</b> (-ent → -ency) = openness about how things are done.'],
+    9:['long',['longevity'],'abstract noun — internal change','<b>long → longevity</b> = a long life or lasting quality. Not <i>length</i>: we mean how long the garment <b>lasts</b>.'],
+    10:['authentic',['authenticity'],'noun after "the … of"','<b>authentic → authenticity</b> (-ity) = the quality of being genuine.']
+  }
+},
+{
+  id:'ex5', topic:'Family', title:'The Changing Shape of the Family', short:'illegitimate, enable, likelihood…',
+  text:[
+    'The {{0}} nuclear family is no longer the only model that society recognises. Until well into the twentieth century, children born outside marriage were branded {{1}} and often faced lifelong discrimination. Today, by contrast, many {{2}} couples raise children together without any social stigma.',
+    'Demographic change has also transformed family life. As life {{3}} rises, {{4}} households, in which grandparents help with childcare, are becoming more common again. Meanwhile, many young adults postpone {{5}} until their thirties, which reduces the {{6}} of having a large family.',
+    'Flexible working arrangements now {{7}} fathers to play a more active role at home, yet gender {{8}} in domestic work persists. Psychologists also warn that financial {{9}} places enormous strain on relationships. Nevertheless, research suggests that what children need most is not a particular family structure but a loving and {{10}} environment.'
+  ],
+  gaps:{
+    0:['tradition',['traditional']],
+    1:['legitimate',['illegitimate'],'negative adjective','<b>legitimate → illegitimate</b> (<b>il-</b> before l). Historically used for children born to unmarried parents. Avoid the slang <i>legit</i> in writing.'],
+    2:['marry',['unmarried'],'negative adjective before a noun','<b>marry → married → unmarried</b> = not married.'],
+    3:['expect',['expectancy'],'noun — fixed phrase','<b>expect → expectancy</b>. Fixed phrase: <i>life expectancy</i> (not <i>expectation</i>).'],
+    4:['generation',['intergenerational','multigenerational','multi-generational','inter-generational'],'adjective — prefix + suffix','<b>generation → intergenerational / multigenerational</b> = including several generations (grandparents, parents, children).'],
+    5:['parent',['parenthood'],'abstract noun','<b>parent → parenthood</b> (-hood, like <i>childhood, adulthood</i>) = being a parent.'],
+    6:['likely',['likelihood'],'noun after "the … of"','<b>likely → likelihood</b> = probability. Note <b>-y → -i</b>.'],
+    7:['able',['enable'],'verb — "make possible"','<b>able → enable</b> = make someone able to do something. Pattern: <i>enable somebody to do</i>.'],
+    8:['equal',['inequality'],'negative noun','<b>equal → equality → inequality</b>. <i>Yet</i> signals the problem that persists.'],
+    9:['stable',['instability'],'negative noun — spelling change','<b>stable → stability → instability</b>. Note <b>-ble → -bility</b>.'],
+    10:['support',['supportive'],'adjective after "loving and"','<b>support → supportive</b> (-ive) — parallel with the adjective <i>loving</i>.']
+  }
+}
+];
+
+/* ==================================================================
+   RENDER
+   ================================================================== */
+const norm = s => (s||'').toLowerCase().replace(/[’‘]/g,"'").replace(/\s+/g,' ').trim();
+const host = document.getElementById('host');
+const toc = document.getElementById('toc');
+EX.forEach((ex, k) => {
+  toc.insertAdjacentHTML('beforeend', '<a href="#'+ex.id+'"><b>Text '+(k+1)+'</b>'+ex.topic+'<span>'+ex.short+'</span></a>');
+  const textHTML = ex.text.map((p,i) => '<p'+(i===0?' class="first"':'')+'>' + p.replace(/\{\{(\d+)\}\}/g, (m,n) => {
+    n = +n; const g = ex.gaps[n];
+    const field = n===0 ? '<span class="exword">'+g[1][0]+'</span>' : '<input class="blank" data-n="'+n+'" autocomplete="off" spellcheck="false" autocapitalize="off" aria-label="gap '+n+'" oninput="updateTotal()">';
+    return '<span class="gap"><span class="box">'+(n===0?'00':n)+'</span>'+field+'</span> <span class="root">('+g[0].toUpperCase()+')</span>';
+  }) + '</p>').join('');
+  const hints = Object.keys(ex.gaps).filter(n=>+n>0).map(n => '<li><span class="box">'+n+'</span> '+ex.gaps[n][2]+'</li>').join('');
+  host.insertAdjacentHTML('beforeend',
+    '<section class="exam" id="'+ex.id+'"><div class="exam-head"><div class="topic">Text '+(k+1)+' · '+ex.topic+'</div><h3>'+ex.title+' <span>(10 points)</span></h3>'+
+    '<p>Use the word given in capitals to form a word that fits the gap. There is an example at the beginning <b>(00)</b>.</p></div>'+
+    '<div class="text"><h4>'+ex.title+'</h4>'+textHTML+'</div>'+
+    '<div class="hints" id="'+ex.id+'_hints"><b style="font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:#80570d">Hints — what kind of word do you need?</b><ol style="margin-top:8px">'+hints+'</ol></div></section>'+
+    '<div class="toolbar"><button class="btn" onclick="check(\''+ex.id+'\')">Check</button>'+
+    '<button class="btn green" onclick="check(\''+ex.id+'\',true)">Show answers &amp; explanations</button>'+
+    '<button class="btn secondary" onclick="toggleHints(\''+ex.id+'\',this)">Show hints</button>'+
+    '<button class="btn secondary" onclick="resetEx(\''+ex.id+'\')">Reset</button></div>'+
+    '<div class="result" id="'+ex.id+'_res"></div><div class="spacer"></div>');
+});
+
+const scores = {};
+function check(id, full){
+  const ex = EX.find(e=>e.id===id); const sec = document.getElementById(id);
+  let ok = 0; const rows = [];
+  sec.querySelectorAll('input.blank').forEach(el => {
+    const n = +el.dataset.n, g = ex.gaps[n];
+    const good = g[1].map(norm).includes(norm(el.value));
+    el.classList.remove('right','wrong'); el.classList.add(good?'right':'wrong');
+    if (good) ok++;
+    if (full || !good) rows.push('<tr><td><span class="box">'+n+'</span></td><td>'+g[0].toUpperCase()+'</td><td class="'+(good?'ok':'no')+'">'+(el.value.trim()||'—')+'</td><td><b>'+g[1][0]+'</b></td><td class="ex2">'+g[3]+'</td></tr>');
+  });
+  scores[id] = ok;
+  const pct = ok*10;
+  const msg = pct===100 ? 'Excellent — C1 level!' : pct>=70 ? 'Very good. Study the explanations below.' : pct>=50 ? 'Not bad — turn on the hints and try again.' : 'These are hard! Read the Spotlight table and try again with the hints.';
+  const res = document.getElementById(id+'_res');
+  res.innerHTML = '<p class="big">'+ok+' / 10</p><div style="color:var(--grey);font-size:14.5px">'+msg+'</div>' +
+    (rows.length ? '<div class="tw"><table class="key"><tr><th>Gap</th><th>Root</th><th>Your answer</th><th>Correct</th><th>Why?</th></tr>'+rows.join('')+'</table></div>' : '');
+  res.classList.add('show');
+  updateTotal();
+}
+function toggleHints(id, btn){
+  const h = document.getElementById(id+'_hints'); h.classList.toggle('show');
+  btn.textContent = h.classList.contains('show') ? 'Hide hints' : 'Show hints';
+}
+function resetEx(id){
+  document.querySelectorAll('#'+id+' input.blank').forEach(el=>{el.value='';el.classList.remove('right','wrong');});
+  const r = document.getElementById(id+'_res'); r.classList.remove('show'); r.innerHTML='';
+  delete scores[id]; updateTotal();
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+function checkAll(){ EX.forEach(e=>check(e.id)); }
+function updateTotal(){
+  const ok = Object.values(scores).reduce((a,b)=>a+b,0);
+  const filled = [...document.querySelectorAll('input.blank')].filter(i=>i.value.trim()).length;
+  document.getElementById('totTxt').textContent = 'Total: '+ok+' / 50 · answered '+filled+' / 50';
+  document.getElementById('totBar').style.width = (ok/50*100)+'%';
+}
+updateTotal();
+</script>
+</body>
+</html>

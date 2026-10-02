@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Role Models and Idols | Oral Exam Task — Maturita Exam Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary:#1e4638;
+    --primary-light:#4d7d67;
+    --primary-pale:#eaf0ea;
+    --accent:#bd5a30;
+    --accent-pale:#f6e8db;
+    --ink:#2b2a25;
+    --muted:#6c6656;
+    --bg:#f6f1e3;
+    --card:#fffdf8;
+    --border:#e4dcc7;
+    --amber-bg:#faf1da;
+    --amber-ink:#7a5615;
+    --radius:16px;
+    --shadow:0 4px 18px rgba(30,70,56,0.08);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
+  h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;font-weight:600;color:var(--primary);margin-top:0;}
+  a{color:var(--primary);}
+
+  .site-header{background:var(--card);padding:16px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;border-bottom:1px solid var(--border);}
+  .site-header .brand{display:flex;align-items:center;gap:9px;font-family:'Fraunces',serif;font-weight:700;font-size:1.05rem;color:var(--primary);text-decoration:none;}
+  .logo-mark{display:flex;align-items:center;}
+  .logo-mark span{width:13px;height:13px;border-radius:50%;display:inline-block;margin-right:-4px;border:2px solid var(--card);}
+  .logo-mark span:nth-child(1){background:#1e4638;z-index:3;}
+  .logo-mark span:nth-child(2){background:#bd5a30;z-index:2;}
+  .logo-mark span:nth-child(3){background:#e3a640;z-index:1;margin-right:0;}
+  .site-header .site-nav{display:flex;gap:26px;font-size:.92rem;font-weight:500;flex-wrap:wrap;}
+  .site-header .site-nav a{color:var(--ink);text-decoration:none;}
+  .site-header .site-nav a:hover{color:var(--accent);}
+
+  .breadcrumb{max-width:960px;margin:22px auto 0;padding:0 40px;font-size:.85rem;color:var(--muted);}
+  .breadcrumb a{color:var(--muted);text-decoration:none;}
+  .breadcrumb a:hover{color:var(--accent);}
+  .breadcrumb b{color:var(--ink);font-weight:600;}
+
+  .hero{max-width:960px;margin:0 auto;padding:56px 40px 30px;text-align:center;}
+  .hero .eyebrow{display:inline-block;background:var(--accent-pale);color:var(--accent);font-weight:700;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:16px;}
+  .hero h1{font-size:2.5rem;line-height:1.15;margin-bottom:14px;}
+  .hero h1 .accent-word{color:var(--accent);font-style:italic;}
+  .hero p.sub{font-size:1.1rem;color:var(--muted);max-width:640px;margin:0 auto 24px;}
+  .hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  .btn-pill{display:inline-block;padding:12px 26px;border-radius:999px;font-weight:600;font-size:.92rem;text-decoration:none;font-family:'Inter',sans-serif;border:none;cursor:pointer;}
+  .btn-pill.primary{background:var(--primary);color:#fff;}
+  .btn-pill.primary:hover{background:#163a2d;}
+  .btn-pill.secondary{background:transparent;color:var(--primary);border:1.5px solid var(--primary);}
+  .btn-pill.secondary:hover{background:var(--primary-pale);}
+  .tag-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px;}
+  .tag{background:var(--primary-pale);color:var(--primary);font-size:.82rem;font-weight:600;padding:6px 14px;border-radius:999px;}
+
+  main{max-width:960px;margin:0 auto;padding:10px 20px 60px;}
+  .section{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:36px 40px;margin:32px 0;}
+  .section h2{font-size:1.55rem;margin-bottom:6px;}
+  .section > p.lead{color:var(--muted);margin-top:4px;margin-bottom:22px;}
+
+  .task-box{background:var(--primary-pale);border-radius:12px;padding:22px 26px;font-size:1.05rem;}
+  .task-box p{margin:0 0 10px;}
+  .task-box p:last-child{margin-bottom:0;}
+
+  .point{display:flex;gap:18px;padding:22px 0;border-top:1px solid var(--border);}
+  .point:first-of-type{border-top:none;padding-top:6px;}
+  .point .num{flex:0 0 44px;height:44px;border-radius:50%;background:var(--accent);color:#fff;font-family:'Fraunces',serif;font-weight:700;font-size:1.2rem;display:flex;align-items:center;justify-content:center;}
+  .point h3{font-size:1.2rem;margin:6px 0 10px;}
+  .point ul{margin:0;padding-left:0;list-style:none;}
+  .point li{position:relative;padding-left:22px;margin-bottom:6px;}
+  .point li::before{content:"";position:absolute;left:4px;top:.6em;width:7px;height:7px;border-radius:50%;background:var(--primary-light);}
+
+  .conclusion{background:var(--accent-pale);border-radius:12px;padding:24px 28px;text-align:center;}
+  .conclusion .label{font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);}
+  .conclusion .q{font-family:'Fraunces',serif;font-style:italic;font-size:1.5rem;color:var(--accent);margin-top:6px;}
+
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;}
+  .warm-card{background:var(--primary-pale);border-radius:12px;padding:18px 20px;}
+  .warm-card h4{margin:0 0 6px;font-size:1rem;}
+  .warm-card p{margin:0;font-size:.95rem;}
+
+  .phrase-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;}
+  .phrase{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:10px;padding:12px 16px;font-family:'Fraunces',serif;font-style:italic;font-size:1.02rem;}
+
+  .important{background:var(--amber-bg);color:var(--amber-ink);border-radius:12px;padding:20px 24px;display:flex;gap:14px;align-items:flex-start;}
+  .important .icon{font-size:1.5rem;line-height:1;}
+  .important p{margin:0 0 6px;}
+  .important p:last-child{margin:0;}
+
+  .timer{text-align:center;}
+  .timer .clock{font-family:'Fraunces',serif;font-size:4rem;font-weight:700;color:var(--primary);letter-spacing:.02em;margin:6px 0 4px;}
+  .timer .clock.over{color:var(--accent);}
+  .timer .hint{color:var(--muted);font-size:.92rem;min-height:1.5em;margin-bottom:16px;}
+  .bar{height:10px;border-radius:999px;background:var(--primary-pale);overflow:hidden;max-width:520px;margin:0 auto 20px;}
+  .bar span{display:block;height:100%;width:0;background:var(--primary-light);transition:width .3s linear;}
+  .timer-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+
+  footer{text-align:center;padding:34px 20px 50px;color:var(--muted);font-size:.88rem;}
+
+  @media(max-width:600px){
+    .site-header{padding:14px 16px;}
+    .site-header .site-nav{gap:14px;font-size:.85rem;}
+    .breadcrumb{padding:0 16px;}
+    .hero{padding:40px 16px 20px;}
+    .hero h1{font-size:1.9rem;}
+    main{padding:0 12px 40px;}
+    .section{padding:26px 20px;}
+    .point{gap:12px;}
+    .point .num{flex-basis:36px;height:36px;font-size:1rem;}
+    .timer .clock{font-size:3rem;}
+  }
+  @media print{
+    body{background:#fff;}
+    .site-header,.breadcrumb,.hero-actions,#practice,footer{display:none;}
+    .section{box-shadow:none;border:1px solid var(--border);padding:20px 24px;margin:14px 0;break-inside:avoid;}
+    .hero{padding:10px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <span class="logo-mark"><span></span><span></span><span></span></span>
+    EiC <span style="font-weight:400;color:var(--muted);font-size:.85em;">English in Context</span>
+  </a>
+  <nav class="site-nav">
+    <a href="index.html#about">About Me</a>
+    <a href="index.html#elt">English Language Teaching</a>
+    <a href="index.html#clil">CLIL</a>
+    <a href="index.html#erasmus">Erasmus+</a>
+  </nav>
+</header>
+
+<div class="breadcrumb">
+  <a href="index.html#elt">English Language Teaching</a> › Maturita Exam › <b>Role Models and Idols: Oral Exam</b>
+</div>
+
+<section class="hero">
+  <span class="eyebrow">Maturita Exam · Speaking · Oral Exam Task</span>
+  <h1>Role Models <span class="accent-word">and</span> Idols</h1>
+  <p class="sub">Prepare a 5-minute individual presentation. Don't simply describe a famous person: reflect on the wider importance and influence of role models in society.</p>
+  <div class="hero-actions">
+    <a class="btn-pill primary" href="#points">See the task</a>
+    <a class="btn-pill secondary" href="#practice">Practise with the timer</a>
+  </div>
+  <div class="tag-row">
+    <span class="tag">⏱ approx. 5 minutes</span>
+    <span class="tag">🎤 individual presentation</span>
+    <span class="tag">B2–C1</span>
+  </div>
+</section>
+
+<main>
+
+  <section class="section" id="task">
+    <h2>Task</h2>
+    <div class="task-box">
+      <p>Prepare a <b>5-minute individual presentation</b> on the topic <b>ROLE MODELS AND IDOLS</b>.</p>
+      <p>Your presentation should be well organised, fluent, and supported by relevant examples. You should not simply describe a famous person; you should also reflect on the wider importance and influence of role models in society.</p>
+    </div>
+  </section>
+
+  <section class="section" id="points">
+    <h2>What to talk about</h2>
+    <p class="lead">In your presentation, address the following points.</p>
+
+    <div class="point">
+      <div class="num">1</div>
+      <div>
+        <h3>Define the terms</h3>
+        <ul>
+          <li>What is a role model?</li>
+          <li>What is an idol?</li>
+          <li>Is there a difference between the two?</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="point">
+      <div class="num">2</div>
+      <div>
+        <h3>Personal perspective</h3>
+        <ul>
+          <li>Who do you consider to be a role model or an inspiring person?</li>
+          <li>What qualities, achievements, or values make this person admirable?</li>
+          <li>In what way has this person influenced you or others?</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="point">
+      <div class="num">3</div>
+      <div>
+        <h3>Role models in society</h3>
+        <ul>
+          <li>Why do people, especially young people, need role models?</li>
+          <li>Where do we usually find them: family, school, sport, culture, politics, social media, etc.?</li>
+          <li>What qualities should a good role model have?</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="point">
+      <div class="num">4</div>
+      <div>
+        <h3>Celebrity culture and social media</h3>
+        <ul>
+          <li>Why do people idolise celebrities, influencers, athletes, musicians, or public figures?</li>
+          <li>Can social media create unrealistic or unhealthy idols?</li>
+          <li>Should famous people be expected to behave as role models?</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="point">
+      <div class="num">5</div>
+      <div>
+        <h3>Critical reflection</h3>
+        <ul>
+          <li>Can admiring someone too much become dangerous?</li>
+          <li>What happens when a role model disappoints us or behaves controversially?</li>
+          <li>Is it better to admire one person or to take inspiration from several different people?</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="conclusion">
+    <h2>Conclusion</h2>
+    <p class="lead">Finish your presentation by answering this question:</p>
+    <div class="conclusion">
+      <div class="label">Final question</div>
+      <div class="q">What makes someone truly worthy of admiration?</div>
+    </div>
+  </section>
+
+  <section class="section" id="language">
+    <h2>Language expectations</h2>
+    <p class="lead">Try to use:</p>
+    <div class="card-grid">
+      <div class="warm-card"><h4>Advanced vocabulary</h4><p>connected with personality, influence, success, values and society</p></div>
+      <div class="warm-card"><h4>Linking expressions</h4><p>a range of linking expressions</p></div>
+      <div class="warm-card"><h4>Clear arguments</h4><p>supported by examples</p></div>
+      <div class="warm-card"><h4>Complex grammar</h4><p>complex grammatical structures</p></div>
+      <div class="warm-card"><h4>Opinions</h4><p>appropriate expressions for giving and justifying opinions</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="expressions">
+    <h2>Useful expressions</h2>
+    <p class="lead">Build these into your presentation.</p>
+    <div class="phrase-grid">
+      <div class="phrase">I would distinguish between … and …</div>
+      <div class="phrase">What I find particularly admirable is …</div>
+      <div class="phrase">One of the main reasons I look up to this person is …</div>
+      <div class="phrase">This person has had a significant influence on …</div>
+      <div class="phrase">It could be argued that …</div>
+      <div class="phrase">On the one hand …, whereas on the other hand …</div>
+      <div class="phrase">A potential drawback of idolising celebrities is …</div>
+      <div class="phrase">From my perspective …</div>
+      <div class="phrase">Ultimately, I believe that …</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Important</h2>
+    <div class="important">
+      <div class="icon">⚠️</div>
+      <div>
+        <p><b>Do not read a prepared text word for word.</b> You may use brief notes or keywords, but you should speak naturally and maintain eye contact.</p>
+        <p><b>Speaking time:</b> approximately 5 minutes.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section timer" id="practice">
+    <h2>Practise your timing</h2>
+    <p class="lead">Rehearse out loud and aim for about five minutes.</p>
+    <div class="clock" id="clock">5:00</div>
+    <div class="bar"><span id="bar"></span></div>
+    <div class="hint" id="hint">Press Start when you begin speaking.</div>
+    <div class="timer-actions">
+      <button class="btn-pill primary" id="startBtn">Start</button>
+      <button class="btn-pill secondary" id="resetBtn">Reset</button>
+      <button class="btn-pill secondary" onclick="window.print()">Print the task</button>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Part of the <b>Maturita Exam Prep</b> series on EnglishInContext.eu, B2–C1 Level English for Slovak secondary school students.<br>
+  Made for classroom and self-study use. Good luck with your exam! 🎓
+</footer>
+
+<script>
+(function(){
+  var TOTAL = 300, elapsed = 0, timer = null;
+  var clock = document.getElementById('clock'),
+      bar = document.getElementById('bar'),
+      hint = document.getElementById('hint'),
+      startBtn = document.getElementById('startBtn');
+  var stages = [
+    [0,   'Define the terms'],
+    [45,  'Personal perspective'],
+    [105, 'Role models in society'],
+    [165, 'Celebrity culture and social media'],
+    [220, 'Critical reflection'],
+    [265, 'Conclusion: what makes someone truly worthy of admiration?']
+  ];
+  function fmt(s){ s = Math.abs(s); return Math.floor(s/60) + ':' + String(s%60).padStart(2,'0'); }
+  function render(){
+    var left = TOTAL - elapsed;
+    clock.textContent = (left < 0 ? '+' : '') + fmt(left);
+    clock.classList.toggle('over', left < 0);
+    bar.style.width = Math.min(100, elapsed / TOTAL * 100) + '%';
+    if (!timer && elapsed === 0) { hint.textContent = 'Press Start when you begin speaking.'; return; }
+    if (left < 0) { hint.textContent = 'Time is up: wrap up your conclusion.'; return; }
+    var cur = stages[0][1];
+    for (var i = 0; i < stages.length; i++) if (elapsed >= stages[i][0]) cur = stages[i][1];
+    hint.textContent = 'Suggested point now: ' + cur;
+  }
+  startBtn.addEventListener('click', function(){
+    if (timer) { clearInterval(timer); timer = null; startBtn.textContent = 'Resume'; return; }
+    timer = setInterval(function(){ elapsed++; render(); }, 1000);
+    startBtn.textContent = 'Pause';
+    render();
+  });
+  document.getElementById('resetBtn').addEventListener('click', function(){
+    clearInterval(timer); timer = null; elapsed = 0; startBtn.textContent = 'Start'; render();
+  });
+  render();
+})();
+</script>
+</body>
+</html>

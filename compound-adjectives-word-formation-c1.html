@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compound Adjectives | Word Formation C1 — English in Context</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary:#1e4638; --primary-light:#4d7d67; --primary-pale:#eaf0ea;
+    --accent:#bd5a30; --accent-pale:#f6e8db;
+    --ink:#2b2a25; --muted:#6c6656; --bg:#f6f1e3; --card:#fffdf8; --border:#e4dcc7;
+    --green:#2f6b4f; --green-bg:#e7f0e9; --red:#b0402a; --red-bg:#fae7e0;
+    --amber-bg:#faf1da; --amber-ink:#7a5615;
+    --radius:16px; --shadow:0 4px 18px rgba(30,70,56,0.08);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
+  h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;font-weight:600;color:var(--primary);margin-top:0;}
+  a{color:var(--primary);}
+
+  .site-header{background:var(--card);padding:16px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;border-bottom:1px solid var(--border);}
+  .site-header .brand{display:flex;align-items:center;gap:9px;font-family:'Fraunces',serif;font-weight:700;font-size:1.05rem;color:var(--primary);text-decoration:none;}
+  .logo-mark{display:flex;align-items:center;}
+  .logo-mark span{width:13px;height:13px;border-radius:50%;display:inline-block;margin-right:-4px;border:2px solid var(--card);}
+  .logo-mark span:nth-child(1){background:#1e4638;z-index:3;}
+  .logo-mark span:nth-child(2){background:#bd5a30;z-index:2;}
+  .logo-mark span:nth-child(3){background:#e3a640;z-index:1;margin-right:0;}
+  .site-header .site-nav{display:flex;gap:26px;font-size:.92rem;font-weight:500;flex-wrap:wrap;}
+  .site-header .site-nav a{color:var(--ink);text-decoration:none;}
+  .site-header .site-nav a:hover{color:var(--accent);}
+  .breadcrumb{max-width:960px;margin:22px auto 0;padding:0 40px;font-size:.85rem;color:var(--muted);}
+  .breadcrumb a{color:var(--muted);text-decoration:none;}
+  .breadcrumb b{color:var(--ink);font-weight:600;}
+
+  .hero{max-width:960px;margin:0 auto;padding:52px 40px 26px;text-align:center;}
+  .hero .eyebrow{display:inline-block;background:var(--accent-pale);color:var(--accent);font-weight:700;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:16px;}
+  .hero h1{font-size:2.5rem;line-height:1.15;margin-bottom:14px;}
+  .hero h1 .accent-word{color:var(--accent);font-style:italic;}
+  .hero p.sub{font-size:1.08rem;color:var(--muted);max-width:660px;margin:0 auto 24px;}
+  .btn-pill{display:inline-block;padding:11px 24px;border-radius:999px;font-weight:600;font-size:.9rem;text-decoration:none;font-family:'Inter',sans-serif;border:none;cursor:pointer;}
+  .btn-pill.primary{background:var(--primary);color:#fff;}
+  .btn-pill.primary:hover{background:#163a2d;}
+  .btn-pill.secondary{background:transparent;color:var(--primary);border:1.5px solid var(--primary);}
+  .btn-pill.secondary:hover{background:var(--primary-pale);}
+  .btn-pill.small{padding:8px 18px;font-size:.85rem;}
+
+  .toc{max-width:960px;margin:0 auto;padding:0 40px;display:flex;gap:9px;flex-wrap:wrap;justify-content:center;}
+  .toc a{background:var(--card);border:1px solid var(--border);padding:8px 15px;border-radius:999px;text-decoration:none;font-weight:600;font-size:.86rem;color:var(--primary);box-shadow:var(--shadow);}
+  .toc a:hover{background:var(--primary-pale);}
+
+  main{max-width:960px;margin:0 auto;padding:10px 20px 60px;}
+  .section{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:36px 40px;margin:32px 0;}
+  .section h2{font-size:1.55rem;margin-bottom:6px;}
+  .section > p.lead{color:var(--muted);margin-top:4px;margin-bottom:22px;}
+  .section h3{font-size:1.15rem;margin:26px 0 10px;}
+
+  .intro-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+  .warm-card{background:var(--primary-pale);border-radius:12px;padding:18px 20px;}
+  .warm-card h4{margin:0 0 6px;font-size:1rem;}
+  .warm-card p{margin:0;font-size:.95rem;}
+
+  .pattern{border:1px solid var(--border);border-radius:14px;margin:18px 0;overflow:hidden;}
+  .pattern-head{display:flex;gap:14px;align-items:center;padding:16px 20px;background:var(--primary-pale);flex-wrap:wrap;}
+  .pattern-head .letter{flex:0 0 38px;height:38px;border-radius:50%;background:var(--accent);color:#fff;font-family:'Fraunces',serif;font-weight:700;display:flex;align-items:center;justify-content:center;}
+  .pattern-head h3{margin:0;font-size:1.1rem;}
+  .formula{display:inline-block;background:#fff;padding:5px 12px;border-radius:8px;font-family:'Fraunces',serif;font-size:.9rem;font-weight:600;color:var(--primary);}
+  .pattern-body{padding:16px 20px 18px;}
+  .pattern-body .rule{margin:0 0 12px;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;}
+  .chip{background:var(--card);border:1px solid var(--border);border-radius:999px;padding:5px 12px;font-size:.88rem;font-weight:600;color:var(--primary);}
+  .chip small{font-weight:400;color:var(--muted);}
+  .ex{margin:0;padding-left:0;list-style:none;}
+  .ex li{position:relative;padding-left:20px;margin-bottom:5px;color:var(--ink);font-size:.95rem;}
+  .ex li::before{content:"→";position:absolute;left:0;color:var(--accent);font-weight:700;}
+  .ex b{color:var(--accent);}
+
+  .tip{background:var(--amber-bg);color:var(--amber-ink);border-radius:12px;padding:14px 18px;margin:14px 0 0;font-size:.94rem;}
+  .tip b{color:var(--amber-ink);}
+
+  table.vocab{width:100%;border-collapse:collapse;font-size:.93rem;}
+  table.vocab th{text-align:left;font-family:'Fraunces',serif;color:var(--primary);font-weight:600;padding:10px 10px;border-bottom:2px solid var(--border);}
+  table.vocab td{padding:9px 10px;border-bottom:1px solid var(--border);vertical-align:top;}
+  table.vocab td:first-child{font-weight:700;color:var(--primary);white-space:nowrap;}
+  table.vocab td.sk{color:var(--muted);font-style:italic;}
+  .pos{display:inline-block;font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 8px;}
+  .pos.p{background:var(--green-bg);color:var(--green);}
+  .pos.n{background:var(--red-bg);color:var(--red);}
+  .pos.b{background:var(--amber-bg);color:var(--amber-ink);}
+  .table-wrap{overflow-x:auto;}
+
+  .rule-list{counter-reset:r;list-style:none;padding:0;margin:0;}
+  .rule-list li{counter-increment:r;position:relative;padding:14px 0 14px 46px;border-top:1px solid var(--border);}
+  .rule-list li:first-child{border-top:none;}
+  .rule-list li::before{content:counter(r);position:absolute;left:0;top:13px;width:30px;height:30px;border-radius:50%;background:var(--primary);color:#fff;font-weight:700;font-size:.85rem;display:flex;align-items:center;justify-content:center;}
+  .rule-list .ok{color:var(--green);font-weight:600;}
+  .rule-list .no{color:var(--red);font-weight:600;text-decoration:line-through;}
+
+  /* exercises */
+  .exercise{border-top:1px solid var(--border);padding-top:22px;margin-top:26px;}
+  .exercise:first-of-type{border-top:none;margin-top:0;padding-top:0;}
+  .exercise h3{margin-top:0;}
+  .ex-inst{color:var(--muted);margin:-4px 0 14px;font-size:.95rem;}
+  .q{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;padding:9px 0;border-bottom:1px dashed var(--border);}
+  .q .n{font-weight:700;color:var(--accent);min-width:22px;}
+  .q .text{flex:1 1 300px;}
+  .q input[type=text]{font:inherit;font-size:.95rem;padding:5px 10px;border:1.5px solid var(--border);border-radius:8px;background:#fff;width:190px;max-width:100%;}
+  .q input.ok{border-color:var(--green);background:var(--green-bg);}
+  .q input.bad{border-color:var(--red);background:var(--red-bg);}
+  .q select{font:inherit;font-size:.93rem;padding:5px 8px;border:1.5px solid var(--border);border-radius:8px;background:#fff;}
+  .q select.ok{border-color:var(--green);background:var(--green-bg);}
+  .q select.bad{border-color:var(--red);background:var(--red-bg);}
+  .fb{flex-basis:100%;font-size:.86rem;padding-left:32px;display:none;}
+  .fb.show{display:block;}
+  .fb.ok{color:var(--green);}
+  .fb.bad{color:var(--red);}
+  .base{font-weight:700;color:var(--primary);font-size:.82rem;letter-spacing:.03em;}
+  .ex-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:16px;}
+  .score{font-weight:700;color:var(--primary);}
+
+  .text-gap{line-height:2.3;font-size:1rem;}
+  .text-gap input{font:inherit;font-size:.95rem;padding:2px 8px;border:1.5px solid var(--border);border-radius:8px;width:150px;background:#fff;}
+  .text-gap input.ok{border-color:var(--green);background:var(--green-bg);}
+  .text-gap input.bad{border-color:var(--red);background:var(--red-bg);}
+  .text-gap sup{color:var(--accent);font-weight:700;}
+  .text-gap .base{margin-left:3px;}
+
+  .sort-pool{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+  .sort-item{display:flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--border);border-radius:999px;padding:4px 6px 4px 14px;font-weight:600;font-size:.9rem;}
+  .sort-item button{border:none;border-radius:999px;padding:4px 10px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit;}
+  .sort-item button.pbtn{background:var(--green-bg);color:var(--green);}
+  .sort-item button.nbtn{background:var(--red-bg);color:var(--red);}
+  .sort-item.chosen-p{border-color:var(--green);}
+  .sort-item.chosen-n{border-color:var(--red);}
+  .sort-item.chosen-p button.pbtn, .sort-item.chosen-n button.nbtn{outline:2px solid currentColor;}
+  .sort-item.ok{background:var(--green-bg);}
+  .sort-item.bad{background:var(--red-bg);}
+
+  .progress{position:sticky;bottom:14px;max-width:520px;margin:0 auto;background:var(--primary);color:#fff;border-radius:999px;padding:10px 22px;display:flex;align-items:center;gap:14px;box-shadow:0 8px 24px rgba(30,70,56,.25);font-size:.9rem;}
+  .progress .bar{flex:1;height:8px;border-radius:999px;background:rgba(255,255,255,.25);overflow:hidden;}
+  .progress .bar span{display:block;height:100%;width:0;background:#e3a640;transition:width .4s;}
+
+  footer{text-align:center;padding:34px 20px 50px;color:var(--muted);font-size:.88rem;}
+
+  @media(max-width:600px){
+    .site-header{padding:14px 16px;}
+    .site-header .site-nav{gap:14px;font-size:.85rem;}
+    .breadcrumb,.toc{padding:0 16px;}
+    .hero{padding:38px 16px 18px;}
+    .hero h1{font-size:1.9rem;}
+    main{padding:0 12px 40px;}
+    .section{padding:26px 18px;}
+    .pattern-body,.pattern-head{padding-left:14px;padding-right:14px;}
+    .fb{padding-left:0;}
+    .q input[type=text]{width:100%;}
+    table.vocab thead{display:none;}
+    table.vocab, table.vocab tbody, table.vocab tr, table.vocab td{display:block;width:100%;}
+    table.vocab tr{border-bottom:1px solid var(--border);padding:10px 0;position:relative;}
+    table.vocab td{border:none;padding:1px 40px 1px 0;}
+    table.vocab td:first-child{white-space:normal;font-size:1rem;}
+    table.vocab td:last-child{position:absolute;top:10px;right:0;padding:0;width:auto;}
+  }
+  @media print{
+    body{background:#fff;}
+    .site-header,.breadcrumb,.toc,.progress,.ex-actions,footer{display:none;}
+    .section{box-shadow:none;border:1px solid var(--border);break-inside:avoid-page;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <span class="logo-mark"><span></span><span></span><span></span></span>
+    EiC <span style="font-weight:400;color:var(--muted);font-size:.85em;">English in Context</span>
+  </a>
+  <nav class="site-nav">
+    <a href="index.html#about">About Me</a>
+    <a href="index.html#elt">English Language Teaching</a>
+    <a href="index.html#clil">CLIL</a>
+    <a href="index.html#erasmus">Erasmus+</a>
+  </nav>
+</header>
+
+<div class="breadcrumb">
+  <a href="index.html#elt">English Language Teaching</a> › C1 Vocabulary › <b>Word Formation: Compound Adjectives</b>
+</div>
+
+<section class="hero">
+  <span class="eyebrow">C1 Vocabulary · Word Formation · Self-checking</span>
+  <h1>Two Words, <span class="accent-word">One</span> Meaning</h1>
+  <p class="sub">Compound adjectives such as <b>level-headed</b>, <b>narrow-minded</b>, <b>well-known</b> and <b>time-consuming</b> join two words into one precise description. Learn the eight patterns, the hyphen rules and the most useful personality adjectives, then test yourself in six exercises.</p>
+</section>
+
+<nav class="toc">
+  <a href="#what">What are they?</a>
+  <a href="#patterns">8 patterns</a>
+  <a href="#personality">Personality bank</a>
+  <a href="#rules">Spelling &amp; grammar rules</a>
+  <a href="#practice">Exercises</a>
+</nav>
+
+<main>
+
+  <!-- ================= WHAT ================= -->
+  <section class="section" id="what">
+    <h2>What is a compound adjective?</h2>
+    <p class="lead">A compound adjective is made of <b>two (or more) words</b> that work together as <b>one adjective</b>. Usually they are joined with a <b>hyphen</b>.</p>
+    <div class="intro-grid">
+      <div class="warm-card"><h4>One idea, fewer words</h4><p>a person who keeps calm in difficult situations → a <b>level-headed</b> person</p></div>
+      <div class="warm-card"><h4>The hyphen avoids confusion</h4><p>a <b>man-eating</b> shark (a shark that eats people) vs. a <b>man eating</b> shark (a man who is eating shark!)</p></div>
+      <div class="warm-card"><h4>Why it matters at C1</h4><p>Compound adjectives are typical in Maturita word-formation tasks and make your speaking and writing sound precise and natural.</p></div>
+    </div>
+  </section>
+
+  <!-- ================= PATTERNS ================= -->
+  <section class="section" id="patterns">
+    <h2>The 8 main patterns</h2>
+    <p class="lead">Each pattern follows a clear rule. Learn the rule and you can understand, and often create, new compounds.</p>
+
+    <div class="pattern">
+      <div class="pattern-head"><span class="letter">A</span><h3>Adjective / number + noun + -ed</h3><span class="formula">narrow + mind + -ed → narrow-minded</span></div>
+      <div class="pattern-body">
+        <p class="rule"><b>Rule:</b> describes a quality or a physical feature a person <b>has</b>. We add <b>-ed</b> to the noun, even though it looks like a past participle. This is the most important pattern for describing personality.</p>
+        <div class="chips">
+          <span class="chip">level-headed</span><span class="chip">narrow-minded</span><span class="chip">open-minded</span><span class="chip">kind-hearted</span><span class="chip">cold-blooded</span><span class="chip">short-tempered</span><span class="chip">thick-skinned</span><span class="chip">big-headed</span><span class="chip">strong-willed</span><span class="chip">quick-witted</span><span class="chip">absent-minded</span><span class="chip">two-faced</span><span class="chip">blue-eyed</span><span class="chip">left-handed</span><span class="chip">broad-shouldered</span>
+        </div>
+        <ul class="ex">
+          <li>She has a cool head in a crisis. → She is <b>level-headed</b>.</li>
+          <li>He is unwilling to accept other opinions. → He is <b>narrow-minded</b>.</li>
+          <li>a girl with long legs → a <b>long-legged</b> girl</li>
+        </ul>
+        <div class="tip">💡 <b>Watch out:</b> the noun stays <b>singular</b>: a <b>blue-eyed</b> boy (not <i>blue-eyesed</i>), a <b>two-faced</b> politician.</div>
+      </div>
+    </div>
+
+    <div class="pattern">
+      <div class="pattern-head"><span class="letter">B</span><h3>Noun + noun + -ed</h3><span class="formula">pig + head + -ed → pig-headed</span></div>
+      <div class="pattern-body">
+        <p class="rule"><b>Rule:</b> the first noun works like a comparison ("like a…"). The meaning is often metaphorical.</p>
+        <div class="chips">
+          <span class="chip">pig-headed <small>(very stubborn)</small></span><span class="chip">lion-hearted <small>(very brave)</small></span><span class="chip">eagle-eyed <small>(noticing every detail)</small></span><span class="chip">chicken-hearted <small>(cowardly)</small></span>
+        </div>
+        <ul class="ex">
+          <li>An <b>eagle-eyed</b> student spotted the mistake in the test.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pattern">
+      <div class="pattern-head"><span class="letter">C</span><h3>Adverb + past participle</h3><span class="formula">well + know<b>n</b> → well-known</span></div>
+      <div class="pattern-body">
+        <p class="rule"><b>Rule:</b> passive meaning: something <b>is done</b> to the person or thing. Very common first words: <b>well, badly, ill, highly, much, newly, widely</b>.</p>
+        <div class="chips">
+          <span class="chip">well-known</span><span class="chip">well-behaved</span><span class="chip">well-educated</span><span class="chip">well-off <small>(rich)</small></span><span class="chip">well-informed</span><span class="chip">ill-informed</span><span class="chip">ill-equipped</span><span class="chip">much-loved</span><span class="chip">newly-built</span><span class="chip">highly respected</span><span class="chip">badly paid</span>
+        </div>
+        <ul class="ex">
+          <li>Her opinions are always based on good information. → She is <b>well-informed</b>.</li>
+          <li>a scientist who is respected by many people → a <b>highly respected</b> scientist</li>
+        </ul>
+        <div class="tip">💡 Adverbs ending in <b>-ly</b> (highly, badly, newly) are normally written <b>without a hyphen</b>: a <b>highly respected</b> teacher. See Rule 3 below.</div>
+      </div>
+    </div>
+
+    <div class="pattern">
+      <div class="pattern-head"><span class="letter">D</span><h3>Adjective / adverb + present participle (-ing)</h3><span class="formula">easy + go<b>ing</b> → easy-going</span></div>
+      <div class="pattern-body">
+        <p class="rule"><b>Rule:</b> active meaning: the person or thing <b>does</b> something or <b>is</b> a certain way all the time.</p>
+        <div class="chips">
+          <span class="chip">easy-going</span><span class="chip">hard-working</span><span class="chip">good-looking</span><span class="chip">long-lasting</span><span class="chip">far-reaching</span><span class="chip">never-ending</span><span class="chip">slow-moving</span><span class="chip">free-thinking</span>
+        </div>
+        <ul class="ex">
+          <li>The new law will have <b>far-reaching</b> consequences (= affecting many things).</li>
+          <li>a friendship that lasts for a long time → a <b>long-lasting</b> friendship</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pattern">
+      <div class="pattern-head"><span class="letter">E</span><h3>Noun + present participle (-ing)</h3><span class="formula">time + consum<b>ing</b> → time-consuming</span></div>
+      <div class="pattern-body">
+        <p class="rule"><b>Rule:</b> the noun is the <b>object</b> of the verb: it <i>consumes time</i> → <b>time-consuming</b>. Some are now written as one word.</p>
+        <div class="chips">
+          <span class="chip">time-consuming</span><span class="chip">eye-catching</span><span class="chip">record-breaking</span><span class="chip">mouth-watering</span><span class="chip">heart-warming</span><span class="chip">law-abiding</span><span class="chip">award-winning</span><span class="chip">thought-provoking</span><span class="chip">breathtaking</span><span class="chip">heartbreaking</span>
+        </div>
+        <ul class="ex">
+          <li>a film that makes you think → a <b>thought-provoking</b> film</li>
+          <li>citizens who obey (abide by) the law → <b>law-abiding</b> citizens</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pattern">
+      <div class="pattern-head"><span class="letter">F</span><h3>Noun / self + past participle</h3><span class="formula">self + taugh<b>t</b> → self-taught</span></div>
+      <div class="pattern-body">
+        <p class="rule"><b>Rule:</b> passive meaning, and the noun tells us <b>who or what did it</b> (by…), or <b>how</b>: made at home → <b>home-made</b>; taught by yourself → <b>self-taught</b>.</p>
+        <div class="chips">
+          <span class="chip">self-taught</span><span class="chip">self-made</span><span class="chip">self-employed</span><span class="chip">home-made / homemade</span><span class="chip">hand-made</span><span class="chip">man-made</span><span class="chip">sun-dried</span><span class="chip">tongue-tied</span><span class="chip">star-struck</span><span class="chip">heartbroken</span>
+        </div>
+        <ul class="ex">
+          <li>He became rich through his own hard work. → He is a <b>self-made</b> man.</li>
+          <li>I was so nervous I couldn't speak. → I was <b>tongue-tied</b>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pattern">
+      <div class="pattern-head"><span class="letter">G</span><h3>Noun + adjective</h3><span class="formula">world + famous → world-famous</span></div>
+      <div class="pattern-body">
+        <p class="rule"><b>Rule:</b> the noun makes the adjective more specific, or works as a comparison (<b>ice-cold</b> = as cold as ice). Some second elements are very productive: <b>-free, -friendly, -proof, -conscious</b>.</p>
+        <div class="chips">
+          <span class="chip">world-famous</span><span class="chip">ice-cold</span><span class="chip">crystal-clear</span><span class="chip">sugar-free</span><span class="chip">duty-free</span><span class="chip">user-friendly</span><span class="chip">eco-friendly</span><span class="chip">camera-shy</span><span class="chip">health-conscious</span><span class="chip">self-conscious</span><span class="chip">waterproof</span><span class="chip">bulletproof</span>
+        </div>
+        <ul class="ex">
+          <li>She doesn't like being photographed. → She is <b>camera-shy</b>.</li>
+          <li>an app that is easy to use → a <b>user-friendly</b> app</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pattern">
+      <div class="pattern-head"><span class="letter">H</span><h3>Number + noun (singular)</h3><span class="formula">ten + minute → a ten-minute walk</span></div>
+      <div class="pattern-body">
+        <p class="rule"><b>Rule:</b> used for measurements, time, age and quantity <b>before a noun</b>. The noun stays <b>singular</b>, and all the parts are joined with hyphens.</p>
+        <div class="chips">
+          <span class="chip">a two-day course</span><span class="chip">a five-star hotel</span><span class="chip">a 300-page novel</span><span class="chip">a three-hour exam</span><span class="chip">a 17-year-old student</span><span class="chip">a second-hand car</span><span class="chip">a first-class ticket</span>
+        </div>
+        <ul class="ex">
+          <li>The walk takes ten minutes. → It's a <b>ten-minute</b> walk. (not <i>ten-minutes</i>)</li>
+          <li>My brother is seventeen years old. → He is a <b>seventeen-year-old</b> student.</li>
+        </ul>
+        <div class="tip">💡 After the verb, there are <b>no hyphens and the plural returns</b>: The student is <b>seventeen years old</b>.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PERSONALITY BANK ================= -->
+  <section class="section" id="personality">
+    <h2>Personality bank</h2>
+    <p class="lead">The most useful compound adjectives for describing people, perfect for the Role Models &amp; Idols topic.</p>
+    <div class="table-wrap">
+      <table class="vocab">
+        <thead><tr><th>Adjective</th><th>Meaning</th><th>Slovak</th><th></th></tr></thead>
+        <tbody>
+          <tr><td>level-headed</td><td>calm and sensible, even in difficult situations</td><td class="sk">rozvážny, s chladnou hlavou</td><td><span class="pos p">+</span></td></tr>
+          <tr><td>open-minded</td><td>willing to consider new ideas and opinions</td><td class="sk">otvorený novým myšlienkam</td><td><span class="pos p">+</span></td></tr>
+          <tr><td>broad-minded</td><td>tolerant of other people's views and behaviour</td><td class="sk">tolerantný, veľkorysý</td><td><span class="pos p">+</span></td></tr>
+          <tr><td>kind-hearted</td><td>kind and generous to others</td><td class="sk">dobrosrdečný</td><td><span class="pos p">+</span></td></tr>
+          <tr><td>warm-hearted</td><td>friendly, affectionate and sympathetic</td><td class="sk">srdečný</td><td><span class="pos p">+</span></td></tr>
+          <tr><td>good-natured</td><td>naturally friendly and patient</td><td class="sk">dobromyseľný</td><td><span class="pos p">+</span></td></tr>
+          <tr><td>easy-going</td><td>relaxed, not easily upset or worried</td><td class="sk">pohodový, nekonfliktný</td><td><span class="pos p">+</span></td></tr>
+          <tr><td>hard-working</td><td>putting a lot of effort into work</td><td class="sk">pracovitý</td><td><span class="pos p">+</span></td></tr>
+          <tr><td>quick-witted</td><td>able to think and react very quickly and cleverly</td><td class="sk">bystrý, pohotový</td><td><span class="pos p">+</span></td></tr>
+          <tr><td>single-minded</td><td>focused on one goal and determined to achieve it</td><td class="sk">cieľavedomý</td><td><span class="pos p">+</span></td></tr>
+          <tr><td>fair-minded</td><td>treating everyone equally and fairly</td><td class="sk">spravodlivý, nestranný</td><td><span class="pos p">+</span></td></tr>
+          <tr><td>self-assured</td><td>confident in your own abilities</td><td class="sk">sebaistý</td><td><span class="pos p">+</span></td></tr>
+          <tr><td>well-mannered</td><td>polite and behaving well</td><td class="sk">slušne vychovaný</td><td><span class="pos p">+</span></td></tr>
+          <tr><td>light-hearted</td><td>cheerful and not serious</td><td class="sk">bezstarostný, veselý</td><td><span class="pos p">+</span></td></tr>
+          <tr><td>strong-willed</td><td>determined to do what you want, even if others disagree</td><td class="sk">so silnou vôľou</td><td><span class="pos b">+/−</span></td></tr>
+          <tr><td>thick-skinned</td><td>not easily hurt by criticism</td><td class="sk">odolný voči kritike, hrošia koža</td><td><span class="pos b">+/−</span></td></tr>
+          <tr><td>absent-minded</td><td>often forgetting things because you are thinking of something else</td><td class="sk">roztržitý</td><td><span class="pos b">+/−</span></td></tr>
+          <tr><td>narrow-minded</td><td>unwilling to accept ideas different from your own</td><td class="sk">obmedzený, úzkoprsý</td><td><span class="pos n">−</span></td></tr>
+          <tr><td>big-headed</td><td>thinking you are more important or clever than you are</td><td class="sk">namyslený</td><td><span class="pos n">−</span></td></tr>
+          <tr><td>self-centred</td><td>thinking only about yourself</td><td class="sk">egocentrický, sebecký</td><td><span class="pos n">−</span></td></tr>
+          <tr><td>two-faced</td><td>saying one thing to your face and another behind your back</td><td class="sk">falošný, pokrytecký</td><td><span class="pos n">−</span></td></tr>
+          <tr><td>pig-headed</td><td>extremely stubborn</td><td class="sk">tvrdohlavý</td><td><span class="pos n">−</span></td></tr>
+          <tr><td>short-tempered / hot-headed</td><td>getting angry very quickly</td><td class="sk">prchký, výbušný</td><td><span class="pos n">−</span></td></tr>
+          <tr><td>bad-tempered</td><td>often in a bad mood, easily annoyed</td><td class="sk">nevrlý, mrzutý</td><td><span class="pos n">−</span></td></tr>
+          <tr><td>thin-skinned</td><td>easily hurt or offended by criticism</td><td class="sk">precitlivený, urážlivý</td><td><span class="pos n">−</span></td></tr>
+          <tr><td>cold-blooded</td><td>cruel, showing no emotion</td><td class="sk">chladnokrvný, bezcitný</td><td><span class="pos n">−</span></td></tr>
+          <tr><td>hard-hearted</td><td>unkind, without sympathy</td><td class="sk">bezcitný, tvrdý</td><td><span class="pos n">−</span></td></tr>
+          <tr><td>tight-fisted</td><td>unwilling to spend or give money</td><td class="sk">lakomý, skúpy</td><td><span class="pos n">−</span></td></tr>
+          <tr><td>half-hearted</td><td>without real effort or enthusiasm</td><td class="sk">vlažný, polovičatý</td><td><span class="pos n">−</span></td></tr>
+          <tr><td>ill-mannered</td><td>rude, behaving badly</td><td class="sk">nevychovaný</td><td><span class="pos n">−</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip">💡 <b>Opposites:</b> narrow-minded ↔ open-minded / broad-minded · thick-skinned ↔ thin-skinned · kind-hearted ↔ hard-hearted · well-mannered ↔ ill-mannered · good-tempered ↔ bad-tempered</div>
+  </section>
+
+  <!-- ================= RULES ================= -->
+  <section class="section" id="rules">
+    <h2>Spelling &amp; grammar rules</h2>
+    <p class="lead">Six rules that examiners check, and that make the difference at C1.</p>
+    <ol class="rule-list">
+      <li><b>Hyphenate before a noun.</b> When the compound comes <i>before</i> the noun, use a hyphen: <span class="ok">a well-known writer</span>, <span class="ok">an up-to-date map</span>.</li>
+      <li><b>After a verb, the hyphen is often dropped</b> with adverb + participle and number compounds: <span class="ok">The writer is well known.</span> <span class="ok">The map is up to date.</span> But compounds that are fixed adjectives keep it everywhere: <span class="ok">She is very level-headed.</span> <span class="ok">He is narrow-minded.</span></li>
+      <li><b>No hyphen after an -ly adverb:</b> <span class="ok">a highly respected doctor</span>, <span class="no">a highly-respected doctor</span>. The -ly already shows the word is an adverb.</li>
+      <li><b>The noun stays singular</b> in number compounds and -ed compounds: <span class="ok">a two-week holiday</span>, <span class="no">a two-weeks holiday</span>; <span class="ok">a green-eyed girl</span>.</li>
+      <li><b>Comparatives and superlatives change the first part</b> when it is <i>good, well, bad, long</i>, etc.: well-known → <span class="ok">better-known</span> → <span class="ok">the best-known</span>; good-looking → <span class="ok">better-looking</span>; long-lasting → <span class="ok">longer-lasting</span>. With the -minded/-hearted type we normally use <b>more / most</b>: <span class="ok">more open-minded</span>, <span class="ok">the most kind-hearted</span>.</li>
+      <li><b>You can form nouns with -ness:</b> absent-minded → <span class="ok">absent-mindedness</span>, open-minded → <span class="ok">open-mindedness</span>, kind-hearted → <span class="ok">kind-heartedness</span>, self-conscious → <span class="ok">self-consciousness</span>. Adverbs with -ly: <span class="ok">absent-mindedly</span>, <span class="ok">half-heartedly</span>.</li>
+    </ol>
+  </section>
+
+  <!-- ================= EXERCISES ================= -->
+  <section class="section" id="practice">
+    <h2>Practice</h2>
+    <p class="lead">Six self-checking exercises from recognition to Maturita-style word formation. Type your answer and press <b>Check</b>. Small spelling variants are accepted where both forms exist (e.g. <i>homemade / home-made</i>).</p>
+
+    <div class="exercise" id="ex1">
+      <h3>1 · Complete the compound</h3>
+      <p class="ex-inst">Write the missing second part.</p>
+      <div class="qs"></div>
+      <div class="ex-actions"><button class="btn-pill primary small" data-check>Check</button><button class="btn-pill secondary small" data-reset>Try again</button><span class="score"></span></div>
+    </div>
+
+    <div class="exercise" id="ex2">
+      <h3>2 · Rewrite with a compound adjective</h3>
+      <p class="ex-inst">Complete the second sentence so that it means the same as the first. Use one compound adjective.</p>
+      <div class="qs"></div>
+      <div class="ex-actions"><button class="btn-pill primary small" data-check>Check</button><button class="btn-pill secondary small" data-reset>Try again</button><span class="score"></span></div>
+    </div>
+
+    <div class="exercise" id="ex3">
+      <h3>3 · Positive or negative?</h3>
+      <p class="ex-inst">Decide whether each personality adjective is mainly positive (+) or negative (−), then check.</p>
+      <div class="sort-pool"></div>
+      <div class="ex-actions"><button class="btn-pill primary small" data-check>Check</button><button class="btn-pill secondary small" data-reset>Try again</button><span class="score"></span></div>
+    </div>
+
+    <div class="exercise" id="ex4">
+      <h3>4 · Hyphen or no hyphen?</h3>
+      <p class="ex-inst">Choose the correctly written option.</p>
+      <div class="qs"></div>
+      <div class="ex-actions"><button class="btn-pill primary small" data-check>Check</button><button class="btn-pill secondary small" data-reset>Try again</button><span class="score"></span></div>
+    </div>
+
+    <div class="exercise" id="ex5">
+      <h3>5 · Comparatives, superlatives &amp; nouns</h3>
+      <p class="ex-inst">Write the correct form of the word in brackets.</p>
+      <div class="qs"></div>
+      <div class="ex-actions"><button class="btn-pill primary small" data-check>Check</button><button class="btn-pill secondary small" data-reset>Try again</button><span class="score"></span></div>
+    </div>
+
+    <div class="exercise" id="ex6">
+      <h3>6 · Maturita-style word formation: <i>An Unlikely Role Model</i></h3>
+      <p class="ex-inst">Use the words in capitals to form a compound adjective (or a noun formed from one) that fits each gap.</p>
+      <div class="text-gap"></div>
+      <div class="ex-actions"><button class="btn-pill primary small" data-check>Check</button><button class="btn-pill secondary small" data-reset>Try again</button><button class="btn-pill secondary small" data-show>Show answers</button><span class="score"></span></div>
+    </div>
+  </section>
+
+</main>
+
+<div class="progress"><span>Your progress</span><div class="bar"><span id="pbar"></span></div><b id="ptext">0 / 0</b></div>
+
+<footer>
+  Part of the <b>C1 Vocabulary</b> word-formation series on EnglishInContext.eu, B2–C1 Level English for Slovak secondary school students.<br>
+  Made for classroom and self-study use. Good luck with your exam! 🎓
+</footer>
+
+<script>
+/* ---------- data ---------- */
+var EX1 = [
+  ['level-', ['headed'], 'calm and sensible'],
+  ['narrow-', ['minded'], 'not accepting new ideas'],
+  ['kind-', ['hearted'], 'generous and caring'],
+  ['short-', ['tempered'], 'gets angry quickly'],
+  ['thick-', ['skinned'], 'not hurt by criticism'],
+  ['easy-', ['going'], 'relaxed'],
+  ['self-', ['taught'], 'learnt without a teacher'],
+  ['time-', ['consuming'], 'takes a lot of time'],
+  ['quick-', ['witted'], 'thinks fast'],
+  ['eye-', ['catching'], 'attracts attention']
+];
+var EX2 = [
+  ['My grandmother forgets things all the time.', 'My grandmother is very ______.', ['absent-minded']],
+  ['He thinks he is better than everyone else.', 'He is really ______.', ['big-headed']],
+  ['The hike lasted three hours.', 'It was a ______ hike.', ['three-hour']],
+  ['She gets angry very easily.', 'She is ______.', ['short-tempered','hot-headed','bad-tempered']],
+  ['Lots of people know this author.', 'She is a ______ author.', ['well-known']],
+  ['These biscuits were made in our kitchen.', 'These are ______ biscuits.', ['home-made','homemade']],
+  ['The book makes readers think deeply.', 'It is a ______ book.', ['thought-provoking']],
+  ['Our coach always stays calm under pressure.', 'Our coach is ______.', ['level-headed','cool-headed']],
+  ['He says nice things to you but criticises you behind your back.', 'He is ______.', ['two-faced']],
+  ['The app is very easy to use.', 'It is a ______ app.', ['user-friendly']]
+];
+var EX3 = [
+  ['open-minded','p'],['two-faced','n'],['level-headed','p'],['tight-fisted','n'],['quick-witted','p'],['narrow-minded','n'],
+  ['kind-hearted','p'],['big-headed','n'],['fair-minded','p'],['cold-blooded','n'],['hard-working','p'],['ill-mannered','n']
+];
+var EX4 = [
+  ['She is a ___ singer.', ['well-known','well known'], 0],
+  ['The singer is ___ all over Europe.', ['well-known','well known'], 1],
+  ['He is a ___ surgeon.', ['highly-respected','highly respected'], 1],
+  ['We booked a ___ holiday.', ['two-week','two-weeks'], 0],
+  ['My cousin is ___.', ['eighteen-years-old','eighteen years old'], 1],
+  ['Our neighbour is very ___.', ['narrow-minded','narrow minded'], 0],
+  ['It was an ___ performance.', ['award-winning','award winning'], 0],
+  ['It is a ___ decision.', ['badly-judged','badly judged'], 1]
+];
+var EX5 = [
+  ['This is the ______ (well-known) of all her novels.', ['best-known','best known']],
+  ['Today’s young people are ______ (open-minded) than their grandparents.', ['more open-minded']],
+  ['Smartphones are ______ (good-looking) than they used to be.', ['better-looking','better looking']],
+  ['These batteries are ______ (long-lasting) than the old ones.', ['longer-lasting','longer lasting']],
+  ['His ______ (absent-minded) is legendary: he once came to school in slippers.', ['absent-mindedness']],
+  ['She agreed to help, but only ______ (half-hearted).', ['half-heartedly']],
+  ['______ (open-minded) is a key quality of a good leader.', ['open-mindedness']],
+  ['Teenagers often suffer from ______ (self-conscious) about their looks.', ['self-consciousness']]
+];
+var EX6_TEXT = [
+  'When people think of role models, they often imagine ',
+  ['WORLD / FAMOUS', ['world-famous']],
+  ' celebrities. Yet my greatest inspiration is my grandfather, a ',
+  ['SELF / TEACH', ['self-taught']],
+  ' carpenter who never finished school. He was a ',
+  ['HARD / WORK', ['hard-working']],
+  ' man who started each day at five. Although he was ',
+  ['STRONG / WILL', ['strong-willed']],
+  ', he was never ',
+  ['PIG / HEAD', ['pig-headed']],
+  ': he listened to every opinion with remarkable ',
+  ['OPEN / MIND', ['open-mindedness']],
+  '. In a crisis he stayed ',
+  ['LEVEL / HEAD', ['level-headed']],
+  ', and his ',
+  ['KIND / HEART', ['kind-hearted','warm-hearted']],
+  ' nature made him popular in our village. He built me a ',
+  ['HAND / MAKE', ['hand-made','handmade']],
+  ' chair for my ',
+  ['TEN / YEAR / OLD', ['ten-year-old']],
+  ' birthday, and I still use it today. He may not have been rich, but to me he is a true hero.'
+];
+
+/* ---------- helpers ---------- */
+var totals = {};
+function norm(s){ return s.trim().toLowerCase().replace(/[‐-―]/g,'-').replace(/\s+/g,' ').replace(/\s*-\s*/g,'-'); }
+function match(val, answers){ var v = norm(val); return answers.some(function(a){ return norm(a) === v; }); }
+function updateProgress(){
+  var done = 0, all = 0;
+  for (var k in totals){ done += totals[k][0]; all += totals[k][1]; }
+  var max = 0; ['ex1','ex2','ex3','ex4','ex5','ex6'].forEach(function(id){ max += document.getElementById(id).dataset.max|0; });
+  document.getElementById('ptext').textContent = done + ' / ' + max;
+  document.getElementById('pbar').style.width = (max ? done/max*100 : 0) + '%';
+}
+function setScore(id, got, of){
+  totals[id] = [got, of];
+  var el = document.querySelector('#' + id + ' .score');
+  el.textContent = got + ' / ' + of + (got === of ? '  🎉 Excellent!' : '');
+  updateProgress();
+}
+function bind(id, check, reset, show){
+  var ex = document.getElementById(id);
+  ex.querySelector('[data-check]').onclick = check;
+  ex.querySelector('[data-reset]').onclick = function(){ reset(); ex.querySelector('.score').textContent=''; delete totals[id]; updateProgress(); };
+  var s = ex.querySelector('[data-show]'); if (s && show) s.onclick = show;
+}
+function inputQuestion(container, i, html, answers){
+  var q = document.createElement('div'); q.className = 'q';
+  q.innerHTML = '<span class="n">' + (i+1) + '</span><span class="text">' + html + '</span><input type="text" autocomplete="off" spellcheck="false"><div class="fb"></div>';
+  q._answers = answers; container.appendChild(q); return q;
+}
+function checkInputs(id){
+  var qs = document.querySelectorAll('#' + id + ' .q'), got = 0;
+  qs.forEach(function(q){
+    var inp = q.querySelector('input'), fb = q.querySelector('.fb'), ok = match(inp.value, q._answers);
+    inp.className = ok ? 'ok' : 'bad'; fb.className = 'fb show ' + (ok ? 'ok' : 'bad');
+    fb.textContent = ok ? '✓ Correct' : '✗ Answer: ' + q._answers.join(' / ');
+    if (ok) got++;
+  });
+  setScore(id, got, qs.length);
+}
+function resetInputs(id){
+  document.querySelectorAll('#' + id + ' .q').forEach(function(q){
+    var inp = q.querySelector('input'); inp.value=''; inp.className='';
+    q.querySelector('.fb').className='fb'; q.querySelector('.fb').textContent='';
+  });
+}
+
+/* ---------- Ex 1 ---------- */
+(function(){
+  var c = document.querySelector('#ex1 .qs');
+  EX1.forEach(function(d,i){ inputQuestion(c, i, '<b>' + d[0] + '</b>&nbsp;<span style="color:var(--muted)">(' + d[2] + ')</span>', d[1].map(function(a){return a;})); });
+  document.getElementById('ex1').dataset.max = EX1.length;
+  bind('ex1', function(){ checkInputs('ex1'); }, function(){ resetInputs('ex1'); });
+})();
+
+/* ---------- Ex 2 ---------- */
+(function(){
+  var c = document.querySelector('#ex2 .qs');
+  EX2.forEach(function(d,i){ inputQuestion(c, i, d[0] + '<br><span style="color:var(--muted)">' + d[1] + '</span>', d[2]); });
+  document.getElementById('ex2').dataset.max = EX2.length;
+  bind('ex2', function(){ checkInputs('ex2'); }, function(){ resetInputs('ex2'); });
+})();
+
+/* ---------- Ex 3 ---------- */
+(function(){
+  var pool = document.querySelector('#ex3 .sort-pool');
+  var items = EX3.slice().sort(function(){ return Math.random() - .5; });
+  items.forEach(function(d){
+    var el = document.createElement('span'); el.className = 'sort-item'; el.dataset.key = d[1];
+    el.innerHTML = d[0] + ' <button class="pbtn" type="button">+</button><button class="nbtn" type="button">−</button>';
+    el.querySelector('.pbtn').onclick = function(){ el.dataset.pick='p'; el.className='sort-item chosen-p'; };
+    el.querySelector('.nbtn').onclick = function(){ el.dataset.pick='n'; el.className='sort-item chosen-n'; };
+    pool.appendChild(el);
+  });
+  document.getElementById('ex3').dataset.max = EX3.length;
+  bind('ex3', function(){
+    var got = 0, els = pool.querySelectorAll('.sort-item');
+    els.forEach(function(el){
+      var ok = el.dataset.pick === el.dataset.key;
+      el.className = 'sort-item ' + (el.dataset.pick ? 'chosen-' + el.dataset.pick + ' ' : '') + (ok ? 'ok' : 'bad');
+      if (ok) got++;
+    });
+    setScore('ex3', got, els.length);
+  }, function(){
+    pool.querySelectorAll('.sort-item').forEach(function(el){ delete el.dataset.pick; el.className='sort-item'; });
+  });
+})();
+
+/* ---------- Ex 4 ---------- */
+(function(){
+  var c = document.querySelector('#ex4 .qs');
+  EX4.forEach(function(d,i){
+    var q = document.createElement('div'); q.className='q';
+    var opts = '<option value="">choose…</option>' + d[1].map(function(o,j){ return '<option value="'+j+'">'+o+'</option>'; }).join('');
+    q.innerHTML = '<span class="n">'+(i+1)+'</span><span class="text">' + d[0].replace('___', '<select>'+opts+'</select>') + '</span><div class="fb"></div>';
+    q._key = d[2]; q._opts = d[1]; c.appendChild(q);
+  });
+  document.getElementById('ex4').dataset.max = EX4.length;
+  bind('ex4', function(){
+    var got = 0, qs = c.querySelectorAll('.q');
+    qs.forEach(function(q){
+      var s = q.querySelector('select'), fb = q.querySelector('.fb'), ok = s.value !== '' && +s.value === q._key;
+      s.className = ok ? 'ok' : 'bad'; fb.className = 'fb show ' + (ok ? 'ok' : 'bad');
+      fb.textContent = ok ? '✓ Correct' : '✗ Answer: ' + q._opts[q._key];
+      if (ok) got++;
+    });
+    setScore('ex4', got, qs.length);
+  }, function(){
+    c.querySelectorAll('.q').forEach(function(q){ var s=q.querySelector('select'); s.value=''; s.className=''; q.querySelector('.fb').className='fb'; });
+  });
+})();
+
+/* ---------- Ex 5 ---------- */
+(function(){
+  var c = document.querySelector('#ex5 .qs');
+  EX5.forEach(function(d,i){ inputQuestion(c, i, d[0], d[1]); });
+  document.getElementById('ex5').dataset.max = EX5.length;
+  bind('ex5', function(){ checkInputs('ex5'); }, function(){ resetInputs('ex5'); });
+})();
+
+/* ---------- Ex 6 ---------- */
+(function(){
+  var box = document.querySelector('#ex6 .text-gap'), n = 0, html = '';
+  EX6_TEXT.forEach(function(part){
+    if (typeof part === 'string') { html += part; return; }
+    n++; html += '<sup>' + n + '</sup><input type="text" data-i="' + (n-1) + '" autocomplete="off" spellcheck="false"><span class="base">(' + part[0] + ')</span>';
+  });
+  box.innerHTML = html;
+  var gaps = EX6_TEXT.filter(function(p){ return typeof p !== 'string'; });
+  document.getElementById('ex6').dataset.max = gaps.length;
+  var inputs = box.querySelectorAll('input');
+  bind('ex6', function(){
+    var got = 0;
+    inputs.forEach(function(inp){
+      var ok = match(inp.value, gaps[inp.dataset.i][1]);
+      inp.className = ok ? 'ok' : 'bad'; inp.title = ok ? '' : 'Answer: ' + gaps[inp.dataset.i][1].join(' / ');
+      if (ok) got++;
+    });
+    setScore('ex6', got, inputs.length);
+  }, function(){
+    inputs.forEach(function(inp){ inp.value=''; inp.className=''; inp.title=''; });
+  }, function(){
+    inputs.forEach(function(inp){ inp.value = gaps[inp.dataset.i][1][0]; inp.className=''; });
+  });
+})();
+
+updateProgress();
+</script>
+</body>
+</html>

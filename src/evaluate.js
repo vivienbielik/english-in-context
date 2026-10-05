@@ -1,4 +1,4 @@
-// Cloudflare Pages Function: POST /api/evaluate
+// Handler for POST /api/evaluate (called from src/worker.js)
 // Sends a student's Maturita composition to Google Gemini (free tier) and returns structured feedback.
 // Required Cloudflare environment variable (secret): GEMINI_API_KEY  (from aistudio.google.com)
 // Optional: MODEL  (to force one specific Gemini model)

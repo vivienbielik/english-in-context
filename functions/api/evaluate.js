@@ -1,7 +1,7 @@
 // Cloudflare Pages Function: POST /api/evaluate
-// Sends a student's Maturita composition to Claude and returns structured feedback.
-// Required Cloudflare environment variable (secret): ANTHROPIC_API_KEY
-// Optional: MODEL (default claude-sonnet-5-5)
+// Sends a student's Maturita composition to Google Gemini (free tier) and returns structured feedback.
+// Required Cloudflare environment variable (secret): GEMINI_API_KEY  (from aistudio.google.com)
+// Optional: MODEL  (to force one specific Gemini model)
 
 const MAX_CHARS = 4000; // ~600 words; protects against abuse and runaway cost
 
@@ -33,7 +33,7 @@ const json = (obj, status = 200) =>
   new Response(JSON.stringify(obj), { status, headers: { 'content-type': 'application/json' } });
 
 export async function onRequestPost({ request, env }) {
-  if (!env.ANTHROPIC_API_KEY) return json({ error: 'The evaluator is not set up yet (missing API key).' }, 500);
+  if (!env.GEMINI_API_KEY) return json({ error: 'The evaluator is not set up yet (missing API key).' }, 500);
 
   let body;
   try { body = await request.json(); } catch { return json({ error: 'Invalid request.' }, 400); }
@@ -53,29 +53,35 @@ export async function onRequestPost({ request, env }) {
     `WORD COUNT: ${words}\n\n` +
     `STUDENT'S COMPOSITION:\n<<<\n${essay}\n>>>`;
 
-  const r = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'x-api-key': env.ANTHROPIC_API_KEY,
-      'anthropic-version': '2023-06-01',
-      'content-type': 'application/json',
-    },
-    body: JSON.stringify({
-      model: env.MODEL || 'claude-sonnet-5-5',
-      max_tokens: 3000,
-      system: SYSTEM,
-      messages: [{ role: 'user', content: userMsg }],
-    }),
-  });
-
-  if (!r.ok) {
-    const detail = await r.text();
-    console.log('Anthropic error', r.status, detail);
+  const models = env.MODEL ? [env.MODEL] : ['gemini-3.8-flash', 'gemini-3.5-flash', 'gemini-3-flash-preview', 'gemini-2.5-flash'];
+  let text = '', lastStatus = 0;
+  for (const model of models) {
+    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
+      method: 'POST',
+      headers: { 'x-goog-api-key': env.GEMINI_API_KEY, 'content-type': 'application/json' },
+      body: JSON.stringify({
+        systemInstruction: { parts: [{ text: SYSTEM }] },
+        contents: [{ role: 'user', parts: [{ text: userMsg }] }],
+        generationConfig: { responseMimeType: 'application/json', temperature: 0.3, maxOutputTokens: 8192 },
+      }),
+    });
+    lastStatus = r.status;
+    if (r.ok) {
+      const data = await r.json();
+      const parts = (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts) || [];
+      text = parts.filter(p => p.text && !p.thought).map(p => p.text).join('');
+      if (text) break;
+    } else {
+      console.log('Gemini error', model, r.status, (await r.text()).slice(0, 300));
+      if (r.status === 400 || r.status === 401 || r.status === 403) break; // bad key: no point trying other models
+    }
+  }
+  if (!text) {
+    if (lastStatus === 429) return json({ error: 'The free daily limit for AI feedback has been reached. Please try again later or tomorrow.' }, 429);
+    if (lastStatus === 400 || lastStatus === 401 || lastStatus === 403) return json({ error: 'The evaluator is not set up correctly (API key problem). Please tell your teacher.' }, 500);
     return json({ error: 'The evaluator is busy or unavailable. Please try again in a minute.' }, 502);
   }
 
-  const data = await r.json();
-  const text = (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('');
   const m = text.match(/\{[\s\S]*\}/);
   try {
     const result = JSON.parse(m ? m[0] : text);

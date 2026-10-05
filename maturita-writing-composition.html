@@ -183,6 +183,29 @@
   select#labTask{width:100%;font-family:inherit;font-size:14px;padding:6px;border:1px solid var(--line);border-radius:6px;background:#fff;}
   .labtask{background:#fff;border:1.5px solid var(--ink);padding:12px 14px;font-size:14.5px;margin-bottom:12px;}
   .labtask ul{margin:4px 0 0;padding-left:20px;}
+  /* AI feedback */
+  .btn.ai{background:var(--green);border-color:var(--green);}
+  .btn.ai:hover{background:#244a40;border-color:#244a40;}
+  .btn:disabled{opacity:.6;cursor:wait;}
+  #aiFb{margin-top:22px;}
+  .fb-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:20px 22px;}
+  .fb-total{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px;}
+  .fb-total .big{font-family:Georgia,serif;font-size:38px;font-weight:700;color:var(--green);}
+  .fb-scores{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0 18px;}
+  @media (max-width:560px){.fb-scores{grid-template-columns:repeat(2,1fr);}}
+  .fb-scores div{background:var(--green-bg);border-radius:8px;padding:8px 10px;font-size:13px;text-align:center;}
+  .fb-scores b{display:block;font-family:Georgia,serif;font-size:22px;color:var(--green);}
+  .fb-crit{border-top:1px solid var(--line);padding-top:12px;margin-top:12px;}
+  .fb-crit h5{margin:0 0 4px;font-size:15px;} .fb-crit h5 span{color:var(--green);}
+  .fb-crit p{margin:0 0 6px;font-size:14.5px;} .fb-crit ul{margin:0;padding-left:20px;font-size:14.5px;}
+  .fb-corr{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px;}
+  .fb-corr td,.fb-corr th{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top;}
+  .fb-corr .o{color:var(--wrong);text-decoration:line-through;} .fb-corr .c{color:var(--green);font-weight:600;}
+  .fb-up{background:var(--amber-bg);border-radius:8px;padding:8px 12px;margin-bottom:8px;font-size:14.5px;}
+  .fb-note{font-size:12.5px;color:var(--grey);margin-top:14px;}
+  .fb-err{background:var(--wrong-bg);color:var(--wrong);border-radius:8px;padding:12px 14px;font-size:14.5px;}
+  .spin{display:inline-block;width:14px;height:14px;border:2px solid #fff;border-top-color:transparent;border-radius:50%;animation:sp .8s linear infinite;vertical-align:-2px;margin-right:6px;}
+  @keyframes sp{to{transform:rotate(360deg);}}
 
   .source{font-size:12.5px;color:var(--grey);margin-top:24px;}
   .foot{text-align:center;color:var(--grey);font-size:13px;margin-top:40px;padding-top:22px;border-top:1px solid var(--line);}
@@ -507,16 +530,18 @@
 <section class="part" id="lab">
   <div class="part-num">Part 9</div>
   <h2 class="pt">Writing lab</h2>
-  <p class="pt-lede">Choose a task and write your composition. The counter shows when you reach the 200–220 range, and the linker detector lists the linking words you have used. Your draft is kept in this browser only.</p>
+  <p class="pt-lede">Choose a task and write your composition. The counter shows when you reach the 200–220 range, and the linker detector lists the linking words you have used. Your draft is kept in this browser only. When you finish, click <b>Evaluate my composition</b> to get AI feedback based on the four Maturita criteria. Do not write your name in the text.</p>
   <div class="lab">
     <div>
       <select id="labTask" aria-label="Choose a task"></select>
       <div class="labtask" id="labTaskBox" style="margin-top:10px"></div>
       <textarea id="draft" placeholder="Write your title here…&#10;&#10;Then your introduction…"></textarea>
       <div class="toolbar">
-        <button class="btn" onclick="downloadDraft()">Download as text file</button>
+        <button class="btn ai" id="aiBtn" onclick="evaluateDraft()">✦ Evaluate my composition</button>
+        <button class="btn secondary" onclick="downloadDraft()">Download as text file</button>
         <button class="btn secondary" onclick="clearDraft()">Clear</button>
       </div>
+      <div id="aiFb" aria-live="polite"></div>
     </div>
     <div class="side">
       <div class="box"><h4>Word count</h4><div class="wc" id="wc">0</div>
@@ -825,7 +850,50 @@ function downloadDraft(){
   const blob = new Blob(['Task: '+t.title+'\n\n'+draft.value+'\n\n('+words(draft.value)+' words)'], {type:'text/plain'});
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'maturita-composition.txt'; a.click();
 }
-function clearDraft(){ if (confirm('Delete your draft?')){ draft.value=''; analyse(); } }
+function clearDraft(){ if (confirm('Delete your draft?')){ draft.value=''; analyse(); document.getElementById('aiFb').innerHTML=''; } }
+
+/* ================= AI FEEDBACK ================= */
+function escH(s){ return String(s==null?'':s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+async function evaluateDraft(){
+  const out = document.getElementById('aiFb'), btn = document.getElementById('aiBtn');
+  const n = words(draft.value);
+  if (n < 50){ out.innerHTML = '<div class="fb-err">Please write at least 50 words before asking for feedback. A Maturita composition needs 200–220 words.</div>'; return; }
+  const t = TASKS.find(x=>x.id===labSel.value);
+  btn.disabled = true; btn.innerHTML = '<span class="spin"></span>Evaluating… (10–30 s)';
+  out.innerHTML = '';
+  try{
+    const r = await fetch('/api/evaluate', {method:'POST', headers:{'content-type':'application/json'},
+      body: JSON.stringify({essay: draft.value, task:{title:t.title, topic:t.topic, pts:t.pts}})});
+    const d = await r.json().catch(()=>({error:'The evaluator did not respond. Please try again.'}));
+    if (!r.ok || d.error) throw new Error(d.error || 'Something went wrong.');
+    renderFeedback(d, t);
+    out.scrollIntoView({behavior:'smooth', block:'start'});
+  }catch(e){ out.innerHTML = '<div class="fb-err">'+escH(e.message)+'</div>'; }
+  finally{ btn.disabled = false; btn.innerHTML = '✦ Evaluate my composition'; }
+}
+function renderFeedback(d, t){
+  const C = [['content','I. Content'],['organisation','II. Organisation'],['grammar','III. Grammar'],['vocabulary','IV. Vocabulary']];
+  const sc = d.scores || {}; const num = k => Math.max(0, Math.min(5, Number(sc[k])||0));
+  const total = C.reduce((a,[k])=>a+num(k),0);
+  let x = '<div class="fb-card"><div class="eyebrow" style="margin-top:0">AI feedback · '+escH(t.title)+'</div>';
+  x += '<div class="fb-total"><span class="big">'+total+' / 20</span><span style="color:var(--grey)">'+(d.words||words(draft.value))+' words</span></div>';
+  x += '<p style="margin:0">'+escH(d.summary)+'</p>';
+  x += '<div class="fb-scores">'+C.map(([k,l])=>'<div><b>'+num(k)+'/5</b>'+l+'</div>').join('')+'</div>';
+  const cr = d.criteria || {};
+  C.forEach(([k,l])=>{ const c = cr[k]||{};
+    x += '<div class="fb-crit"><h5>'+l+' <span>'+num(k)+'/5</span></h5><p>'+escH(c.comment)+'</p>';
+    if ((c.tips||[]).length) x += '<ul>'+c.tips.map(tp=>'<li>'+escH(tp)+'</li>').join('')+'</ul>';
+    x += '</div>'; });
+  if ((d.corrections||[]).length){
+    x += '<div class="fb-crit"><h5>Mistakes and corrections</h5><div class="tw"><table class="fb-corr"><tr><th>You wrote</th><th>Better</th><th>Why</th></tr>'+
+      d.corrections.map(c=>'<tr><td class="o">'+escH(c.original)+'</td><td class="c">'+escH(c.correction)+'</td><td>'+escH(c.explanation)+'</td></tr>').join('')+'</table></div></div>';
+  }
+  if ((d.upgrades||[]).length){
+    x += '<div class="fb-crit"><h5>Make it sound more advanced</h5>'+d.upgrades.map(u=>'<div class="fb-up"><span style="color:var(--grey)">'+escH(u.original)+'</span><br>→ <b>'+escH(u.improved)+'</b></div>').join('')+'</div>';
+  }
+  x += '<div class="fb-note">This is AI feedback for practice. It can make mistakes, and your real mark is given by your teacher.</div></div>';
+  document.getElementById('aiFb').innerHTML = x;
+}
 
 /* ================= NAV highlight ================= */
 let lastNav = -1;

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English in Context · Grammar · Conditionals</title>
+<meta name="description" content="A self-paced B2–C1 Maturita grammar lesson on conditionals: zero, first, second, third and mixed conditionals, inversion and alternatives to if, with seven self-checking exercises.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+:root{
+  --teal-deep:#1F5C56; --teal:#2F7A72; --teal-tint:#E4EFEC;
+  --terracotta:#C1603C; --terracotta-tint:#F4E2D8;
+  --amber:#D9A441; --amber-tint:#F7EDD9;
+  --berry:#8C4A5E; --berry-tint:#F1E1E6;
+  --cream:#FBF6EC; --card:#FFFDF8; --ink:#2A2420; --ink-soft:#6B6259;
+  --line:#E6DFD0; --good:#3B7A57; --good-tint:#E4F0E7; --bad:#B5473A; --bad-tint:#F7E5E1;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0; background:var(--cream); color:var(--ink); font-family:'Source Sans 3',sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{font-family:'Fraunces',serif; font-weight:600; margin:0;}
+p{margin:0 0 .9em; max-width:68ch;}
+.wrap{max-width:980px; margin:0 auto; padding:0 1.5rem;}
+#progress{position:fixed; top:0; left:0; height:4px; width:0%; background:var(--amber); z-index:100; transition:width .1s linear;}
+nav{position:sticky; top:4px; z-index:90; background:rgba(251,246,236,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+nav .wrap{display:flex; gap:1.2rem; overflow-x:auto; padding:.8rem 1.5rem; scrollbar-width:none;}
+nav .wrap::-webkit-scrollbar{display:none;}
+nav a{color:var(--ink-soft); text-decoration:none; font-size:.87rem; font-weight:600; white-space:nowrap; padding-bottom:.25rem; border-bottom:2px solid transparent;}
+nav a.active{color:var(--teal-deep); border-bottom-color:var(--amber);}
+.back{color:#fff; opacity:.85; font-size:.88rem; text-decoration:none; font-weight:600; display:inline-block; margin-bottom:1rem;}
+.back:hover{opacity:1; text-decoration:underline;}
+
+.hero{background:linear-gradient(160deg,var(--teal-deep) 0%,var(--teal) 65%); color:#fff; padding:2.6rem 1.5rem 3.4rem; position:relative; overflow:hidden;}
+.hero::after{content:"";position:absolute;right:-40px;top:-40px;width:260px;height:260px;border:1px solid rgba(255,255,255,.16);border-radius:50%;}
+.hero::before{content:"";position:absolute;right:70px;bottom:-100px;width:190px;height:190px;border:1px solid rgba(255,255,255,.12);border-radius:50%;}
+.hero-inner{max-width:980px;margin:0 auto;position:relative;z-index:1;}
+.hero .kicker{color:var(--amber); font-weight:600; margin-bottom:.5rem; font-size:.95rem; display:block;}
+.hero h1{font-size:2.4rem; color:#fff; max-width:22ch;}
+.hero p.lede{color:rgba(255,255,255,.86); max-width:60ch; margin-top:.9rem; font-size:1.03rem;}
+.hero-meta{display:flex; gap:1.6rem; margin-top:1.6rem; flex-wrap:wrap;}
+.hero-meta div{font-size:.85rem; color:rgba(255,255,255,.75);}
+.hero-meta strong{display:block; color:#fff; font-family:'Fraunces',serif; font-size:1.15rem;}
+
+section{padding:3.2rem 0; border-bottom:1px solid var(--line);}
+.section-head{margin-bottom:1.6rem;}
+.section-head .tag{color:var(--terracotta); font-weight:600; font-size:.82rem; margin-bottom:.35rem; display:block;}
+.section-head h2{font-size:1.85rem;}
+.section-head p{color:var(--ink-soft); margin-top:.5rem;}
+.card{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:1.4rem 1.5rem;}
+.tablewrap{overflow-x:auto;}
+table.grammar-table{width:100%; border-collapse:collapse; font-size:.9rem; margin:1rem 0;}
+table.grammar-table th, table.grammar-table td{border:1px solid var(--line); padding:.55rem .7rem; text-align:left; vertical-align:top;}
+table.grammar-table th{background:var(--teal-tint); color:var(--teal-deep); font-weight:700;}
+.note-box{background:var(--terracotta-tint); border-left:3px solid var(--terracotta); padding:1rem 1.2rem; border-radius:0 8px 8px 0; margin:1.2rem 0; font-size:.93rem;}
+.note-box strong{color:var(--terracotta);}
+.note-box p:last-child{margin-bottom:0;}
+
+.type-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.1rem;}
+.type-card{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:1.15rem 1.3rem; border-top:4px solid var(--teal);}
+.type-card.mixed{border-top-color:var(--terracotta);}
+.type-card h3{font-size:1.15rem; color:var(--teal-deep); margin-bottom:.2rem;}
+.type-card.mixed h3{color:var(--terracotta);}
+.type-num{display:inline-grid; place-items:center; width:1.8rem; height:1.8rem; border-radius:50%; background:var(--amber); color:#fff; font-weight:700; font-size:.85rem; margin-right:.45rem; font-family:'Source Sans 3',sans-serif;}
+.form{display:block; background:var(--teal-tint); color:var(--teal-deep); font-weight:600; font-size:.88rem; padding:.4rem .65rem; border-radius:6px; margin:.5rem 0 .6rem;}
+.type-card.mixed .form{background:var(--terracotta-tint); color:var(--terracotta);}
+.use{font-size:.92rem; margin-bottom:.5rem;}
+.type-card ul{margin:.2rem 0 .5rem; padding-left:1.1rem; font-size:.93rem;}
+.type-card li{margin:.3rem 0;}
+.type-card .tip{font-size:.85rem; color:var(--ink-soft); margin:0; border-top:1px dashed var(--line); padding-top:.5rem;}
+.type-card .tip b{color:var(--ink);}
+.timeline{display:flex; align-items:center; gap:.4rem; font-size:.78rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-soft); margin:.2rem 0 .3rem; flex-wrap:wrap;}
+.timeline span{background:var(--amber-tint); color:#8a6417; border-radius:10px; padding:.1rem .55rem;}
+.cmp{display:grid; grid-template-columns:1fr 1fr; gap:.8rem;}
+.cmp div{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:.8rem 1rem; font-size:.93rem;}
+.cmp strong{display:block; color:var(--terracotta); font-size:.8rem; text-transform:uppercase; letter-spacing:.05em; margin-bottom:.2rem;}
+@media(max-width:640px){.cmp{grid-template-columns:1fr;}}
+.mistakes li{margin-bottom:.5rem;}
+.x{color:var(--bad); text-decoration:line-through;}
+.ok{color:var(--good); font-weight:600;}
+
+/* exercises */
+.ex-block{margin-bottom:2.8rem;}
+.ex-head{display:flex; align-items:baseline; gap:.6rem; margin-bottom:.3rem; flex-wrap:wrap;}
+.ex-num{background:var(--teal-deep); color:#fff; font-family:'Fraunces',serif; font-weight:700; width:2rem; height:2rem; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:.95rem; flex:none;}
+.ex-head h3{font-size:1.15rem;}
+.ex-type{color:var(--terracotta); font-size:.8rem; font-weight:600; font-style:italic;}
+.ex-instructions{color:var(--ink-soft); font-size:.92rem; margin:.3rem 0 1rem 2.6rem;}
+.ex-body{margin-left:2.6rem;}
+@media(max-width:600px){.ex-body,.ex-instructions{margin-left:0;}}
+.item{margin-bottom:1rem; font-size:.97rem; line-height:2;}
+.item .n{font-weight:700; color:var(--teal-deep); margin-right:.3rem;}
+.item .hint{color:var(--terracotta); font-weight:600; font-size:.88rem;}
+.item .src{color:var(--ink-soft); font-size:.92rem; line-height:1.5; display:block;}
+input.ti, select.sel{border:1px solid var(--teal); border-radius:6px; padding:.2rem .5rem; font:inherit; font-size:.93rem; background:#fff; color:var(--ink); margin:0 .15rem; max-width:100%;}
+input.ti{width:170px;}
+input.ti.wide{width:240px;}
+input.ti.good, select.sel.good{border-color:var(--good); background:var(--good-tint);}
+input.ti.bad, select.sel.bad{border-color:var(--bad); background:var(--bad-tint);}
+.fb{display:none; font-size:.88rem; line-height:1.45; color:var(--teal-deep); background:var(--teal-tint); padding:.45rem .75rem; border-radius:8px; margin-top:.3rem;}
+.fb.shown{display:block;}
+.opts{display:flex; flex-wrap:wrap; gap:.45rem; margin-top:.2rem; line-height:1.3;}
+.opt{border:1px solid var(--line); background:var(--card); padding:.45rem .85rem; border-radius:16px; cursor:pointer; font:inherit; font-size:.9rem; color:var(--ink); text-align:left;}
+.opt:hover{border-color:var(--teal);}
+.opt.right{background:var(--good-tint); color:var(--good); border-color:var(--good); font-weight:600;}
+.opt.wrong{background:var(--bad-tint); color:var(--bad); border-color:var(--bad);}
+.opt:disabled{cursor:default;}
+.toolbar{display:flex; gap:.6rem; align-items:center; flex-wrap:wrap; margin-top:.8rem;}
+button.check-btn{background:var(--teal-deep); color:#fff; border:none; padding:.6rem 1.3rem; border-radius:20px; font-weight:600; cursor:pointer; font-size:.9rem; font-family:inherit;}
+button.check-btn:hover{background:var(--teal);}
+button.ghost-btn{background:transparent; color:var(--teal-deep); border:1px solid var(--teal-deep); padding:.55rem 1.2rem; border-radius:20px; font-weight:600; cursor:pointer; font-size:.88rem; font-family:inherit;}
+.score{font-weight:700; color:var(--teal-deep);}
+.cloze-text{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:1.2rem 1.4rem; line-height:2.2; font-size:.98rem;}
+.cloze-text .gn{font-size:.75rem; font-weight:700; color:var(--terracotta); vertical-align:super;}
+.writing textarea{width:100%; min-height:170px; border:1px solid var(--line); border-radius:10px; padding:1rem; font-family:inherit; font-size:.97rem; resize:vertical; background:#fff;}
+.writing .meta{font-size:.85rem; color:var(--ink-soft); margin-top:.4rem;}
+footer{padding:2.5rem 1.5rem 3rem; text-align:center; color:var(--ink-soft); font-size:.85rem;}
+@media (max-width:560px){.hero h1{font-size:2rem;}}
+@media print{nav,#progress,.toolbar,.back{display:none!important;} body{background:#fff;}}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<nav>
+  <div class="wrap">
+    <a href="#overview">Overview</a>
+    <a href="#types">The 6 Types</a>
+    <a href="#mixed">Mixed in Focus</a>
+    <a href="#advanced">Advanced Forms</a>
+    <a href="#mistakes">Common Mistakes</a>
+    <a href="#exercises">Exercises</a>
+    <a href="#write">Your Turn</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <a class="back" href="index.html#elt">← English in Context</a>
+    <span class="kicker">English in Context · B2–C1 · Maturita Exam · Grammar</span>
+    <h1>Conditionals: Zero to Mixed</h1>
+    <p class="lede">Real and unreal situations, regrets and hypotheses: the zero, first, second and third conditionals, both kinds of mixed conditionals, inversion (<em>Had I known…</em>) and alternatives to <em>if</em>. Seven self-checking exercises included.</p>
+    <div class="hero-meta">
+      <div><strong>B2–C1</strong>Level</div>
+      <div><strong>~90 min</strong>Self-paced</div>
+      <div><strong>7</strong>Exercises</div>
+      <div><strong>+ AI</strong>Writing feedback</div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- ============ OVERVIEW ============ -->
+<section id="overview">
+  <div class="section-head">
+    <span class="tag">Part 1 · Overview</span>
+    <h2>All Conditionals at a Glance</h2>
+    <p>A conditional sentence has two parts: the <strong>if-clause</strong> (the condition) and the <strong>main clause</strong> (the result). The tenses you choose show <strong>how real</strong> the situation is and <strong>when</strong> it happens.</p>
+  </div>
+  <div class="tablewrap"><table class="grammar-table">
+    <tr><th>Type</th><th>If-clause</th><th>Main clause</th><th>Meaning</th><th>Example</th></tr>
+    <tr><td><b>Zero</b></td><td>present simple</td><td>present simple</td><td>always true: facts, rules, habits</td><td>If you <b>heat</b> ice, it <b>melts</b>.</td></tr>
+    <tr><td><b>First</b></td><td>present simple</td><td>will / can / may / might + infinitive</td><td>real, possible future</td><td>If it <b>rains</b>, we <b>will stay</b> in.</td></tr>
+    <tr><td><b>Second</b></td><td>past simple (<i>were</i>)</td><td>would / could / might + infinitive</td><td>unreal present or unlikely future</td><td>If I <b>had</b> more time, I <b>would learn</b> Spanish.</td></tr>
+    <tr><td><b>Third</b></td><td>past perfect</td><td>would / could / might + have + past participle</td><td>unreal past: things that did not happen</td><td>If we <b>had left</b> earlier, we <b>wouldn't have missed</b> the train.</td></tr>
+    <tr><td><b>Mixed 3 + 2</b></td><td>past perfect</td><td>would / could / might + infinitive</td><td>unreal past → present result</td><td>If I <b>had studied</b> medicine, I <b>would be</b> a doctor now.</td></tr>
+    <tr><td><b>Mixed 2 + 3</b></td><td>past simple (<i>were</i>)</td><td>would / could / might + have + past participle</td><td>unreal present (permanent fact) → past result</td><td>If I <b>were</b> braver, I <b>would have spoken</b> to her yesterday.</td></tr>
+  </table></div>
+  <div class="note-box">
+    <p><strong>Punctuation:</strong> use a comma when the if-clause comes first: <em>If it rains, we'll stay in.</em> No comma when the main clause comes first: <em>We'll stay in if it rains.</em></p>
+  </div>
+</section>
+
+<!-- ============ TYPES ============ -->
+<section id="types">
+  <div class="section-head">
+    <span class="tag">Part 2 · Rules &amp; Examples</span>
+    <h2>The Six Types</h2>
+    <p>For each type: the form, when to use it, examples, and the detail that examiners look for.</p>
+  </div>
+  <div class="type-grid">
+    <div class="type-card">
+      <h3><span class="type-num">0</span>Zero conditional</h3>
+      <div class="timeline"><span>always / in general</span></div>
+      <span class="form">If / When + present simple, present simple</span>
+      <p class="use">Facts, scientific truths, rules and habits. <em>If</em> means the same as <em>when / whenever</em>.</p>
+      <ul>
+        <li>If you <b>mix</b> red and white, you <b>get</b> pink.</li>
+        <li>Water <b>boils</b> if you <b>heat</b> it to 100 °C.</li>
+        <li>If my brother <b>gets</b> home late, he <b>doesn't eat</b> dinner.</li>
+      </ul>
+      <p class="tip"><b>Tip:</b> both clauses use the same present tense. Never use <i>will</i> for facts: <span class="x">it will melt</span> → <span class="ok">it melts</span>.</p>
+    </div>
+    <div class="type-card">
+      <h3><span class="type-num">1</span>First conditional</h3>
+      <div class="timeline"><span>real future</span></div>
+      <span class="form">If + present simple, will / can / may / might / should + infinitive (or an imperative)</span>
+      <p class="use">A real possibility in the future: something that may well happen. Also used for promises, warnings and threats.</p>
+      <ul>
+        <li>If you <b>revise</b> regularly, you <b>will pass</b> the Maturita.</li>
+        <li>If the weather <b>improves</b>, we <b>might go</b> hiking.</li>
+        <li>If you <b>see</b> Peter, <b>tell</b> him to call me.</li>
+        <li>If you <b>have finished</b>, you <b>can leave</b>. <span class="hint">(present perfect in the if-clause)</span></li>
+      </ul>
+      <p class="tip"><b>Tip:</b> <i>will</i> almost never goes in the if-clause: <span class="x">If it will rain</span> → <span class="ok">If it rains</span>. The same rule applies after <i>when, as soon as, unless, before, until, provided</i>.</p>
+    </div>
+    <div class="type-card">
+      <h3><span class="type-num">2</span>Second conditional</h3>
+      <div class="timeline"><span>unreal now</span><span>unlikely future</span></div>
+      <span class="form">If + past simple, would / could / might + infinitive</span>
+      <p class="use">Imaginary situations in the present, or future situations we think are unlikely. The past tense does <b>not</b> mean past time here; it means "not real".</p>
+      <ul>
+        <li>If I <b>had</b> a car, I <b>would drive</b> to school. <span class="hint">(I don't have one.)</span></li>
+        <li>If I <b>were</b> you, I <b>would apply</b> for the scholarship. <span class="hint">(advice)</span></li>
+        <li>What <b>would</b> you <b>do</b> if you <b>won</b> the lottery?</li>
+        <li>If he <b>could</b> speak French, he <b>might get</b> the job in Brussels.</li>
+      </ul>
+      <p class="tip"><b>Tip:</b> in formal English use <i>were</i> for all persons: <i>If she <b>were</b> here…</i> <i>Was</i> is common in speech, but <i>If I were you</i> is fixed.</p>
+    </div>
+    <div class="type-card">
+      <h3><span class="type-num">3</span>Third conditional</h3>
+      <div class="timeline"><span>unreal past</span></div>
+      <span class="form">If + past perfect, would / could / might + have + past participle</span>
+      <p class="use">Imagining a different past: situations that did <b>not</b> happen. Used for regrets, criticism and relief.</p>
+      <ul>
+        <li>If I <b>had known</b> about the test, I <b>would have studied</b>. <span class="hint">(I didn't know.)</span></li>
+        <li>She <b>wouldn't have got</b> lost if she <b>had taken</b> a map.</li>
+        <li>If you <b>hadn't helped</b> me, I <b>couldn't have finished</b> on time.</li>
+      </ul>
+      <p class="tip"><b>Tip:</b> <i>'d</i> can mean <i>had</i> (if-clause) or <i>would</i> (main clause): <i>If I<b>'d</b> known, I<b>'d</b> have come.</i> = If I <b>had</b> known, I <b>would</b> have come. Never write <span class="x">If I would have known</span>.</p>
+    </div>
+    <div class="type-card mixed">
+      <h3><span class="type-num">3+2</span>Mixed: past condition → present result</h3>
+      <div class="timeline"><span>past</span> → <span>now</span></div>
+      <span class="form">If + past perfect, would / could / might + infinitive</span>
+      <p class="use">An unreal past event and its consequence <b>now</b>. Look for time words such as <i>now, today, still, at the moment</i>.</p>
+      <ul>
+        <li>If I <b>had accepted</b> the job in London, I <b>would be living</b> abroad now.</li>
+        <li>If she <b>hadn't broken</b> her leg, she <b>would be</b> in the team today.</li>
+        <li>We <b>wouldn't be</b> lost if you <b>had listened</b> to me.</li>
+      </ul>
+      <p class="tip"><b>Check it:</b> past fact (<i>I didn't accept the job</i>) + present fact (<i>I am not living abroad</i>).</p>
+    </div>
+    <div class="type-card mixed">
+      <h3><span class="type-num">2+3</span>Mixed: present condition → past result</h3>
+      <div class="timeline"><span>always / now</span> → <span>past</span></div>
+      <span class="form">If + past simple, would / could / might + have + past participle</span>
+      <p class="use">A <b>permanent</b> unreal situation (character, ability, general fact) that explains a <b>past</b> result.</p>
+      <ul>
+        <li>If I <b>were</b> more organised, I <b>wouldn't have lost</b> my passport last week.</li>
+        <li>If he <b>spoke</b> German, he <b>would have got</b> the job in Vienna.</li>
+        <li>If she <b>weren't</b> so shy, she <b>would have sung</b> at the concert.</li>
+      </ul>
+      <p class="tip"><b>Check it:</b> present/general fact (<i>I am not organised</i>) + past fact (<i>I lost my passport</i>).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MIXED IN FOCUS ============ -->
+<section id="mixed">
+  <div class="section-head">
+    <span class="tag">Part 3 · Mixed Conditionals in Focus</span>
+    <h2>How to Build a Mixed Conditional</h2>
+    <p>Write down the two real facts first, decide <b>when</b> each one is true, and then choose the tense for each clause separately.</p>
+  </div>
+  <div class="cmp">
+    <div><strong>Mixed 3 + 2 · step by step</strong>
+      Facts: <i>I didn't save money last year</i> (past). <i>I can't buy a laptop now</i> (present).<br>
+      Past fact → past perfect: <i>If I <b>had saved</b> money last year,</i><br>
+      Present result → would + infinitive: <i>I <b>could buy</b> a laptop now.</i></div>
+    <div><strong>Mixed 2 + 3 · step by step</strong>
+      Facts: <i>I'm not a confident speaker</i> (always). <i>I didn't volunteer to present yesterday</i> (past).<br>
+      Present fact → past simple: <i>If I <b>were</b> a more confident speaker,</i><br>
+      Past result → would have + past participle: <i>I <b>would have volunteered</b> to present yesterday.</i></div>
+  </div>
+  <div class="tablewrap" style="margin-top:1.2rem;"><table class="grammar-table">
+    <tr><th>Compare</th><th>Sentence</th><th>Meaning</th></tr>
+    <tr><td>Third</td><td>If I had studied harder, I <b>would have passed</b> the exam.</td><td>past → past</td></tr>
+    <tr><td>Mixed 3 + 2</td><td>If I had studied harder, I <b>would be</b> at university now.</td><td>past → present</td></tr>
+    <tr><td>Second</td><td>If I <b>were</b> more hard-working, I <b>would get</b> better marks.</td><td>present → present</td></tr>
+    <tr><td>Mixed 2 + 3</td><td>If I <b>were</b> more hard-working, I <b>would have passed</b> last week's test.</td><td>present → past</td></tr>
+  </table></div>
+</section>
+
+<!-- ============ ADVANCED ============ -->
+<section id="advanced">
+  <div class="section-head">
+    <span class="tag">Part 4 · Advanced Forms (C1)</span>
+    <h2>Inversion and Alternatives to <em>if</em></h2>
+    <p>These structures show the examiner a wide range of grammar, so use one or two in your composition.</p>
+  </div>
+  <h3 style="font-size:1.15rem; margin-bottom:.4rem;">Inverted conditionals (formal)</h3>
+  <p>Drop <em>if</em> and put the auxiliary before the subject.</p>
+  <div class="tablewrap"><table class="grammar-table">
+    <tr><th>Type</th><th>With <em>if</em></th><th>Inverted</th></tr>
+    <tr><td>First</td><td>If you <b>should need</b> any help, call me.</td><td><b>Should you</b> need any help, call me.</td></tr>
+    <tr><td>Second</td><td>If I <b>were</b> in your position, I would refuse.</td><td><b>Were I</b> in your position, I would refuse.</td></tr>
+    <tr><td>Second (<i>were to</i>)</td><td>If the company <b>were to</b> close, 200 people would lose their jobs.</td><td><b>Were the company to</b> close, 200 people would lose their jobs.</td></tr>
+    <tr><td>Third</td><td>If we <b>had known</b>, we would have come.</td><td><b>Had we</b> known, we would have come.</td></tr>
+    <tr><td>Negative</td><td>If it <b>hadn't been</b> for you, I would have failed.</td><td><b>Had it not been</b> for you, I would have failed. <span class="hint">(not ✗ Hadn't it been)</span></td></tr>
+  </table></div>
+
+  <h3 style="font-size:1.15rem; margin:1.6rem 0 .4rem;">Alternatives to <em>if</em></h3>
+  <div class="tablewrap"><table class="grammar-table">
+    <tr><th>Expression</th><th>Meaning</th><th>Example</th></tr>
+    <tr><td><b>unless</b></td><td>if … not / except if</td><td><b>Unless</b> you hurry, you'll miss the bus. <span class="hint">(not ✗ Unless you don't hurry)</span></td></tr>
+    <tr><td><b>provided / providing (that), as long as, on condition that</b></td><td>only if (a strong condition)</td><td>You can borrow my bike <b>as long as</b> you bring it back tonight.</td></tr>
+    <tr><td><b>in case</b></td><td>as a precaution; not the same as <em>if</em></td><td>Take an umbrella <b>in case</b> it rains. <span class="hint">(take it now, rain or no rain)</span></td></tr>
+    <tr><td><b>suppose / supposing / imagine</b></td><td>let's imagine</td><td><b>Supposing</b> you lost your phone, what would you do?</td></tr>
+    <tr><td><b>otherwise / or (else)</b></td><td>if not, then…</td><td>Write it down, <b>otherwise</b> you'll forget it.</td></tr>
+    <tr><td><b>but for / without + noun</b></td><td>if it weren't / hadn't been for</td><td><b>But for</b> your help, I would never have finished the project.</td></tr>
+    <tr><td><b>if it weren't for / if it hadn't been for</b></td><td>if something didn't exist / hadn't happened</td><td><b>If it weren't for</b> music, my life would be boring.</td></tr>
+    <tr><td><b>even if</b></td><td>the result doesn't change</td><td>I won't tell you, <b>even if</b> you beg me.</td></tr>
+  </table></div>
+  <div class="note-box">
+    <p><strong>Will / would in an if-clause?</strong> Only in special meanings: politeness (<em>If you <b>will</b> wait here, the doctor will see you soon</em>; <em>If you <b>would</b> sign here, please</em>), insistence (<em>If you <b>will</b> eat so much junk food, of course you'll feel ill</em>) or a result in the future (<em>I'll give you 10 euros if it <b>will</b> help</em>).</p>
+  </div>
+  <p style="font-size:.93rem;">For <em>I wish / If only</em> (regrets and wishes), see the <a href="young-people-society-conditionals-wish.html">Young People and Society: Wish Clauses &amp; Conditionals</a> module.</p>
+</section>
+
+<!-- ============ MISTAKES ============ -->
+<section id="mistakes">
+  <div class="section-head">
+    <span class="tag">Part 5 · Common Mistakes</span>
+    <h2>Mistakes That Cost Points</h2>
+  </div>
+  <div class="card"><ul class="mistakes" style="margin:0; padding-left:1.2rem;">
+    <li><span class="x">If it will rain tomorrow, …</span> → <span class="ok">If it rains tomorrow, …</span> No <i>will</i> in the if-clause.</li>
+    <li><span class="x">If I would have known, …</span> → <span class="ok">If I had known, …</span> No <i>would</i> in the if-clause.</li>
+    <li><span class="x">If I would be rich, …</span> → <span class="ok">If I were rich, …</span></li>
+    <li><span class="x">Unless you don't study, you'll fail.</span> → <span class="ok">Unless you study, you'll fail.</span> <i>Unless</i> is already negative.</li>
+    <li><span class="x">If he had took the job…</span> → <span class="ok">If he had taken the job…</span> Use the past participle after <i>had</i>.</li>
+    <li><span class="x">I would of helped you.</span> → <span class="ok">I would have helped you.</span> <i>would've</i> sounds like "would of", but it isn't.</li>
+    <li><span class="x">I'll take a jacket if it gets cold.</span> (when you mean a precaution) → <span class="ok">I'll take a jacket in case it gets cold.</span></li>
+    <li><span class="x">If she studies harder, she would pass.</span> → <span class="ok">If she studies harder, she will pass.</span> / <span class="ok">If she studied harder, she would pass.</span> Don't mix the first and second conditionals.</li>
+  </ul></div>
+  <div class="note-box">
+    <p><strong>Maturita tip:</strong> in the written composition (PFIČ), one well-chosen second, third or mixed conditional (or an inverted one, such as <em>Had I known…</em>) shows a wider range of structures under criterion III (Grammar). In the Language in Use test, watch out for <em>unless, in case, provided</em> and <em>otherwise</em>.</p>
+  </div>
+</section>
+
+<!-- ============ EXERCISES ============ -->
+<section id="exercises">
+  <div class="section-head">
+    <span class="tag">Part 6 · Practice</span>
+    <h2>Seven Self-Checking Exercises</h2>
+    <p>Do them in order: from recognising the types to Maturita-style tasks. Click <b>Check</b> to see your score and an explanation for each answer.</p>
+  </div>
+
+  <div class="ex-block" id="ex1">
+    <div class="ex-head"><span class="ex-num">1</span><h3>Name the conditional</h3><span class="ex-type">Recognition</span></div>
+    <p class="ex-instructions">Which type is each sentence? Click one answer per sentence.</p>
+    <div class="ex-body"></div>
+  </div>
+
+  <div class="ex-block" id="ex2">
+    <div class="ex-head"><span class="ex-num">2</span><h3>Put the verbs in the correct form</h3><span class="ex-type">Gap fill</span></div>
+    <p class="ex-instructions">Type the correct form of the verb in brackets. Contractions (<i>wouldn't, hadn't</i>) are accepted.</p>
+    <div class="ex-body"></div>
+  </div>
+
+  <div class="ex-block" id="ex3">
+    <div class="ex-head"><span class="ex-num">3</span><h3>Alternatives to <em>if</em></h3><span class="ex-type">Multiple choice</span></div>
+    <p class="ex-instructions">Choose the word or phrase that best completes each sentence.</p>
+    <div class="ex-body"></div>
+  </div>
+
+  <div class="ex-block" id="ex4">
+    <div class="ex-head"><span class="ex-num">4</span><h3>Mixed conditionals from real situations</h3><span class="ex-type">Guided transformation</span></div>
+    <p class="ex-instructions">Read the two facts and complete the mixed conditional sentence. Decide first: is each part about the past or the present?</p>
+    <div class="ex-body"></div>
+  </div>
+
+  <div class="ex-block" id="ex5">
+    <div class="ex-head"><span class="ex-num">5</span><h3>Inverted conditionals</h3><span class="ex-type">Key-word transformation</span></div>
+    <p class="ex-instructions">Complete the second sentence so that it means the same as the first. Start with the word in capitals and do not use <i>if</i>.</p>
+    <div class="ex-body"></div>
+  </div>
+
+  <div class="ex-block" id="ex6">
+    <div class="ex-head"><span class="ex-num">6</span><h3>Spot and fix the mistake</h3><span class="ex-type">Error correction</span></div>
+    <p class="ex-instructions">Each sentence contains a mistake. Choose the correct version.</p>
+    <div class="ex-body"></div>
+  </div>
+
+  <div class="ex-block" id="ex7">
+    <div class="ex-head"><span class="ex-num">7</span><h3>Maturita practice: “The Road Not Taken”</h3><span class="ex-type">Language in Use · multiple-choice cloze</span></div>
+    <p class="ex-instructions">Read the text and choose the correct option for each gap (1–10).</p>
+    <div class="ex-body"></div>
+  </div>
+</section>
+
+<!-- ============ WRITE ============ -->
+<section id="write">
+  <div class="section-head">
+    <span class="tag">Part 7 · Your Turn</span>
+    <h2>Write: A Decision That Changed Everything</h2>
+    <p>Write 100–150 words about a decision in your own life (or in the life of a famous person). What would have happened if it had been different, and how would life be different now? Use at least <b>one third conditional</b>, <b>one mixed conditional</b> and <b>one inverted conditional</b> (<em>Had I…, Were I…, Should you…</em>).</p>
+  </div>
+  <div class="card writing">
+    <textarea id="condWrite" data-ai placeholder="Three years ago I decided to… Had I chosen differently, …"></textarea>
+    <div class="meta"><span id="condWc">0 words</span> · target 100–150</div>
+  </div>
+</section>
+
+</div>
+<footer>English in Context · Grammar: Conditionals · B2–C1 · Maturita Exam · Built for classroom use</footer>
+
+<script>
+/* ---------- helpers ---------- */
+function esc(s){ return String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+// normalise an answer and return all acceptable spellings (handles contractions; 'd = had or would)
+function variants(s){
+  let t = ' ' + s.toLowerCase().replace(/[’‘`]/g,"'").replace(/[.,!?;:]/g,' ').replace(/\s+/g,' ').trim() + ' ';
+  t = t.replace(/\bwon't\b/g,'will not').replace(/\bcan't\b/g,'cannot').replace(/\bcan not\b/g,'cannot').replace(/\bshan't\b/g,'shall not')
+       .replace(/n't\b/g,' not').replace(/'ll\b/g,' will').replace(/'ve\b/g,' have').replace(/'re\b/g,' are').replace(/'m\b/g,' am');
+  t = t.replace(/\s+/g,' ').trim();
+  if (!/'d\b/.test(t)) return [t];
+  return [t.replace(/'d\b/g,' would'), t.replace(/'d\b/g,' had')].map(x=>x.replace(/\s+/g,' ').trim());
+}
+function accepts(input, list){
+  const got = variants(input);
+  return list.some(a => variants(a).some(v => got.includes(v)));
+}
+function scoreLine(el, ok, total){ el.textContent = ok + ' / ' + total + (ok===total ? ' — excellent!' : ''); }
+function toolbar(onCheck, onReset, showLabel){
+  const d = document.createElement('div'); d.className = 'toolbar';
+  d.innerHTML = '<button class="check-btn">Check</button>' + (showLabel?'<button class="ghost-btn show">'+showLabel+'</button>':'') + '<button class="ghost-btn reset">Reset</button><span class="score"></span>';
+  d.querySelector('.check-btn').onclick = ()=>onCheck(d.querySelector('.score'));
+  d.querySelector('.reset').onclick = ()=>{ onReset(); d.querySelector('.score').textContent=''; };
+  return d;
+}
+
+/* ---------- Ex1: name the conditional (choose) ---------- */
+const TYPES = ['Zero','First','Second','Third','Mixed 3 + 2','Mixed 2 + 3'];
+const EX1 = [
+  ['If you heat ice, it melts.', 0, 'A scientific fact: present + present.'],
+  ['If it rains tomorrow, we\'ll cancel the trip.', 1, 'A real future possibility: present simple + will.'],
+  ['If I were you, I\'d apply for the scholarship.', 2, 'Advice with an imaginary situation: were + would.'],
+  ['If she had left earlier, she wouldn\'t have missed the train.', 3, 'Both parts are about the past: past perfect + would have + past participle.'],
+  ['If I had accepted that job in London, I would be living abroad now.', 4, 'Past condition (had accepted) → present result (would be living … now).'],
+  ['If he weren\'t so stubborn, he would have apologised yesterday.', 5, 'Permanent present trait (weren\'t so stubborn) → past result (would have apologised yesterday).'],
+  ['Plants die if they don\'t get enough water.', 0, 'A general truth: present + present.'],
+  ['Had we booked in advance, we would have got better seats.', 3, 'An inverted third conditional: Had we booked = If we had booked.'],
+  ['If you hadn\'t reminded me, I would be standing outside a locked door right now.', 4, 'Past (hadn\'t reminded) → present (would be standing … right now).'],
+  ['If she were more organised, she wouldn\'t have lost the documents last week.', 5, 'General trait (were more organised) → past result (wouldn\'t have lost … last week).'],
+  ['Should you need any help, call me.', 1, 'An inverted first conditional: Should you need = If you need.'],
+  ['If I spoke Chinese, I could read these signs.', 2, 'An unreal present: past simple + could + infinitive.']
+];
+(function(){
+  const box = document.querySelector('#ex1 .ex-body');
+  EX1.forEach((it,i)=>{
+    const d = document.createElement('div'); d.className = 'item';
+    d.innerHTML = '<span class="n">'+(i+1)+'.</span>'+esc(it[0])+'<div class="opts">'+TYPES.map((t,j)=>'<button class="opt" data-j="'+j+'">'+t+'</button>').join('')+'</div><div class="fb"></div>';
+    d.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{ if(d.dataset.done) return; d.querySelectorAll('.opt').forEach(x=>x.classList.remove('wrong','picked')); b.classList.add('picked'); d.dataset.pick=b.dataset.j; d.querySelectorAll('.opt').forEach(x=>x.style.outline=''); b.style.outline='2px solid var(--teal)'; });
+    box.appendChild(d);
+  });
+  box.appendChild(toolbar(score=>{
+    let ok=0; box.querySelectorAll('.item').forEach((d,i)=>{
+      const it=EX1[i], pick=d.dataset.pick; d.dataset.done='1';
+      d.querySelectorAll('.opt').forEach(x=>{ x.style.outline=''; x.disabled=true; if(+x.dataset.j===it[1]) x.classList.add('right'); else if(x.dataset.j===pick) x.classList.add('wrong'); });
+      if(+pick===it[1]) ok++;
+      const fb=d.querySelector('.fb'); fb.innerHTML='<b>'+TYPES[it[1]]+':</b> '+esc(it[2]); fb.classList.add('shown');
+    }); scoreLine(score, ok, EX1.length);
+  }, ()=>{ box.querySelectorAll('.item').forEach(d=>{ delete d.dataset.done; delete d.dataset.pick; d.querySelectorAll('.opt').forEach(x=>{x.disabled=false; x.className='opt'; x.style.outline='';}); d.querySelector('.fb').classList.remove('shown'); }); }));
+})();
+
+/* ---------- typed gap exercises (Ex2, Ex4, Ex5) ---------- */
+// item: {html with {0},{1} gaps, ans:[[accepted...],[accepted...]], why, src?}
+function typedEx(id, items, wide){
+  const box = document.querySelector('#'+id+' .ex-body');
+  items.forEach((it,i)=>{
+    const d = document.createElement('div'); d.className='item';
+    let h = it.q.replace(/\{(\d)\}/g, (m,k)=>'<input class="ti'+(wide?' wide':'')+'" data-k="'+k+'" autocomplete="off" spellcheck="false" aria-label="gap">');
+    d.innerHTML = (it.src?'<span class="src">'+it.src+'</span>':'') + '<span class="n">'+(i+1)+'.</span>'+h+'<div class="fb"></div>';
+    box.appendChild(d);
+  });
+  function check(score){
+    let ok=0, total=0;
+    box.querySelectorAll('.item').forEach((d,i)=>{
+      const it=items[i];
+      d.querySelectorAll('input.ti').forEach(inp=>{ total++; const good=accepts(inp.value, it.ans[+inp.dataset.k]); inp.classList.toggle('good',good); inp.classList.toggle('bad',!good); if(good) ok++; });
+      const fb=d.querySelector('.fb'); fb.innerHTML='<b>Answer:</b> '+it.ans.map(a=>esc(a[0])).join(' … ')+(it.why?' — '+it.why:''); fb.classList.add('shown');
+    }); scoreLine(score, ok, total);
+  }
+  function reset(){ box.querySelectorAll('input.ti').forEach(x=>{x.value=''; x.classList.remove('good','bad');}); box.querySelectorAll('.fb').forEach(f=>f.classList.remove('shown')); }
+  box.appendChild(toolbar(check, reset));
+}
+
+typedEx('ex2', [
+  {q:'If you mix blue and yellow, you {0} (get) green.', ans:[['get']], why:'zero conditional: a fact.'},
+  {q:'If I {0} (see) Anna tomorrow, I\'ll give her your message.', ans:[['see']], why:'first conditional: no <i>will</i> in the if-clause.'},
+  {q:'If we don\'t leave now, we {0} (miss) the bus.', ans:[['will miss']], why:'first conditional: real future.'},
+  {q:'If I {0} (be) the prime minister, I would invest more in education.', ans:[['were','was']], why:'second conditional: <i>were</i> is preferred in formal English.'},
+  {q:'What {0} (you / do) if you won the lottery?', ans:[['would you do']], why:'second conditional question: would + subject + infinitive.'},
+  {q:'If the referee {0} (not / give) that penalty, we would have won.', ans:[['had not given']], why:'third conditional: past perfect.'},
+  {q:'She {0} (not / fail) the exam if she had revised properly.', ans:[['would not have failed']], why:'third conditional: would have + past participle.'},
+  {q:'If I {0} (take) the medicine yesterday, I would feel better now.', ans:[['had taken']], why:'mixed 3 + 2: past condition (yesterday) → present result (now).'},
+  {q:'If he {0} (be) more careful in general, he wouldn\'t have broken his leg last winter.', ans:[['were','was']], why:'mixed 2 + 3: a permanent trait → past result.'},
+  {q:'Unless you {0} (hurry), you\'ll be late.', ans:[['hurry']], why:'<i>unless</i> = if … not; present simple, no extra negative.'},
+  {q:'If I had known you were coming, I {0} (bake) a cake.', ans:[['would have baked']], why:'third conditional.'},
+  {q:'If she {0} (not / move) to Bratislava ten years ago, she wouldn\'t be working for that company now.', ans:[['had not moved']], why:'mixed 3 + 2: past → present.'}
+]);
+
+/* ---------- select exercises (Ex3, Ex6 as buttons; Ex7 cloze) ---------- */
+function choiceEx(id, items){
+  const box = document.querySelector('#'+id+' .ex-body');
+  items.forEach((it,i)=>{
+    const d=document.createElement('div'); d.className='item';
+    d.innerHTML='<span class="n">'+(i+1)+'.</span>'+it.q+'<div class="opts">'+it.o.map((o,j)=>'<button class="opt" data-j="'+j+'">'+o+'</button>').join('')+'</div><div class="fb"></div>';
+    d.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{ if(d.dataset.done) return; d.querySelectorAll('.opt').forEach(x=>x.style.outline=''); b.style.outline='2px solid var(--teal)'; d.dataset.pick=b.dataset.j; });
+    box.appendChild(d);
+  });
+  box.appendChild(toolbar(score=>{
+    let ok=0; box.querySelectorAll('.item').forEach((d,i)=>{
+      const it=items[i], pick=d.dataset.pick; d.dataset.done='1';
+      d.querySelectorAll('.opt').forEach(x=>{ x.style.outline=''; x.disabled=true; if(+x.dataset.j===it.c) x.classList.add('right'); else if(x.dataset.j===pick) x.classList.add('wrong'); });
+      if(+pick===it.c) ok++;
+      const fb=d.querySelector('.fb'); fb.innerHTML=it.why; fb.classList.add('shown');
+    }); scoreLine(score, ok, items.length);
+  }, ()=>{ box.querySelectorAll('.item').forEach(d=>{ delete d.dataset.done; delete d.dataset.pick; d.querySelectorAll('.opt').forEach(x=>{x.disabled=false; x.className='opt'; x.style.outline='';}); d.querySelector('.fb').classList.remove('shown'); }); }));
+}
+
+choiceEx('ex3', [
+  {q:'You can borrow my car ____ you bring it back by 6 p.m.', o:['provided','unless','in case'], c:0, why:'<b>provided</b> = only if.'},
+  {q:'Take an umbrella ____ it rains.', o:['if','in case','unless'], c:1, why:'<b>in case</b> = as a precaution: take it now, whether it rains or not.'},
+  {q:'____ you apologise, I won\'t speak to you again.', o:['Provided','As long as','Unless'], c:2, why:'<b>Unless</b> = if you don\'t apologise.'},
+  {q:'____ your help, I would never have finished the project.', o:['Unless','But for','Provided'], c:1, why:'<b>But for</b> + noun = if it hadn\'t been for.'},
+  {q:'Hurry up, ____ we\'ll miss the beginning of the film.', o:['otherwise','unless','provided'], c:0, why:'<b>otherwise</b> = if not (if we don\'t hurry).'},
+  {q:'____ you lost your job tomorrow, what would you do?', o:['In case','Unless','Suppose'], c:2, why:'<b>Suppose</b> = imagine; used with an unreal situation.'},
+  {q:'I\'ll lend you the money ____ you pay me back next month.', o:['on condition that','in case','otherwise'], c:0, why:'<b>on condition that</b> = only if (formal).'},
+  {q:'____ the storm, the plane would have landed on time.', o:['Unless','Had it not been for','In case of'], c:1, why:'<b>Had it not been for</b> = If it hadn\'t been for (inverted, formal).'},
+  {q:'You can stay out late ____ you text me where you are.', o:['as long as','unless','in case'], c:0, why:'<b>as long as</b> = only if.'},
+  {q:'____ it not for his support, she would give up.', o:['Had','Should','Were'], c:2, why:'<b>Were it not for</b> = If it weren\'t for (present, inverted).'}
+]);
+
+typedEx('ex4', [
+  {src:'I didn\'t study medicine. I\'m not a doctor now.', q:'If I {0} medicine, I {1} a doctor now.', ans:[['had studied'],['would be']], why:'past → present (mixed 3 + 2).'},
+  {src:'She isn\'t a patient person. She shouted at the children yesterday.', q:'If she {0} more patient, she {1} at the children yesterday.', ans:[['were','was'],['would not have shouted']], why:'permanent trait → past result (mixed 2 + 3).'},
+  {src:'We missed the last train. We are stuck in this town now.', q:'If we {0} the last train, we {1} stuck in this town now.', ans:[['had not missed'],['would not be']], why:'past → present (mixed 3 + 2).'},
+  {src:'I don\'t speak German. I didn\'t get the job in Vienna.', q:'If I {0} German, I {1} the job in Vienna.', ans:[['spoke','could speak'],['would have got','would have gotten']], why:'present ability → past result (mixed 2 + 3).'},
+  {src:'He spent all his money last weekend. He can\'t come to the concert tonight.', q:'If he {0} all his money last weekend, he {1} to the concert tonight.', ans:[['had not spent'],['could come','would be able to come']], why:'past → present (mixed 3 + 2).'},
+  {src:'You aren\'t a good listener. You didn\'t hear what the teacher said.', q:'If you {0} a better listener, you {1} what the teacher said.', ans:[['were','was'],['would have heard']], why:'general trait → past result (mixed 2 + 3).'}
+]);
+
+typedEx('ex5', [
+  {src:'If I had known about the problem, I would have helped. <span class="hint">HAD</span>', q:'{0} about the problem, I would have helped.', ans:[['Had I known']], why:'third conditional inversion.'},
+  {src:'If you need anything, just ask. <span class="hint">SHOULD</span>', q:'{0} anything, just ask.', ans:[['Should you need']], why:'<i>Should</i> + subject + infinitive = first conditional.'},
+  {src:'If I were in your position, I would accept the offer. <span class="hint">WERE</span>', q:'{0} in your position, I would accept the offer.', ans:[['Were I']], why:'second conditional inversion.'},
+  {src:'If it hadn\'t been for the firefighters, the whole building would have burnt down. <span class="hint">HAD</span>', q:'{0} the firefighters, the whole building would have burnt down.', ans:[['Had it not been for']], why:'negative inversion: <i>Had it not been for</i>, never <i>Hadn\'t it been</i>.'},
+  {src:'If the government raised taxes, people would protest. <span class="hint">WERE</span>', q:'{0} raise taxes, people would protest.', ans:[['Were the government to']], why:'<i>Were</i> + subject + <i>to</i> + infinitive = second conditional (formal).'},
+  {src:'If they hadn\'t warned us, we would have walked into the storm. <span class="hint">HAD</span>', q:'{0} us, we would have walked into the storm.', ans:[['Had they not warned']], why:'negative third conditional inversion.'}
+], true);
+
+choiceEx('ex6', [
+  {q:'<span class="x">If it will rain tomorrow, we will stay at home.</span>', o:['If it rains tomorrow, we will stay at home.','If it would rain tomorrow, we will stay at home.','If it rained tomorrow, we will stay at home.'], c:0, why:'No <i>will</i> in the if-clause of a first conditional.'},
+  {q:'<span class="x">If I would have known, I would have told you.</span>', o:['If I knew, I would have told you.','If I had known, I would have told you.','If I have known, I would have told you.'], c:1, why:'Third conditional: past perfect in the if-clause.'},
+  {q:'<span class="x">Unless you don\'t hurry, you\'ll miss the bus.</span>', o:['Unless you will hurry, you\'ll miss the bus.','Unless you hurried, you\'ll miss the bus.','Unless you hurry, you\'ll miss the bus.'], c:2, why:'<i>Unless</i> already means <i>if not</i>.'},
+  {q:'<span class="x">If he had took the job, he would be rich now.</span>', o:['If he had taken the job, he would be rich now.','If he took the job, he would be rich now.','If he would take the job, he would be rich now.'], c:0, why:'Past perfect = had + past participle (<i>taken</i>). Mixed 3 + 2.'},
+  {q:'<span class="x">If she studies harder, she would pass the exam.</span>', o:['If she studies harder, she would have passed the exam.','If she studied harder, she would pass the exam.','If she would study harder, she would pass the exam.'], c:1, why:'Don\'t mix the first and second conditionals: past simple + would.'},
+  {q:'<span class="x">If water reaches 100 °C, it would boil.</span>', o:['If water reaches 100 °C, it boils.','If water reached 100 °C, it boils.','If water will reach 100 °C, it boils.'], c:0, why:'A scientific fact: zero conditional.'},
+  {q:'<span class="x">Had I not to miss the bus, I would have been on time.</span>', o:['Hadn\'t I missed the bus, I would have been on time.','Had I not missed the bus, I would have been on time.','Had not I missed the bus, I would have been on time.'], c:1, why:'Negative inversion: <i>Had</i> + subject + <i>not</i> + past participle.'},
+  {q:'<span class="x">I would of called you if I had had your number.</span>', o:['I would have called you if I had had your number.','I would call you if I had had your number.','I had called you if I would have your number.'], c:0, why:'<i>would have</i>, never <i>would of</i>. <i>had had</i> is correct: past perfect of <i>have</i>.'}
+]);
+
+/* ---------- Ex7 cloze ---------- */
+const CLOZE = {
+  text:'Most of us have wondered what our lives would look like {0} we had made different choices. My grandmother often says that if she {1} my grandfather at a dance in 1968, she {2} to Levice. “And if I had stayed in my village,” she adds with a smile, “I {3} cows instead of travelling around Europe now.” Psychologists say that thinking about the past is useful {4} we learn from it. {5} we let go of our regrets, however, they can stop us from moving on. Ask yourself this: if you {6} change one decision, which one would it be? {7} you to discover that your life would be exactly the same, would you still want to change it? Experts also point out that {8} you are always thinking about “what if”, you will miss what is happening right now. {9} our mistakes, we would never have learnt some of life’s most important lessons.',
+  gaps:[
+    {o:['if','unless','in case'], c:0, why:'<i>if</i>: an unreal past condition.'},
+    {o:['didn\'t meet','had not met','wouldn\'t meet'], c:1, why:'third conditional: past perfect.'},
+    {o:['would never have moved','will never move','had never moved'], c:0, why:'third conditional: would have + past participle.'},
+    {o:['had been milking','would be milking','will be milking'], c:1, why:'mixed 3 + 2: past condition → present result (now).'},
+    {o:['provided','unless','otherwise'], c:0, why:'<i>provided</i> = only if.'},
+    {o:['If','Unless','Provided'], c:1, why:'<i>Unless</i> = if we don\'t let go.'},
+    {o:['can','would','could'], c:2, why:'second conditional: <i>could</i> (past of can) in the if-clause.'},
+    {o:['Had','Were','Should'], c:1, why:'<i>Were</i> + subject + <i>to</i> + infinitive (formal second conditional).'},
+    {o:['unless','in case','if'], c:2, why:'<i>if</i>: a real condition with a future result.'},
+    {o:['But for','Unless','In case of'], c:0, why:'<i>But for</i> + noun = if it hadn\'t been for.'}
+  ]
+};
+(function(){
+  const box=document.querySelector('#ex7 .ex-body');
+  const t=document.createElement('div'); t.className='cloze-text';
+  t.innerHTML=esc(CLOZE.text).replace(/\{(\d)\}/g,(m,k)=>'<span class="gn">'+(+k+1)+'</span><select class="sel" data-k="'+k+'" aria-label="gap '+(+k+1)+'"><option value="">…</option>'+CLOZE.gaps[k].o.map((o,j)=>'<option value="'+j+'">'+esc(o)+'</option>').join('')+'</select>');
+  box.appendChild(t);
+  const fb=document.createElement('div'); fb.className='fb'; fb.style.marginTop='.8rem'; box.appendChild(fb);
+  box.appendChild(toolbar(score=>{
+    let ok=0; t.querySelectorAll('select').forEach(s=>{ const g=CLOZE.gaps[+s.dataset.k]; const good=s.value!=='' && +s.value===g.c; s.classList.toggle('good',good); s.classList.toggle('bad',!good); if(good) ok++; });
+    fb.innerHTML=CLOZE.gaps.map((g,i)=>'<b>'+(i+1)+'</b> '+esc(g.o[g.c])+': '+g.why).join('<br>'); fb.classList.add('shown');
+    scoreLine(score, ok, CLOZE.gaps.length);
+  }, ()=>{ t.querySelectorAll('select').forEach(s=>{s.value=''; s.classList.remove('good','bad');}); fb.classList.remove('shown'); }));
+})();
+
+/* ---------- writing word count ---------- */
+const cw=document.getElementById('condWrite');
+cw.addEventListener('input',()=>{ const n=(cw.value.match(/[A-Za-zÀ-ž0-9]+(?:['’-][A-Za-zÀ-ž0-9]+)*/g)||[]).length; document.getElementById('condWc').textContent=n+' word'+(n===1?'':'s'); });
+
+/* ---------- progress + nav ---------- */
+const navLinks=[...document.querySelectorAll('nav a')];
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement; document.getElementById('progress').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+  let cur=''; navLinks.forEach(a=>{ const s=document.querySelector(a.getAttribute('href')); if(s && s.getBoundingClientRect().top<120) cur=a; });
+  navLinks.forEach(a=>a.classList.toggle('active',a===cur));
+});
+</script>
+<script src="ai-feedback.js" data-level="B2–C1 (Maturita, advanced)"></script>
+</body>
+</html>

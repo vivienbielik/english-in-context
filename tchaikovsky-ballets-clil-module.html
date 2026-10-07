@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLIL Music · Ballet Music — Swan Lake, The Nutcracker &amp; Sleeping Beauty</title>
+<meta name="description" content="A CLIL Music × English module: the stories of Tchaikovsky's three great ballets — Swan Lake, The Nutcracker and The Sleeping Beauty — with vocabulary, listening and self-checking exercises.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+:root{
+  --teal-deep:#1F5C56; --teal:#2F7A72; --teal-tint:#E4EFEC;
+  --terracotta:#C1603C; --terracotta-tint:#F4E2D8;
+  --amber:#D9A441; --amber-tint:#FBF0DC;
+  --berry:#8C4A5E; --berry-tint:#F1E1E6;
+  --cream:#FBF6EC; --card:#FFFDF8; --ink:#2A2420; --ink-soft:#6B6259;
+  --line:#E6DFD0; --good:#3B7A57; --good-tint:#EAF4EE; --bad:#B5473A; --bad-tint:#FBEBE8;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0; background:var(--cream); color:var(--ink); font-family:'Source Sans 3',sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{font-family:'Fraunces',serif; font-weight:600; margin:0;}
+p{margin:0 0 .9em; max-width:68ch;}
+.wrap{max-width:980px; margin:0 auto; padding:0 1.5rem;}
+#progress{position:fixed; top:0; left:0; height:4px; width:0%; background:var(--amber); z-index:100;}
+nav{position:sticky; top:4px; z-index:90; background:rgba(251,246,236,.95); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+nav .wrap{display:flex; gap:1.2rem; overflow-x:auto; padding:.8rem 1.5rem; scrollbar-width:none;}
+nav .wrap::-webkit-scrollbar{display:none;}
+nav a{color:var(--ink-soft); text-decoration:none; font-size:.87rem; font-weight:600; white-space:nowrap; padding-bottom:.25rem; border-bottom:2px solid transparent;}
+nav a.active{color:var(--teal-deep); border-bottom-color:var(--amber);}
+
+.hero{background:linear-gradient(160deg,var(--teal-deep) 0%,var(--teal) 65%); color:#fff; padding:2.6rem 1.5rem 3.2rem; position:relative; overflow:hidden;}
+.hero::after{content:"";position:absolute;right:-40px;top:-40px;width:260px;height:260px;border:1px solid rgba(255,255,255,.18);border-radius:50%;}
+.hero::before{content:"";position:absolute;right:60px;bottom:-90px;width:180px;height:180px;border:1px solid rgba(255,255,255,.14);border-radius:50%;}
+.hero-inner{max-width:980px;margin:0 auto;position:relative;z-index:1;}
+.back{color:#fff; opacity:.85; font-size:.88rem; text-decoration:none; font-weight:600; display:inline-block; margin-bottom:1rem;}
+.back:hover{opacity:1; text-decoration:underline;}
+.kicker{color:var(--amber); font-weight:600; font-size:.95rem; display:block; margin-bottom:.5rem;}
+.hero h1{font-size:2.3rem; color:#fff; max-width:24ch; line-height:1.2;}
+.hero .lede{color:rgba(255,255,255,.88); max-width:60ch; margin-top:.9rem; font-size:1.03rem;}
+.hero-meta{display:flex; gap:1.6rem; margin-top:1.4rem; flex-wrap:wrap;}
+.hero-meta div{font-size:.85rem; color:rgba(255,255,255,.75);}
+.hero-meta strong{display:block; color:#fff; font-family:'Fraunces',serif; font-size:1.15rem;}
+
+section{padding:3rem 0; border-bottom:1px solid var(--line);}
+.section-head{margin-bottom:1.5rem;}
+.section-head .tag{color:var(--terracotta); font-weight:600; font-size:.82rem; margin-bottom:.35rem; display:block;}
+.section-head h2{font-size:1.8rem;}
+.section-head p{color:var(--ink-soft); margin-top:.5rem;}
+.card{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:1.3rem 1.5rem;}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem;}
+@media(max-width:760px){.grid3{grid-template-columns:1fr;}}
+.note-box{background:var(--amber-tint); border-left:3px solid var(--amber); padding:.9rem 1.2rem; border-radius:0 8px 8px 0; margin:1.2rem 0; font-size:.94rem;}
+.note-box p:last-child{margin-bottom:0;}
+
+/* warm-up */
+.poll-q{margin-bottom:1.2rem;}
+.poll-q .q{font-weight:600; margin-bottom:.5rem;}
+
+/* ballet tabs */
+.tabs{display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:1.2rem;}
+.tab{font:inherit; font-weight:600; font-size:.95rem; border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:24px; padding:.55rem 1.1rem; cursor:pointer;}
+.tab:hover{border-color:var(--teal);}
+.tab.on{background:var(--teal-deep); border-color:var(--teal-deep); color:#fff;}
+.ballet{display:none;}
+.ballet.on{display:block;}
+.ballet-head{display:grid; grid-template-columns:1fr 290px; gap:1.4rem; align-items:start;}
+@media(max-width:820px){.ballet-head{grid-template-columns:1fr;}}
+.ballet h3{font-size:1.6rem; color:var(--teal-deep); margin-bottom:.3rem;}
+.ballet .tagline{color:var(--ink-soft); font-style:italic; margin-bottom:1rem;}
+.facts{background:var(--teal-tint); border-radius:12px; padding:1rem 1.2rem; font-size:.92rem;}
+.facts h4{font-size:1rem; color:var(--teal-deep); margin-bottom:.4rem;}
+.facts dl{margin:0; display:grid; grid-template-columns:auto 1fr; gap:.25rem .7rem;}
+.facts dt{font-weight:700; color:var(--teal-deep);}
+.facts dd{margin:0;}
+.chars{display:flex; flex-wrap:wrap; gap:.5rem; margin:.4rem 0 1.2rem;}
+.chars span{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:.35rem .7rem; font-size:.88rem;}
+.chars b{color:var(--terracotta);}
+.act{border-left:3px solid var(--amber); padding:.2rem 0 .2rem 1.1rem; margin-bottom:1.2rem;}
+.act h4{font-size:1.08rem; margin-bottom:.35rem; color:var(--ink);}
+.act h4 small{font-family:'Source Sans 3',sans-serif; font-weight:700; color:var(--amber); text-transform:uppercase; letter-spacing:.05em; font-size:.75rem; margin-right:.4rem;}
+.listen{display:flex; flex-wrap:wrap; gap:.6rem; margin-top:.4rem;}
+.listen a{display:inline-flex; align-items:center; gap:.4rem; background:var(--terracotta); color:#fff; text-decoration:none; font-weight:600; font-size:.88rem; padding:.45rem .9rem; border-radius:20px;}
+.listen a:hover{background:#a44f30;}
+.did{background:var(--berry-tint); border-radius:10px; padding:.8rem 1.1rem; font-size:.93rem; margin-top:1rem;}
+.did b{color:var(--berry);}
+
+/* vocab */
+.flash-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:.8rem;}
+.flash{perspective:1000px; height:118px; cursor:pointer;}
+.flash-inner{position:relative; width:100%; height:100%; transition:transform .5s; transform-style:preserve-3d;}
+.flash.flipped .flash-inner{transform:rotateY(180deg);}
+.flash-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:10px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:.6rem; font-size:.86rem;}
+.flash-front{background:var(--teal-deep); color:#fff; font-weight:600; font-family:'Fraunces',serif; font-size:1.05rem;}
+.flash-front small{font-family:'Source Sans 3',sans-serif; font-weight:400; font-size:.75rem; opacity:.8; margin-top:.2rem;}
+.flash-back{background:var(--card); border:1px solid var(--line); transform:rotateY(180deg);}
+.flash-back i{color:var(--ink-soft); display:block; margin-top:.25rem; font-size:.78rem;}
+
+/* exercises */
+.ex-block{margin-bottom:2.8rem;}
+.ex-head{display:flex; align-items:baseline; gap:.6rem; margin-bottom:.3rem; flex-wrap:wrap;}
+.ex-num{background:var(--teal-deep); color:#fff; font-family:'Fraunces',serif; font-weight:700; width:2rem; height:2rem; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:.95rem; flex:none;}
+.ex-head h3{font-size:1.15rem;}
+.ex-type{color:var(--terracotta); font-size:.8rem; font-weight:600; font-style:italic;}
+.ex-instructions{color:var(--ink-soft); font-size:.92rem; margin:.3rem 0 1rem 2.6rem;}
+.ex-body{margin-left:2.6rem;}
+@media(max-width:600px){.ex-body,.ex-instructions{margin-left:0;}}
+.item{margin-bottom:1rem; font-size:.97rem; line-height:1.9;}
+.item .n{font-weight:700; color:var(--teal-deep); margin-right:.3rem;}
+.opts{display:flex; flex-wrap:wrap; gap:.45rem; margin-top:.25rem; line-height:1.3;}
+.opt{border:1px solid var(--line); background:var(--card); padding:.45rem .85rem; border-radius:16px; cursor:pointer; font:inherit; font-size:.9rem; color:var(--ink); text-align:left;}
+.opt:hover{border-color:var(--teal);}
+.opt.pick{outline:2px solid var(--teal);}
+.opt.right{background:var(--good-tint); color:var(--good); border-color:var(--good); font-weight:600;}
+.opt.wrong{background:var(--bad-tint); color:var(--bad); border-color:var(--bad);}
+.opt:disabled{cursor:default;}
+select.sel{border:1px solid var(--teal); border-radius:6px; padding:.2rem .4rem; font:inherit; font-size:.92rem; background:#fff; color:var(--ink); margin:0 .15rem; max-width:100%;}
+select.sel.good{border-color:var(--good); background:var(--good-tint);}
+select.sel.bad{border-color:var(--bad); background:var(--bad-tint);}
+.fb{display:none; font-size:.88rem; line-height:1.45; color:var(--teal-deep); background:var(--teal-tint); padding:.45rem .75rem; border-radius:8px; margin-top:.3rem;}
+.fb.shown{display:block;}
+.order-list{list-style:none; padding:0; margin:0 0 .4rem;}
+.order-list li{display:flex; align-items:center; gap:.6rem; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:.5rem .7rem; margin-bottom:.45rem; font-size:.94rem;}
+.order-list li.good{border-color:var(--good); background:var(--good-tint);}
+.order-list li.bad{border-color:var(--bad); background:var(--bad-tint);}
+.order-list .mv{display:flex; flex-direction:column; gap:2px; flex:none;}
+.order-list .mv button{border:1px solid var(--line); background:#fff; border-radius:5px; width:28px; height:20px; line-height:1; cursor:pointer; font-size:.7rem; color:var(--teal-deep);}
+.order-list .pos{font-family:'Fraunces',serif; font-weight:700; color:var(--amber); width:1.2rem; flex:none;}
+.order-set{margin-bottom:1.6rem;}
+.order-set h4{font-size:1.02rem; margin-bottom:.5rem; color:var(--teal-deep);}
+.cloze-text{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:1.2rem 1.4rem; line-height:2.2; font-size:.98rem;}
+.cloze-text .gn{font-size:.75rem; font-weight:700; color:var(--terracotta); vertical-align:super;}
+.bank{display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:.8rem;}
+.bank span{background:var(--amber-tint); border-radius:12px; padding:.2rem .7rem; font-size:.86rem; font-weight:600; color:#7a5612;}
+.toolbar{display:flex; gap:.6rem; align-items:center; flex-wrap:wrap; margin-top:.8rem;}
+button.check-btn{background:var(--teal-deep); color:#fff; border:none; padding:.6rem 1.3rem; border-radius:20px; font-weight:600; cursor:pointer; font-size:.9rem; font-family:inherit;}
+button.check-btn:hover{background:var(--teal);}
+button.ghost-btn{background:transparent; color:var(--teal-deep); border:1px solid var(--teal-deep); padding:.55rem 1.2rem; border-radius:20px; font-weight:600; cursor:pointer; font-size:.88rem; font-family:inherit;}
+.score{font-weight:700; color:var(--teal-deep);}
+
+.task-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:.8rem; margin-bottom:1rem;}
+.task-grid .card h4{font-size:1rem; margin-bottom:.3rem; color:var(--teal-deep);}
+.task-grid .card p{font-size:.92rem; margin:0;}
+.writing textarea{width:100%; min-height:180px; border:1px solid var(--line); border-radius:10px; padding:1rem; font-family:inherit; font-size:.97rem; resize:vertical; background:#fff;}
+.writing .meta{font-size:.85rem; color:var(--ink-soft); margin-top:.4rem;}
+footer{padding:2.5rem 1.5rem 3rem; text-align:center; color:var(--ink-soft); font-size:.85rem;}
+@media (max-width:560px){.hero h1{font-size:1.9rem;}}
+@media print{nav,#progress,.toolbar,.back,.tabs{display:none!important;} .ballet{display:block!important;} body{background:#fff;}}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<nav>
+  <div class="wrap">
+    <a href="#warmup">Warm-up</a>
+    <a href="#composer">Tchaikovsky &amp; Ballet</a>
+    <a href="#stories">The Stories</a>
+    <a href="#vocab">Key Words</a>
+    <a href="#exercises">Exercises</a>
+    <a href="#create">Create</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <a class="back" href="index.html#clil">← English in Context · CLIL</a>
+    <span class="kicker">CLIL Music × English · B1–B2 · Ballet Music</span>
+    <h1>Swan Lake, The Nutcracker &amp; The Sleeping Beauty</h1>
+    <p class="lede">Swans under a magic spell, a toy that comes to life on Christmas Eve, and a princess who sleeps for a hundred years: the stories of Tchaikovsky's three great ballets, with the music to listen to, key words and six self-checking exercises.</p>
+    <div class="hero-meta">
+      <div><strong>B1–B2</strong>Level</div>
+      <div><strong>~2 lessons</strong>Self-paced</div>
+      <div><strong>3</strong>Ballets</div>
+      <div><strong>6</strong>Exercises</div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- WARM-UP -->
+<section id="warmup">
+  <div class="section-head">
+    <span class="tag">Step 1 · Warm-up</span>
+    <h2>What do you already know?</h2>
+    <p>Answer quickly; there are no wrong answers yet. You will find out later.</p>
+  </div>
+  <div class="card" id="warm"></div>
+</section>
+
+<!-- COMPOSER -->
+<section id="composer">
+  <div class="section-head">
+    <span class="tag">Step 2 · Background</span>
+    <h2>Tchaikovsky and the Ballet</h2>
+  </div>
+  <div class="card">
+    <p><b>Pyotr Ilyich Tchaikovsky</b> (1840–1893) was a Russian composer of the Romantic period. Before him, ballet music was often seen as simple background music for dancers. Tchaikovsky changed that: he wrote ballet scores with rich orchestral colours, memorable melodies and <b>leitmotifs</b>, short musical themes that belong to a character or an idea, just like in an opera or a film.</p>
+    <p>He composed only three ballets, but all three are still among the most performed ballets in the world. Two of them were created with the great French-Russian choreographer <b>Marius Petipa</b> at the <b>Mariinsky Theatre</b> in St Petersburg.</p>
+    <p style="margin-bottom:0;">A ballet tells a story <b>without words</b>. The dancers use steps, gestures and <b>mime</b> to show what the characters feel, and the music tells us what is happening.</p>
+  </div>
+  <div class="grid3" style="margin-top:1rem;">
+    <div class="card"><h4 style="color:var(--teal-deep)">1877 · Swan Lake</h4><p style="font-size:.92rem;margin:0">His first ballet, premiered at the Bolshoi Theatre in Moscow. It was not a success at first.</p></div>
+    <div class="card"><h4 style="color:var(--teal-deep)">1890 · The Sleeping Beauty</h4><p style="font-size:.92rem;margin:0">Created with Marius Petipa at the Mariinsky Theatre. Tchaikovsky himself was very proud of it.</p></div>
+    <div class="card"><h4 style="color:var(--teal-deep)">1892 · The Nutcracker</h4><p style="font-size:.92rem;margin:0">His last ballet, premiered at the Mariinsky just before Christmas. Today it is a Christmas tradition all over the world.</p></div>
+  </div>
+</section>
+
+<!-- STORIES -->
+<section id="stories">
+  <div class="section-head">
+    <span class="tag">Step 3 · Read &amp; Listen</span>
+    <h2>The Three Stories</h2>
+    <p>Choose a ballet. Read the story act by act, then listen to the famous music from each part.</p>
+  </div>
+  <div class="tabs" role="tablist">
+    <button class="tab on" data-b="swan">🦢 Swan Lake</button>
+    <button class="tab" data-b="nut">🎄 The Nutcracker</button>
+    <button class="tab" data-b="sleep">🌹 The Sleeping Beauty</button>
+  </div>
+
+  <!-- SWAN LAKE -->
+  <article class="ballet on" id="b-swan">
+    <div class="ballet-head">
+      <div>
+        <h3>Swan Lake</h3>
+        <p class="tagline">A love story about magic, deception and loyalty, in four acts.</p>
+        <div class="chars">
+          <span><b>Prince Siegfried</b> · a young prince</span>
+          <span><b>Odette</b> · the White Swan, a princess under a spell</span>
+          <span><b>Von Rothbart</b> · an evil sorcerer</span>
+          <span><b>Odile</b> · the Black Swan, Rothbart's daughter</span>
+          <span><b>The Queen</b> · Siegfried's mother</span>
+        </div>
+      </div>
+      <div class="facts"><h4>Key facts</h4><dl>
+        <dt>Music</dt><dd>P. I. Tchaikovsky</dd>
+        <dt>Premiere</dt><dd>1877, Bolshoi Theatre, Moscow</dd>
+        <dt>Famous version</dt><dd>1895, Marius Petipa &amp; Lev Ivanov, St Petersburg</dd>
+        <dt>Acts</dt><dd>4</dd>
+      </dl></div>
+    </div>
+    <div class="act"><h4><small>Act 1</small>The prince must choose a bride</h4>
+      <p>It is Prince Siegfried's birthday and there is a big celebration in the palace garden. His mother, the Queen, tells him that he is now an adult and must choose a wife at a grand ball the next evening. Siegfried is sad because he wants to marry for love. When evening comes, he sees a group of swans flying over and goes hunting with his crossbow.</p></div>
+    <div class="act"><h4><small>Act 2</small>Odette and the magic lake</h4>
+      <p>At a lake in the forest, Siegfried is about to shoot a swan when it turns into a beautiful young woman: <b>Odette</b>, the Swan Queen. She explains that the evil sorcerer <b>Von Rothbart</b> has put a spell on her and her friends: they are swans by day and become human only at night. The lake is made of her mother's tears. The spell can only be broken if a man who has never loved before promises to love her forever. Siegfried falls in love with her and swears to be faithful. At dawn, Odette must turn back into a swan.</p></div>
+    <div class="act"><h4><small>Act 3</small>The ball and the Black Swan</h4>
+      <p>At the ball, princesses from many countries dance for Siegfried, but he refuses them all. Suddenly Von Rothbart arrives in disguise with his daughter <b>Odile</b>, the Black Swan, who has been magically made to look exactly like Odette. Siegfried is completely deceived. He dances with Odile and announces that he will marry her. At that moment he sees the real Odette at the window, desperate, and realises that he has broken his promise.</p></div>
+    <div class="act"><h4><small>Act 4</small>Back at the lake</h4>
+      <p>Siegfried runs to the lake and begs Odette to forgive him. She forgives him, but the spell can no longer be broken. In the best-known ending, Odette and Siegfried choose to throw themselves into the lake rather than live apart. Their love destroys Rothbart's power, and the lovers are united after death. Some productions have a happy ending instead, in which love defeats the sorcerer.</p></div>
+    <div class="did"><b>Did you know?</b> Odette (the White Swan) and Odile (the Black Swan) are usually danced by the <b>same ballerina</b>. In Act 3, Odile performs 32 <i>fouettés</i>: fast turns on one leg, without stopping.</div>
+    <h4 style="margin:1.3rem 0 .4rem;font-size:1.05rem;">🎧 Listen</h4>
+    <div class="listen">
+      <a target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Tchaikovsky+Swan+Lake+Scene+Act+2+swan+theme">▶ The Swan Theme (Scene)</a>
+      <a target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Swan+Lake+Dance+of+the+Little+Swans+ballet">▶ Dance of the Little Swans</a>
+      <a target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Swan+Lake+Black+Swan+pas+de+deux+32+fouettes">▶ Black Swan pas de deux</a>
+    </div>
+  </article>
+
+  <!-- NUTCRACKER -->
+  <article class="ballet" id="b-nut">
+    <div class="ballet-head">
+      <div>
+        <h3>The Nutcracker</h3>
+        <p class="tagline">A magical Christmas adventure, in two acts.</p>
+        <div class="chars">
+          <span><b>Clara</b> · a young girl (called Marie in some versions)</span>
+          <span><b>Fritz</b> · her naughty brother</span>
+          <span><b>Drosselmeyer</b> · Clara's mysterious godfather, a toymaker</span>
+          <span><b>The Nutcracker</b> · a wooden toy who becomes a prince</span>
+          <span><b>The Mouse King</b> · leader of the mice</span>
+          <span><b>The Sugar Plum Fairy</b> · ruler of the Land of Sweets</span>
+        </div>
+      </div>
+      <div class="facts"><h4>Key facts</h4><dl>
+        <dt>Music</dt><dd>P. I. Tchaikovsky</dd>
+        <dt>Premiere</dt><dd>December 1892, Mariinsky Theatre, St Petersburg</dd>
+        <dt>Choreography</dt><dd>Marius Petipa &amp; Lev Ivanov</dd>
+        <dt>Based on</dt><dd>E. T. A. Hoffmann, <i>The Nutcracker and the Mouse King</i></dd>
+        <dt>Acts</dt><dd>2</dd>
+      </dl></div>
+    </div>
+    <div class="act"><h4><small>Act 1 · Scene 1</small>The Christmas Eve party</h4>
+      <p>It is Christmas Eve at the Stahlbaum family's house. Friends and children arrive, and everyone dances around a beautiful Christmas tree. Clara's godfather, <b>Drosselmeyer</b>, arrives with magical mechanical dolls and gives Clara a special present: a wooden <b>nutcracker</b> shaped like a soldier. Her jealous brother Fritz grabs it and breaks it, but Drosselmeyer repairs it with a handkerchief.</p></div>
+    <div class="act"><h4><small>Act 1 · Scene 2</small>The battle at midnight</h4>
+      <p>At midnight, Clara comes back downstairs to check on her nutcracker. Strange things start to happen: the Christmas tree grows enormous, the toys come to life, and an army of mice led by the <b>Mouse King</b> attacks. The Nutcracker leads the toy soldiers into battle. When the Mouse King is about to win, Clara throws her slipper at him and saves the Nutcracker, who turns into a handsome <b>prince</b>.</p></div>
+    <div class="act"><h4><small>Act 1 · Scene 3</small>The Land of Snow</h4>
+      <p>The prince takes Clara on a journey through a snowy forest, where snowflakes dance around them in a beautiful waltz.</p></div>
+    <div class="act"><h4><small>Act 2</small>The Land of Sweets</h4>
+      <p>They arrive in the Land of Sweets, where the <b>Sugar Plum Fairy</b> welcomes them. The prince tells the story of the battle, and to celebrate, sweets from around the world dance for Clara: Spanish chocolate, Arabian coffee, Chinese tea, Russian candy canes, marzipan shepherdesses with reed flutes, and finally the Waltz of the Flowers. The Sugar Plum Fairy and her cavalier dance a grand <i>pas de deux</i>. At the end, Clara wakes up under the Christmas tree with her nutcracker in her arms. Was it all a dream?</p></div>
+    <div class="did"><b>Did you know?</b> In the <i>Dance of the Sugar Plum Fairy</i>, Tchaikovsky used a new instrument he had discovered in Paris: the <b>celesta</b>, a keyboard instrument that sounds like little bells. He kept it secret so that no other Russian composer could use it first.</div>
+    <h4 style="margin:1.3rem 0 .4rem;font-size:1.05rem;">🎧 Listen</h4>
+    <div class="listen">
+      <a target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Nutcracker+March+Tchaikovsky+ballet">▶ March</a>
+      <a target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Nutcracker+Dance+of+the+Sugar+Plum+Fairy+ballet">▶ Dance of the Sugar Plum Fairy</a>
+      <a target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Nutcracker+Waltz+of+the+Flowers+ballet">▶ Waltz of the Flowers</a>
+      <a target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Nutcracker+Russian+Dance+Trepak+ballet">▶ Russian Dance (Trepak)</a>
+    </div>
+  </article>
+
+  <!-- SLEEPING BEAUTY -->
+  <article class="ballet" id="b-sleep">
+    <div class="ballet-head">
+      <div>
+        <h3>The Sleeping Beauty</h3>
+        <p class="tagline">A fairy tale of good and evil, in a prologue and three acts.</p>
+        <div class="chars">
+          <span><b>Princess Aurora</b> · the king's daughter</span>
+          <span><b>The Lilac Fairy</b> · a good fairy, Aurora's protector</span>
+          <span><b>Carabosse</b> · an evil fairy</span>
+          <span><b>Prince Désiré</b> · a prince who finds Aurora</span>
+          <span><b>King Florestan &amp; the Queen</b> · Aurora's parents</span>
+        </div>
+      </div>
+      <div class="facts"><h4>Key facts</h4><dl>
+        <dt>Music</dt><dd>P. I. Tchaikovsky</dd>
+        <dt>Premiere</dt><dd>January 1890, Mariinsky Theatre, St Petersburg</dd>
+        <dt>Choreography</dt><dd>Marius Petipa</dd>
+        <dt>Based on</dt><dd>Charles Perrault's fairy tale</dd>
+        <dt>Acts</dt><dd>Prologue + 3</dd>
+      </dl></div>
+    </div>
+    <div class="act"><h4><small>Prologue</small>The christening and the curse</h4>
+      <p>The King and Queen celebrate the christening of their baby daughter, <b>Aurora</b>. Six good fairies come to give her magical gifts such as beauty, kindness and grace. Suddenly the evil fairy <b>Carabosse</b> arrives, furious because she was not invited. She puts a curse on the baby: on her sixteenth birthday, Aurora will prick her finger on a spindle and die. The <b>Lilac Fairy</b>, who has not yet given her gift, cannot remove the curse, but she can make it softer: Aurora will not die; she will fall asleep for a hundred years, until a prince wakes her with a kiss.</p></div>
+    <div class="act"><h4><small>Act 1</small>Aurora's sixteenth birthday</h4>
+      <p>The King has banned all spindles from the kingdom. On Aurora's sixteenth birthday, four princes come to ask for her hand, and she dances with each of them in the famous <i>Rose Adagio</i>. An old woman gives Aurora a strange present, a spindle. Aurora plays with it, pricks her finger and falls to the ground. The old woman throws off her cloak: it is Carabosse! The Lilac Fairy arrives and puts the whole palace to sleep, and a thick forest grows around the castle.</p></div>
+    <div class="act"><h4><small>Act 2</small>A hundred years later</h4>
+      <p><b>Prince Désiré</b> is hunting in the forest. The Lilac Fairy appears and shows him a vision of the beautiful sleeping princess, and he falls in love at once. She leads him through the forest to the castle, where he kisses Aurora. She wakes up, the spell is broken and the whole palace comes back to life.</p></div>
+    <div class="act"><h4><small>Act 3</small>The wedding</h4>
+      <p>Aurora and Désiré celebrate their wedding. Characters from other fairy tales come to dance at the party: Puss in Boots and the White Cat, Little Red Riding Hood and the Wolf, and the Bluebird with Princess Florine. The ballet ends with a grand celebration.</p></div>
+    <div class="did"><b>Did you know?</b> Disney used Tchaikovsky's famous waltz from Act 1 for the song <i>Once Upon a Dream</i> in its 1959 film <i>Sleeping Beauty</i>.</div>
+    <h4 style="margin:1.3rem 0 .4rem;font-size:1.05rem;">🎧 Listen</h4>
+    <div class="listen">
+      <a target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Sleeping+Beauty+Tchaikovsky+Garland+Waltz">▶ The Waltz (Garland Waltz)</a>
+      <a target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Sleeping+Beauty+Rose+Adagio+ballet">▶ Rose Adagio</a>
+      <a target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Sleeping+Beauty+Lilac+Fairy+variation+ballet">▶ The Lilac Fairy</a>
+    </div>
+  </article>
+  <p style="font-size:.85rem;color:var(--ink-soft);margin-top:1.4rem;">Listening links open a YouTube search in a new tab, so you can choose an orchestra recording or a ballet performance. Productions differ: some details of the stories change from theatre to theatre.</p>
+</section>
+
+<!-- VOCAB -->
+<section id="vocab">
+  <div class="section-head">
+    <span class="tag">Step 4 · Key Words</span>
+    <h2>Ballet and Fairy-Tale Vocabulary</h2>
+    <p>Click a card to see the meaning and the Slovak translation.</p>
+  </div>
+  <div class="flash-grid" id="flash"></div>
+</section>
+
+<!-- EXERCISES -->
+<section id="exercises">
+  <div class="section-head">
+    <span class="tag">Step 5 · Practice</span>
+    <h2>Six Self-Checking Exercises</h2>
+    <p>Read the stories first. Click <b>Check</b> to see your score and the explanations.</p>
+  </div>
+
+  <div class="ex-block" id="ex1">
+    <div class="ex-head"><span class="ex-num">1</span><h3>Which ballet?</h3><span class="ex-type">Sorting</span></div>
+    <p class="ex-instructions">Which ballet does each character, place or object belong to?</p>
+    <div class="ex-body"></div>
+  </div>
+
+  <div class="ex-block" id="ex2">
+    <div class="ex-head"><span class="ex-num">2</span><h3>True or false?</h3><span class="ex-type">Reading comprehension</span></div>
+    <p class="ex-instructions">Decide if each sentence is true or false according to the stories.</p>
+    <div class="ex-body"></div>
+  </div>
+
+  <div class="ex-block" id="ex3">
+    <div class="ex-head"><span class="ex-num">3</span><h3>Put the story in order</h3><span class="ex-type">Sequencing</span></div>
+    <p class="ex-instructions">Use the arrows to put the events of each ballet in the correct order.</p>
+    <div class="ex-body"></div>
+  </div>
+
+  <div class="ex-block" id="ex4">
+    <div class="ex-head"><span class="ex-num">4</span><h3>Words and meanings</h3><span class="ex-type">Vocabulary matching</span></div>
+    <p class="ex-instructions">Choose the word that matches each definition.</p>
+    <div class="ex-body"></div>
+  </div>
+
+  <div class="ex-block" id="ex5">
+    <div class="ex-head"><span class="ex-num">5</span><h3>Tchaikovsky's ballets: complete the text</h3><span class="ex-type">Cloze</span></div>
+    <p class="ex-instructions">Choose the correct word for each gap.</p>
+    <div class="ex-body"></div>
+  </div>
+
+  <div class="ex-block" id="ex6">
+    <div class="ex-head"><span class="ex-num">6</span><h3>Music and facts quiz</h3><span class="ex-type">Multiple choice</span></div>
+    <p class="ex-instructions">Choose the correct answer.</p>
+    <div class="ex-body"></div>
+  </div>
+</section>
+
+<!-- CREATE -->
+<section id="create">
+  <div class="section-head">
+    <span class="tag">Step 6 · Create</span>
+    <h2>Take It Further</h2>
+    <p>Choose one task and write it in the box below (80–150 words). When you finish, click <b>Evaluate my writing</b> to get AI feedback.</p>
+  </div>
+  <div class="task-grid">
+    <div class="card"><h4>✍️ A new ending</h4><p>Write a different ending for <i>Swan Lake</i>. What does Siegfried do differently? Does love win?</p></div>
+    <div class="card"><h4>📔 Clara's diary</h4><p>You are Clara. Write your diary on Christmas Day about the strange night you had. Was it a dream?</p></div>
+    <div class="card"><h4>🎭 A ballet review</h4><p>Watch 5 minutes of one ballet on YouTube and write a short review: the music, the dancers, the costumes and how it made you feel.</p></div>
+    <div class="card"><h4>⚖️ Compare</h4><p>Compare two of the ballets. Which story do you prefer and why? Which music do you like best?</p></div>
+  </div>
+  <div class="card writing">
+    <textarea id="balletWrite" data-ai placeholder="Write your task here… (start with the task you chose, e.g. 'A new ending for Swan Lake')"></textarea>
+    <div class="meta"><span id="bwc">0 words</span> · target 80–150</div>
+  </div>
+</section>
+
+</div>
+<footer>English in Context · CLIL Music × English · Ballet Music: Swan Lake, The Nutcracker &amp; The Sleeping Beauty</footer>
+
+<script>
+function esc(s){ return String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function scoreLine(el, ok, total){ el.textContent = ok + ' / ' + total + (ok===total ? ' — excellent!' : ''); }
+function toolbar(onCheck, onReset){
+  const d=document.createElement('div'); d.className='toolbar';
+  d.innerHTML='<button class="check-btn">Check</button><button class="ghost-btn">Reset</button><span class="score"></span>';
+  d.querySelector('.check-btn').onclick=()=>onCheck(d.querySelector('.score'));
+  d.querySelector('.ghost-btn').onclick=()=>{ onReset(); d.querySelector('.score').textContent=''; };
+  return d;
+}
+
+/* ---- warm-up (no right/wrong yet) ---- */
+const WARM=[
+  ['Which of these ballets have you heard of?',['Swan Lake','The Nutcracker','The Sleeping Beauty','None of them']],
+  ['Which do you think came first?',['Swan Lake','The Nutcracker','The Sleeping Beauty']],
+  ['Which ballet do you think is performed most at Christmas?',['Swan Lake','The Nutcracker','The Sleeping Beauty']]
+];
+document.getElementById('warm').innerHTML=WARM.map((w,i)=>'<div class="poll-q"><div class="q">'+(i+1)+'. '+w[0]+'</div><div class="opts">'+w[1].map(o=>'<button class="opt" onclick="this.parentNode.querySelectorAll(\'.opt\').forEach(x=>x.classList.remove(\'pick\'));this.classList.add(\'pick\')">'+o+'</button>').join('')+'</div></div>').join('')+'<p style="font-size:.9rem;color:var(--ink-soft);margin:0">Answers: you will find them in Step 2 (Swan Lake came first, in 1877; The Nutcracker is the Christmas ballet).</p>';
+
+/* ---- tabs ---- */
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===t));
+  document.querySelectorAll('.ballet').forEach(b=>b.classList.toggle('on',b.id==='b-'+t.dataset.b));
+});
+
+/* ---- flashcards ---- */
+const VOCAB=[
+  ['ballerina','a female ballet dancer, especially a leading one','baletka, primabalerína'],
+  ['choreographer','the person who creates the steps and movements of a dance','choreograf'],
+  ['premiere','the first public performance of a work','premiéra'],
+  ['spell','magic words that change someone or something','kúzlo'],
+  ['curse','a spell that is meant to harm someone','kliatba'],
+  ['sorcerer','a man with evil magic powers','čarodejník'],
+  ['to deceive','to make someone believe something that is not true','oklamať'],
+  ['to swear (a vow)','to make a serious promise','prisahať'],
+  ['christening','a ceremony when a baby is given a name','krst'],
+  ['spindle','a thin stick used in the past for spinning wool into thread','vreteno'],
+  ['godfather','a man who promises to help a child as it grows up','krstný otec'],
+  ['pas de deux','a dance for two people, usually a man and a woman','pas de deux (tanec vo dvojici)'],
+  ['corps de ballet','the group of dancers who dance together, not as soloists','zbor (baletný)'],
+  ['fouetté','a fast turn on one leg, with the other leg whipping out','fouetté (otočka)'],
+  ['mime','telling a story with gestures and movements, without words','pantomíma'],
+  ['celesta','a keyboard instrument that sounds like little bells','čelesta']
+];
+document.getElementById('flash').innerHTML=VOCAB.map(v=>'<div class="flash" onclick="this.classList.toggle(\'flipped\')"><div class="flash-inner"><div class="flash-face flash-front">'+v[0]+'<small>click to flip</small></div><div class="flash-face flash-back">'+v[1]+'<i>SK: '+v[2]+'</i></div></div></div>').join('');
+
+/* ---- generic option exercise ---- */
+function choiceEx(id, items, sharedOpts){
+  const box=document.querySelector('#'+id+' .ex-body');
+  items.forEach((it,i)=>{
+    const opts=sharedOpts||it.o;
+    const d=document.createElement('div'); d.className='item';
+    d.innerHTML='<span class="n">'+(i+1)+'.</span>'+it.q+'<div class="opts">'+opts.map((o,j)=>'<button class="opt" data-j="'+j+'">'+o+'</button>').join('')+'</div><div class="fb"></div>';
+    d.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{ if(d.dataset.done) return; d.querySelectorAll('.opt').forEach(x=>x.classList.remove('pick')); b.classList.add('pick'); d.dataset.pick=b.dataset.j; });
+    box.appendChild(d);
+  });
+  box.appendChild(toolbar(score=>{
+    let ok=0; box.querySelectorAll('.item').forEach((d,i)=>{
+      const it=items[i], pick=d.dataset.pick; d.dataset.done='1';
+      d.querySelectorAll('.opt').forEach(x=>{ x.classList.remove('pick'); x.disabled=true; if(+x.dataset.j===it.c) x.classList.add('right'); else if(x.dataset.j===pick) x.classList.add('wrong'); });
+      if(+pick===it.c) ok++;
+      if(it.why){ const fb=d.querySelector('.fb'); fb.innerHTML=it.why; fb.classList.add('shown'); }
+    }); scoreLine(score, ok, items.length);
+  }, ()=>{ box.querySelectorAll('.item').forEach(d=>{ delete d.dataset.done; delete d.dataset.pick; d.querySelectorAll('.opt').forEach(x=>{x.disabled=false; x.className='opt';}); d.querySelector('.fb').classList.remove('shown'); }); }));
+}
+
+const B=['Swan Lake','The Nutcracker','The Sleeping Beauty'];
+choiceEx('ex1', [
+  {q:'<b>Odette</b>', c:0}, {q:'<b>Drosselmeyer</b>', c:1}, {q:'<b>Carabosse</b>', c:2},
+  {q:'a magic <b>lake</b> made of tears', c:0}, {q:'the <b>Land of Sweets</b>', c:1}, {q:'a <b>spindle</b>', c:2},
+  {q:'the <b>Mouse King</b>', c:1}, {q:'<b>Von Rothbart</b>', c:0}, {q:'the <b>Lilac Fairy</b>', c:2},
+  {q:'a <b>Christmas tree</b> that grows enormous', c:1}, {q:'the <b>Black Swan</b>', c:0}, {q:'<b>Prince Désiré</b>', c:2},
+  {q:'a <b>crossbow</b> and a hunt at night', c:0}, {q:'the <b>Rose Adagio</b>', c:2}, {q:'the <b>Sugar Plum Fairy</b>', c:1}
+], B);
+
+choiceEx('ex2', [
+  {q:'Odette is a swan during the day and a woman at night.', c:0, why:'True. The spell lets her become human only at night.'},
+  {q:'Siegfried marries Odile at the end of Swan Lake.', c:1, why:'False. He promises to marry her because he is deceived, but then he realises his mistake.'},
+  {q:'Odette and Odile are usually danced by the same ballerina.', c:0, why:'True. It is one of the hardest roles in ballet.'},
+  {q:'Drosselmeyer gives Fritz a nutcracker.', c:1, why:'False. He gives it to Clara; Fritz breaks it.'},
+  {q:'Clara helps the Nutcracker by throwing her slipper at the Mouse King.', c:0, why:'True.'},
+  {q:'The Sugar Plum Fairy rules the Land of Snow.', c:1, why:'False. She rules the Land of Sweets.'},
+  {q:'Carabosse is angry because she was not invited to the christening.', c:0, why:'True.'},
+  {q:'The Lilac Fairy completely removes Carabosse\'s curse.', c:1, why:'False. She makes it softer: Aurora will sleep for 100 years instead of dying.'},
+  {q:'Aurora sleeps for a hundred years.', c:0, why:'True. A prince wakes her with a kiss.'},
+  {q:'The Nutcracker was Tchaikovsky\'s first ballet.', c:1, why:'False. It was his last ballet (1892). Swan Lake (1877) was the first.'}
+], ['True','False']);
+
+/* ---- ordering ---- */
+const ORDER=[
+  {t:'Swan Lake', ev:['The Queen tells Siegfried he must choose a bride.','Siegfried goes hunting and sees a group of swans.','Odette tells Siegfried about Rothbart\'s spell.','Rothbart arrives at the ball with Odile.','Siegfried promises to marry Odile.','Siegfried runs back to the lake to find Odette.']},
+  {t:'The Nutcracker', ev:['Guests arrive at the Christmas Eve party.','Drosselmeyer gives Clara a nutcracker.','Fritz breaks the nutcracker.','The mice attack at midnight.','The Nutcracker becomes a prince.','The Sugar Plum Fairy welcomes Clara to the Land of Sweets.']},
+  {t:'The Sleeping Beauty', ev:['The fairies give gifts to baby Aurora.','Carabosse puts a curse on Aurora.','The King bans all spindles.','Aurora pricks her finger on a spindle.','Prince Désiré sees a vision of Aurora.','Aurora and Désiré get married.']}
+];
+(function(){
+  const box=document.querySelector('#ex3 .ex-body');
+  function shuffled(n){ let a=[...Array(n).keys()]; do{ a.sort(()=>Math.random()-.5); }while(a.every((v,i)=>v===i)); return a; }
+  function build(){
+    box.querySelectorAll('.order-set').forEach(x=>x.remove());
+    ORDER.slice().reverse().forEach(o=>{
+      const s=document.createElement('div'); s.className='order-set';
+      s.innerHTML='<h4>'+o.t+'</h4><ol class="order-list">'+shuffled(o.ev.length).map(k=>'<li data-k="'+k+'"><span class="pos"></span><span class="mv"><button aria-label="move up">▲</button><button aria-label="move down">▼</button></span><span>'+esc(o.ev[k])+'</span></li>').join('')+'</ol>';
+      box.insertBefore(s, box.firstChild);
+      const ol=s.querySelector('ol');
+      function num(){ ol.querySelectorAll('li').forEach((li,i)=>li.querySelector('.pos').textContent=i+1); }
+      ol.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b) return; const li=b.closest('li'); li.parentNode.querySelectorAll('li').forEach(x=>x.classList.remove('good','bad'));
+        if(b.textContent==='▲' && li.previousElementSibling) ol.insertBefore(li, li.previousElementSibling);
+        if(b.textContent==='▼' && li.nextElementSibling) ol.insertBefore(li.nextElementSibling, li); num(); });
+      num();
+    });
+  }
+  build();
+  box.appendChild(toolbar(score=>{
+    let ok=0,total=0; box.querySelectorAll('.order-list li').forEach((li,i,all)=>{});
+    box.querySelectorAll('.order-list').forEach(ol=>ol.querySelectorAll('li').forEach((li,i)=>{ total++; const good=+li.dataset.k===i; li.classList.toggle('good',good); li.classList.toggle('bad',!good); if(good) ok++; }));
+    scoreLine(score, ok, total);
+  }, build));
+})();
+
+/* ---- vocabulary matching (dropdown per definition) ---- */
+const EX4W=['spell','curse','sorcerer','christening','spindle','premiere','choreographer','pas de deux','corps de ballet','celesta'];
+const EX4=[
+  ['a man with evil magic powers', 2],
+  ['the first public performance of a ballet', 5],
+  ['a dance for two people', 7],
+  ['a ceremony when a baby is given a name', 3],
+  ['magic words that change someone into something else', 0],
+  ['a thin stick for spinning wool into thread', 4],
+  ['the person who creates the dance steps', 6],
+  ['a keyboard instrument that sounds like little bells', 9],
+  ['a spell meant to harm someone', 1],
+  ['the group of dancers who dance together, not as soloists', 8]
+];
+(function(){
+  const box=document.querySelector('#ex4 .ex-body');
+  EX4.forEach((it,i)=>{ const d=document.createElement('div'); d.className='item';
+    d.innerHTML='<span class="n">'+(i+1)+'.</span>'+esc(it[0])+' → <select class="sel"><option value="">…</option>'+EX4W.map((w,j)=>'<option value="'+j+'">'+w+'</option>').join('')+'</select>'; box.appendChild(d); });
+  box.appendChild(toolbar(score=>{ let ok=0; box.querySelectorAll('select').forEach((s,i)=>{ const good=s.value!==''&&+s.value===EX4[i][1]; s.classList.toggle('good',good); s.classList.toggle('bad',!good); if(good) ok++; if(!good){ s.title='Answer: '+EX4W[EX4[i][1]]; } }); scoreLine(score, ok, EX4.length);
+    box.querySelectorAll('.item').forEach((d,i)=>{ let fb=d.querySelector('.fb'); if(!fb){ fb=document.createElement('div'); fb.className='fb'; d.appendChild(fb);} fb.innerHTML='<b>Answer:</b> '+EX4W[EX4[i][1]]; fb.classList.add('shown'); }); },
+    ()=>{ box.querySelectorAll('select').forEach(s=>{s.value=''; s.classList.remove('good','bad');}); box.querySelectorAll('.fb').forEach(f=>f.classList.remove('shown')); }));
+})();
+
+/* ---- cloze ---- */
+const CLOZE={
+  text:'Tchaikovsky wrote three ballets, and today they are some of the most {0} works in the theatre. His first ballet, Swan Lake, was not a success at its {1} in Moscow in 1877, but a new version by Petipa and Ivanov made it famous after the composer\'s death. In this ballet, a prince falls in love with a princess who has been turned into a swan by an evil {2}. Tchaikovsky gave each important character its own musical {3}, a technique that he borrowed from opera. The Sleeping Beauty was created together with the {4} Marius Petipa, and the music for the princess\'s birthday dance, the Rose Adagio, is full of romantic {5}. In The Nutcracker, the composer surprised the audience with the sound of the {6}, which he used for the Sugar Plum Fairy. In all three ballets, the dancers tell the story without words, using steps, gestures and {7}. Even today, theatres all over the world {8} these ballets every season, and The Nutcracker has become a Christmas {9} for many families.',
+  gaps:[
+    {o:['performed','performing','performance'], c:0, why:'past participle used as an adjective: <i>the most performed works</i>.'},
+    {o:['premiere','rehearsal','audition'], c:0, why:'<i>premiere</i> = the first public performance.'},
+    {o:['sorcerer','godfather','fairy'], c:0, why:'Von Rothbart is an evil sorcerer.'},
+    {o:['theme','lyric','chorus'], c:0, why:'a musical <i>theme</i> (leitmotif) for each character.'},
+    {o:['choreographer','conductor','composer'], c:0, why:'Petipa created the dance steps: a <i>choreographer</i>.'},
+    {o:['melodies','lyrics','rhythms of speech'], c:0, why:'romantic <i>melodies</i>.'},
+    {o:['celesta','harp','trumpet'], c:0, why:'the <i>celesta</i>, a new instrument at the time.'},
+    {o:['mime','singing','dialogue'], c:0, why:'ballet uses <i>mime</i>, not words.'},
+    {o:['stage','play','act'], c:0, why:'<i>stage</i> (verb) = to put on a performance.'},
+    {o:['tradition','habit','routine'], c:0, why:'a Christmas <i>tradition</i>.'}
+  ]
+};
+(function(){
+  const box=document.querySelector('#ex5 .ex-body');
+  const t=document.createElement('div'); t.className='cloze-text';
+  // shuffle option order per gap (correct answer stays tracked by value)
+  t.innerHTML=esc(CLOZE.text).replace(/\{(\d)\}/g,(m,k)=>{ const g=CLOZE.gaps[k]; const order=g.o.map((o,j)=>j).sort(()=>Math.random()-.5);
+    return '<span class="gn">'+(+k+1)+'</span><select class="sel" data-k="'+k+'"><option value="">…</option>'+order.map(j=>'<option value="'+j+'">'+esc(g.o[j])+'</option>').join('')+'</select>'; });
+  box.appendChild(t);
+  const fb=document.createElement('div'); fb.className='fb'; fb.style.marginTop='.8rem'; box.appendChild(fb);
+  box.appendChild(toolbar(score=>{ let ok=0; t.querySelectorAll('select').forEach(s=>{ const g=CLOZE.gaps[+s.dataset.k]; const good=s.value!==''&&+s.value===g.c; s.classList.toggle('good',good); s.classList.toggle('bad',!good); if(good) ok++; });
+    fb.innerHTML=CLOZE.gaps.map((g,i)=>'<b>'+(i+1)+'</b> '+esc(g.o[g.c])+': '+g.why).join('<br>'); fb.classList.add('shown'); scoreLine(score, ok, CLOZE.gaps.length); },
+    ()=>{ t.querySelectorAll('select').forEach(s=>{s.value=''; s.classList.remove('good','bad');}); fb.classList.remove('shown'); }));
+})();
+
+/* ---- quiz ---- */
+choiceEx('ex6', [
+  {q:'Which instrument did Tchaikovsky use for the Sugar Plum Fairy?', o:['the harp','the celesta','the piano'], c:1, why:'The celesta, which he discovered in Paris.'},
+  {q:'Where did Swan Lake have its first performance?', o:['the Bolshoi Theatre, Moscow','the Mariinsky Theatre, St Petersburg','the Paris Opera'], c:0, why:'Swan Lake premiered at the Bolshoi in 1877.'},
+  {q:'Who wrote the fairy tale that The Sleeping Beauty is based on?', o:['E. T. A. Hoffmann','the Brothers Grimm','Charles Perrault'], c:2, why:'Charles Perrault. (The Nutcracker is based on Hoffmann.)'},
+  {q:'What is a pas de deux?', o:['a dance for two','a group dance','a solo for a man'], c:0, why:'<i>Pas de deux</i> is French for "step for two".'},
+  {q:'How many fouettés does Odile perform in Act 3 of Swan Lake?', o:['8','16','32'], c:2, why:'32 fast turns on one leg.'},
+  {q:'Which Disney song uses music from The Sleeping Beauty?', o:['Let It Go','Once Upon a Dream','A Whole New World'], c:1, why:'<i>Once Upon a Dream</i> (1959) uses the famous waltz.'},
+  {q:'What is a leitmotif?', o:['a short musical theme for a character or idea','a type of ballet shoe','the final dance of a ballet'], c:0, why:'Tchaikovsky used leitmotifs, like in opera and film music.'},
+  {q:'Which ballet is traditionally performed at Christmas?', o:['Swan Lake','The Nutcracker','The Sleeping Beauty'], c:1, why:'The Nutcracker takes place on Christmas Eve.'}
+]);
+
+/* ---- word count ---- */
+const bw=document.getElementById('balletWrite');
+bw.addEventListener('input',()=>{ const n=(bw.value.match(/[A-Za-zÀ-ž0-9]+(?:['’-][A-Za-zÀ-ž0-9]+)*/g)||[]).length; document.getElementById('bwc').textContent=n+' word'+(n===1?'':'s'); });
+
+/* ---- progress + nav ---- */
+const navLinks=[...document.querySelectorAll('nav a')];
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement; document.getElementById('progress').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+  let cur=null; navLinks.forEach(a=>{ const s=document.querySelector(a.getAttribute('href')); if(s && s.getBoundingClientRect().top<120) cur=a; });
+  navLinks.forEach(a=>a.classList.toggle('active',a===cur));
+});
+</script>
+<script src="ai-feedback.js" data-level="B1–B2 (CLIL music)"></script>
+</body>
+</html>

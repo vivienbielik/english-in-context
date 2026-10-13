@@ -201,6 +201,12 @@ input.text-input.ip-badin{border-color:var(--bad); background:var(--bad-tint);}
 .ip-head{font-family:'Fraunces',Georgia,serif; font-weight:700; letter-spacing:.02em; color:var(--teal-deep);}
 textarea.ip-ta{width:100%; min-height:3.2rem; border:1px solid var(--teal); border-radius:8px; padding:.5rem .7rem; font:inherit; font-size:.92rem; margin:.4rem 0; resize:vertical;}
 @media (max-width:640px){ .ip-match{grid-template-columns:1fr;} }
+.explain-box.why-bad{background:var(--terracotta-tint); color:var(--ink); border-left:3px solid var(--terracotta);}
+.explain-box.why-good{background:var(--good-tint); color:var(--good);}
+.ip-chunks{display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.4rem;}
+.ip-labels{display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.5rem;}
+.ip-labels .ip-opt{font-size:.84rem; padding:.38rem .75rem;}
+.sk{color:var(--berry); font-style:italic;}
 </style>
 </head>
 <body>
@@ -211,6 +217,7 @@ textarea.ip-ta{width:100%; min-height:3.2rem; border:1px solid var(--teal); bord
   <div class="wrap">
     <a href="#impersonal">Rules</a>
     <a href="#hacks">Exam Hacks</a>
+    <a href="#extra">More Rules</a>
     <a href="#impexercises">Exercises</a>
   </div>
 </nav>
@@ -219,11 +226,11 @@ textarea.ip-ta{width:100%; min-height:3.2rem; border:1px solid var(--teal); bord
   <div class="hero-inner">
     <span class="kicker">English in Context · C1 · Maturita Exam</span>
     <h1>Science &amp; Technology: The Impersonal Passive</h1>
-    <p class="lede">"It is believed that…", "The drug is thought to have been…": the reporting structures used in medical, transport and technology news, with exam hacks and eight self-checking exercises.</p>
+    <p class="lede">"It is believed that…", "The drug is thought to have been…": the reporting structures used in medical, transport and technology news, with exam hacks, extra rules and exceptions, and fourteen self-checking exercises.</p>
     <div class="hero-meta">
       <div><strong>C1</strong>Level</div>
       <div><strong>~60 min</strong>Self-paced</div>
-      <div><strong>8</strong>Exercises</div>
+      <div><strong>14</strong>Exercises</div>
     </div>
     <p style="margin-top:1.2rem;"><a href="science-technology-module.html" style="color:inherit; font-weight:600;">← Science &amp; Technology: Passive Voice module</a> &nbsp;·&nbsp; <a href="index.html#elt" style="color:inherit; font-weight:600;">English Language Teaching</a></p>
   </div>
@@ -300,12 +307,67 @@ textarea.ip-ta{width:100%; min-height:3.2rem; border:1px solid var(--teal); bord
   <div class="note-box"><strong>🇸🇰 For Slovak speakers:</strong> Slovak often uses <em>vraj, údajne</em> or <em>predpokladá sa, že…</em>. For example, <em>Údajne ho vyvinuli v Japonsku</em> = <em>It is said to have been developed in Japan.</em> Don't translate word for word: <em>✗ It is said him to have…</em></div>
 </section>
 
+<!-- ===================== MORE RULES & EXCEPTIONS ===================== -->
+<section id="extra">
+  <div class="section-head">
+    <span class="tag">Part 2B · Advanced</span>
+    <h2>More Rules &amp; Exceptions</h2>
+    <p>Six advanced points that often appear in C1 tests and keyword transformations. Exercises 8–13 practise them.</p>
+  </div>
+
+  <h3 style="font-size:1.15rem;">1. Verbs that need “It … that”, and verbs that need a different structure</h3>
+  <table class="grammar-table">
+    <tr><th>Verb group</th><th>Pattern</th><th>Example</th></tr>
+    <tr><td>say, think, believe, know, report, expect, estimate, consider, claim, understand</td><td>Both patterns</td><td><em>It is known that bees communicate by dancing.</em> / <em>Bees are known to communicate by dancing.</em></td></tr>
+    <tr><td>hope, suggest, recommend, propose, agree, decide, announce, argue</td><td>Only <strong>It … that</strong></td><td><em>It was decided that the launch would be delayed.</em><br><span style="color:var(--bad);">✗ The launch was decided to be delayed.</span></td></tr>
+    <tr><td>rumour, repute (+ often allege)</td><td>Mostly personal (Pattern B)</td><td><em>The company is rumoured to be developing a foldable laptop.</em><br><em>The clinic is reputed to be the best in Europe.</em></td></tr>
+  </table>
+
+  <h3 style="margin-top:1.8rem; font-size:1.15rem;">2. Reversing the structure: Pattern B → Pattern A</h3>
+  <p>When you go back from <em>Subject + is said to…</em> to <em>It is said that…</em>, the infinitive becomes a normal finite verb again. If the reporting verb is in the past, the that-clause moves one tense back.</p>
+  <table class="grammar-table">
+    <tr><th>Pattern B</th><th>Pattern A</th></tr>
+    <tr><td>The chip <strong>is believed to be</strong> the fastest.</td><td>It is believed that the chip <strong>is</strong> the fastest.</td></tr>
+    <tr><td>Scientists <strong>are reported to be working</strong> on a cure.</td><td>It is reported that scientists <strong>are working</strong> on a cure.</td></tr>
+    <tr><td>The data <strong>is known to have been stolen</strong> last week.</td><td>It is known that the data <strong>was stolen</strong> last week.</td></tr>
+    <tr><td>The drug <strong>was believed to be</strong> safe.</td><td>It was believed that the drug <strong>was</strong> safe.</td></tr>
+    <tr><td>The bridge <strong>was thought to have been damaged</strong>.</td><td>It was thought that the bridge <strong>had been damaged</strong>.</td></tr>
+  </table>
+
+  <h3 style="margin-top:1.8rem; font-size:1.15rem;">3. See, hear, make → the “to” comes back</h3>
+  <p>In the active, <em>see, hear, watch</em> and <em>make</em> take an infinitive <strong>without</strong> <em>to</em>. In the passive, you must add <strong>to</strong>.</p>
+  <div class="cmp">
+    <div><strong>Active</strong>Witnesses <b>saw</b> the drone <b>hit</b> the building.<br>The company <b>made</b> the engineers <b>work</b> overtime.</div>
+    <div><strong>Passive</strong>The drone <b>was seen to hit</b> the building.<br>The engineers <b>were made to work</b> overtime.</div>
+  </div>
+  <p style="margin-top:.8rem;">With <em>see</em> and <em>hear</em>, the <strong>-ing</strong> form is also possible when the action was in progress: <em>The alarm was heard <b>ringing</b>.</em></p>
+  <div class="note-box"><strong>Exception: “let” has no passive.</strong> Use <em>be allowed to</em> (or <em>be permitted to</em>).<br><em>The school didn't let students use AI. → Students <b>weren't allowed to use</b> AI.</em> <span style="color:var(--bad);">✗ Students weren't let to use AI.</span></div>
+
+  <h3 style="margin-top:1.8rem; font-size:1.15rem;">4. Negatives and questions</h3>
+  <p><strong>Negative:</strong> put <em>not</em> on the reporting verb (more common) or before the infinitive. The meaning is almost the same.<br>
+  <em>The minister <b>is not thought to have known</b> about the leak.</em> / <em>The minister <b>is thought not to have known</b> about the leak.</em></p>
+  <p><strong>Question:</strong> invert the reporting verb's <em>be</em>: <em><b>Is</b> the new phone <b>said to be</b> waterproof?</em> · <em>Where <b>is</b> the virus <b>thought to have originated</b>?</em></p>
+
+  <h3 style="margin-top:1.8rem; font-size:1.15rem;">5. It + passive + adjective + to-infinitive</h3>
+  <p>Verbs like <em>consider, think, believe, find</em> can describe an action as good, bad, rude, safe and so on:<br>
+  <em>People consider it dangerous to text while driving. → <b>It is considered dangerous to text</b> while driving.</em><br>
+  <em>It is thought unwise to share your password.</em></p>
+
+  <h3 style="margin-top:1.8rem; font-size:1.15rem;">Exceptions and traps</h3>
+  <div class="note-box"><strong>State verbs have no continuous infinitive.</strong> <em>know, own, believe, contain, cost, belong</em>: <em>The engineers are believed <b>to know</b> the cause.</em> <span style="color:var(--bad);">✗ to be knowing</span></div>
+  <div class="note-box"><strong>Intransitive verbs have no passive infinitive.</strong> <em>originate, happen, occur, die, appear, arrive, fall</em>: <em>The fault is thought <b>to have occurred</b> at night.</em> <span style="color:var(--bad);">✗ to have been occurred</span></div>
+  <div class="note-box"><strong>“There” agrees with the noun after it.</strong> <em>There <b>is</b> said to be a problem. · There <b>are</b> said to have been several power cuts.</em></div>
+  <div class="note-box"><strong>“It says” ≠ “It is said”.</strong> <em>It says on the box that the phone is waterproof</em> (the text on the box tells us). <em>It is said that the phone is waterproof</em> (people in general say so). Never: <span style="color:var(--bad);">✗ The phone says to be waterproof.</span></div>
+  <div class="note-box"><strong>“Is known to” vs “is known as / for”.</strong> <em>Štefánik <b>is known to have been</b> an astronomer</em> (reporting a fact). <em>He <b>is known as</b> a national hero</em> (name / role). <em>He <b>is known for</b> his astronomy work</em> (reason for fame).</div>
+</section>
+
+
 <!-- ===================== EXERCISE BANK: IMPERSONAL PASSIVE ===================== -->
 <section id="impexercises">
   <div class="section-head">
     <span class="tag">Part 3 · Practice</span>
     <h2>Exercise Bank: The Impersonal Passive</h2>
-    <p>Eight self-checking exercise types on medicine, transport and communication. Every answer comes with an explanation: click "Why?" after answering.</p>
+    <p>Fourteen self-checking exercises on medicine, transport, communication and science. If your answer is wrong, the explanation opens automatically. For a correct answer, click "Why?" to see it.</p>
   </div>
 
   <div class="ex-block">
@@ -359,7 +421,52 @@ textarea.ip-ta{width:100%; min-height:3.2rem; border:1px solid var(--teal); bord
   </div>
 
   <div class="ex-block">
-    <div class="ex-head"><span class="ex-num">8</span><h3>Headline to News Report</h3><span class="ex-type">Guided writing</span></div>
+    <div class="ex-head"><span class="ex-num">8</span><h3>Two Clocks: Which Infinitive?</h3><span class="ex-type">Choose the form</span></div>
+    <p class="ex-instructions">Which form of the verb in brackets fills the gap? Click one of the six infinitives.</p>
+    <div class="ex-body card" id="ipClock"></div>
+    <div class="ip-score" id="ipClock-score"></div>
+  </div>
+
+  <div class="ex-block">
+    <div class="ex-head"><span class="ex-num">9</span><h3>Spot the Mistake</h3><span class="ex-type">Error detection</span></div>
+    <p class="ex-instructions">Each sentence has ONE mistake. Click the part of the sentence that is wrong.</p>
+    <div class="ex-body card" id="ipSpot"></div>
+    <div class="ip-score" id="ipSpot-score"></div>
+  </div>
+
+  <div class="ex-block">
+    <div class="ex-head"><span class="ex-num">10</span><h3>Can It Start with the Subject?</h3><span class="ex-type">Pattern A or both patterns</span></div>
+    <p class="ex-instructions">Can each sentence be rewritten with Pattern B (Subject + passive + to-infinitive)? Watch the reporting verb.</p>
+    <div class="ex-body card" id="ipPB"></div>
+    <div class="ip-score" id="ipPB-score"></div>
+  </div>
+
+  <div class="ex-block">
+    <div class="ex-head"><span class="ex-num">11</span><h3>Seen, Made, Allowed</h3><span class="ex-type">Typed answer · auto-check</span></div>
+    <p class="ex-instructions">Complete the passive sentence. Remember: <em>see / hear / make</em> + <strong>to</strong> in the passive, and <em>let</em> → <em>be allowed to</em>.</p>
+    <div class="ex-body card" id="ipSMA"></div>
+    <button class="check-btn" id="ipSMA-check">Check answers</button>
+    <div class="ip-score" id="ipSMA-score"></div>
+  </div>
+
+  <div class="ex-block">
+    <div class="ex-head"><span class="ex-num">12</span><h3>Back to “It … that”</h3><span class="ex-type">Typed answer · reverse transformation</span></div>
+    <p class="ex-instructions">Rewrite the sentence with Pattern A. Type only the missing verb form, then click "Check answers".</p>
+    <div class="ex-body card" id="ipRev"></div>
+    <button class="check-btn" id="ipRev-check">Check answers</button>
+    <div class="ip-score" id="ipRev-score"></div>
+  </div>
+
+  <div class="ex-block">
+    <div class="ex-head"><span class="ex-num">13</span><h3>From Slovak: “vraj”, “údajne”, “predpokladá sa”</h3><span class="ex-type">Translation · auto-check</span></div>
+    <p class="ex-instructions">Translate the Slovak sentence by completing the English one with an impersonal passive. Several reporting verbs are accepted.</p>
+    <div class="ex-body card" id="ipSK"></div>
+    <button class="check-btn" id="ipSK-check">Check answers</button>
+    <div class="ip-score" id="ipSK-score"></div>
+  </div>
+
+  <div class="ex-block">
+    <div class="ex-head"><span class="ex-num">14</span><h3>Headline to News Report</h3><span class="ex-type">Guided writing</span></div>
     <p class="ex-instructions">Turn each headline into a formal sentence using an impersonal passive. Write your version, then compare it with the model answer.</p>
     <div class="ex-body card" id="ipHead"></div>
   </div>
@@ -385,7 +492,7 @@ window.addEventListener('scroll', onScroll);
 onScroll();
 
 /* ================= SHARED: EXPLANATION TOGGLE ================= */
-function ensureExplainBox(div, text){
+function ensureExplainBox(div, text, wrong){
   if (!text) return;
   let box = div.querySelector('.explain-box');
   if (!box){
@@ -402,6 +509,11 @@ function ensureExplainBox(div, text){
   } else {
     box.textContent = text;
   }
+  const btn = box.previousElementSibling;
+  box.classList.toggle('why-bad', !!wrong);
+  box.classList.toggle('why-good', wrong === false);
+  if (wrong) { box.classList.add('shown'); btn.textContent = 'Hide explanation'; }
+  else { box.classList.remove('shown'); btn.textContent = 'Why?'; }
 }
 
 /* ================= IMPERSONAL PASSIVE (Part 4B/4C) ================= */
@@ -423,7 +535,7 @@ function ensureExplainBox(div, text){
         w.querySelectorAll('.ip-opt').forEach(x => x.disabled = true);
         w.children[it.c].classList.add('right');
         if (oi !== it.c) b.classList.add('bad'); else mcRight++;
-        mcDone++; ensureExplainBox(d, it.why);
+        mcDone++; ensureExplainBox(d, it.why, oi !== it.c);
         if (mcDone === MC.length) score('ipMC', mcRight, MC.length);
       };
       w.appendChild(b);
@@ -446,7 +558,7 @@ function ensureExplainBox(div, text){
       const s = d.querySelector('select'); const ok = s.value !== '' && +s.value === SEL[i].c;
       if (ok) got++;
       s.classList.toggle('ip-ok', ok); s.classList.toggle('ip-no', !ok);
-      ensureExplainBox(d, (ok ? '✓ ' : '✗ Correct answer: ' + SEL[i].opts[SEL[i].c] + '. ') + SEL[i].why);
+      ensureExplainBox(d, (ok ? '✓ ' : '✗ Correct answer: ' + SEL[i].opts[SEL[i].c] + '. ') + SEL[i].why, !ok);
     });
     score('ipSel', got, SEL.length);
   };
@@ -465,7 +577,7 @@ function ensureExplainBox(div, text){
       const inp = d.querySelector('input'); const ok = KW[i].ans.map(norm).includes(norm(inp.value));
       if (ok) got++;
       inp.classList.toggle('ip-good', ok); inp.classList.toggle('ip-badin', !ok);
-      ensureExplainBox(d, (ok ? '✓ Correct! ' : '✗ ') + 'Model answer: ' + KW[i].pre + ' ' + KW[i].ans[0] + ' ' + KW[i].post);
+      ensureExplainBox(d, (ok ? '✓ Correct! ' : '✗ ') + 'Model answer: ' + KW[i].pre + ' ' + KW[i].ans[0] + ' ' + KW[i].post, !ok);
     });
     score('ipKW', got, KW.length);
   };
@@ -482,7 +594,7 @@ function ensureExplainBox(div, text){
       b.onclick = () => {
         w.querySelectorAll('.ip-opt').forEach(x => x.disabled = true);
         if (val === it.ok) { b.classList.add('right'); tfRight++; } else { b.classList.add('bad'); [...w.children].find(x => x !== b).classList.add('right'); }
-        tfDone++; ensureExplainBox(d, it.why);
+        tfDone++; ensureExplainBox(d, it.why, val !== it.ok);
         if (tfDone === TF.length) score('ipTF', tfRight, TF.length);
       };
       w.appendChild(b);
@@ -505,7 +617,8 @@ function ensureExplainBox(div, text){
       if (picked === null || b.classList.contains('done')) return;
       if (picked === i) { b.classList.add('done'); const lb = L.children[i]; lb.classList.remove('sel'); lb.classList.add('done'); picked = null; matched++;
         if (matched === MT.length) document.getElementById('ipMatch-score').textContent = 'All matched! 🎉'; }
-      else { b.classList.add('shake'); setTimeout(() => b.classList.remove('shake'), 400); }
+      else { b.classList.add('shake'); setTimeout(() => b.classList.remove('shake'), 400);
+        document.getElementById('ipMatch-score').textContent = '✗ Not this one. Look at the infinitive: to do = general / now, to be doing = in progress now, to have done = before now, to be done / to have been done = passive.'; }
     };
     R.appendChild(b); });
 
@@ -545,9 +658,9 @@ function ensureExplainBox(div, text){
     let got = 0; const lines = [];
     cBox.querySelectorAll('input').forEach(inp => { const k = +inp.dataset.i; const ok = CA[k].map(norm).includes(norm(inp.value));
       if (ok) got++; inp.classList.toggle('ip-good', ok); inp.classList.toggle('ip-badin', !ok);
-      lines.push('(' + (k+1) + ') ' + CA[k][0] + ': ' + CW[k]); });
+      lines.push((ok ? '✓ ' : '✗ ') + '(' + (k+1) + ') ' + CA[k][0] + ': ' + CW[k]); });
     score('ipCloze', got, CA.length);
-    const fb = document.getElementById('ipCloze-fb'); fb.innerHTML = ''; ensureExplainBox(fb, lines.join('  •  '));
+    const fb = document.getElementById('ipCloze-fb'); fb.innerHTML = ''; ensureExplainBox(fb, lines.join('  •  '), got < CA.length);
   };
 
   /* Ex8 headlines */
@@ -560,6 +673,163 @@ function ensureExplainBox(div, text){
     b.onclick = () => { m.classList.toggle('shown'); b.textContent = m.classList.contains('shown') ? 'Hide model answer' : 'Show model answer'; };
     hBox.appendChild(d);
   });
+  /* ===== Ex8 Two clocks ===== */
+  const CLOCK_LABELS = ["to do", "to be doing", "to be done", "to have done", "to have been doing", "to have been done"];
+  const CLOCK = [
+    {"q": "Bees are known ___ (communicate) through dance.", "c": 0, "a": "to communicate", "why": "A general fact, true now → simple infinitive: to communicate."},
+    {"q": "The first PC virus is believed ___ (create) in 1986.", "c": 5, "a": "to have been created", "why": "1986 is earlier than now, and someone created the virus (passive) → to have been created."},
+    {"q": "Scientists are reported ___ (test) a new malaria vaccine at the moment.", "c": 1, "a": "to be testing", "why": "'At the moment' = an action in progress now → to be testing."},
+    {"q": "The new antibiotic is expected ___ (approve) next spring.", "c": 2, "a": "to be approved", "why": "Future after 'expect' + passive (someone will approve it) → to be approved."},
+    {"q": "Hackers are thought ___ (steal) millions of passwords last year.", "c": 3, "a": "to have stolen", "why": "'Last year' is earlier than the thinking (now), and the hackers did it (active) → to have stolen."},
+    {"q": "The researchers are said ___ (study) microplastics for over a decade.", "c": 4, "a": "to have been studying", "why": "'For over a decade' = an earlier action that lasted a long time (and may still continue) → to have been studying."},
+    {"q": "In the 1950s, smoking was not thought ___ (be) dangerous.", "c": 0, "a": "to be", "why": "The thinking and the situation are at the same time (both in the 1950s) → simple infinitive: to be. Don't use 'to have been' just because the sentence is in the past."},
+    {"q": "The power cut is believed ___ (cause) by a cyberattack.", "c": 5, "a": "to have been caused", "why": "The power cut happened before now, and a cyberattack caused it (passive, 'by …') → to have been caused."},
+    {"q": "The Mars rover is reported ___ (discover) traces of ancient water.", "c": 3, "a": "to have discovered", "why": "The discovery happened before the report, and the rover did it (active) → to have discovered."}
+  ];
+  (function(){
+    const box = document.getElementById('ipClock'); let done = 0, right = 0;
+    CLOCK.forEach((it, i) => {
+      const d = document.createElement('div'); d.className = 'poll-q';
+      d.innerHTML = '<div class="q">' + (i+1) + '. ' + esc(it.q) + '</div><div class="ip-labels"></div>';
+      const w = d.querySelector('.ip-labels');
+      CLOCK_LABELS.forEach((lab, li) => {
+        const b = document.createElement('button'); b.type = 'button'; b.className = 'ip-opt'; b.textContent = lab;
+        b.onclick = () => {
+          w.querySelectorAll('.ip-opt').forEach(x => x.disabled = true);
+          w.children[it.c].classList.add('right');
+          const ok = li === it.c; if (ok) right++; else b.classList.add('bad');
+          done++; ensureExplainBox(d, (ok ? '✓ ' : '✗ Correct: ' + it.a + '. ') + it.why, !ok);
+          if (done === CLOCK.length) score('ipClock', right, CLOCK.length);
+        };
+        w.appendChild(b);
+      });
+      box.appendChild(d);
+    });
+  })();
+
+  /* ===== Ex9 Spot the mistake ===== */
+  const SPOT = [
+    {"p": ["The telephone", "is believed", "to be invented", "in 1876."], "w": 2, "why": "The invention happened before now, and it is passive → to have been invented. Correct: The telephone is believed to have been invented in 1876."},
+    {"p": ["The new treatment", "is hoped", "to cure", "the disease."], "w": 1, "why": "'Hope' has no personal passive. Correct: It is hoped that the new treatment will cure the disease."},
+    {"p": ["There", "is said", "to have been", "several power cuts last winter."], "w": 1, "why": "'There' agrees with the noun after it: several power cuts (plural) → There are said to have been several power cuts."},
+    {"p": ["The robot", "was seen", "pick up", "the box without help."], "w": 2, "why": "Active: see + infinitive without 'to'. Passive: be seen + to-infinitive. Correct: The robot was seen to pick up the box."},
+    {"p": ["The disease", "is thought", "to have been originated", "in Asia."], "w": 2, "why": "'Originate' is intransitive, so it has no passive. Correct: The disease is thought to have originated in Asia."},
+    {"p": ["The new phone", "says", "to be", "waterproof."], "w": 1, "why": "The reporting verb must be passive: is said. A phone cannot 'say' anything. Correct: The new phone is said to be waterproof."},
+    {"p": ["The engineers", "are believed", "to be knowing", "the cause of the fault."], "w": 2, "why": "'Know' is a state verb, so it has no continuous form. Correct: The engineers are believed to know the cause of the fault."},
+    {"p": ["Students", "were let", "to use", "calculators in the exam."], "w": 1, "why": "'Let' has no passive. Use 'be allowed to'. Correct: Students were allowed to use calculators in the exam."}
+  ];
+  (function(){
+    const box = document.getElementById('ipSpot'); let done = 0, right = 0;
+    SPOT.forEach((it, i) => {
+      const d = document.createElement('div'); d.className = 'poll-q';
+      d.innerHTML = '<div class="q">Sentence ' + (i+1) + '</div><div class="ip-chunks"></div>';
+      const w = d.querySelector('.ip-chunks');
+      it.p.forEach((part, pi) => {
+        const b = document.createElement('button'); b.type = 'button'; b.className = 'ip-opt'; b.textContent = part;
+        b.onclick = () => {
+          w.querySelectorAll('.ip-opt').forEach(x => x.disabled = true);
+          const ok = pi === it.w;
+          if (ok) { b.classList.add('right'); right++; }
+          else { b.classList.add('bad'); w.children[it.w].classList.add('right'); }
+          done++; ensureExplainBox(d, (ok ? '✓ Well spotted! ' : '✗ The mistake is “' + it.p[it.w] + '”. ') + it.why, !ok);
+          if (done === SPOT.length) score('ipSpot', right, SPOT.length);
+        };
+        w.appendChild(b);
+      });
+      box.appendChild(d);
+    });
+  })();
+
+  /* ===== Ex10 Pattern B possible? ===== */
+  const PB = [
+    {"s": "It is said that the new battery charges in five minutes.", "ok": true, "why": "'Say' works in both patterns: The new battery is said to charge in five minutes."},
+    {"s": "It is hoped that the vaccine will be cheap.", "ok": false, "why": "'Hope' works only with It … that. ✗ The vaccine is hoped to be cheap."},
+    {"s": "It is recommended that patients rest for a week.", "ok": false, "why": "'Recommend' works with It … that. For a personal version, change the verb: Patients are advised to rest for a week."},
+    {"s": "It is known that dolphins sleep with one eye open.", "ok": true, "why": "'Know' works in both patterns: Dolphins are known to sleep with one eye open."},
+    {"s": "It was agreed that the launch would be delayed.", "ok": false, "why": "'Agree' works only with It … that. ✗ The launch was agreed to be delayed."},
+    {"s": "It is estimated that two billion people use the app.", "ok": true, "why": "'Estimate' works in both patterns: Two billion people are estimated to use the app."},
+    {"s": "It was decided that the factory would close.", "ok": false, "why": "'Decide' works only with It … that. ✗ The factory was decided to close."},
+    {"s": "It is reported that the CEO has resigned.", "ok": true, "why": "'Report' works in both patterns. Earlier action → The CEO is reported to have resigned."},
+    {"s": "It has been suggested that phones should be banned in schools.", "ok": false, "why": "'Suggest' works only with It … that. ✗ Phones have been suggested to be banned."}
+  ];
+  (function(){
+    const box = document.getElementById('ipPB'); let done = 0, right = 0;
+    const LABS = ['✓ Yes, Pattern B works', '✗ No, only “It … that”'];
+    PB.forEach((it, i) => {
+      const d = document.createElement('div'); d.className = 'poll-q';
+      d.innerHTML = '<div class="q">' + (i+1) + '. ' + esc(it.s) + '</div><div class="ip-opts"></div>';
+      const w = d.querySelector('.ip-opts'); const correct = it.ok ? 0 : 1;
+      LABS.forEach((lab, li) => {
+        const b = document.createElement('button'); b.type = 'button'; b.className = 'ip-opt'; b.textContent = lab;
+        b.onclick = () => {
+          w.querySelectorAll('.ip-opt').forEach(x => x.disabled = true);
+          w.children[correct].classList.add('right');
+          const ok = li === correct; if (ok) right++; else b.classList.add('bad');
+          done++; ensureExplainBox(d, (ok ? '✓ ' : '✗ ') + it.why, !ok);
+          if (done === PB.length) score('ipPB', right, PB.length);
+        };
+        w.appendChild(b);
+      });
+      box.appendChild(d);
+    });
+  })();
+
+  /* ===== shared typed-answer builder for Ex11–13 ===== */
+  function typedEx(id, data, srcLabel){
+    const box = document.getElementById(id);
+    data.forEach((it, i) => {
+      const d = document.createElement('div'); d.className = 'cloze-item';
+      d.innerHTML = '<div class="ip-src">' + (i+1) + '. ' + (srcLabel ? srcLabel(it) : esc(it.src)) + '</div>→ ' + esc(it.pre) + ' <input type="text" class="text-input" style="width:min(260px,100%);" aria-label="Answer ' + (i+1) + '"> ' + esc(it.post);
+      box.appendChild(d);
+    });
+    document.getElementById(id + '-check').onclick = () => {
+      let got = 0;
+      box.querySelectorAll('.cloze-item').forEach((d, i) => {
+        const it = data[i]; const inp = d.querySelector('input');
+        const ok = it.ans.map(norm).includes(norm(inp.value));
+        if (ok) got++;
+        inp.classList.toggle('ip-good', ok); inp.classList.toggle('ip-badin', !ok);
+        const model = (it.pre + ' ' + it.ans[0] + ' ' + it.post).replace(/\s+/g, ' ').replace(/\s([.,])/g, '$1').trim();
+        const msg = ok ? '✓ Correct! ' + it.why
+          : (inp.value.trim() ? '✗ “' + inp.value.trim() + '” is not right here. ' : '✗ You left this gap empty. ') + 'Model answer: ' + model + ' ' + it.why;
+        ensureExplainBox(d, msg, !ok);
+      });
+      score(id, got, data.length);
+    };
+  }
+
+  /* ===== Ex11 Seen, made, allowed ===== */
+  typedEx('ipSMA', [
+    {"src": "Witnesses saw the drone hit the building.", "pre": "The drone was seen", "post": "the building.", "ans": ["to hit", "hitting"], "why": "Active 'saw … hit' (no 'to') → passive 'was seen to hit'."},
+    {"src": "The company made the engineers work overtime.", "pre": "The engineers were made", "post": "overtime.", "ans": ["to work"], "why": "Active 'made … work' → passive 'were made to work'. The 'to' comes back in the passive."},
+    {"src": "The school didn't let students use AI in the test.", "pre": "Students were not", "post": "AI in the test.", "ans": ["allowed to use", "permitted to use"], "why": "'Let' has no passive form, so we use 'be allowed to'."},
+    {"src": "Someone heard the alarm ring twice.", "pre": "The alarm was heard", "post": "twice.", "ans": ["to ring", "ringing"], "why": "Active 'heard … ring' → passive 'was heard to ring' (or 'was heard ringing')."},
+    {"src": "The crew made the passengers leave the train.", "pre": "The passengers were", "post": "the train.", "ans": ["made to leave", "forced to leave"], "why": "Make + object + verb → be made to + verb."},
+    {"src": "Nobody let the journalists film inside the lab.", "pre": "The journalists were not", "post": "inside the lab.", "ans": ["allowed to film", "permitted to film"], "why": "'Nobody let' is negative → were not allowed to film. ✗ were not let to film."}
+  ]);
+
+  /* ===== Ex12 Back to It … that ===== */
+  typedEx('ipRev', [
+    {"src": "The robot is said to have been designed in Japan.", "pre": "It is said that the robot", "post": "in Japan.", "ans": ["was designed", "has been designed"], "why": "'To have been designed' = an earlier passive action → was designed (or has been designed)."},
+    {"src": "The new chip is believed to be the fastest in the world.", "pre": "It is believed that the new chip", "post": "the fastest in the world.", "ans": ["is"], "why": "'To be' with a present reporting verb = same time, now → is."},
+    {"src": "Scientists are reported to be working on a cure.", "pre": "It is reported that scientists", "post": "on a cure.", "ans": ["are working", "are currently working"], "why": "'To be working' = in progress now → present continuous: are working."},
+    {"src": "The satellite is expected to land in the Pacific.", "pre": "It is expected that the satellite", "post": "in the Pacific.", "ans": ["will land", "is going to land"], "why": "After 'expect', the simple infinitive refers to the future → will land."},
+    {"src": "The hackers are thought to have been planning the attack for months.", "pre": "It is thought that the hackers", "post": "the attack for months.", "ans": ["have been planning", "had been planning"], "why": "'To have been planning' = an earlier action that lasted → have been planning."},
+    {"src": "The data is known to have been stolen last week.", "pre": "It is known that the data", "post": "last week.", "ans": ["was stolen"], "why": "'Last week' is a finished past time → past simple passive: was stolen (not 'has been stolen' with 'last week')."},
+    {"src": "The drug was believed to be safe.", "pre": "It was believed that the drug", "post": "safe.", "ans": ["was"], "why": "The reporting verb is past and the infinitive is simple (same time) → past simple: was."},
+    {"src": "The bridge was thought to have been damaged by the storm.", "pre": "It was thought that the bridge", "post": "by the storm.", "ans": ["had been damaged"], "why": "Past reporting verb + earlier passive action → past perfect passive: had been damaged."}
+  ]);
+
+  /* ===== Ex13 From Slovak ===== */
+  typedEx('ipSK', [
+    {"sk": "Nový telefón je vraj vodotesný.", "pre": "The new phone", "post": "waterproof.", "ans": ["is said to be", "is supposed to be", "is believed to be", "is thought to be", "is reported to be", "is claimed to be", "is rumoured to be", "is rumored to be"], "why": "'Vraj' = people say it is true now → is said to be."},
+    {"sk": "Vakcínu údajne vyvinuli v Oxforde.", "pre": "The vaccine", "post": "in Oxford.", "ans": ["is said to have been developed", "is reported to have been developed", "is believed to have been developed", "is thought to have been developed", "is claimed to have been developed", "is alleged to have been developed", "is supposed to have been developed"], "why": "'Údajne' + past action, and someone developed the vaccine (passive) → is said to have been developed. ✗ It is said the vaccine to have…"},
+    {"sk": "Očakáva sa, že ceny elektriny stúpnu.", "pre": "Electricity prices", "post": ".", "ans": ["are expected to rise", "are expected to go up", "are expected to increase"], "why": "'Očakáva sa' = expect; future meaning → are expected to rise. 'Rise' is intransitive: ✗ to be risen."},
+    {"sk": "Predpokladá sa, že vedci pracujú na novom lieku.", "pre": "Scientists", "post": "on a new drug.", "ans": ["are thought to be working", "are believed to be working", "are assumed to be working", "are presumed to be working", "are supposed to be working", "are understood to be working"], "why": "'Pracujú' = in progress now → to be working: Scientists are thought to be working on a new drug."},
+    {"sk": "V laboratóriu vraj bolo niekoľko chýb.", "pre": "There", "post": "several errors in the lab.", "ans": ["are said to have been", "are believed to have been", "are thought to have been", "are reported to have been", "are supposed to have been", "are claimed to have been"], "why": "There + plural noun (several errors) → are; past situation → to have been: There are said to have been several errors."},
+    {"sk": "Je známe, že Štefánik bol astronóm.", "pre": "Štefánik", "post": "an astronomer.", "ans": ["is known to have been", "was known to be"], "why": "We know it now; he was an astronomer in the past → is known to have been. Don't confuse with 'is known as' (name / role)."}
+  ], it => '<span class="sk">🇸🇰 ' + esc(it.sk) + '</span>');
+
 })();
 </script>
 </body>

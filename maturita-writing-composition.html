@@ -65,6 +65,18 @@
 
   /* structure diagram */
   .plan{display:flex;flex-direction:column;gap:8px;}
+  .feat{background:#fff;border:1px solid var(--line);border-top:4px solid var(--green);border-radius:8px;padding:14px 16px;font-size:14.3px;}
+  .feat b{display:block;font-family:Georgia,serif;font-size:16px;color:var(--ink);margin-bottom:4px;}
+  .feat .ex{font-size:13.5px;}
+  .plan .blk.pro{border-left-color:var(--green);background:#f4f8f6;}
+  .plan .blk.con{border-left-color:var(--wrong);background:#fdf5f4;}
+  .plan .blk.mid{border-left-color:var(--blue);background:#f2f6fb;}
+  .lk.pro{border-top:4px solid var(--green);} .lk.con{border-top:4px solid var(--wrong);} .lk.neu{border-top:4px solid var(--blue);} .lk.end{border-top:4px solid var(--amber);}
+  .genre-tip{background:var(--blue-bg);border-left:4px solid var(--blue);border-radius:0 8px 8px 0;padding:10px 14px;font-size:14px;margin:0 0 12px;}
+  .fb-genre{border-radius:8px;padding:10px 14px;font-size:14.5px;margin:12px 0 0;}
+  .fb-genre.ok{background:var(--right-bg);border-left:4px solid var(--green);}
+  .fb-genre.part{background:var(--amber-bg);border-left:4px solid var(--amber);}
+  .fb-genre.no{background:var(--wrong-bg);border-left:4px solid var(--wrong);}
   .plan .blk{display:grid;grid-template-columns:130px 1fr 74px;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-left:5px solid var(--rust);border-radius:8px;padding:10px 14px;font-size:14.5px;}
   .plan .blk.body{border-left-color:var(--green);}
   .plan .blk.end{border-left-color:var(--amber);}
@@ -229,13 +241,14 @@
 <nav class="sections" id="nav">
   <a href="#facts"><b>1</b>Exam facts</a>
   <a href="#structure"><b>2</b>Structure</a>
-  <a href="#linkers"><b>3</b>Linking words</a>
-  <a href="#starters"><b>4</b>Sentence starters</a>
-  <a href="#tasks"><b>5</b>Past tasks</a>
-  <a href="#models"><b>6</b>Model compositions</a>
-  <a href="#compare"><b>7</b>Weak vs strong</a>
-  <a href="#practice"><b>8</b>Exercises &amp; worksheets</a>
-  <a href="#lab"><b>9</b>Writing lab</a>
+  <a href="#foragainst"><b>3</b>For &amp; against essay</a>
+  <a href="#linkers"><b>4</b>Linking words</a>
+  <a href="#starters"><b>5</b>Sentence starters</a>
+  <a href="#tasks"><b>6</b>Past tasks</a>
+  <a href="#models"><b>7</b>Model compositions</a>
+  <a href="#compare"><b>8</b>Weak vs strong</a>
+  <a href="#practice"><b>9</b>Exercises &amp; worksheets</a>
+  <a href="#lab"><b>10</b>Writing lab</a>
 </nav>
 
 <!-- =============== 1 FACTS =============== -->
@@ -285,15 +298,102 @@
   <h3>Which genre? Know the differences</h3>
   <div class="grid3">
     <div class="card"><h4>Opinion essay</h4><p style="font-size:14.5px">Formal. State your view in the introduction and support it with reasons and examples. Restate it in the conclusion.</p><p style="font-size:14px" class="ex">“In my view…”, “I firmly believe…”, “To sum up, …”</p></div>
-    <div class="card"><h4>For-and-against / balanced essay</h4><p style="font-size:14.5px">Formal and objective. Present both sides fairly; give your opinion only in the conclusion.</p><p style="font-size:14px" class="ex">“On the one hand…”, “Critics argue that…”, “On balance, …”</p></div>
+    <div class="card"><h4>For-and-against / balanced essay</h4><p style="font-size:14.5px">Formal and objective. Present both sides fairly; give your opinion only in the conclusion.</p><p style="font-size:14px" class="ex">“On the one hand…”, “Critics argue that…”, “On balance, …”</p><p style="font-size:13.5px;margin-top:6px"><a href="#foragainst">Full guide in Part 3 →</a></p></div>
     <div class="card"><h4>Article (school magazine)</h4><p style="font-size:14.5px">Semi-formal and lively. Catchy title, address the reader directly, rhetorical questions, end with advice or a question.</p><p style="font-size:14px" class="ex">“Have you ever wondered…?”, “Why not…?”</p></div>
   </div>
   <div class="note">In all three genres: <b>no contractions</b> in essays (<i>do not</i>, not <i>don't</i>), no <i>Hi everyone!</i> or <i>Bye!</i>, and no lists with bullet points — write full paragraphs.</div>
 </section>
 
+<!-- =============== 3 FOR AND AGAINST =============== -->
+<section class="part" id="foragainst">
+  <div class="part-num">Part 3</div>
+  <h2 class="pt">Genre focus: the for-and-against essay</h2>
+  <p class="pt-lede">A for-and-against essay (also called a <b>balanced</b> or <b>discursive</b> essay) looks at a question from <b>both sides</b> before you give your own view. At the Maturita, the task usually names it (<i>Balanced essay</i>, <i>For-and-against essay</i>), or it gives a point such as <i>the advantages and disadvantages of…</i> or <i>arguments for and against…</i>. The examiner checks that the essay is fair, formal and well organised.</p>
+
+  <h3>Typical features</h3>
+  <div class="grid3">
+    <div class="feat"><b>1 · Balanced</b>Both sides get roughly the same space and the same number of strong arguments. One weak sentence for the other side is not enough.</div>
+    <div class="feat"><b>2 · Neutral introduction</b>Present the issue and say why people disagree. Do <u>not</u> give your opinion yet.<div class="ex">…has sparked a lively debate.</div></div>
+    <div class="feat"><b>3 · Opinion only at the end</b>Your personal view appears in the conclusion, after you have weighed up both sides.<div class="ex">Weighing up both sides, I believe…</div></div>
+    <div class="feat"><b>4 · Impersonal &amp; formal</b>Report what others think instead of using <i>I</i> in the body. No contractions, no slang, no exclamation marks.<div class="ex">It is often argued that… / Critics claim…</div></div>
+    <div class="feat"><b>5 · Hedged, careful claims</b>Avoid extreme generalisations such as <i>everybody</i> or <i>always</i>. Soften them.<div class="ex">tend to, may, many students, it could be argued</div></div>
+    <div class="feat"><b>6 · Support every argument</b>Each paragraph has a topic sentence, an explanation and an example, a reason or a consequence.<div class="ex">topic sentence → reason → example</div></div>
+  </div>
+
+  <h3>Paragraph plan for a Maturita for-and-against essay</h3>
+  <p style="max-width:72ch">The Maturita task always has <b>three content points</b>. In most balanced tasks they fit this plan: point 1 = the arguments <i>for</i>, point 2 = the arguments <i>against</i>, point 3 = a solution, a comparison or your own experience. If a point asks for both sides at once (for example <i>quality</i> of two kinds of products), weigh it up inside that one paragraph.</p>
+  <div class="plan">
+    <div class="blk"><b>Title</b><span>Copy the title from the task. It is often a question.</span><span class="w">—</span></div>
+    <div class="blk"><b>Introduction</b><span>Hook (a fact, a trend, a question) + present the issue in your own words + say that opinions differ. No opinion yet.</span><span class="w">~35 words</span></div>
+    <div class="blk pro"><b>Body 1 · For</b><span>Content point 1. Topic sentence + 2 arguments in favour + an example or a result.</span><span class="w">~50 words</span></div>
+    <div class="blk con"><b>Body 2 · Against</b><span>Content point 2. Topic sentence + 2 arguments against, equally strong + an example.</span><span class="w">~50 words</span></div>
+    <div class="blk mid"><b>Body 3</b><span>Content point 3. A compromise, a solution, a comparison or your experience.</span><span class="w">~45 words</span></div>
+    <div class="blk end"><b>Conclusion</b><span>Sum up both sides briefly + give your balanced opinion (with a condition) + a final thought.</span><span class="w">~35 words</span></div>
+  </div>
+
+  <h3>Opinion essay or for-and-against essay?</h3>
+  <div class="tw"><table class="t">
+    <tr><th></th><th>Opinion essay</th><th>For-and-against essay</th></tr>
+    <tr><td><b>Introduction</b></td><td>States your opinion clearly.</td><td>Presents the issue neutrally. No opinion.</td></tr>
+    <tr><td><b>Body</b></td><td>Reasons that <b>support</b> your view, plus one opposing view that you reject.</td><td>Arguments <b>for</b> and arguments <b>against</b> in balance.</td></tr>
+    <tr><td><b>Voice</b></td><td><i>I firmly believe…, In my view…</i></td><td>Mostly impersonal: <i>It is argued…, Opponents claim…</i></td></tr>
+    <tr><td><b>Conclusion</b></td><td>Restates the opinion in new words.</td><td>Weighs up both sides, then gives your opinion for the first time.</td></tr>
+  </table></div>
+
+  <h3>Linking words and phrases for this genre</h3>
+  <div class="grid2">
+    <div class="lk neu"><h4><span class="dot" style="background:var(--blue)"></span>Introducing the debate</h4>
+      <div class="chips"><span class="chip adv">…is a controversial issue.</span><span class="chip adv">…has sparked a lively debate.</span><span class="chip adv">Opinions are divided on…</span><span class="chip">Many people wonder whether…</span><span class="chip adv">There are strong arguments on both sides.</span></div>
+      <p class="ex">Whether teenagers should work part-time <b>is a controversial issue</b>.</p></div>
+    <div class="lk neu"><h4><span class="dot" style="background:var(--blue)"></span>Reporting views impersonally</h4>
+      <div class="chips"><span class="chip adv">It is widely believed that…</span><span class="chip adv">It is often argued that…</span><span class="chip adv">It could be argued that…</span><span class="chip adv">There are those who claim…</span><span class="chip adv">…is thought / said to…</span></div>
+      <p class="ex"><b>It is often argued that</b> online lessons save time and money.</p></div>
+    <div class="lk pro"><h4><span class="dot" style="background:var(--green)"></span>Arguments for</h4>
+      <div class="chips"><span class="chip adv">Advocates / Proponents of… argue that…</span><span class="chip adv">The main argument in favour of… is…</span><span class="chip adv">One major advantage of… is…</span><span class="chip">Supporters say that…</span><span class="chip adv">…is beneficial in that…</span></div>
+      <p class="ex"><b>The main argument in favour of</b> uniforms <b>is</b> that they reduce peer pressure.</p></div>
+    <div class="lk con"><h4><span class="dot" style="background:var(--wrong)"></span>Arguments against</h4>
+      <div class="chips"><span class="chip adv">Opponents / Critics of… claim that…</span><span class="chip adv">A major drawback of… is…</span><span class="chip adv">The case against… is that…</span><span class="chip adv">Sceptics point out that…</span><span class="chip">One disadvantage is…</span></div>
+      <p class="ex"><b>Sceptics point out that</b> mass tourism can drive up house prices.</p></div>
+    <div class="lk neu"><h4><span class="dot" style="background:var(--blue)"></span>Moving to the other side</h4>
+      <div class="chips"><span class="chip">On the one hand,… On the other hand,…</span><span class="chip adv">Conversely,</span><span class="chip adv">That said,</span><span class="chip adv">While it is true that…, …</span><span class="chip adv">Admittedly,… Even so,…</span></div>
+      <p class="ex"><b>While it is true that</b> phones help with research, they can also distract.</p></div>
+    <div class="lk end"><h4><span class="dot" style="background:var(--amber)"></span>A balanced conclusion</h4>
+      <div class="chips"><span class="chip adv">Weighing up both sides,</span><span class="chip adv">Having considered both sides,</span><span class="chip adv">On balance,</span><span class="chip adv">…the benefits outweigh the drawbacks</span><span class="chip adv">provided that / as long as</span></div>
+      <p class="ex"><b>On balance</b>, the benefits <b>outweigh the drawbacks</b>, <b>provided that</b> the job is flexible.</p></div>
+  </div>
+  <div class="note"><b>Grammar that impresses here:</b> the impersonal passive (<i>It is believed that…, Phones are said to…</i>), participle clauses (<i>Weighing up both sides, …</i>), <i>neither… nor</i>, and 2nd conditionals for proposals (<i>A ban would reduce…</i>).</div>
+
+  <h3>Model essay</h3>
+  <div class="essay-wrap">
+    <div class="paper hl labels" id="faPaper"></div>
+    <div class="side">
+      <div class="box"><h4>The task — practice</h4><div style="font-size:13.5px"><b>Should Mobile Phones Be Banned at School?</b> <span class="ex">For-and-against essay</span><ul style="margin:4px 0 0;padding-left:18px"><li>the arguments for banning mobile phones at school</li><li>the arguments against a ban</li><li>a fair compromise your school could adopt</li></ul></div></div>
+      <div class="box"><h4>Why this answer scores well</h4><ul style="margin:0;padding-left:18px;font-size:13.8px">
+        <li style="margin-bottom:4px">The introduction is neutral: it presents the debate but takes no side.</li>
+        <li style="margin-bottom:4px">Paragraphs 2 and 3 are equally long and equally strong.</li>
+        <li style="margin-bottom:4px">Impersonal reporting: <i>advocates argue, It is widely believed, opponents point out</i>.</li>
+        <li style="margin-bottom:4px">The writer's opinion appears only in the conclusion, with a condition: <i>Provided that…</i></li>
+        <li style="margin-bottom:4px">Range of grammar: relative clauses, passive, <i>neither… nor</i>, participle clause, <i>would</i> for a proposal.</li></ul></div>
+      <div class="toolbar" style="margin-top:0"><a class="btn" href="#lab" onclick="setLabTask('p10')">Write it in the Lab</a></div>
+    </div>
+  </div>
+
+  <div class="exercise" id="fa1" style="margin-top:22px"><div class="lbl">Quick check</div><h4 class="t">For, against, conclusion — or wrong style?</h4>
+    <p class="instr">Task: <b>Should Students Have Part-Time Jobs?</b> Decide where each sentence belongs. Choose <i>Wrong style</i> if it breaks the rules of a for-and-against essay.</p>
+    <div id="fa1Host"></div>
+    <ol class="fb" id="fa1_fb" style="padding-left:20px;margin-top:12px"></ol>
+    <div class="toolbar"><button class="btn" onclick="checkSel('fa1')">Check</button><button class="btn secondary" onclick="resetEx('fa1')">Reset</button></div><div class="res" id="fa1_res"></div>
+  </div>
+
+  <div class="hack"><h4>Practise it with AI feedback</h4>
+    <p style="margin:0 0 8px">Four for-and-against tasks are ready in the Writing Lab (Part 10). When you click <b>Evaluate my composition</b>, the AI examiner marks the four Maturita criteria <b>and</b> runs a genre check: is the introduction neutral, are both sides balanced, and does your opinion appear only in the conclusion?</p>
+    <div class="toolbar" style="margin:0"><a class="btn green" href="#lab" onclick="setLabTask('p10')">Mobile phones at school</a><a class="btn green" href="#lab" onclick="setLabTask('p11')">Part-time jobs</a><a class="btn green" href="#lab" onclick="setLabTask('p12')">Online learning</a><a class="btn green" href="#lab" onclick="setLabTask('p13')">Tourism</a></div>
+  </div>
+</section>
+
 <!-- =============== 3 LINKERS =============== -->
 <section class="part" id="linkers">
-  <div class="part-num">Part 3</div>
+  <div class="part-num">Part 4</div>
   <h2 class="pt">Advanced linking words</h2>
   <p class="pt-lede">Linking words hold your composition together and are checked under <b>Organisation</b>. Words in <span class="chip adv" style="font-size:12.5px">green</span> are especially good at an advanced level. Vary them — never start three sentences with <i>Also</i>.</p>
 
@@ -357,7 +457,7 @@
 
 <!-- =============== 4 STARTERS =============== -->
 <section class="part" id="starters">
-  <div class="part-num">Part 4</div>
+  <div class="part-num">Part 5</div>
   <h2 class="pt">Sentence starters</h2>
   <p class="pt-lede">Ready-made beginnings for each part of the composition. Learn five or six you like and practise adapting them to any topic.</p>
   <div class="grid2">
@@ -440,7 +540,7 @@
 
 <!-- =============== 5 TASKS =============== -->
 <section class="part" id="tasks">
-  <div class="part-num">Part 5</div>
+  <div class="part-num">Part 6</div>
   <h2 class="pt">Tasks from previous years</h2>
   <p class="pt-lede">Official PFIČ tasks for English B2 published by NIVAM (formerly NÚCEM), plus extra practice tasks written in the same format. Click <b>Write it in the Lab</b> to practise any of them.</p>
   <div class="filter" id="taskFilter">
@@ -453,9 +553,9 @@
 
 <!-- =============== 6 MODELS =============== -->
 <section class="part" id="models">
-  <div class="part-num">Part 6</div>
+  <div class="part-num">Part 7</div>
   <h2 class="pt">Model compositions</h2>
-  <p class="pt-lede">Four model answers to real Maturita tasks, each between 200 and 220 words. Turn on the highlights to see how the linking words and the paragraph plan work.</p>
+  <p class="pt-lede">Five model answers, four to real Maturita tasks and one for-and-against practice task, each between 200 and 220 words. Turn on the highlights to see how the linking words and the paragraph plan work.</p>
   <div class="tabs" id="modelTabs"></div>
   <div class="essay-wrap">
     <div class="paper" id="paper"></div>
@@ -472,7 +572,7 @@
 
 <!-- =============== 7 COMPARE =============== -->
 <section class="part" id="compare">
-  <div class="part-num">Part 7</div>
+  <div class="part-num">Part 8</div>
   <h2 class="pt">Weak vs strong: the same task, two answers</h2>
   <div class="task" style="margin:10px 0 20px"><span class="yr">Maturita 2023</span>
     <div class="topic">Nature and us · Essay for a school magazine competition</div>
@@ -506,7 +606,7 @@
 
 <!-- =============== 8 PRACTICE =============== -->
 <section class="part" id="practice">
-  <div class="part-num">Part 8</div>
+  <div class="part-num">Part 9</div>
   <h2 class="pt">Exercises: correct or incorrect?</h2>
   <p class="pt-lede">Six self-checking exercises based on the mistakes Maturita students make most often.</p>
 
@@ -528,7 +628,7 @@
 
 <!-- =============== 9 LAB =============== -->
 <section class="part" id="lab">
-  <div class="part-num">Part 9</div>
+  <div class="part-num">Part 10</div>
   <h2 class="pt">Writing lab</h2>
   <p class="pt-lede">Choose a task and write your composition. The counter shows when you reach the 200–220 range, and the linker detector lists the linking words you have used. Your draft is kept in this browser only. When you finish, click <b>Evaluate my composition</b> to get AI feedback based on the four Maturita criteria. Do not write your name in the text.</p>
   <div class="lab">
@@ -569,7 +669,7 @@
 
 <script>
 document.getElementById('yr').textContent = new Date().getFullYear();
-const ESSAYS = {"place": "Everyone has a place they return to in their imagination whenever everyday life becomes too hectic. For me, it is not a busy capital city but the Lofoten Islands, an archipelago off the north-west coast of Norway.\n\nPicture jagged mountains rising out of a turquoise sea, red fishing cabins standing on wooden stilts and beaches as white as those in the Caribbean. Although the weather is often cold and unpredictable, the atmosphere is calm, especially under the midnight sun or the dancing northern lights.\n\nThere are two main reasons why the islands attract me so much. First and foremost, I have always been fascinated by wild nature, and Lofoten offers some of the most breathtaking hiking trails in Europe. Secondly, I am drawn to the slow pace of life there, where people seem to live in harmony with the seasons rather than with their smartphones.\n\nIf I had the chance to spend a few months there, I believe it would change my life considerably. At present, my days are filled with deadlines, notifications and constant noise. On the islands, however, I would learn to slow down, appreciate silence and focus on what matters.\n\nAll things considered, Lofoten is far more than a holiday destination for me. It represents the kind of life I would like to lead one day.", "reading": "Walk into any school canteen and you will see dozens of students scrolling through short videos. It is no wonder, then, that many people claim reading books is becoming less important for young people. But is that really the case?\n\nPersonally, I cannot imagine my life without books. Reading has not only broadened my vocabulary but also taught me to see the world through other people's eyes. Whenever I feel stressed, a good novel is the best way to switch off.\n\nWhat about printed books? On the one hand, nothing compares with the smell of new paper, and reading in print is much kinder to your eyes than staring at a screen. What is more, you are not constantly distracted by notifications. On the other hand, paper books are expensive, heavy to carry and take up a lot of space, whereas an e-reader can store thousands of titles.\n\nLast but not least, have you ever tried reading in English? At first, it may seem challenging, but it is one of the most effective ways to improve your language skills. You pick up new expressions naturally and, as a result, your own writing improves too.\n\nSo, next time you reach for your phone, why not pick up a book instead? You might be surprised how much you enjoy it.", "career": "In today's competitive world, many young people feel they have to choose between a successful career and a happy family life. In my opinion, however, the two do not necessarily exclude each other.\n\nA good example of someone who has managed to combine both is my aunt, who runs a small but thriving architecture studio in Nitra. Despite her demanding job, she always makes time for her two children, and she is living proof that success does not have to come at the expense of family.\n\nNevertheless, it cannot be denied that work has a significant influence on family life. Long working hours, business trips and constant availability on the phone often lead to stress and tension at home. Consequently, parents may miss important moments in their children's lives. On the other hand, a stable income gives families financial security and more opportunities, for instance to travel or to study.\n\nAs for my own future, I would like to become a doctor, which is admittedly a very time-consuming profession. Even so, I intend to find a healthy work-life balance, perhaps by working part-time while my children are small.\n\nTo sum up, I firmly believe that a career and a family life can go hand in hand, provided that we set clear priorities.", "products": "When we go shopping, we are faced with a huge variety of goods from all over the world. As a result, many consumers wonder whether they should give preference to Slovak products or foreign ones.\n\nAs far as quality is concerned, there is no simple answer. Slovak food, such as dairy products or honey, is often fresher and contains fewer preservatives because it does not have to be transported over long distances. However, when it comes to electronics or clothing, foreign brands usually offer a wider choice and more advanced technology.\n\nPrice is another important factor. Imported goods made in countries with lower labour costs tend to be cheaper, which is why many families on a limited budget choose them. Slovak products, by contrast, are sometimes more expensive, even though they are made locally.\n\nThere are strong arguments in favour of supporting Slovak production. Buying local creates jobs, helps small farmers and reduces the carbon footprint of transport. On the other hand, it would be unrealistic to buy only Slovak goods, since many products are simply not manufactured here.\n\nIn conclusion, I believe the best approach is a sensible balance. Whenever possible, we should choose quality local products, but we should not be afraid of foreign ones when they offer better value.", "strong": "In recent years, more and more people have been swapping crowded seaside resorts for quiet farms and mountain villages. Agro-tourism is clearly on the rise and, in my view, there are several good reasons for this trend.\n\nFirst of all, many people who live in cities suffer from stress and constant noise. Spending a few days in the countryside allows them to slow down and breathe fresh air. Moreover, visitors can taste fresh, home-made food and learn how it is produced, which is particularly appealing to families with children.\n\nSlovakia offers countless opportunities for this kind of holiday. Apart from world-famous mountains such as the High Tatras, there are picturesque regions like Orava or Kysuce, where tourists can stay on family farms, ride horses or help with the harvest. Last summer, for instance, my family spent a week on a sheep farm near Detva, and it was one of the most relaxing holidays we have ever had.\n\nEnjoying nature, however, also means protecting it. In my region, I regularly take part in clean-up events organised by our school, and I always try to travel by bike or train rather than by car. It is a small contribution, but it matters.\n\nTo conclude, agro-tourism is an excellent way to rediscover nature, provided that we treat it with respect.", "weak": "Hi everyone! Nowadays people like enjoying nature. I think it is because of many reasons. People are stressed in the cities and they want relax. Also the food in countryside is more better and more healthy. Also in the countryside is quiet. Also it is cheaper then hotels by the sea. In Slovakia there is many possibilities. We have mountains, lakes and farms. For example I was on a farm with my family last summer and it was super cool, we were riding horses and we were eating home cheese and I liked it very much and my sister liked it too. You can also go to the Tatras or Slovak Paradise. There are also many caves and castles which are very old and very interesting and many people visit them every year. Slovakia is very beautiful country and a lot of tourists comes here from other countries like Poland, Hungary or Czech Republic. In conclusion, I think that nature is very important and people should enjoy it more because it is good for them. Bye!", "transport": "Transport plays a huge role in my everyday life. I live in a small village near Levice, so I have to commute to school by bus every day. The journey takes almost forty minutes, which means I have to get up very early. On the other hand, I can use the time to revise or listen to music.\n\nWhen it comes to protecting the environment, I try to be responsible. Whenever the weather is nice, I cycle to the train station instead of asking my parents to drive me. In addition, my friends and I share rides when we go to concerts in Nitra.\n\nAll in all, transport makes my life easier, but we should all think about its impact on the planet."};
+const ESSAYS = {"phones": "Hardly a day goes by without a headline about teenagers and their screens. As several European countries have restricted smartphones in classrooms, the question of whether Slovak schools should follow suit has sparked a lively debate.\n\nOn the one hand, advocates of a ban argue that phones are a constant source of distraction. It is widely believed that students who check notifications during lessons find it harder to concentrate and remember information. Moreover, a phone-free school day could encourage face-to-face conversation and reduce cyberbullying, which often begins with a photo taken without permission.\n\nOn the other hand, opponents of a total ban point out that smartphones can be valuable learning tools. Students use them to look up unfamiliar words, take part in online quizzes or photograph notes from the whiteboard. Furthermore, many parents feel reassured that they can reach their children in an emergency.\n\nA sensible compromise might be a rule that phones may only be used for tasks set by the teacher. Otherwise, devices could stay switched off in lockers. Such a policy would reduce distractions while still preparing students for a digital world.\n\nWeighing up both sides, I believe that a strict ban would be neither practical nor fair. Provided that clear rules are agreed and respected, mobile phones can do more good than harm at school.", "place": "Everyone has a place they return to in their imagination whenever everyday life becomes too hectic. For me, it is not a busy capital city but the Lofoten Islands, an archipelago off the north-west coast of Norway.\n\nPicture jagged mountains rising out of a turquoise sea, red fishing cabins standing on wooden stilts and beaches as white as those in the Caribbean. Although the weather is often cold and unpredictable, the atmosphere is calm, especially under the midnight sun or the dancing northern lights.\n\nThere are two main reasons why the islands attract me so much. First and foremost, I have always been fascinated by wild nature, and Lofoten offers some of the most breathtaking hiking trails in Europe. Secondly, I am drawn to the slow pace of life there, where people seem to live in harmony with the seasons rather than with their smartphones.\n\nIf I had the chance to spend a few months there, I believe it would change my life considerably. At present, my days are filled with deadlines, notifications and constant noise. On the islands, however, I would learn to slow down, appreciate silence and focus on what matters.\n\nAll things considered, Lofoten is far more than a holiday destination for me. It represents the kind of life I would like to lead one day.", "reading": "Walk into any school canteen and you will see dozens of students scrolling through short videos. It is no wonder, then, that many people claim reading books is becoming less important for young people. But is that really the case?\n\nPersonally, I cannot imagine my life without books. Reading has not only broadened my vocabulary but also taught me to see the world through other people's eyes. Whenever I feel stressed, a good novel is the best way to switch off.\n\nWhat about printed books? On the one hand, nothing compares with the smell of new paper, and reading in print is much kinder to your eyes than staring at a screen. What is more, you are not constantly distracted by notifications. On the other hand, paper books are expensive, heavy to carry and take up a lot of space, whereas an e-reader can store thousands of titles.\n\nLast but not least, have you ever tried reading in English? At first, it may seem challenging, but it is one of the most effective ways to improve your language skills. You pick up new expressions naturally and, as a result, your own writing improves too.\n\nSo, next time you reach for your phone, why not pick up a book instead? You might be surprised how much you enjoy it.", "career": "In today's competitive world, many young people feel they have to choose between a successful career and a happy family life. In my opinion, however, the two do not necessarily exclude each other.\n\nA good example of someone who has managed to combine both is my aunt, who runs a small but thriving architecture studio in Nitra. Despite her demanding job, she always makes time for her two children, and she is living proof that success does not have to come at the expense of family.\n\nNevertheless, it cannot be denied that work has a significant influence on family life. Long working hours, business trips and constant availability on the phone often lead to stress and tension at home. Consequently, parents may miss important moments in their children's lives. On the other hand, a stable income gives families financial security and more opportunities, for instance to travel or to study.\n\nAs for my own future, I would like to become a doctor, which is admittedly a very time-consuming profession. Even so, I intend to find a healthy work-life balance, perhaps by working part-time while my children are small.\n\nTo sum up, I firmly believe that a career and a family life can go hand in hand, provided that we set clear priorities.", "products": "When we go shopping, we are faced with a huge variety of goods from all over the world. As a result, many consumers wonder whether they should give preference to Slovak products or foreign ones.\n\nAs far as quality is concerned, there is no simple answer. Slovak food, such as dairy products or honey, is often fresher and contains fewer preservatives because it does not have to be transported over long distances. However, when it comes to electronics or clothing, foreign brands usually offer a wider choice and more advanced technology.\n\nPrice is another important factor. Imported goods made in countries with lower labour costs tend to be cheaper, which is why many families on a limited budget choose them. Slovak products, by contrast, are sometimes more expensive, even though they are made locally.\n\nThere are strong arguments in favour of supporting Slovak production. Buying local creates jobs, helps small farmers and reduces the carbon footprint of transport. On the other hand, it would be unrealistic to buy only Slovak goods, since many products are simply not manufactured here.\n\nIn conclusion, I believe the best approach is a sensible balance. Whenever possible, we should choose quality local products, but we should not be afraid of foreign ones when they offer better value.", "strong": "In recent years, more and more people have been swapping crowded seaside resorts for quiet farms and mountain villages. Agro-tourism is clearly on the rise and, in my view, there are several good reasons for this trend.\n\nFirst of all, many people who live in cities suffer from stress and constant noise. Spending a few days in the countryside allows them to slow down and breathe fresh air. Moreover, visitors can taste fresh, home-made food and learn how it is produced, which is particularly appealing to families with children.\n\nSlovakia offers countless opportunities for this kind of holiday. Apart from world-famous mountains such as the High Tatras, there are picturesque regions like Orava or Kysuce, where tourists can stay on family farms, ride horses or help with the harvest. Last summer, for instance, my family spent a week on a sheep farm near Detva, and it was one of the most relaxing holidays we have ever had.\n\nEnjoying nature, however, also means protecting it. In my region, I regularly take part in clean-up events organised by our school, and I always try to travel by bike or train rather than by car. It is a small contribution, but it matters.\n\nTo conclude, agro-tourism is an excellent way to rediscover nature, provided that we treat it with respect.", "weak": "Hi everyone! Nowadays people like enjoying nature. I think it is because of many reasons. People are stressed in the cities and they want relax. Also the food in countryside is more better and more healthy. Also in the countryside is quiet. Also it is cheaper then hotels by the sea. In Slovakia there is many possibilities. We have mountains, lakes and farms. For example I was on a farm with my family last summer and it was super cool, we were riding horses and we were eating home cheese and I liked it very much and my sister liked it too. You can also go to the Tatras or Slovak Paradise. There are also many caves and castles which are very old and very interesting and many people visit them every year. Slovakia is very beautiful country and a lot of tourists comes here from other countries like Poland, Hungary or Czech Republic. In conclusion, I think that nature is very important and people should enjoy it more because it is good for them. Bye!", "transport": "Transport plays a huge role in my everyday life. I live in a small village near Levice, so I have to commute to school by bus every day. The journey takes almost forty minutes, which means I have to get up very early. On the other hand, I can use the time to revise or listen to music.\n\nWhen it comes to protecting the environment, I try to be responsible. Whenever the weather is nice, I cycle to the train station instead of asking my parents to drive me. In addition, my friends and I share rides when we go to concerts in Nitra.\n\nAll in all, transport makes my life easier, but we should all think about its impact on the planet."};
 
 /* ================= LINKERS (for highlighting & detection) ================= */
 const LINKERS = ["first and foremost","first of all","to begin with","secondly","finally","last but not least","subsequently",
@@ -582,6 +682,7 @@ const LINKERS = ["first and foremost","first of all","to begin with","secondly",
  "as far as","is concerned","when it comes to","as for","with regard to",
  "in my view","in my opinion","personally","i firmly believe","i believe","i would argue",
  "all things considered","taking everything into account","on balance","to sum up","to conclude","in conclusion","all in all","weighing up",
+ "advocates of","proponents of","opponents of","critics of","critics claim","critics argue","sceptics","in favour of","it is widely believed","it is often argued","it could be argued","there are those who","conversely","that said","while it is true","having considered","outweigh",
  "if","whenever","at present","at first","apart from"];
 const LK_SORTED = [...LINKERS].sort((a,b)=>b.length-a.length);
 const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
@@ -611,6 +712,10 @@ const TASKS = [
  {id:'p6', type:'practice', yr:'Practice task', topic:'Role models · Opinion essay', title:'Do Young People Need Idols?', pts:['a famous person who inspires you and why','the positive and negative influence of celebrities on teenagers','a person from your everyday life you admire']},
  {id:'p9', type:'practice', yr:'Practice task', topic:'Role models and idols · Article for the school magazine', title:'Who Do You Look Up To?', pts:['a person you look up to (a famous person or someone from your own life) and the qualities that make them a role model','why many young people choose celebrities and influencers as their idols, and the risks this may bring','how your role model has influenced your life and your plans for the future']},
  {id:'p7', type:'practice', yr:'Practice task', topic:'Food and eating habits · Essay for a school competition', title:'We Are What We Eat', pts:['the eating habits of Slovak families','the growing popularity of fast food and food delivery','your own tips for a healthy and sustainable diet']},
+ {id:'p10', type:'practice', yr:'Practice task', topic:'School and education · For-and-against essay', title:'Should Mobile Phones Be Banned at School?', pts:['the arguments for banning mobile phones at school','the arguments against a ban','a fair compromise your school could adopt'], model:'phones'},
+ {id:'p11', type:'practice', yr:'Practice task', topic:'Employment · For-and-against essay', title:'Should Students Have Part-Time Jobs?', pts:['the benefits of a part-time job for secondary school students','the risks and disadvantages of working while studying','your own experience or plans concerning a part-time job'], model:''},
+ {id:'p12', type:'practice', yr:'Practice task', topic:'Science and technology · For-and-against essay', title:'Online Learning: The Future of Education?', pts:['the advantages of learning online','the disadvantages of online learning compared with classroom lessons','how schools could combine both ways of learning'], model:''},
+ {id:'p13', type:'practice', yr:'Practice task', topic:'Travelling · For-and-against essay', title:'Tourism: A Blessing or a Curse for Local Communities?', pts:['the benefits of tourism for towns and regions','the negative effects of mass tourism','how a Slovak region could attract visitors in a responsible way'], model:''},
  {id:'p8', type:'practice', yr:'Practice task', topic:'Culture and art · Opinion essay', title:'Is Traditional Culture Still Relevant Today?', pts:['a Slovak tradition you personally enjoy','why some young people lose interest in folk culture','how schools and towns could keep traditions alive']}
 ];
 const tg = document.getElementById('taskGrid');
@@ -638,11 +743,14 @@ const MODELS = {
   career:{title:'A Career or a Family Life?', tab:'2024 · Opinion essay', task:'t24',
     labels:['Introduction — topic + clear opinion','Point 1 — a person with a successful career','Point 2 — the influence of work on family life','Point 3 — my vision for the future','Conclusion — opinion restated'],
     why:['The opinion is stated in the introduction and repeated in new words at the end.','Advanced linkers: <i>Nevertheless, It cannot be denied that, Consequently, Even so, provided that</i>.','Collocations: <i>at the expense of, work-life balance, go hand in hand</i>.','Relative clauses: <i>my aunt, who runs…</i>; <i>a doctor, which is…</i>']},
+  phones:{title:'Should Mobile Phones Be Banned at School?', tab:'Practice · For and against', task:'p10',
+    labels:['Introduction — the debate, no opinion yet','Point 1 — arguments for a ban','Point 2 — arguments against a ban','Point 3 — a fair compromise','Conclusion — weighing up + my opinion'],
+    why:['Neutral introduction; the opinion appears only in the conclusion.','Both sides are equally developed: two arguments plus an example each.','Impersonal reporting: <i>advocates argue, It is widely believed, opponents point out</i>.','Advanced grammar: <i>neither… nor</i>, the participle clause <i>Weighing up both sides</i>, <i>Provided that</i>.']},
   products:{title:'Should We Buy Slovak or Foreign Products?', tab:'2020 · Balanced essay', task:'t20c',
     labels:['Introduction — the dilemma','Point 1 — quality','Point 2 — prices','Point 3 — for and against Slovak production','Conclusion — balanced opinion'],
     why:['Balanced genre: both sides are presented before the writer\'s own view.','Referring phrases: <i>As far as quality is concerned, When it comes to…</i>','Contrast linkers: <i>However, by contrast, even though, On the other hand</i>.','Topic vocabulary: <i>preservatives, labour costs, carbon footprint, better value</i>.']}
 };
-const ORDER = ['place','reading','career','products'];
+const ORDER = ['place','reading','career','products','phones'];
 const mt = document.getElementById('modelTabs');
 mt.innerHTML = ORDER.map(k => '<button class="tab" data-k="'+k+'" onclick="showModel(\''+k+'\')">'+MODELS[k].title+'<small>'+MODELS[k].tab+'</small></button>').join('');
 function showModel(k){
@@ -812,12 +920,35 @@ function resetEx(id){
   document.getElementById(id+'_res').textContent='';
 }
 
+/* ================= FOR AND AGAINST: model + quick check ================= */
+(function(){
+  const m = MODELS.phones, text = ESSAYS.phones;
+  document.getElementById('faPaper').innerHTML = '<h5>'+m.title+'</h5>' + text.split(/\n\n/).map((p,i)=>'<div class="plabel">'+m.labels[i]+'</div><p>'+highlight(p)+'</p>').join('') +
+    '<p style="font-family:Segoe UI,Arial,sans-serif;font-size:12.5px;color:var(--grey);text-align:right;margin:0">'+words(text)+' words (without the title)</p>';
+  const OPTS = ['For','Against','Conclusion','Wrong style'];
+  const FA = [
+   ['Proponents of part-time work argue that it teaches teenagers to manage money responsibly.','For','<i>Proponents… argue</i> introduces an argument in favour.'],
+   ['A major drawback is that long working hours may leave students too tired to study.','Against','<i>A major drawback</i> + a hedged claim with <i>may</i>.'],
+   ['Honestly, working while you\'re at school is a totally stupid idea!','Wrong style','Emotional and informal: <i>Honestly, totally stupid</i>, a contraction and an exclamation mark.'],
+   ['What is more, a part-time job gives young people valuable experience for their future CV.','For','Adds a second argument in favour.'],
+   ['In this essay I will prove that all students must have a job.','Wrong style','The introduction must be neutral, and <i>all students must</i> is an extreme generalisation.'],
+   ['Critics also point out that some employers take advantage of young, inexperienced workers.','Against','Impersonal reporting of the other side: <i>Critics point out</i>.'],
+   ['Weighing up both sides, it seems to me that a few hours a week can be beneficial, provided that grades do not suffer.','Conclusion','Weighs up both sides and gives a careful opinion with a condition.'],
+   ['Everybody knows that jobs always destroy teenagers\' grades.','Wrong style','<i>Everybody knows, always</i>: unsupported generalisation. Use <i>Some studies suggest that… may…</i>'],
+   ['On balance, the benefits seem to outweigh the drawbacks, as long as the job is flexible.','Conclusion','<i>On balance… outweigh the drawbacks</i> is a typical balanced ending.']
+  ];
+  document.getElementById('fa1Host').innerHTML = FA.map((f,i)=>'<div class="q"><span class="num">'+(i+1)+'.</span>'+f[0]+' <select class="sel" data-a="'+f[1]+'"><option value="">— choose —</option>'+OPTS.map(o=>'<option>'+o+'</option>').join('')+'</select></div>').join('');
+  document.getElementById('fa1_fb').innerHTML = FA.map(f=>'<li><b>'+f[1]+'.</b> '+f[2]+'</li>').join('');
+})();
+
 /* ================= WRITING LAB ================= */
 const labSel = document.getElementById('labTask');
 labSel.innerHTML = TASKS.map(t=>'<option value="'+t.id+'">'+t.yr+' — '+t.title+'</option>').join('');
 function showLabTask(){
   const t = TASKS.find(x=>x.id===labSel.value);
-  document.getElementById('labTaskBox').innerHTML = '<div class="topic" style="font-size:12px;color:var(--grey);text-transform:uppercase;letter-spacing:.05em">'+t.topic+'</div><b>'+t.title+'</b> (200–220 words)<ul>'+t.pts.map(p=>'<li>'+p+'</li>').join('')+'</ul>';
+  const fa = /for-and-against|balanced essay/i.test(t.topic);
+  document.getElementById('labTaskBox').innerHTML = '<div class="topic" style="font-size:12px;color:var(--grey);text-transform:uppercase;letter-spacing:.05em">'+t.topic+'</div><b>'+t.title+'</b> (200–220 words)<ul>'+t.pts.map(p=>'<li>'+p+'</li>').join('')+'</ul>' +
+    (fa ? '<div class="genre-tip" style="margin:10px 0 0"><b>For-and-against essay:</b> neutral introduction, both sides in balance, impersonal phrases (<i>It is argued…, Critics claim…</i>), your opinion only in the conclusion. <a href="#foragainst">Review Part 3</a></div>' : '');
 }
 function setLabTask(id){ labSel.value = id; showLabTask(); }
 labSel.onchange = showLabTask; showLabTask();
@@ -880,6 +1011,13 @@ function renderFeedback(d, t){
   x += '<div class="fb-total"><span class="big">'+total+' / 20</span><span style="color:var(--grey)">'+(d.words||words(draft.value))+' words</span></div>';
   x += '<p style="margin:0">'+escH(d.summary)+'</p>';
   x += '<div class="fb-scores">'+C.map(([k,l])=>'<div><b>'+num(k)+'/5</b>'+l+'</div>').join('')+'</div>';
+  const g = d.genre_check;
+  if (g && (g.comment || g.genre)){
+    const v = String(g.verdict||'').toLowerCase(), cls = v.startsWith('match') ? 'ok' : v.startsWith('part') ? 'part' : v ? 'no' : 'part';
+    const icon = cls==='ok' ? '✓' : cls==='part' ? '◐' : '✗';
+    x += '<div class="fb-genre '+cls+'"><b>'+icon+' Genre check: '+escH(g.genre||'')+'</b>'+(g.verdict?' — '+escH(g.verdict):'')+'<br>'+escH(g.comment)+
+      ((g.missing||[]).length ? '<ul style="margin:6px 0 0;padding-left:20px">'+g.missing.map(m=>'<li>'+escH(m)+'</li>').join('')+'</ul>' : '')+'</div>';
+  }
   const cr = d.criteria || {};
   C.forEach(([k,l])=>{ const c = cr[k]||{};
     x += '<div class="fb-crit"><h5>'+l+' <span>'+num(k)+'/5</span></h5><p>'+escH(c.comment)+'</p>';

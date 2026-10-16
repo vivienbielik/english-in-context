@@ -81,33 +81,63 @@ export async function onRequestPost({ request, env }) {
     `WORD COUNT: ${words}\n\n` +
     `STUDENT'S COMPOSITION:\n<<<\n${essay}\n>>>`;
 
-  const models = env.MODEL ? [env.MODEL] : ['gemini-3.8-flash', 'gemini-3.5-flash', 'gemini-3-flash-preview', 'gemini-2.5-flash'];
-  let text = '', lastStatus = 0;
-  for (const model of models) {
+  // Try several free Gemini models. A whole class pressing the button at once hits the free
+  // per-minute limit, so busy/limit errors are retried after a short pause and then the next
+  // model is tried. Thinking is kept low so it cannot use up the output and cut the JSON short.
+  const defaults = ['gemini-3-flash-preview', 'gemini-flash-latest', 'gemini-2.5-flash', 'gemini-flash-lite-latest', 'gemini-2.5-flash-lite'];
+  const models = [...new Set([env.MODEL, ...defaults].filter(Boolean))];
+  const sleep = ms => new Promise(res => setTimeout(res, ms));
+  const started = Date.now();
+  let text = '', sawLimit = false, keyProblem = false;
+
+  const callGemini = async (model, thinking) => {
+    const generationConfig = { responseMimeType: 'application/json', temperature: 0.3, maxOutputTokens: 8192 };
+    if (thinking) generationConfig.thinkingConfig = /2\.5|lite/.test(model) ? { thinkingBudget: 0 } : { thinkingLevel: 'low' };
     const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
       method: 'POST',
       headers: { 'x-goog-api-key': env.GEMINI_API_KEY, 'content-type': 'application/json' },
       body: JSON.stringify({
         systemInstruction: { parts: [{ text: general ? SYSTEM_GENERAL : SYSTEM }] },
         contents: [{ role: 'user', parts: [{ text: userMsg }] }],
-        generationConfig: { responseMimeType: 'application/json', temperature: 0.3, maxOutputTokens: 8192 },
+        generationConfig,
       }),
     });
-    lastStatus = r.status;
-    if (r.ok) {
-      const data = await r.json();
-      const parts = (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts) || [];
-      text = parts.filter(p => p.text && !p.thought).map(p => p.text).join('');
-      if (text) break;
-    } else {
-      console.log('Gemini error', model, r.status, (await r.text()).slice(0, 300));
-      if (r.status === 400 || r.status === 401 || r.status === 403) break; // bad key: no point trying other models
+    if (!r.ok) return { status: r.status, err: (await r.text()).slice(0, 400) };
+    const data = await r.json();
+    const cand = (data.candidates && data.candidates[0]) || {};
+    const parts = (cand.content && cand.content.parts) || [];
+    const out = parts.filter(p => p.text && !p.thought).map(p => p.text).join('');
+    return { status: 200, text: out, finish: cand.finishReason };
+  };
+
+  outer:
+  for (const model of models) {
+    let thinking = true;
+    for (let attempt = 0; attempt < 3; attempt++) {
+      if (Date.now() - started > 55000) break outer; // do not keep the student waiting for ever
+      let res;
+      try { res = await callGemini(model, thinking); }
+      catch (e) { console.log('Gemini fetch failed', model, String(e)); await sleep(1500); continue; }
+
+      if (res.status === 200) {
+        const m = res.text && res.text.match(/\{[\s\S]*\}/);
+        try { JSON.parse(m ? m[0] : res.text); text = m ? m[0] : res.text; break outer; }
+        catch { console.log('Unreadable answer', model, res.finish, (res.text || '').slice(0, 200)); continue outer; }
+      }
+      console.log('Gemini error', model, res.status, res.err);
+      if (res.status === 401 || /API_KEY_INVALID|API key not valid|API key expired/i.test(res.err)) { keyProblem = true; break outer; }
+      if (res.status === 400 && thinking && /thinking/i.test(res.err)) { thinking = false; continue; } // model does not accept that setting
+      if (res.status === 429 || res.status === 500 || res.status === 503 || res.status === 504) {
+        if (res.status === 429) sawLimit = true;
+        if (attempt < 1) { await sleep(2500 + Math.random() * 2500); continue; } // one retry, then next model
+      }
+      continue outer; // 400/403/404 etc.: this model is not available, try the next one
     }
   }
   if (!text) {
-    if (lastStatus === 429) return json({ error: 'The free daily limit for AI feedback has been reached. Please try again later or tomorrow.' }, 429);
-    if (lastStatus === 400 || lastStatus === 401 || lastStatus === 403) return json({ error: 'The evaluator is not set up correctly (API key problem). Please tell your teacher.' }, 500);
-    return json({ error: 'The evaluator is busy or unavailable. Please try again in a minute.' }, 502);
+    if (keyProblem) return json({ error: 'The evaluator is not set up correctly (API key problem). Please tell your teacher.' }, 500);
+    if (sawLimit) return json({ error: 'Many students are asking for feedback right now. Please wait one minute and press the button again — your text is still here.' }, 429);
+    return json({ error: 'The evaluator is busy or unavailable. Please try again in a minute — your text is still here.' }, 502);
   }
 
   const m = text.match(/\{[\s\S]*\}/);

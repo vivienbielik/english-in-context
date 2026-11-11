@@ -1230,6 +1230,47 @@ function matchExercise(containerId, pairs){
   container.appendChild(doneMsg);
 }
 
+/* ============ SHOW ANSWERS ============ */
+function saButton(anchor, fn, side){
+  if (!anchor) return;
+  const b = document.createElement('button'); b.type = 'button'; b.className = 'check-btn show-ans-btn'; b.textContent = 'Show answers';
+  b.style.cssText = 'background:transparent;color:var(--primary);border:2px solid var(--primary);' + (side ? 'margin-left:.6rem;' : 'margin-top:.7rem;');
+  b.onclick = () => { window.__saActive = true; try { fn(); } finally { setTimeout(() => { window.__saActive = false; }, 250); } };
+  anchor.insertAdjacentElement('afterend', b);
+}
+const _saMc = mcExercise;
+mcExercise = function(containerId, items){
+  _saMc(containerId, items);
+  const c = document.getElementById(containerId);
+  saButton(c, () => c.querySelectorAll(':scope > .quiz-item').forEach((w, i) => {
+    const o = w.querySelector('.quiz-options'); if (!o || o.children[0].disabled) return; o.children[items[i].correct].click();
+  }));
+};
+const _saSel = selectExercise;
+selectExercise = function(containerId, items){
+  _saSel(containerId, items);
+  const c = document.getElementById(containerId);
+  const chk = document.querySelector('button[onclick*="\'' + containerId + '\')"]');
+  saButton(chk || c, () => {
+    c.querySelectorAll(':scope > .select-item').forEach(w => { w._select.value = w.dataset.correct; });
+    if (chk) chk.click();
+    const sc = document.getElementById(containerId + '-score'); if (sc){ sc.textContent = 'Answers shown'; sc.style.display = 'block'; }
+  }, !!chk);
+};
+const _saMatch = matchExercise;
+matchExercise = function(containerId, pairs){
+  _saMatch(containerId, pairs);
+  const c = document.getElementById(containerId);
+  saButton(c, () => {
+    const cols = c.querySelectorAll('.match-col'); if (cols.length < 2) return;
+    [...cols[0].querySelectorAll('.match-item')].forEach(l => {
+      if (l.classList.contains('matched')) return;
+      const r = [...cols[1].querySelectorAll('.match-item')].find(x => x.dataset.pair === l.dataset.pair && !x.classList.contains('matched'));
+      if (r){ l.click(); r.click(); }
+    });
+  });
+};
+
 
 /* ============ GLOBAL SCORE ============ */
 const SCORE = {c:0, t:0};
@@ -1358,6 +1399,24 @@ mcExercise('dos', [{"q": "Support artisans and small businesses.", "choices": ["
 mcExercise('wish-mc', [{"q": "I wish I ___ a driving licence – then I could drive us to the airport.", "choices": ["would have", "had", "had had", "have"], "correct": 1, "why": "Present situation (I don't have one) → wish + <b>past simple</b>."}, {"q": "I wish I ___ to pack my charger. Now my phone is dead.", "choices": ["haven't forgotten", "hadn't forgotten", "didn't forget", "wouldn't forget"], "correct": 1, "why": "Regret about the past (I forgot) → wish + <b>past perfect</b>."}, {"q": "I wish the man behind me ___ kicking my seat!", "choices": ["had stopped", "stops", "stopped", "would stop"], "correct": 3, "why": "Irritation at someone else's behaviour; we want it to change → wish + <b>would</b>."}, {"q": "I wish I ___ speak Portuguese – the taxi driver doesn't understand English.", "choices": ["could", "can", "would", "had"], "correct": 0, "why": "Ability in the present → wish + <b>could</b>. Never <i>wish + can</i>."}, {"q": "If only it ___ so foggy – no planes can take off.", "choices": ["wouldn't be", "weren't", "isn't", "hadn't been"], "correct": 1, "why": "Present state (it is foggy) → past simple: <i>weren't / wasn't</i>. We don't use <i>would</i> with a state that exists now."}, {"q": "I wish we ___ in this queue right now.", "choices": ["weren't standing", "wouldn't stand", "hadn't stood", "didn't stand"], "correct": 0, "why": "An action in progress now → wish + <b>past continuous</b>."}, {"q": "I wish I ___ go on the school trip last year, but I was ill.", "choices": ["would", "could", "had could", "could have"], "correct": 3, "why": "Ability in the past → wish + <b>could have + past participle</b>."}, {"q": "I wish I ___ more confident behind the wheel.", "choices": ["would be", "had been", "am", "were"], "correct": 3, "why": "Present state, and the subject is the same as after wish (I … I) → past simple <b>were</b> (was is informal). <i>I wish I would</i> is wrong."}, {"q": "We're lost. I wish we ___ a paper map instead of relying on the GPS.", "choices": ["had brought", "would bring", "brought", "have brought"], "correct": 0, "why": "We didn't bring it (past) → <b>past perfect</b>."}, {"q": "I ___ the train is on time tomorrow – I've got an exam at 8.", "choices": ["wish that", "would wish", "hope", "wish"], "correct": 2, "why": "A real, possible future → <b>hope</b> + present/will. <i>Wish</i> is for unreal or unlikely situations."}]);
 window.wishSelectData = [{"prefix": "I wish I had renewed my passport. If I had, I", "choices": ["could have flown", "can fly", "could fly"], "correct": 2, "suffix": "to London tomorrow.", "why": "Past cause → <b>present/future</b> result (tomorrow) → <i>could / would + infinitive</i>. This is the mixed conditional 3 → 2."}, {"prefix": "If we had booked seats, we", "choices": ["wouldn't have stood", "didn't stand", "wouldn't be standing"], "correct": 2, "suffix": "in the corridor now.", "why": "<i>Now</i> + an action in progress → <b>would be + -ing</b>."}, {"prefix": "I wish I hadn't eaten that airport sandwich. If I hadn't, I", "choices": ["wouldn't feel", "wouldn't have felt", "didn't feel"], "correct": 0, "suffix": "sick now.", "why": "Past action → present consequence (<i>now</i>) → <b>would + infinitive</b>."}, {"prefix": "If only I", "choices": ["had filled up", "would fill up", "filled up"], "correct": 0, "suffix": "the tank before we left! We wouldn't be stranded on the motorway now.", "why": "The regret is about the past (before we left) → <b>past perfect</b>."}, {"prefix": "If I weren't so afraid of flying, I", "choices": ["would go", "had gone", "would have gone"], "correct": 2, "suffix": "to Bali with my friends last summer.", "why": "Present / permanent cause (I am afraid) → <b>past</b> result (last summer) → <b>would have + past participle</b>. Mixed conditional 2 → 3."}, {"prefix": "I wish I", "choices": ["would learn", "had learnt", "learnt"], "correct": 1, "suffix": "Spanish at school. I would understand the announcements now.", "why": "School was in the past → <b>past perfect</b>; the result is now → would understand."}, {"prefix": "If the airline hadn't lost my suitcase, I", "choices": ["would be wearing", "would have worn", "wore"], "correct": 0, "suffix": "my own clothes at the conference today.", "why": "Present result in progress (<i>today</i>, at this moment) → <b>would be + -ing</b>."}];
 selectExercise('wish-select', window.wishSelectData);
+/* ============ SHOW ANSWERS: typed exercises + keep score honest ============ */
+if (typeof bump === 'function'){ const _saBump = bump; bump = function(ok){ if (window.__saActive) return; _saBump(ok); }; }
+const _saType = typeExercise;
+typeExercise = function(containerId, items){
+  _saType(containerId, items);
+  const c = document.getElementById(containerId);
+  const chk = document.querySelector('button[onclick*="checkType(\'' + containerId + '\')"]');
+  saButton(chk || c, () => {
+    c.querySelectorAll('.type-item').forEach(w => {
+      const it = w._it; let a = it.ans[0].replace(/^i /, 'I ').replace(/ i /g, ' I ').replace(/ i$/, ' I');
+      if (!it.prefix) a = a.charAt(0).toUpperCase() + a.slice(1);
+      w.querySelector('input').value = a;
+    });
+    if (chk) chk.click();
+    c.querySelectorAll('.type-item .quiz-why').forEach(x => { x.style.display = 'block'; });
+    const sc = document.getElementById(containerId + '-score'); if (sc) sc.textContent = 'Answers shown';
+  }, !!chk);
+};
 typeExercise('transform', [{"orig": "I'm sorry I didn't book a window seat.", "key": "WISH", "prefix": "I", "suffix": "a window seat.", "ans": ["wish i had booked", "wish i'd booked"], "why": "Past regret → <b>wish + past perfect</b>: I wish I had booked …"}, {"orig": "It's a pity we can't afford a cruise.", "key": "COULD", "prefix": "I wish we", "suffix": "a cruise.", "ans": ["could afford"], "why": "Present ability → <b>wish + could</b>."}, {"orig": "Stop overtaking on bends, please!", "key": "WOULD", "prefix": "I wish you", "suffix": "on bends.", "ans": ["would not overtake", "wouldn't overtake", "would stop overtaking"], "why": "Annoyance with someone's behaviour → <b>wish + would (not)</b>."}, {"orig": "The traffic is terrible today, and it annoys me.", "key": "ONLY", "prefix": "", "suffix": "so terrible today!", "ans": ["if only the traffic weren't", "if only the traffic wasn't", "if only the traffic were not", "if only the traffic was not"], "why": "Present state → <b>If only + past simple</b>: If only the traffic weren't / wasn't …"}, {"orig": "We missed the train, so we are waiting for the next one now.", "key": "HAD", "prefix": "If we", "suffix": "the train, we wouldn't be waiting for the next one now.", "ans": ["had not missed", "hadn't missed", "had caught"], "why": "Past condition → present result: <b>If + past perfect, would + be + -ing now</b>."}, {"orig": "You really should book the tickets now.", "key": "TIME", "prefix": "It's", "suffix": "the tickets.", "ans": ["time you booked", "high time you booked", "about time you booked", "time we booked", "high time we booked", "about time we booked"], "why": "<b>It's (high / about) time + subject + past simple</b> = you should have done it already."}, {"orig": "I'd prefer you not to smoke in my car.", "key": "RATHER", "prefix": "I'd", "suffix": "in my car.", "ans": ["rather you did not smoke", "rather you didn't smoke"], "why": "<b>would rather + another subject + past simple</b> for the present or future."}, {"orig": "Unfortunately, I don't live near the airport.", "key": "WISH", "prefix": "I", "suffix": "near the airport.", "ans": ["wish i lived"], "why": "Present situation → <b>wish + past simple</b>."}, {"orig": "I didn't bring a guidebook, so now we're lost.", "key": "BROUGHT", "prefix": "If I", "suffix": "a guidebook, we wouldn't be lost now.", "ans": ["had brought"], "why": "Past cause → present result: <b>If + past perfect</b>, would + infinitive."}, {"orig": "You'll get there on time only if you leave now.", "key": "UNLESS", "prefix": "You won't get there on time", "suffix": "now.", "ans": ["unless you leave"], "why": "<b>unless</b> = if … not. After unless we use a present tense for the future, never will."}]);
 mcExercise('err', [{"q": "Which sentence is correct?", "choices": ["I wish I would have more time to travel.", "I wish I had more time to travel.", "I wish I would had more time to travel.", "I wish I have more time to travel."], "correct": 1, "why": "Present state → past simple. <i>I wish I would</i> is never correct with the same subject."}, {"q": "Which sentence is correct?", "choices": ["I wish I had booked earlier.", "I wish I have booked earlier.", "I wish I would have booked earlier.", "I wish I booked earlier yesterday."], "correct": 0, "why": "Past regret → <b>past perfect</b>. <i>Would have</i> after wish is a typical spoken mistake – avoid it in the exam."}, {"q": "Which sentence is correct?", "choices": ["If I knew about the strike, I would have took the bus.", "If I had known about the strike, I would take the bus yesterday.", "If I would have known about the strike, I would have taken the bus.", "If I had known about the strike, I would have taken the bus."], "correct": 3, "why": "Third conditional: <b>If + past perfect, would have + past participle</b>. No <i>would</i> in the if-clause."}, {"q": "Which sentence is correct?", "choices": ["I wish I could drive.", "I wish I can drive.", "I wish I could to drive.", "I wish I would drive."], "correct": 0, "why": "Ability → <b>wish + could + bare infinitive</b>."}, {"q": "Which sentence is correct?", "choices": ["Take an umbrella if it will rain.", "Take an umbrella in case it rains.", "Take an umbrella in case it will rain.", "Take an umbrella unless it rains."], "correct": 1, "why": "<b>in case</b> = as a precaution (pre prípad, že). After in case we use a present tense, not will."}, {"q": "Which sentence is correct?", "choices": ["Had I knew, I would take the train.", "If had I known, I would have taken the train.", "Had I known, I would have taken the train.", "Would I have known, I had taken the train."], "correct": 2, "why": "Inversion of the third conditional: <b>Had + subject + past participle</b> (no if)."}, {"q": "Which sentence is correct?", "choices": ["I hope you a pleasant flight.", "I wish you would have a pleasant flight.", "I wish you a pleasant flight.", "I wish you had a pleasant flight tomorrow."], "correct": 2, "why": "<b>wish + person + noun</b> = a greeting (prajem vám…). <i>Hope</i> cannot be used this way."}]);
 matchExercise('wish-match', [{"left": "The flight is delayed and I'm bored.", "right": "I wish we were already on the plane.", "why": "Present situation → past simple."}, {"left": "I didn't buy travel insurance and now I need a doctor.", "right": "If only I had bought travel insurance!", "why": "Past regret → past perfect."}, {"left": "My brother keeps singing loudly in the car.", "right": "I wish he would stop singing.", "why": "Annoying behaviour → would."}, {"left": "I can't swim, so I can't go canoeing.", "right": "I wish I could swim.", "why": "Ability → could."}, {"left": "We took the motorway and got stuck in a tailback.", "right": "I wish we had taken the shortcut.", "why": "Past decision → past perfect."}, {"left": "Our hotel is far from the beach.", "right": "I wish our hotel were closer to the beach.", "why": "Present state → were."}]);

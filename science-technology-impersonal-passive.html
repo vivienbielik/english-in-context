@@ -775,7 +775,9 @@ function ensureExplainBox(div, text, wrong){
   })();
 
   /* ===== shared typed-answer builder for Ex11–13 ===== */
+  const TYPED = {};
   function typedEx(id, data, srcLabel){
+    TYPED[id] = data;
     const box = document.getElementById(id);
     data.forEach((it, i) => {
       const d = document.createElement('div'); d.className = 'cloze-item';
@@ -829,6 +831,43 @@ function ensureExplainBox(div, text, wrong){
     {"sk": "V laboratóriu vraj bolo niekoľko chýb.", "pre": "There", "post": "several errors in the lab.", "ans": ["are said to have been", "are believed to have been", "are thought to have been", "are reported to have been", "are supposed to have been", "are claimed to have been"], "why": "There + plural noun (several errors) → are; past situation → to have been: There are said to have been several errors."},
     {"sk": "Je známe, že Štefánik bol astronóm.", "pre": "Štefánik", "post": "an astronomer.", "ans": ["is known to have been", "was known to be"], "why": "We know it now; he was an astronomer in the past → is known to have been. Don't confuse with 'is known as' (name / role)."}
   ], it => '<span class="sk">🇸🇰 ' + esc(it.sk) + '</span>');
+
+  /* ===== SHOW ANSWERS ===== */
+  const SA = {
+    btn(id, fn){
+      const chk = document.getElementById(id + '-check'), anchor = chk || document.getElementById(id);
+      if (!anchor) return;
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'ghost-btn show-ans-btn'; b.textContent = 'Show answers';
+      b.style.cssText = chk ? 'margin-left:.6rem;' : 'margin-top:.6rem;';
+      b.onclick = () => { fn(); const e = document.getElementById(id + '-score'); if (e) e.textContent = 'Answers shown'; };
+      anchor.insertAdjacentElement('afterend', b);
+    },
+    cap(a){ return a.charAt(0).toUpperCase() + a.slice(1); },
+    clicks(id, data, idx){ SA.btn(id, () => document.getElementById(id).querySelectorAll('.poll-q').forEach((d, i) => {
+      const w = d.querySelector('.ip-opts, .ip-labels, .ip-chunks'); if (!w || w.children[0].disabled) return; w.children[idx(data[i])].click(); })); },
+    typed(id, data){ SA.btn(id, () => { document.getElementById(id).querySelectorAll('.cloze-item').forEach((d, i) => {
+      d.querySelector('input').value = data[i].pre ? data[i].ans[0] : SA.cap(data[i].ans[0]); }); document.getElementById(id + '-check').click(); }); },
+    sel(id, data){ SA.btn(id, () => { document.getElementById(id).querySelectorAll('.cloze-item').forEach((d, i) => { d.querySelector('select').value = data[i].c; }); document.getElementById(id + '-check').click(); }); },
+    match(id, data, L, R){ SA.btn(id, () => data.forEach((it, i) => { if (L.children[i].classList.contains('done')) return; L.children[i].click(); const r = [...R.children].find(x => x.textContent === it.r && !x.classList.contains('done')); if (r) r.click(); })); },
+    order(id, data){ SA.btn(id, () => document.getElementById(id).querySelectorAll('.poll-q').forEach((d, i) => {
+      const built = d.querySelector('.ip-built'), bank = d.querySelector('.ip-bank');
+      [...built.children].forEach(b => bank.appendChild(b));
+      data[i].replace(/\.$/, '').split(' ').forEach(w => { const b = [...bank.children].find(x => x.textContent === w); if (b) built.appendChild(b); });
+      d.querySelector('.ip-row-btns button').click(); })); }
+  };
+  SA.clicks('ipMC', MC, it => it.c);
+  SA.sel('ipSel', SEL);
+  SA.typed('ipKW', KW);
+  SA.clicks('ipTF', TF, it => it.ok ? 0 : 1);
+  SA.match('ipMatch', MT, L, R);
+  SA.order('ipOrder', OR);
+  SA.btn('ipCloze', () => { cBox.querySelectorAll('input').forEach(inp => { const k = +inp.dataset.i; const a = CA[k][0]; inp.value = /^[A-Z]/.test(CT[1 + k*2].slice(1)) ? SA.cap(a) : a; }); document.getElementById('ipCloze-check').click(); });
+  SA.clicks('ipClock', CLOCK, it => it.c);
+  SA.clicks('ipSpot', SPOT, it => it.w);
+  SA.clicks('ipPB', PB, it => it.ok ? 0 : 1);
+  SA.typed('ipSMA', TYPED.ipSMA);
+  SA.typed('ipRev', TYPED.ipRev);
+  SA.typed('ipSK', TYPED.ipSK);
 
 })();
 </script>

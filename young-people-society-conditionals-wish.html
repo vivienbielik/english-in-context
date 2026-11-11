@@ -795,6 +795,47 @@ function matchExercise(containerId, pairs){
   container.appendChild(doneMsg);
 }
 
+/* ============ SHOW ANSWERS ============ */
+function saButton(anchor, fn, side){
+  if (!anchor) return;
+  const b = document.createElement('button'); b.type = 'button'; b.className = 'check-btn show-ans-btn'; b.textContent = 'Show answers';
+  b.style.cssText = 'background:transparent;color:var(--primary);border:2px solid var(--primary);' + (side ? 'margin-left:.6rem;' : 'margin-top:.7rem;');
+  b.onclick = () => { window.__saActive = true; try { fn(); } finally { setTimeout(() => { window.__saActive = false; }, 250); } };
+  anchor.insertAdjacentElement('afterend', b);
+}
+const _saMc = mcExercise;
+mcExercise = function(containerId, items){
+  _saMc(containerId, items);
+  const c = document.getElementById(containerId);
+  saButton(c, () => c.querySelectorAll(':scope > .quiz-item').forEach((w, i) => {
+    const o = w.querySelector('.quiz-options'); if (!o || o.children[0].disabled) return; o.children[items[i].correct].click();
+  }));
+};
+const _saSel = selectExercise;
+selectExercise = function(containerId, items){
+  _saSel(containerId, items);
+  const c = document.getElementById(containerId);
+  const chk = document.querySelector('button[onclick*="\'' + containerId + '\')"]');
+  saButton(chk || c, () => {
+    c.querySelectorAll(':scope > .select-item').forEach(w => { w._select.value = w.dataset.correct; });
+    if (chk) chk.click();
+    const sc = document.getElementById(containerId + '-score'); if (sc){ sc.textContent = 'Answers shown'; sc.style.display = 'block'; }
+  }, !!chk);
+};
+const _saMatch = matchExercise;
+matchExercise = function(containerId, pairs){
+  _saMatch(containerId, pairs);
+  const c = document.getElementById(containerId);
+  saButton(c, () => {
+    const cols = c.querySelectorAll('.match-col'); if (cols.length < 2) return;
+    [...cols[0].querySelectorAll('.match-item')].forEach(l => {
+      if (l.classList.contains('matched')) return;
+      const r = [...cols[1].querySelectorAll('.match-item')].find(x => x.dataset.pair === l.dataset.pair && !x.classList.contains('matched'));
+      if (r){ l.click(); r.click(); }
+    });
+  });
+};
+
 /* ============ VOCABULARY DATA ============ */
 mcExercise('vocab-quiz', [
   { q:'Many teenagers feel pressure to dress, talk and behave like their friends. This is called ___.', choices:['peer pressure','identity crisis','consumerism','social exclusion'], correct:0,

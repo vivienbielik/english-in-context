@@ -422,9 +422,10 @@ function accepts(input, list){
   return list.some(a => variants(a).some(v => got.includes(v)));
 }
 function scoreLine(el, ok, total){ el.textContent = ok + ' / ' + total + (ok===total ? ' — excellent!' : ''); }
-function toolbar(onCheck, onReset, showLabel){
+function toolbar(onCheck, onReset, showLabel, onShow){
   const d = document.createElement('div'); d.className = 'toolbar';
-  d.innerHTML = '<button class="check-btn">Check</button>' + (showLabel?'<button class="ghost-btn show">'+showLabel+'</button>':'') + '<button class="ghost-btn reset">Reset</button><span class="score"></span>';
+  d.innerHTML = '<button class="check-btn">Check</button>' + (onShow?'<button class="ghost-btn show-ans">Show answers</button>':'') + (showLabel?'<button class="ghost-btn show">'+showLabel+'</button>':'') + '<button class="ghost-btn reset">Reset</button><span class="score"></span>';
+  if(onShow) d.querySelector('.show-ans').onclick = ()=>{ onReset(); onShow(); onCheck(d.querySelector('.score')); d.querySelector('.score').textContent='Answers shown'; };
   d.querySelector('.check-btn').onclick = ()=>onCheck(d.querySelector('.score'));
   d.querySelector('.reset').onclick = ()=>{ onReset(); d.querySelector('.score').textContent=''; };
   return d;
@@ -461,7 +462,7 @@ const EX1 = [
       if(+pick===it[1]) ok++;
       const fb=d.querySelector('.fb'); fb.innerHTML='<b>'+TYPES[it[1]]+':</b> '+esc(it[2]); fb.classList.add('shown');
     }); scoreLine(score, ok, EX1.length);
-  }, ()=>{ box.querySelectorAll('.item').forEach(d=>{ delete d.dataset.done; delete d.dataset.pick; d.querySelectorAll('.opt').forEach(x=>{x.disabled=false; x.className='opt'; x.style.outline='';}); d.querySelector('.fb').classList.remove('shown'); }); }));
+  }, ()=>{ box.querySelectorAll('.item').forEach(d=>{ delete d.dataset.done; delete d.dataset.pick; d.querySelectorAll('.opt').forEach(x=>{x.disabled=false; x.className='opt'; x.style.outline='';}); d.querySelector('.fb').classList.remove('shown'); }); }, null, ()=>{ box.querySelectorAll('.item').forEach((d,i)=>{ d.dataset.pick=EX1[i][1]; }); }));
 })();
 
 /* ---------- typed gap exercises (Ex2, Ex4, Ex5) ---------- */
@@ -483,7 +484,7 @@ function typedEx(id, items, wide){
     }); scoreLine(score, ok, total);
   }
   function reset(){ box.querySelectorAll('input.ti').forEach(x=>{x.value=''; x.classList.remove('good','bad');}); box.querySelectorAll('.fb').forEach(f=>f.classList.remove('shown')); }
-  box.appendChild(toolbar(check, reset));
+  box.appendChild(toolbar(check, reset, null, ()=>{ box.querySelectorAll('.item').forEach((d,i)=>{ d.querySelectorAll('input.ti').forEach(inp=>{ inp.value=items[i].ans[+inp.dataset.k][0]; }); }); }));
 }
 
 typedEx('ex2', [
@@ -517,7 +518,7 @@ function choiceEx(id, items){
       if(+pick===it.c) ok++;
       const fb=d.querySelector('.fb'); fb.innerHTML=it.why; fb.classList.add('shown');
     }); scoreLine(score, ok, items.length);
-  }, ()=>{ box.querySelectorAll('.item').forEach(d=>{ delete d.dataset.done; delete d.dataset.pick; d.querySelectorAll('.opt').forEach(x=>{x.disabled=false; x.className='opt'; x.style.outline='';}); d.querySelector('.fb').classList.remove('shown'); }); }));
+  }, ()=>{ box.querySelectorAll('.item').forEach(d=>{ delete d.dataset.done; delete d.dataset.pick; d.querySelectorAll('.opt').forEach(x=>{x.disabled=false; x.className='opt'; x.style.outline='';}); d.querySelector('.fb').classList.remove('shown'); }); }, null, ()=>{ box.querySelectorAll('.item').forEach((d,i)=>{ d.dataset.pick=items[i].c; }); }));
 }
 
 choiceEx('ex3', [
@@ -588,7 +589,7 @@ const CLOZE = {
     let ok=0; t.querySelectorAll('select').forEach(s=>{ const g=CLOZE.gaps[+s.dataset.k]; const good=s.value!=='' && +s.value===g.c; s.classList.toggle('good',good); s.classList.toggle('bad',!good); if(good) ok++; });
     fb.innerHTML=CLOZE.gaps.map((g,i)=>'<b>'+(i+1)+'</b> '+esc(g.o[g.c])+': '+g.why).join('<br>'); fb.classList.add('shown');
     scoreLine(score, ok, CLOZE.gaps.length);
-  }, ()=>{ t.querySelectorAll('select').forEach(s=>{s.value=''; s.classList.remove('good','bad');}); fb.classList.remove('shown'); }));
+  }, ()=>{ t.querySelectorAll('select').forEach(s=>{s.value=''; s.classList.remove('good','bad');}); fb.classList.remove('shown'); }, null, ()=>{ t.querySelectorAll('select').forEach(s=>{ s.value=CLOZE.gaps[+s.dataset.k].c; }); }));
 })();
 
 /* ---------- writing word count ---------- */

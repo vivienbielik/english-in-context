@@ -863,6 +863,51 @@ footer{padding:2.5rem 1.5rem 3rem; text-align:center; color:var(--ink-soft); fon
 URL=https://www.youtube.com/watch?v=fHmXIXmmH7k
 
 <script>
+/* ================= SHOW ANSWERS (global helpers) ================= */
+function saBtn(anchor, fn, sideBySide){
+  if (typeof anchor === 'string') anchor = document.getElementById(anchor);
+  if (!anchor) return;
+  const b = document.createElement('button'); b.type = 'button'; b.className = 'ghost-btn show-ans-btn'; b.textContent = 'Show answers';
+  b.style.cssText = sideBySide ? 'margin-left:.6rem;' : 'margin-top:.6rem;';
+  b.onclick = fn; anchor.insertAdjacentElement('afterend', b);
+}
+function saRadios(container, items, valueOf){
+  if (typeof container === 'string') container = document.getElementById(container);
+  saBtn(container, () => container.querySelectorAll('.poll-q, .quiz-item').forEach((d, i) => {
+    const want = String(valueOf(items[i])); const inp = [...d.querySelectorAll('input[type=radio]')].find(x => x.value === want);
+    if (inp && !inp.checked){ inp.checked = true; inp.dispatchEvent(new Event('change')); }
+  }));
+}
+function saSelects(containerId, items){
+  const c = document.getElementById(containerId);
+  saBtn(c, () => c.querySelectorAll('select').forEach((sel, i) => { sel.value = items[i].correct; sel.dispatchEvent(new Event('change')); }));
+}
+function saFill(container, answers, checkBtnId, explainBtnId){
+  saBtn(checkBtnId, () => {
+    container.querySelectorAll('input[data-i]').forEach(inp => { inp.value = answers[+inp.dataset.i]; });
+    document.getElementById(checkBtnId).click();
+    const eb = explainBtnId && document.getElementById(explainBtnId); const box = eb && eb.nextElementSibling;
+    if (box && !box.classList.contains('shown')) eb.click();
+  }, true);
+}
+function saMatch(resultId, termsEl, defsEl, key, pick){
+  saBtn(resultId, () => [...termsEl.children].forEach(t => {
+    if (t.classList.contains('matched')) return;
+    const d = [...defsEl.children].find(x => x.dataset[key] === t.dataset[key] && !x.classList.contains('matched'));
+    if (d){ pick(t, 'a'); pick(d, 'b'); }
+  }));
+}
+function saModels(containerId){
+  const c = document.getElementById(containerId);
+  saBtn(c, () => c.querySelectorAll('.transform-item').forEach(d => { const m = d.querySelector('.model-answer'); if (!m.classList.contains('shown')) d.querySelector('button').click(); }));
+}
+function saBuckets(pool, bucketsEl, defs){
+  saBtn(bucketsEl, () => [...pool.children].forEach(chip => {
+    if (chip.classList.contains('placed')) return;
+    chip.click(); bucketsEl.children[defs.findIndex(b => b.id === chip.dataset.bucket)].click();
+  }));
+}
+
 /* ================= NAV SCROLLSPY + PROGRESS BAR ================= */
 const navLinks = document.querySelectorAll('nav a');
 const sections = [...navLinks].map(a => document.querySelector(a.getAttribute('href')));
@@ -931,6 +976,7 @@ function buildCheck(containerId, questions){
       });
     });
   });
+  saRadios(container, questions, it => it.correct);
 }
 
 buildCheck('check1', [
@@ -1630,6 +1676,28 @@ document.getElementById('quizCheckBtn').onclick = () => {
   scoreEl.style.display = 'block';
   scoreEl.textContent = `Score: ${score} / ${quizItems.length}`;
 };
+
+/* ================= SHOW ANSWERS (wiring) ================= */
+saMatch('matchResult', termsCol, defsCol, 'term', (el, t) => handlePick(el, t === 'a' ? 'term' : 'def'));
+saSelects('clozeCard', clozeItems);
+saBuckets(chipPool, bucketsDiv, bucketDefs);
+saModels('transformCard');
+saRadios(ex1, ex1Items, it => it.correct);
+saBtn(ex2, () => ex2.querySelectorAll('.oddset').forEach((d, i) => d.querySelectorAll('.oitem')[ex2Sets[i].odd].click()));
+saModels('ex3');
+saFill(ex5, ex5Answers, 'ex5check');
+saBtn(ex6Btn, () => { ex6.querySelectorAll('input').forEach(inp => { inp.value = inp.dataset.answer; }); ex6Btn.click(); }, true);
+saModels('ex7');
+saSelects('ex11', ex11Items);
+saBuckets(intChipPool, intBuckets, intBucketDefs);
+saSelects('ex12b', ex12bItems);
+saBuckets(stateChipPool, stateBuckets, stateBucketDefs);
+saModels('ex13b');
+saMatch('intMatchResult', intMatchTerms, intMatchDefs, 'base', (el, t) => handleIntPick(el, t === 'a' ? 'base' : 'extreme'));
+saBtn('quizCheckBtn', () => {
+  quizItems.forEach((it, qi) => { const inp = document.querySelector(`input[name="quiz-q${qi}"][value="${it.correct}"]`); if (inp) inp.checked = true; });
+  document.getElementById('quizCheckBtn').click(); document.getElementById('quizScore').textContent = 'Answers shown';
+}, true);
 
 /* ================= REFLECTION ================= */
 const reflectArea = document.getElementById('reflectArea');

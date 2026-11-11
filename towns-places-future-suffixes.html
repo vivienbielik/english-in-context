@@ -1098,6 +1098,47 @@ function matchExercise(containerId, pairs){
   container.appendChild(doneMsg);
 }
 
+/* ============ SHOW ANSWERS ============ */
+function saButton(anchor, fn, side){
+  if (!anchor) return;
+  const b = document.createElement('button'); b.type = 'button'; b.className = 'check-btn show-ans-btn'; b.textContent = 'Show answers';
+  b.style.cssText = 'background:transparent;color:var(--primary);border:2px solid var(--primary);' + (side ? 'margin-left:.6rem;' : 'margin-top:.7rem;');
+  b.onclick = () => { window.__saActive = true; try { fn(); } finally { setTimeout(() => { window.__saActive = false; }, 250); } };
+  anchor.insertAdjacentElement('afterend', b);
+}
+const _saMc = mcExercise;
+mcExercise = function(containerId, items){
+  _saMc(containerId, items);
+  const c = document.getElementById(containerId);
+  saButton(c, () => c.querySelectorAll(':scope > .quiz-item').forEach((w, i) => {
+    const o = w.querySelector('.quiz-options'); if (!o || o.children[0].disabled) return; o.children[items[i].correct].click();
+  }));
+};
+const _saSel = selectExercise;
+selectExercise = function(containerId, items){
+  _saSel(containerId, items);
+  const c = document.getElementById(containerId);
+  const chk = document.querySelector('button[onclick*="\'' + containerId + '\')"]');
+  saButton(chk || c, () => {
+    c.querySelectorAll(':scope > .select-item').forEach(w => { w._select.value = w.dataset.correct; });
+    if (chk) chk.click();
+    const sc = document.getElementById(containerId + '-score'); if (sc){ sc.textContent = 'Answers shown'; sc.style.display = 'block'; }
+  }, !!chk);
+};
+const _saMatch = matchExercise;
+matchExercise = function(containerId, pairs){
+  _saMatch(containerId, pairs);
+  const c = document.getElementById(containerId);
+  saButton(c, () => {
+    const cols = c.querySelectorAll('.match-col'); if (cols.length < 2) return;
+    [...cols[0].querySelectorAll('.match-item')].forEach(l => {
+      if (l.classList.contains('matched')) return;
+      const r = [...cols[1].querySelectorAll('.match-item')].find(x => x.dataset.pair === l.dataset.pair && !x.classList.contains('matched'));
+      if (r){ l.click(); r.click(); }
+    });
+  });
+};
+
 
 /* ============ GLOBAL SCORE ============ */
 const SCORE = {c:0, t:0};
@@ -1224,6 +1265,24 @@ window.offorData = [{"prefix": "We need a better understanding", "choices": ["of
 selectExercise('offor', window.offorData);
 mcExercise('odd', [{"q": "Odd one out: bustling · vibrant · lively · deserted", "choices": ["bustling", "vibrant", "lively", "deserted"], "correct": 3, "why": "<i>Deserted</i> means empty; the others mean full of life."}, {"q": "Odd one out: renovate · restore · regenerate · neglect", "choices": ["renovate", "restore", "regenerate", "neglect"], "correct": 3, "why": "<i>Neglect</i> = fail to look after; the others mean improve or repair."}, {"q": "Odd one out: suburb · outskirts · housing estate · roundabout", "choices": ["suburb", "outskirts", "housing estate", "roundabout"], "correct": 3, "why": "A <i>roundabout</i> is a road junction; the others are areas where people live."}, {"q": "Odd one out: litter · vandalism · graffiti · amenities", "choices": ["litter", "vandalism", "graffiti", "amenities"], "correct": 3, "why": "<i>Amenities</i> are useful facilities; the others are urban problems."}, {"q": "Odd one out: affordable · accessible · audible · run-down", "choices": ["affordable", "accessible", "audible", "run-down"], "correct": 3, "why": "The first three use the suffix <i>-able / -ible</i>; <i>run-down</i> is a compound adjective."}]);
 mcExercise('phrase-class', [{"q": "My main requirement is a safe place to cycle.", "choices": ["A · Introducing", "B · Essential", "C · Desirable", "D · Evaluating"], "correct": 0, "why": "Introducing your most important requirement."}, {"q": "For me, a youth club is a must.", "choices": ["A · Introducing", "B · Essential", "C · Desirable", "D · Evaluating"], "correct": 1, "why": "<i>A must</i> = something absolutely essential."}, {"q": "What we really need is more benches in the park.", "choices": ["A · Introducing", "B · Essential", "C · Desirable", "D · Evaluating"], "correct": 1, "why": "<i>What we really need is …</i> stresses an essential requirement."}, {"q": "We could do with a skatepark.", "choices": ["A · Introducing", "B · Essential", "C · Desirable", "D · Evaluating"], "correct": 2, "why": "<i>We could do with …</i> = it would be good to have."}, {"q": "I think a rooftop garden is a nice-to-have.", "choices": ["A · Introducing", "B · Essential", "C · Desirable", "D · Evaluating"], "correct": 2, "why": "<i>A nice-to-have</i> = desirable but not essential."}, {"q": "A music festival would be a big plus.", "choices": ["A · Introducing", "B · Essential", "C · Desirable", "D · Evaluating"], "correct": 2, "why": "<i>A big plus</i> = a desirable extra."}, {"q": "I'm not convinced by the idea of a new car park.", "choices": ["A · Introducing", "B · Essential", "C · Desirable", "D · Evaluating"], "correct": 3, "why": "<i>I'm not convinced by …</i> evaluates an idea negatively."}, {"q": "I think the last idea is the best.", "choices": ["A · Introducing", "B · Essential", "C · Desirable", "D · Evaluating"], "correct": 3, "why": "Choosing the best idea = evaluating."}, {"q": "Above all, we need better street lighting.", "choices": ["A · Introducing", "B · Essential", "C · Desirable", "D · Evaluating"], "correct": 0, "why": "<i>Above all</i> introduces the key requirement."}, {"q": "It would be great to have a climbing wall, but it isn't essential.", "choices": ["A · Introducing", "B · Essential", "C · Desirable", "D · Evaluating"], "correct": 2, "why": "<i>… but it isn't essential</i> = desirable."}, {"q": "That idea has my vote.", "choices": ["A · Introducing", "B · Essential", "C · Desirable", "D · Evaluating"], "correct": 3, "why": "<i>It has my vote</i> = I support it, I choose it."}, {"q": "We can't do without a decent bus connection.", "choices": ["A · Introducing", "B · Essential", "C · Desirable", "D · Evaluating"], "correct": 1, "why": "<i>We can't do without</i> = it is essential."}]);
+/* ============ SHOW ANSWERS: typed exercises + keep score honest ============ */
+if (typeof bump === 'function'){ const _saBump = bump; bump = function(ok){ if (window.__saActive) return; _saBump(ok); }; }
+const _saType = typeExercise;
+typeExercise = function(containerId, items){
+  _saType(containerId, items);
+  const c = document.getElementById(containerId);
+  const chk = document.querySelector('button[onclick*="checkType(\'' + containerId + '\')"]');
+  saButton(chk || c, () => {
+    c.querySelectorAll('.type-item').forEach(w => {
+      const it = w._it; let a = it.ans[0].replace(/^i /, 'I ').replace(/ i /g, ' I ').replace(/ i$/, ' I');
+      if (!it.prefix) a = a.charAt(0).toUpperCase() + a.slice(1);
+      w.querySelector('input').value = a;
+    });
+    if (chk) chk.click();
+    c.querySelectorAll('.type-item .quiz-why').forEach(x => { x.style.display = 'block'; });
+    const sc = document.getElementById(containerId + '-score'); if (sc) sc.textContent = 'Answers shown';
+  }, !!chk);
+};
 typeExercise('phrase-type', [{"orig": "You want to say what is most important for you.", "key": "REQUIREMENT", "prefix": "My main", "suffix": "is a bigger library.", "ans": ["requirement"], "why": "<i>My main requirement is …</i>"}, {"orig": "Something is absolutely essential.", "key": "MUST", "prefix": "For me, a skatepark is", "suffix": ".", "ans": ["a must"], "why": "<i>a must</i> = absolutely essential"}, {"orig": "It would be good to have a café by the river.", "key": "DO", "prefix": "We could", "suffix": "a café by the river.", "ans": ["do with"], "why": "<i>could do with</i> = would like / would benefit from"}, {"orig": "It's desirable, but not essential.", "key": "NICE", "prefix": "I think that's a", "suffix": ".", "ans": ["nice-to-have", "nice to have"], "why": "<i>a nice-to-have</i>"}, {"orig": "An outdoor cinema would be a desirable extra.", "key": "PLUS", "prefix": "An outdoor cinema would be a big", "suffix": ".", "ans": ["plus"], "why": "<i>a big plus</i>"}, {"orig": "I'm not sure the car park is a good idea.", "key": "CONVINCED", "prefix": "I'm not", "suffix": "the car park.", "ans": ["convinced by", "convinced about"], "why": "<i>I'm not convinced by / about …</i>"}]);
 mcExercise('fut-mc', [{"q": "Look at those dark clouds. It ___ rain.", "choices": ["will", "is going to", "rains", "is raining"], "correct": 1, "why": "Prediction based on <b>present evidence</b> (the clouds) → <i>be going to</i>."}, {"q": "The bus to Nitra ___ at 7.45 tomorrow morning.", "choices": ["leaves", "is going to leave", "will be leaving", "leave"], "correct": 0, "why": "<b>Timetables and schedules</b> → present simple."}, {"q": "I ___ the mayor at 3 p.m. on Friday – it's in my diary.", "choices": ["will meet", "meet", "am meeting", "would meet"], "correct": 2, "why": "A fixed <b>arrangement</b> with a time and other people → present continuous."}, {"q": "– The playground is a mess. – Don't worry, I ___ help you clean it.", "choices": ["am going to", "'ll", "am", "'m helping"], "correct": 1, "why": "A <b>spontaneous decision / offer</b> made at the moment of speaking → <i>will</i>."}, {"q": "We ___ a petition – we decided last week.", "choices": ["will start", "are going to start", "start", "would start"], "correct": 1, "why": "A plan or <b>intention</b> decided before → <i>be going to</i>."}, {"q": "I'm not sure, but the council ___ build a new pool next year.", "choices": ["is building", "might", "builds", "is about to"], "correct": 1, "why": "<b>Possibility</b> / uncertainty → <i>might / may / could</i> + infinitive."}, {"q": "This time next week, I ___ on the beach in Croatia.", "choices": ["will lie", "will be lying", "lie", "will have lain"], "correct": 1, "why": "An action <b>in progress at a time in the future</b> → future continuous."}, {"q": "By 2030, the town ___ the whole riverbank.", "choices": ["will regenerate", "is regenerating", "will have regenerated", "regenerates"], "correct": 2, "why": "An action <b>completed before a time in the future</b> (<i>by 2030</i>) → future perfect."}, {"q": "Hurry up! The concert ___ start.", "choices": ["is about to", "will", "is going", "would"], "correct": 0, "why": "<i>Be about to</i> = in the very near future, any minute now."}, {"q": "I think more people ___ cycle to work in the future.", "choices": ["are going", "will", "are", "would"], "correct": 1, "why": "General <b>prediction / opinion</b> with <i>I think, probably, I'm sure</i> → <i>will</i>."}, {"q": "Taxes ___ go up next year – the government has already announced it.", "choices": ["are bound to", "might", "are about", "would"], "correct": 0, "why": "<i>Be bound to</i> = it's certain to happen."}, {"q": "Don't call at 8 – we ___ dinner then.", "choices": ["will have", "will be having", "have", "are going to having"], "correct": 1, "why": "Action in progress at a future time → future continuous."}]);
 matchExercise('fut-rules', [{"left": "The next train leaves at 9.10.", "right": "a timetable or schedule → present simple", "why": "<i>The next train leaves at 9.10.</i> → a timetable or schedule → present simple"}, {"left": "We're having a street party on Saturday.", "right": "a fixed arrangement → present continuous", "why": "<i>We're having a street party on Saturday.</i> → a fixed arrangement → present continuous"}, {"left": "I'm going to study architecture.", "right": "a plan or intention → be going to", "why": "<i>I'm going to study architecture.</i> → a plan or intention → be going to"}, {"left": "Watch out! You're going to fall!", "right": "a prediction with present evidence → be going to", "why": "<i>Watch out! You're going to fall!</i> → a prediction with present evidence → be going to"}, {"left": "I'll carry that bag for you.", "right": "an offer / instant decision → will", "why": "<i>I'll carry that bag for you.</i> → an offer / instant decision → will"}, {"left": "I think the town will grow.", "right": "an opinion / prediction → will", "why": "<i>I think the town will grow.</i> → an opinion / prediction → will"}, {"left": "They might open a cinema.", "right": "a possibility → might / may / could", "why": "<i>They might open a cinema.</i> → a possibility → might / may / could"}, {"left": "At 8 tonight I'll be watching the match.", "right": "in progress at a future time → future continuous", "why": "<i>At 8 tonight I'll be watching the match.</i> → in progress at a future time → future continuous"}, {"left": "By June I'll have finished my exams.", "right": "completed before a future time → future perfect", "why": "<i>By June I'll have finished my exams.</i> → completed before a future time → future perfect"}]);

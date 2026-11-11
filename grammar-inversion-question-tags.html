@@ -422,6 +422,14 @@ function ensureExplainBox(div, text){
   const norm = s => s.toLowerCase().replace(/[’']/g,"'").replace(/[.,!?;:]/g,'').replace(/\s+/g,' ').trim();
   const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const score = (id, g, t) => { const e = document.getElementById(id + '-score'); if (e) e.textContent = 'Score: ' + g + ' / ' + t; };
+  const shown = id => { const e = document.getElementById(id + '-score'); if (e) e.textContent = 'Answers shown'; };
+  const addShowBtn = (id, fn) => {
+    const chk = document.getElementById(id + '-check'), anchor = chk || document.getElementById(id);
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'ghost-btn show-ans-btn'; b.textContent = 'Show answers';
+    b.style.cssText = chk ? 'margin-left:.6rem;' : 'margin-top:.6rem;';
+    b.onclick = fn; anchor.insertAdjacentElement('afterend', b);
+  };
+  const fmtAns = (a, pre) => { a = a.replace(/\bi\b/g, 'I'); return pre ? a : a.charAt(0).toUpperCase() + a.slice(1); };
 
   function mcEx(id, data, labels){
     const box = document.getElementById(id); let done = 0, right = 0;
@@ -443,6 +451,10 @@ function ensureExplainBox(div, text){
       });
       box.appendChild(d);
     });
+    addShowBtn(id, () => {
+      box.querySelectorAll('.poll-q').forEach((d, i) => { const w = d.querySelector('.ip-opts'); if (w.children[0].disabled) return; w.children[labels ? (data[i].ok ? 0 : 1) : data[i].c].click(); });
+      shown(id);
+    });
   }
   function typeEx(id, data, render){
     const box = document.getElementById(id);
@@ -456,6 +468,10 @@ function ensureExplainBox(div, text){
       });
       score(id, g, data.length);
     };
+    addShowBtn(id, () => {
+      box.querySelectorAll('.cloze-item').forEach((d, i) => { d.querySelector('input').value = fmtAns(data[i].ans[0], data[i].pre); });
+      document.getElementById(id + '-check').click(); shown(id);
+    });
   }
   function selEx(id, data){
     const box = document.getElementById(id);
@@ -473,6 +489,10 @@ function ensureExplainBox(div, text){
       });
       score(id, g, data.length);
     };
+    addShowBtn(id, () => {
+      box.querySelectorAll('.cloze-item').forEach((d, i) => { d.querySelector('select').value = data[i].c; });
+      document.getElementById(id + '-check').click(); shown(id);
+    });
   }
   function matchEx(id, data){
     const box = document.getElementById(id);
@@ -483,11 +503,12 @@ function ensureExplainBox(div, text){
       b.onclick = () => { if (b.classList.contains('done')) return; L.querySelectorAll('.ip-mitem').forEach(x => x.classList.remove('sel')); b.classList.add('sel'); picked = i; };
       L.appendChild(b); });
     data.map((_, i) => i).sort(() => Math.random() - .5).forEach(i => {
-      const b = document.createElement('button'); b.type = 'button'; b.className = 'ip-mitem'; b.textContent = data[i].r;
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'ip-mitem'; b.textContent = data[i].r; b.dataset.i = i;
       b.onclick = () => { if (picked === null || b.classList.contains('done')) return;
         if (picked === i) { b.classList.add('done'); L.children[i].classList.remove('sel'); L.children[i].classList.add('done'); picked = null; if (++n === data.length) sc.textContent = 'All matched! 🎉'; }
         else { b.classList.add('shake'); setTimeout(() => b.classList.remove('shake'), 400); } };
       R.appendChild(b); });
+    addShowBtn(id, () => { data.forEach((_, i) => { if (L.children[i].classList.contains('done')) return; L.children[i].click(); R.querySelector('[data-i="' + i + '"]').click(); }); });
   }
   function orderEx(id, data){
     const box = document.getElementById(id);
@@ -505,6 +526,14 @@ function ensureExplainBox(div, text){
         if (norm(got) === norm(sent)) { fb.textContent = '✓ ' + sent; fb.className = 'ip-fb ip-ok'; }
         else { fb.textContent = bank.children.length ? '✗ Use all the words first.' : '✗ Not quite. Where does the auxiliary go?'; fb.className = 'ip-fb ip-no'; } };
       rst.onclick = fill; box.appendChild(d);
+    });
+    addShowBtn(id, () => {
+      box.querySelectorAll('.poll-q').forEach((d, i) => {
+        const built = d.querySelector('.ip-built'), bank = d.querySelector('.ip-bank');
+        [...built.children].forEach(b => bank.appendChild(b));
+        data[i].replace(/[.]$/, '').split(' ').forEach(w => { const b = [...bank.children].find(x => x.textContent === w); if (b) built.appendChild(b); });
+        d.querySelector('.ip-row-btns button').click();
+      });
     });
   }
   function writeEx(id, data){

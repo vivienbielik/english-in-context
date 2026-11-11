@@ -715,6 +715,45 @@ textarea.ip-ta{width:100%; min-height:3.2rem; border:1px solid var(--teal); bord
 <footer>English in Context · Science &amp; Technology module · B2 · Maturita Exam · Built for classroom use</footer>
 
 <script>
+/* ================= SHOW ANSWERS (global helpers) ================= */
+function saBtn(anchor, fn, sideBySide){
+  if (typeof anchor === 'string') anchor = document.getElementById(anchor);
+  if (!anchor) return;
+  const b = document.createElement('button'); b.type = 'button'; b.className = 'ghost-btn show-ans-btn'; b.textContent = 'Show answers';
+  b.style.cssText = sideBySide ? 'margin-left:.6rem;' : 'margin-top:.6rem;';
+  b.onclick = fn; anchor.insertAdjacentElement('afterend', b);
+}
+function saRadios(container, items, valueOf){
+  if (typeof container === 'string') container = document.getElementById(container);
+  saBtn(container, () => container.querySelectorAll('.poll-q, .quiz-item').forEach((d, i) => {
+    const want = String(valueOf(items[i])); const inp = [...d.querySelectorAll('input[type=radio]')].find(x => x.value === want);
+    if (inp && !inp.checked){ inp.checked = true; inp.dispatchEvent(new Event('change')); }
+  }));
+}
+function saSelects(containerId, items){
+  const c = document.getElementById(containerId);
+  saBtn(c, () => c.querySelectorAll('select').forEach((sel, i) => { sel.value = items[i].correct; sel.dispatchEvent(new Event('change')); }));
+}
+function saFill(container, answers, checkBtnId, explainBtnId){
+  saBtn(checkBtnId, () => {
+    container.querySelectorAll('input[data-i]').forEach(inp => { inp.value = answers[+inp.dataset.i]; });
+    document.getElementById(checkBtnId).click();
+    const eb = explainBtnId && document.getElementById(explainBtnId); const box = eb && eb.nextElementSibling;
+    if (box && !box.classList.contains('shown')) eb.click();
+  }, true);
+}
+function saMatch(resultId, termsEl, defsEl, key, pick){
+  saBtn(resultId, () => [...termsEl.children].forEach(t => {
+    if (t.classList.contains('matched')) return;
+    const d = [...defsEl.children].find(x => x.dataset[key] === t.dataset[key] && !x.classList.contains('matched'));
+    if (d){ pick(t, 'a'); pick(d, 'b'); }
+  }));
+}
+function saModels(containerId){
+  const c = document.getElementById(containerId);
+  saBtn(c, () => c.querySelectorAll('.transform-item').forEach(d => { const m = d.querySelector('.model-answer'); if (!m.classList.contains('shown')) d.querySelector('button').click(); }));
+}
+
 /* ================= NAV SCROLLSPY + PROGRESS BAR ================= */
 const navLinks = document.querySelectorAll('nav a');
 const sections = [...navLinks].map(a => document.querySelector(a.getAttribute('href')));
@@ -790,6 +829,7 @@ function buildCheck(containerId, questions){
       });
     });
   });
+  saRadios(container, questions, it => it.correct);
 }
 buildCheck('check1', [
   {q:"Why are autonomous vehicles being tested, according to the text?", opts:["To replace all trains","To reduce human error, the main cause of accidents","Because petrol is too cheap","To increase traffic"], correct:1, explain:"The text says autonomous vehicles are being tested because they promise \u2018to reduce human error, which causes the vast majority of road accidents.\u2019 The other options are never mentioned."},
@@ -1442,6 +1482,34 @@ document.getElementById('downloadBtn').onclick = () => {
   URL.revokeObjectURL(url);
 };
 
+
+/* ================= SHOW ANSWERS (wiring) ================= */
+saMatch('cnMatchResult', cnMatchTerms, cnMatchDefs, 'key', (el, t) => cnPick(el, t));
+saBtn(cnBuckets, () => {
+  [...cnChipPool.children].forEach(chip => {
+    if (chip.classList.contains('placed')) return;
+    chip.click(); cnBuckets.children[cnBucketDefs.findIndex(b => b.id === chip.dataset.bucket)].click();
+  });
+});
+saSelects('cnCloze', cnClozeItems);
+saRadios(pv1, pv1Items, it => it.correct);
+saBtn(pv2, () => pv2.querySelectorAll('.oddset').forEach((d, i) => d.querySelectorAll('.oitem')[pv2Sets[i].odd].click()));
+saModels('pv3');
+saFill(pv5, pv5Answers, 'pv5check', 'pv5explainBtn');
+saBtn(pv6Btn, () => { pv6.querySelectorAll('.cloze-item input').forEach((inp, i) => { inp.value = pv6Items[i].answer; }); pv6Btn.click(); }, true);
+saModels('pv7');
+saModels('pv8');
+saSelects('pv9', pv9Items);
+saFill(chartCloze, chartClozeAnswers, 'chartClozeCheck', 'chartClozeExplainBtn');
+saRadios(rcMC, rcMCItems, it => it.correct);
+saRadios(rcTF, rcTFItems, it => it.correct);
+saMatch('rcMatchResult', rcMatchTerms, rcMatchDefs, 'term', (el, t) => rcPick(el, t === 'a' ? 'term' : 'def'));
+saFill(lsCloze, lsAnswers, 'lsCheck', 'lsExplainBtn');
+saBtn('quizCheckBtn', () => {
+  quizItems.forEach((it, qi) => { const inp = document.querySelector(`input[name="quiz-q${qi}"][value="${it.correct}"]`); if (inp) inp.checked = true; });
+  document.getElementById('quizCheckBtn').click(); document.getElementById('quizScore').textContent = 'Answers shown';
+}, true);
+
 /* ================= IMPERSONAL PASSIVE (Part 4B/4C) ================= */
 (function(){
   const norm = s => s.toLowerCase().replace(/[’']/g,"'").replace(/[.,!?;:]/g,'').replace(/\s+/g,' ').trim();
@@ -1598,6 +1666,36 @@ document.getElementById('downloadBtn').onclick = () => {
     b.onclick = () => { m.classList.toggle('shown'); b.textContent = m.classList.contains('shown') ? 'Hide model answer' : 'Show model answer'; };
     hBox.appendChild(d);
   });
+  /* ===== SHOW ANSWERS ===== */
+  const SA = {
+    btn(id, fn){
+      const chk = document.getElementById(id + '-check'), anchor = chk || document.getElementById(id);
+      if (!anchor) return;
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'ghost-btn show-ans-btn'; b.textContent = 'Show answers';
+      b.style.cssText = chk ? 'margin-left:.6rem;' : 'margin-top:.6rem;';
+      b.onclick = () => { fn(); const e = document.getElementById(id + '-score'); if (e) e.textContent = 'Answers shown'; };
+      anchor.insertAdjacentElement('afterend', b);
+    },
+    cap(a){ return a.charAt(0).toUpperCase() + a.slice(1); },
+    clicks(id, data, idx){ SA.btn(id, () => document.getElementById(id).querySelectorAll('.poll-q').forEach((d, i) => {
+      const w = d.querySelector('.ip-opts, .ip-labels, .ip-chunks'); if (!w || w.children[0].disabled) return; w.children[idx(data[i])].click(); })); },
+    typed(id, data){ SA.btn(id, () => { document.getElementById(id).querySelectorAll('.cloze-item').forEach((d, i) => {
+      d.querySelector('input').value = data[i].pre ? data[i].ans[0] : SA.cap(data[i].ans[0]); }); document.getElementById(id + '-check').click(); }); },
+    sel(id, data){ SA.btn(id, () => { document.getElementById(id).querySelectorAll('.cloze-item').forEach((d, i) => { d.querySelector('select').value = data[i].c; }); document.getElementById(id + '-check').click(); }); },
+    match(id, data, L, R){ SA.btn(id, () => data.forEach((it, i) => { if (L.children[i].classList.contains('done')) return; L.children[i].click(); const r = [...R.children].find(x => x.textContent === it.r && !x.classList.contains('done')); if (r) r.click(); })); },
+    order(id, data){ SA.btn(id, () => document.getElementById(id).querySelectorAll('.poll-q').forEach((d, i) => {
+      const built = d.querySelector('.ip-built'), bank = d.querySelector('.ip-bank');
+      [...built.children].forEach(b => bank.appendChild(b));
+      data[i].replace(/\.$/, '').split(' ').forEach(w => { const b = [...bank.children].find(x => x.textContent === w); if (b) built.appendChild(b); });
+      d.querySelector('.ip-row-btns button').click(); })); }
+  };
+  SA.clicks('ipMC', MC, it => it.c);
+  SA.sel('ipSel', SEL);
+  SA.typed('ipKW', KW);
+  SA.clicks('ipTF', TF, it => it.ok ? 0 : 1);
+  SA.match('ipMatch', MT, L, R);
+  SA.order('ipOrder', OR);
+  SA.btn('ipCloze', () => { cBox.querySelectorAll('input').forEach(inp => { const k = +inp.dataset.i; const a = CA[k][0]; inp.value = /^[A-Z]/.test(CT[1 + k*2].slice(1)) ? SA.cap(a) : a; }); document.getElementById('ipCloze-check').click(); });
 })();
 </script>
 <script src="ai-feedback.js" data-level="B2"></script>

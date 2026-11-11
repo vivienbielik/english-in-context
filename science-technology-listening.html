@@ -398,6 +398,21 @@ function toggleScript(){
   box.classList.toggle('open');
   btn.textContent = box.classList.contains('open') ? 'Hide script' : 'Show script';
 }
+
+/* ============ SHOW ANSWERS ============ */
+function showAnswers(id){
+  if (id === 'task1'){ document.querySelectorAll('#task1 .q').forEach(q => { q.querySelector('input[value="' + MC[q.dataset.i].a + '"]').checked = true; }); checkMC(); }
+  if (id === 'task2'){ document.querySelectorAll('#task2 tr[data-i]').forEach(r => { r.querySelector('input[value="' + TF[r.dataset.i].a + '"]').checked = true; }); checkTF(); }
+  if (id === 'task3'){ document.querySelectorAll('#task3 .order-item').forEach(r => { r.querySelector('select').value = IDEAS[r.dataset.i].n; }); checkOrder(); }
+  SCORES[id] = null; updateResults();   // shown answers earn no points
+  document.getElementById(id + '-score').textContent = 'Answers shown';
+}
+document.querySelectorAll('button.btn[onclick]').forEach(b => {
+  const m = b.getAttribute('onclick').match(/^check(MC|TF|Order)\(\)$/); if (!m) return;
+  const id = {MC:'task1', TF:'task2', Order:'task3'}[m[1]];
+  const sb = document.createElement('button'); sb.className = 'btn secondary show-ans-btn'; sb.textContent = 'Show answers';
+  sb.onclick = () => showAnswers(id); b.insertAdjacentElement('afterend', sb);
+});
 </script>
 </body>
 </html>

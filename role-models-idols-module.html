@@ -705,6 +705,28 @@ document.querySelectorAll('#wordchoice .mc-opts').forEach(group=>{
   });
 });
 
+/* ================= SHOW ANSWERS ================= */
+function saMake(anchor, fn, side){
+  const b = document.createElement('button'); b.type = 'button'; b.className = 'check-btn show-ans-btn'; b.textContent = 'Show answers';
+  b.style.cssText = 'background:transparent;color:var(--teal);border:2px solid var(--teal);' + (side ? 'margin-left:.6rem;' : 'margin-top:.6rem;display:block;');
+  b.onclick = fn; anchor.insertAdjacentElement('afterend', b);
+}
+function saScore(id){ const e = document.getElementById(id + '-score'); if (e) e.textContent = 'Answers shown'; }
+document.querySelectorAll('button.check-btn[onclick]').forEach(chk => {
+  const m = chk.getAttribute('onclick').match(/^check(TFN|MC|Gap)\('([^']+)'\)/); if (!m) return;
+  const [, kind, id] = m, box = document.getElementById(id);
+  saMake(chk, () => {
+    if (kind === 'TFN') box.querySelectorAll('.tfn-row').forEach(r => r.querySelector('.tfn-btns button[data-v="' + r.dataset.answer + '"]').click());
+    if (kind === 'MC') box.querySelectorAll('.mc-q').forEach(q => q.querySelector('.mc-opt[data-i="' + q.dataset.answer + '"]').click());
+    if (kind === 'Gap') box.querySelectorAll('.gap-item').forEach(it => { it.querySelector('input').value = it.dataset.answer.split(',')[0].trim(); });
+    chk.click(); saScore(id);
+  }, true);
+});
+saMake(document.getElementById('sort-score'), () => {
+  [...sortPool.children].forEach(chip => { if (chip.classList.contains('placed')) return; chip.click(); document.querySelector('.sort-bin[data-bin="' + chip.dataset.correct + '"]').click(); });
+});
+saMake(errorContainer, () => errorContainer.querySelectorAll('.error-item').forEach((d, i) => d.querySelectorAll('.word')[errorSentences[i].wrongIndex].click()));
+
 goTo(0);
 </script>
 <script src="ai-feedback.js" data-level="B2"></script>

@@ -1076,6 +1076,55 @@ function finishWriting(){
 }
 
 /* ============ DATA ============ */
+/* ============ SHOW ANSWERS ============ */
+const _saReport = report;
+report = function(id, correct, total, done){ if (window.__saActive) return _saReport(id, 0, total, done); return _saReport(id, correct, total, done); };
+function saButton(anchor, fn, side){
+  if (!anchor) return;
+  const b = document.createElement('button'); b.type = 'button'; b.className = 'check-btn ghost show-ans-btn'; b.textContent = 'Show answers';
+  if (side) b.style.marginLeft = '.6rem'; else b.style.marginTop = '.7rem';
+  b.onclick = () => { window.__saActive = true; try { fn(); } finally { window.__saActive = false; } };
+  anchor.insertAdjacentElement('afterend', b);
+}
+const _saMc = mcExercise;
+mcExercise = function(containerId, items){
+  _saMc(containerId, items);
+  const c = document.getElementById(containerId);
+  saButton(c, () => c.querySelectorAll(':scope > .quiz-item').forEach((w, i) => {
+    const o = w.querySelector('.quiz-options'); if (!o || o.children[0].disabled) return; o.children[items[i].correct].click();
+  }));
+};
+const _saSel = selectExercise;
+selectExercise = function(containerId, items){
+  _saSel(containerId, items);
+  const c = document.getElementById(containerId);
+  const chk = document.querySelector('button[onclick*="\'' + containerId + '\')"]');
+  saButton(chk || c, () => {
+    c.querySelectorAll(':scope > .select-item').forEach(w => { w._select.value = w.dataset.correct; });
+    if (chk) chk.click();
+    const sc = document.getElementById(containerId + '-score'); if (sc){ sc.textContent = 'Answers shown'; sc.style.display = 'block'; }
+  }, !!chk);
+};
+const _saMatch = matchExercise;
+matchExercise = function(containerId, pairs){
+  _saMatch(containerId, pairs);
+  const c = document.getElementById(containerId);
+  saButton(c, () => {
+    const cols = c.querySelectorAll('.match-col');
+    [...cols[0].querySelectorAll('.match-item')].forEach(l => {
+      if (l.classList.contains('matched')) return;
+      const r = [...cols[1].querySelectorAll('.match-item')].find(x => x.dataset.pair === l.dataset.pair && !x.classList.contains('matched'));
+      if (r){ l.click(); r.click(); }
+    });
+  });
+};
+const _saOrder = orderExercise;
+orderExercise = function(containerId, events, models){
+  _saOrder(containerId, events, models);
+  const c = document.getElementById(containerId);
+  saButton(c, () => events.forEach(e => { const b = [...c.querySelectorAll('.order-pool button')].find(x => x.textContent === e.text); if (b) b.click(); }));
+};
+
 mcExercise('ex1', [
   {q:'Kennedy <b>became</b> the youngest man ever elected president of the USA.', choices:['Past Simple','Past Perfect Simple','Past Perfect Continuous'], correct:0, why:'A single completed event in the past, the main line of the story → Past Simple.'},
   {q:'By 1990, Mandela <b>had spent</b> 27 years in prison.', choices:['Past Simple','Past Perfect Simple','Past Perfect Continuous'], correct:1, why:'<i>had</i> + past participle; a result counted up to a past moment (<i>by 1990</i>).'},

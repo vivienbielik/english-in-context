@@ -1084,6 +1084,22 @@ window.addEventListener('scroll', () => {
     nav.scrollLeft = a.offsetLeft - nav.clientWidth/2 + a.clientWidth/2;
   }
 }, {passive:true});
+
+/* ================= SHOW ANSWERS ================= */
+function showAnswers(id){
+  const box = document.getElementById(id);
+  box.querySelectorAll('.q[data-c]').forEach(q => { const r = q.querySelector('input[value="'+q.dataset.c+'"]'); if (r) r.checked = true; });
+  box.querySelectorAll('select.sel[data-a]').forEach(s => { s.value = s.dataset.a; });
+  const chk = box.querySelector('.toolbar .btn:not(.secondary)'); if (chk) chk.click();
+  document.getElementById(id+'_res').textContent = 'Answers shown';
+}
+document.querySelectorAll('.toolbar').forEach(tb => {
+  const chk = tb.querySelector('button.btn:not(.secondary)');
+  const m = chk && (chk.getAttribute('onclick')||'').match(/^check(?:Radio|Sel)\('([^']+)'/);
+  if (!m) return;
+  const b = document.createElement('button'); b.className = 'btn secondary show-ans-btn'; b.textContent = 'Show answers';
+  b.onclick = () => showAnswers(m[1]); chk.insertAdjacentElement('afterend', b);
+});
 </script>
 </body>
 </html>
